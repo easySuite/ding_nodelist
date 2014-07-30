@@ -1536,7 +1536,7 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
 
   // Init JS for widgets
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
-  $image_style = _ding_nodelist_init_image_style($conf['widget_type'], $conf['region']);
+  $image_style = _ding_nodelist_init_image_style($conf['widget_type']);
   $theme_func = '_ding_nodelist_widget_' . $conf['widget_type'];
   $block->content = theme($theme_func, array(
     'items' => $nodes,
@@ -1611,7 +1611,7 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
  * @return string
  *   Image style name.
  */
-function _ding_nodelist_init_image_style($widget, $region) {
+function _ding_nodelist_init_image_style($widget) {
   // Get layout from theme panel settings
   $display = panels_get_current_page_display();
   $layout = panels_get_layout($display->layout);
@@ -1622,7 +1622,7 @@ function _ding_nodelist_init_image_style($widget, $region) {
     case NL_WIDGET_CAROUSEL:
     case NL_WIDGET_SINGLE:
     case NL_WIDGET_VER_ACCORDION:
-      return $layout  ? $layout['regions_image_styles'][$region] : 'ding_large';
+      return 'ding_nodelist_medium';
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
       return 'ding_large';
