@@ -1460,6 +1460,7 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  *   An object with at least title and content members.
  */
 function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
+  $content_type = 'field_' . $conf['content_type'] . '_list_image';
   $block = new stdClass();
 
   // Prepare classes for widget container.
@@ -1515,11 +1516,11 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   // Remove elements if they are of type carousel, single item, vertical
   // accordion or horizontal accordion and do not contain list image.
   if (in_array($conf['widget_type'], array('single', 'carousel', 'horizontal_accordion', 'vertical_accordion'))) {
-   foreach ($nodes as $key => $node) {
-     if (count($node->field_list_image) <= 0) {
-       unset($nodes[$key]);
-     }
-   }
+    foreach ($nodes as $key => $node) {
+      if (count($node->{$content_type}) <= 0) {
+        unset($nodes[$key]);
+      }
+    }
   }
 
   if (count($nodes) > 0 ) {
@@ -2202,23 +2203,22 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
 function _ding_nodelist_trim_body($nodes, $conf) {
   $title_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_title_trim', NL_TITLE_SIZE);
   $body_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_teaser_trim', NL_BODY_SIZE);
+  $content_type = 'field_' . $conf['content_type'] . '_body';
 
   foreach ($nodes as $key => $node) {
     if (!is_array($node)) {
       $nodes[$key]->title = truncate_utf8($node->title, $title_length, FALSE, TRUE);
 
-      foreach ($node->field_ding_body as $lng => $body) {
-        $nodes[$key]->field_ding_body[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
-        $nodes[$key]->field_ding_body[$lng][0]['safe_summary'] = truncate_utf8($body[0]['safe_summary'], $body_length, FALSE, TRUE);
+      foreach ($node->{$content_type} as $lng => $body) {
+        $nodes[$key]->{$content_type}[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
       }
     }
     else {
       foreach ($node as $node_date => $n) {
         $nodes[$key][$node_date]->title = truncate_utf8($n->title, $title_length, FALSE, TRUE);
 
-        foreach ($n->field_ding_body as $lng => $body) {
-          $nodes[$key][$node_date]->field_ding_body[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
-          $nodes[$key][$node_date]->field_ding_body[$lng][0]['safe_summary'] = truncate_utf8($body[0]['safe_summary'], $body_length, FALSE, TRUE);
+        foreach ($n->{$content_type} as $lng => $body) {
+          $nodes[$key][$node_date]->{$content_type}[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
         }
       }
     }
