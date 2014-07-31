@@ -1438,6 +1438,7 @@ function ding_nodelist_content_type_admin_title($subtype, $conf, $context = NULL
  */
 function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL) {
   // @todo: show details about nodelist configuration here.
+  $block = new stdClass();
   $block->title = t('No information');
   $info = '';
   $block->content = $info;
@@ -1460,6 +1461,7 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  *   An object with at least title and content members.
  */
 function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
+  $content_type = 'field_' . $conf['content_type'] . '_list_image';
   $block = new stdClass();
 
   // Prepare classes for widget container.
@@ -1515,11 +1517,11 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   // Remove elements if they are of type carousel, single item, vertical
   // accordion or horizontal accordion and do not contain list image.
   if (in_array($conf['widget_type'], array('single', 'carousel', 'horizontal_accordion', 'vertical_accordion'))) {
-   foreach ($nodes as $key => $node) {
-     if (count($node->field_list_image) <= 0) {
-       unset($nodes[$key]);
-     }
-   }
+    foreach ($nodes as $key => $node) {
+      if (count($node->{$content_type}) <= 0) {
+        unset($nodes[$key]);
+      }
+    }
   }
 
   if (count($nodes) > 0 ) {
@@ -1535,7 +1537,7 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
 
   // Init JS for widgets
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
-  $image_style = _ding_nodelist_init_image_style($conf['widget_type'], $conf['region']);
+  $image_style = _ding_nodelist_init_image_style($conf['widget_type']);
   $theme_func = '_ding_nodelist_widget_' . $conf['widget_type'];
   $block->content = theme($theme_func, array(
     'items' => $nodes,
@@ -1610,7 +1612,7 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
  * @return string
  *   Image style name.
  */
-function _ding_nodelist_init_image_style($widget, $region) {
+function _ding_nodelist_init_image_style($widget) {
   // Get layout from theme panel settings
   $display = panels_get_current_page_display();
   $layout = panels_get_layout($display->layout);
@@ -1621,7 +1623,7 @@ function _ding_nodelist_init_image_style($widget, $region) {
     case NL_WIDGET_CAROUSEL:
     case NL_WIDGET_SINGLE:
     case NL_WIDGET_VER_ACCORDION:
-      return $layout  ? $layout['regions_image_styles'][$region] : 'ding_large';
+      return 'ding_nodelist_medium';
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
       return 'ding_large';
@@ -2202,23 +2204,22 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
 function _ding_nodelist_trim_body($nodes, $conf) {
   $title_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_title_trim', NL_TITLE_SIZE);
   $body_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_teaser_trim', NL_BODY_SIZE);
+  $content_type = 'field_' . $conf['content_type'] . '_body';
 
   foreach ($nodes as $key => $node) {
     if (!is_array($node)) {
       $nodes[$key]->title = truncate_utf8($node->title, $title_length, FALSE, TRUE);
 
-      foreach ($node->field_ding_body as $lng => $body) {
-        $nodes[$key]->field_ding_body[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
-        $nodes[$key]->field_ding_body[$lng][0]['safe_summary'] = truncate_utf8($body[0]['safe_summary'], $body_length, FALSE, TRUE);
+      foreach ($node->{$content_type} as $lng => $body) {
+        $nodes[$key]->{$content_type}[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
       }
     }
     else {
       foreach ($node as $node_date => $n) {
         $nodes[$key][$node_date]->title = truncate_utf8($n->title, $title_length, FALSE, TRUE);
 
-        foreach ($n->field_ding_body as $lng => $body) {
-          $nodes[$key][$node_date]->field_ding_body[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
-          $nodes[$key][$node_date]->field_ding_body[$lng][0]['safe_summary'] = truncate_utf8($body[0]['safe_summary'], $body_length, FALSE, TRUE);
+        foreach ($n->{$content_type} as $lng => $body) {
+          $nodes[$key][$node_date]->{$content_type}[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
         }
       }
     }
@@ -2232,15 +2233,16 @@ function _ding_nodelist_trim_body($nodes, $conf) {
  */
 function _ding_nodelist_striptags($nodes) {
   foreach ($nodes as $n => $node) {
+    $body_field = 'field_' . $node->type . '_body';
     if (!is_array($node)) {
-      foreach ($node->field_ding_body as $lng => $body) {
-        $nodes[$n]->field_ding_body[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
+      foreach ($node->{$body_field} as $lng => $body) {
+        $nodes[$n]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
       }
     }
     else {
       foreach ($node as $event_date => $event_node) {
-        foreach ($event_node->field_ding_body as $lng => $body) {
-          $nodes[$n][$event_date]->field_ding_body[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
+        foreach ($event_node->{$body_field} as $lng => $body) {
+          $nodes[$n][$event_date]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
         }
       }
     }
