@@ -2133,7 +2133,7 @@ function _ding_nodelist_get_column_map() {
  * @return string
  */
 function _ding_nodelist_get_event_date($event_node) {
-  $event_date = field_get_items('node', $event_node, 'field_event_date');
+  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
 
   $start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
   $start = $start->getTimestamp();
