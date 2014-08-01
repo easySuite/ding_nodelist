@@ -11,7 +11,8 @@
  * field_materials
  * group_audience
  */
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
 ?>
 <li class="event item">

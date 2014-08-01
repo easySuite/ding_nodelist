@@ -12,7 +12,8 @@
  * group_audience
  */
 
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 ?>
 <li class="item news">
   <div class="item_content">

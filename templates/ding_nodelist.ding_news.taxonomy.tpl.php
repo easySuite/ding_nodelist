@@ -8,7 +8,8 @@
 $title = $item->title;
 $body = field_view_field('node', $item, 'field_ding_body', 'teaser');
 $body = drupal_render($body);
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 if (!empty($item->publish_on)) {
   $date = $item->publish_on;
 }
