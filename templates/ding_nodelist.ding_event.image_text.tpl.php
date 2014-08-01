@@ -43,7 +43,7 @@ $event_date = _ding_nodelist_get_event_date($item);
         ?>
         <div class="event-fee">
         <?php
-          $fee = current(field_get_items('node', $item, 'field_event_fee'));
+          $fee = current(field_get_items('node', $item, 'field_ding_event_price'));
           $fee = $fee['value'] ? $fee['value'] . ' Kr.' : t('Gratis');
           print '&mdash; ' . $fee;
         ?>
