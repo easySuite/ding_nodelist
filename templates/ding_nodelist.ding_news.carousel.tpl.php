@@ -12,7 +12,8 @@
  * group_audience
  */
 
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $edbase = field_view_field('node', $item, 'field_editorial_base_n', 'teaser');
 ?>
 <div class="item">

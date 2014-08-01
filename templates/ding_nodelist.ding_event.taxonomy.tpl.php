@@ -12,7 +12,8 @@ if ($variables['conf']['sorting'] == 'event_date') {
 $title = $item->title;
 $body = field_view_field('node', $item, 'field_ding_body', 'teaser');
 $body = render($body);
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_formated_ding_event_date($item);
 $author = $item->name;
 

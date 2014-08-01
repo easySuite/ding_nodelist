@@ -11,7 +11,8 @@
  * field_materials
  * group_audience
  */
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
 ?>
 <li class="event item">
@@ -42,7 +43,7 @@ $event_date = _ding_nodelist_get_event_date($item);
         ?>
         <div class="event-fee">
         <?php
-          $fee = current(field_get_items('node', $item, 'field_event_fee'));
+          $fee = current(field_get_items('node', $item, 'field_ding_event_price'));
           $fee = $fee['value'] ? $fee['value'] . ' Kr.' : t('Gratis');
           print '&mdash; ' . $fee;
         ?>

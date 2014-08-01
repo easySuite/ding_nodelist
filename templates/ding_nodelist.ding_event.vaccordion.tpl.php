@@ -16,7 +16,8 @@ if ($variables['conf']['sorting'] == 'event_date') {
   // Get the object from the array in the case we are sorting by date.
   $item = array_shift(array_values($item));
 }
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
 
 $background_image_style = $image ? ' style="background-image: url(\'' . image_style_url($conf['image_style'], $image['path']) . '\')" title="' . $image['title'] . '"' : '';
