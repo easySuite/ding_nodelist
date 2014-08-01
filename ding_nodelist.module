@@ -2133,7 +2133,7 @@ function _ding_nodelist_get_column_map() {
  * @return string
  */
 function _ding_nodelist_get_event_date($event_node) {
-  $event_date = field_get_items('node', $event_node, 'field_event_date');
+  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
 
   $start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
   $start = $start->getTimestamp();
@@ -2281,6 +2281,34 @@ function _ding_nodelist_widgets_content_trim() {
     NL_WIDGET_CAROUSEL,
     NL_WIDGET_HOR_ACCORDION,
     NL_WIDGET_VER_ACCORDION,
+  );
+}
+
+/**
+ * Implements hook_date_formats().
+ */
+function ding_nodelist_date_formats() {
+  return array(
+    array(
+      'type' => 'day_only',
+      'format' => 'd',
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'short_month_only',
+      'format' => 'M',
+      'locales' => array(),
+    ),
+  );
+}
+
+/**
+ * Implements hook_date_format_types().
+ */
+function ding_nodelist_date_format_types() {
+  return array(
+    'day_only' => t('Show only day.'),
+    'short_month_only' => t('Show only month.'),
   );
 }
 
