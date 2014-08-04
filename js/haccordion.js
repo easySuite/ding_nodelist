@@ -22,6 +22,10 @@
           anim_speed = delay;
         }
 
+        // Destroy previos accordion
+        nodelist_items.zAccordion('destroy');
+
+        // Run new accordion
         nodelist_items.zAccordion({
           timeout: delay,
           speed: anim_speed,
@@ -30,18 +34,36 @@
           slideClass: 'slide',
           buildComplete: function () {
             nodelist_items.css('visibility', 'visible').fadeIn(1500);
+          },
+          animationStart: function () {
+            nodelist_items.find('.slide').find('i').removeClass('icon-right-circled').addClass('icon-plus-circle');
+            nodelist_items.find('.slide-open').find('i').removeClass('icon-plus-circle').addClass('icon-right-circled');
           }
         });
       });
     }
 
-    $('body').bind('responsivelayout', function(e, d) {
-      if ($(this).hasClass("responsive-layout-wide")) {
-        runAccordion(352);
+    /**
+     * Check for current window size and run accordion
+     */
+    function checkWindowSizeandRun () {
+      if ($('body').hasClass('responsive-layout-desktop')) {
+        runAccordion(360);
+      }
+      else if ($('body').hasClass('responsive-layout-tablet')) {
+        runAccordion(320);
       }
       else {
-        runAccordion(276);
+        runAccordion(280);
       }
+    }
+
+    // First run
+    checkWindowSizeandRun();
+
+    // Recalculate accordion
+    $(window).resize(function () {
+      checkWindowSizeandRun();
     });
   });
 })(jQuery);

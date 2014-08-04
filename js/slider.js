@@ -1,28 +1,40 @@
 (function ($) {
   $(document).ready(function () {
-    $('.ding_nodelist-slider').each(function(){
-      $(this).find('.ding_nodelist-items').carouFredSel({
-        circular: true,
-        infinite: true,
-        direction: 'down',
-        auto : false,
-        width: 'auto',
-        responsive: true,
-        items: {
-          visible: 3,
-          width: '100%'
-        },
-        scroll : {
-          items: 3
-        },
-        prev: {
-          button: $(this).find('.prev'),
-          key: "prev"
-        },
-        next: {
-          button: $(this).find('.next'),
-          key: "next"
+    $('.next-prev a').click(function (e) {
+      e.preventDefault();
+    });
+
+    /**
+     * Finds and returns highest item
+     */
+    function findHighestItem(items) {
+      var highestItem = 0;
+
+      items.each(function() {
+        if($(this).height() > highestItem) {
+          highestItem = $(this).height();
         }
+      });
+
+      return highestItem;
+    }
+
+    $('.ding_nodelist-slider .ding_nodelist-items').each(function() {
+      var nodelistItems = $(this);
+
+      // Find highest nodelist item and make other same height
+      var rowHeight = findHighestItem(nodelistItems.find('.item'));
+
+      nodelistItems.find('.item').height(rowHeight);
+
+      nodelistItems.newsTicker({
+        row_height: rowHeight,
+        max_rows: 3,
+        duration: 4000,
+        direction: 'down',
+        pauseOnHover: 0,
+        prevButton: $('.next-prev .prev'),
+        nextButton: $('.next-prev .next')
       });
     });
   });

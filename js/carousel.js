@@ -8,7 +8,7 @@
         if (item.match(/pane\-\d+/)) {
           delay = parseInt(Drupal.settings.ding_nodelist[item]);
         }
-      })
+      });
       $(this).find('.ding_nodelist-items').carouFredSel({
         circular: true,
         infinite: true,
@@ -18,6 +18,7 @@
           pauseDuration: delay
         },
         width: '100%',
+        align: 'center',
         responsive: true,
         items: 1,
         scroll : {

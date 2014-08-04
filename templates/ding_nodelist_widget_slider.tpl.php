@@ -22,7 +22,7 @@
         </span>
       <?php endforeach; ?>
     </div>
-    <div class="ding_nodelist-items">
+    <ul class="ding_nodelist-items">
       <?php
       foreach ($items as $node) {
         if ($conf['sorting']=='event_date') {
@@ -33,7 +33,7 @@
         }
       }
       ?>
-    </div>
+    </ul>
     <div class="next-prev">
       <a class="prev" href="#"><span>prev</span></a>
       <a class="next" href="#"><span>next</span></a>
