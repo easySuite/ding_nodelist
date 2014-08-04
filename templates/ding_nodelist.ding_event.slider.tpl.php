@@ -14,7 +14,7 @@
 $edbase = field_view_field('node', $item, 'field_editorial_base_e', 'teaser');
 $event_date = _ding_nodelist_formated_ding_event_date($item);
 ?>
-<div class="item">
+<li class="item">
   <span class="date-created">
     <?php print $event_date; ?>
   </span>
@@ -29,4 +29,4 @@ $event_date = _ding_nodelist_formated_ding_event_date($item);
     ?>
   </div>
   <div class="more"><?php print l(t('More'), 'node/' . $item->nid);?></div>
-</div>
+</li>

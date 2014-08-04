@@ -13,7 +13,7 @@
  */
 $edbase = field_view_field('node', $item, 'field_editorial_base_e', 'teaser');
 ?>
-<div class="item">
+<li class="item">
   <span class="date-created">
     <?php print format_date($item->created, 'custom', 'd/m/Y'); ?>
   </span> -
@@ -28,4 +28,4 @@ $edbase = field_view_field('node', $item, 'field_editorial_base_e', 'teaser');
     ?>
   </div>
   <div class="more"><?php print l(t('More'), 'node/' . $item->nid);?></div>
-</div>
+</li>
