@@ -21,7 +21,6 @@
 
     $('.ding_nodelist-slider .ding_nodelist-items').each(function() {
       var nodelistItems = $(this);
-      console.log('nodelistItems ' , nodelistItems);
 
       // Find highest nodelist item and make other same height
       var rowHeight = findHighestItem(nodelistItems.find('.item'));
