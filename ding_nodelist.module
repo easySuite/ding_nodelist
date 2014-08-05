@@ -1568,6 +1568,8 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
   // Adding required JS libs
   switch ($widget) {
     case NL_WIDGET_CAROUSEL:
+      drupal_add_js($mod_path . '/js/jquery.carouFredSel-5.5.0-packed.js', 'file');
+      break;
     case NL_WIDGET_SLIDER:
       drupal_add_js($mod_path . '/js/jquery.newsTicker.min.js', 'file');
       break;
