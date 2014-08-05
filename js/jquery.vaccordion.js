@@ -31,7 +31,7 @@
 							othersHeight= cache.sliceH;
 
 							// hide the content div
-							$el.find('.va-content').hide();
+							$el.find('.va-content');
 
 							// control the navigation buttons visibility
 							if( aux.canSlideUp( $slices, settings ) )
@@ -77,7 +77,7 @@
 						$el.stop()
 						   .animate( animParam, settings.animSpeed, settings.animEasing, function() {
 								if( !expanded )
-									$el.find('.va-content').fadeIn( settings.contentAnimSpeed );
+									$el.find('.va-content');
 						   });
 
 						// animate all the others
@@ -101,8 +101,7 @@
 										height	: othersHeight + 'px',
 										opacity	: ( expanded ) ? 1 : settings.animOpacity
 								  }, settings.animSpeed, settings.animEasing, dfd.resolve )
-								  .find('.va-content')
-								  .hide();
+								  .find('.va-content');
 						});
 					}
 				).promise();
@@ -235,8 +234,7 @@
 										opacity : settings.animOpacity,
 										top		: ( dir === 1 ) ? '-=' + othersHeight : '+=' + settings.expandedHeight
 								  }, settings.animSpeed, settings.animEasing )
-								  .find('.va-content')
-								  .hide();
+								  .find('.va-content');
 						}
 						// all the others..
 						else {
