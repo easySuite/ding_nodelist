@@ -74,7 +74,7 @@
 										  };
 
 						// animate the clicked slice and also its title (<h3>)
-						$el.stop()
+						$el.addClass('active').stop()
 						   .animate( animParam, settings.animSpeed, settings.animEasing, function() {
 								if( !expanded )
 									$el.find('.va-content');
@@ -95,7 +95,7 @@
 									t	= ( ( posother - 2 ) * othersHeight ) + settings.expandedHeight;
 							}
 
-							$other.stop()
+							$other.removeClass('active').stop()
 								  .animate( {
 										top		: t + 'px',
 										height	: othersHeight + 'px',
@@ -270,8 +270,6 @@
 				if( this.length ) {
 
 					var settings = {
-						// the accordion's width
-						accordionW		: 1000,
 						// the accordion's height
 						accordionH		: 450,
 						// number of visible slices
@@ -324,7 +322,7 @@
 
 						// set the accordion's width & height
 						$el.css({
-							width	: settings.accordionW + 'px',
+							width	: '100%',
 							height	: settings.accordionH + 'px'
 						});
 

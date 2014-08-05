@@ -11,7 +11,6 @@
       $(this).vaccordion({
         accordionH: Math.round(sum_height),
         expandedHeight: exp_height,
-        accordionW: c_width,
         visibleSlices: slides,
         animOpacity: 0.25,
         autoplay: 3000
