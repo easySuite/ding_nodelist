@@ -13,7 +13,7 @@
         expandedHeight: exp_height,
         accordionW: c_width,
         visibleSlices: slides,
-        animOpacity: 0.2,
+        animOpacity: 0.25,
         autoplay: 3000
       });
     }).find('.va-content').click(function(e){
