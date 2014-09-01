@@ -463,17 +463,28 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
   // Retrieve vocabularies current CT references.
   $allowed_fields = array();
-  $field_vocabulary = array();
+  $field_settings = array();
   $fields = field_info_instances('node', $node_type);
   foreach ($fields as $field) {
     $field_config = field_info_field($field['field_name']);
-    // Check if the field is a term reference field.
-    if ($field_config['type'] == 'taxonomy_term_reference') {
+
+    // Check if the field is a term reference or entity reference field.
+    $allowed_types = array('taxonomy_term_reference', 'entityreference');
+    if (in_array($field_config['type'], $allowed_types)) {
       $allowed_fields[$field['field_name']] = $field['label'];
-      $field_vocabulary[$field['field_name']] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+      $field_settings[$field['field_name']] = array(
+        'filter_field' => $field_config['field_name'],
+        'term_reference' => $field_config['type'],
+      );
+      if ($field_config['type'] == 'entityreference') {
+        $field_settings[$field['field_name']]['bundle'] = $node_type;
+        $field_settings[$field['field_name']]['type'] = $field_config['settings']['target_type'];
+      }
+      else {
+        $field_settings[$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+      }
     }
   }
-
   // Check if filter vocabulary was changed.
   $changed_filter_id = NULL;
   if (!empty($form_state['triggering_element']) && isset($form_state['triggering_element']['#parents'][2])
@@ -482,8 +493,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $changed_filter = $form_state['values']['taxonomy_filters'][$changed_filter_id];
 
     // Update auto-complete, preserve other fields.
-    $filter['filter_field'] = $changed_filter['filter_field'];
-    $filter['filter_vocab'] = $field_vocabulary[$filter['filter_field']];
+    $filter = $field_settings[$changed_filter['filter_field']];
 
     // Important: delete old input!
     unset($form_state['input']['taxonomy_filters'][$changed_filter_id]);
@@ -491,7 +501,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   }
 
   $delta = 0;
-
   if (!empty($conf['taxonomy_filters'])) {
     $delta = count($conf['taxonomy_filters']);
     foreach ($conf['taxonomy_filters'] as $key => $filter) {
@@ -501,11 +510,22 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
       }
 
       $tags = array();
-      foreach ($filter['filter_terms'] as $tid) {
-        $tags[$tid] = taxonomy_term_load($tid);
+      if ($filter['term_reference'] == 'entityreference') {
+        foreach ($filter['filter_terms'] as $nid) {
+          $node = node_load($nid);
+          $tags[$nid] = "{$node->title} ({$nid})";
+        }
+        $values = implode(', ', $tags);
       }
-      $filter['filter_terms'] = taxonomy_implode_tags($tags);
-      $filter['filter_vocab'] = $field_vocabulary[$filter['filter_field']];
+      else {
+        foreach ($filter['filter_terms'] as $tid) {
+          $tags[$tid] = taxonomy_term_load($tid);
+        }
+        $values = taxonomy_implode_tags($tags);
+      }
+      $filter = $field_settings[$filter['filter_field']];
+      $filter['filter_terms'] = $values;
+
       $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key] = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
     }
 
@@ -521,10 +541,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
     // Set default field value.
     $first_field = array_shift(array_keys($allowed_fields));
-    $filter = array(
-      'filter_field' => $first_field,
-      'filter_vocab' => $field_vocabulary[$first_field],
-    );
+    $filter = $field_settings[$first_field];
     $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key] = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
   }
 
@@ -871,7 +888,6 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     '#tree' => TRUE,
     '#weight' => $key,
   );
-
   $form['filter_field'] = array(
     '#type' => 'select',
     '#title_display' => 'invisible',
@@ -886,15 +902,23 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     '#parents' => array('taxonomy_filters', $key, 'filter_field'),
   );
 
+  if ($filter['term_reference'] == 'taxonomy_term_reference') {
+    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? 'taxonomy/autocomplete/' . $filter['filter_field'] : NULL;
+  }
+  else {
+    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/{$filter['filter_field']}/{$filter['type']}/{$filter['bundle']}/NULL"  : NULL;
+  }
+
   $form['filter_terms'] = array(
-    '#vocabulary_name' => $filter['filter_vocab'],
+    '#vocabulary_name' => isset($filter['vocabulary']) ? $filter['vocabulary'] : NULL,
+    '#reference_type' => $filter['term_reference'],
     '#type' => 'textfield',
     '#title_display' => 'invisible',
     '#default_value' => !is_null($filter) && !empty($filter['filter_terms']) ? $filter['filter_terms'] : '',
     '#parents' => array('taxonomy_filters', $key, 'filter_terms'),
     '#maxlength' => 1024,
     '#element_validate' => array('_ding_nodelist_taxonomy_autocomplete_validate'),
-    '#autocomplete_path' => !is_null($filter) && !empty($filter['filter_field']) ? 'taxonomy/autocomplete/' . $filter['filter_field'] : NULL,
+    '#autocomplete_path' => $autocomplete,
   );
 
   $form['filter_delete_' . $key] = array(
@@ -911,6 +935,15 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
       'method' => 'replace',
       'effect' => 'fade',
     ),
+  );
+
+  $form['term_reference'] = array(
+    '#type' => 'value',
+    '#value' => $filter['term_reference'],
+  );
+  $form['filter_name'] = array(
+    '#type' => 'value',
+    '#value' => $filter['filter_field'],
   );
 
   return $form;
@@ -998,7 +1031,6 @@ function ding_nodelist_add_bottom_link_submit(&$form, &$form_state) {
  */
 function ding_nodelist_content_type_edit_form_validate($form, &$form_state) {
   $form_state['restore'] = TRUE;
-
   // Do not validate if filter was changed or deleted.
   $te = empty($form_state['triggering_element']) ? NULL : $form_state['triggering_element'];
   if (strpos($te['#name'], 'widget_type') === 0 || $te['#name'] == 'filter_field') {
@@ -1806,7 +1838,6 @@ function _ding_nodelist_simple_cache_save(&$form_state) {
  */
 function _ding_nodelist_get_dynamic_list_nodes($conf) {
   $nodes = array();
-
   // Do not fetch anything if custom content already fetched for single item widget.
   if (!empty($conf['custom_content']) && $conf['widget_type'] == NL_WIDGET_SINGLE) {
     return array();
@@ -1814,16 +1845,22 @@ function _ding_nodelist_get_dynamic_list_nodes($conf) {
 
   // Support for slave-master DB servers.
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
-
   if (!empty($conf['taxonomy_filters'])) {
     $ti_l = 'ti';
     $query->join('taxonomy_index', $ti_l, "n.nid = $ti_l.nid");
     $i = 1;
     foreach ($conf['taxonomy_filters'] as $filter) {
-      $ti_r = 'ti' . $i++;
       $filter['filter_terms'] = is_array($filter['filter_terms']) ? $filter['filter_terms'] : array($filter['filter_terms']);
-      // Use $i in argument placeholder as workaround.
-      $ti_l = $query->join('taxonomy_index', $ti_r, "$ti_l.nid = $ti_r.nid AND $ti_r.tid IN (:tids$i)", array(":tids$i" => $filter['filter_terms']));
+      $ti_r = 'ti' . $i;
+      $og = 'og' . $i;
+      if ($filter['term_reference'] == 'taxonomy_term_reference') {
+        // Use $i in argument placeholder as workaround.
+        $ti_l = $query->join('taxonomy_index', $ti_r, "$ti_l.nid = $ti_r.nid AND $ti_r.tid IN (:tids$i)", array(":tids$i" => $filter['filter_terms']));
+      }
+      else {
+        $query->join('og_membership', $og, "n.nid = $og.etid AND $og.gid IN (:tids$i) AND $og.field_name = :name$i", array(":tids$i" => $filter['filter_terms'], ":name$i" => $filter['filter_name']));
+      }
+      $i++;
     }
   }
 
@@ -1994,28 +2031,38 @@ function _ding_nodelist_taxonomy_autocomplete_validate($element, &$form_state) {
   // Autocomplete widgets do not send their tids in the form, so we must detect
   // them here and process them independently.
   $value = array();
-  if ($tags = $element['#value']) {
-    // Collect candidate vocabularies.
-    $vocabularies = array();
-    $vocabulary = taxonomy_vocabulary_machine_name_load($element['#vocabulary_name']);
-    $vocabularies[$vocabulary->vid] = $vocabulary;
+  if ($element['#reference_type'] == 'taxonomy_term_reference') {
+    if ($tags = $element['#value']) {
+      // Collect candidate vocabularies.
+      $vocabularies = array();
+      $vocabulary = taxonomy_vocabulary_machine_name_load($element['#vocabulary_name']);
+      $vocabularies[$vocabulary->vid] = $vocabulary;
 
-    // Translate term names into actual terms.
-    $typed_terms = drupal_explode_tags($tags);
-    foreach ($typed_terms as $typed_term) {
-      // See if the term exists in the chosen vocabulary and return the tid;
-      // otherwise, create a new 'autocreate' term for insert/update.
-      if ($possibilities = taxonomy_term_load_multiple(array(), array('name' => trim($typed_term), 'vid' => array_keys($vocabularies)))) {
-        $term = array_pop($possibilities);
+      // Translate term names into actual terms.
+      $typed_terms = drupal_explode_tags($tags);
+      foreach ($typed_terms as $typed_term) {
+        // See if the term exists in the chosen vocabulary and return the tid;
+        // otherwise, create a new 'autocreate' term for insert/update.
+        if ($possibilities = taxonomy_term_load_multiple(array(), array('name' => trim($typed_term), 'vid' => array_keys($vocabularies)))) {
+          $term = array_pop($possibilities);
+        }
+        else {
+          form_error($element, t('Invalid term(s).'));
+          return;
+        }
+        $value[] = (int) $term->tid;
       }
-      else {
-        form_error($element, t('Invalid term(s).'));
-        return;
-      }
-      $value[] = (int) $term->tid;
     }
   }
-
+  elseif ($element['#reference_type'] == 'entityreference') {
+    if ($tags = $element['#value']) {
+      $typed_terms = drupal_explode_tags($tags);
+      foreach ($typed_terms as $item) {
+        preg_match('/^.*\((\d+)\)$/', $item, $matches);
+        $value[] = (int) $matches[1];
+      }
+    }
+  }
   form_set_value($element, $value, $form_state);
 }
 
