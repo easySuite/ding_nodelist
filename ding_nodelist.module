@@ -2365,4 +2365,13 @@ function ding_nodelist_date_format_types() {
   );
 }
 
+/**
+ * Implements hook_field_widget_info_alter().
+ */
+function ding_nodelist_field_widget_info_alter(&$info) {
+  if (module_exists('options')) {
+    $info['options_select']['settings']['match_operator'] = 'CONTAINS';
+  }
+}
+
 include_once('ding_nodelist.features.inc');
