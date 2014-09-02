@@ -512,8 +512,12 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
       $tags = array();
       if ($filter['term_reference'] == 'entityreference') {
         foreach ($filter['filter_terms'] as $nid) {
-          $node = node_load($nid);
-          $tags[$nid] = "{$node->title} ({$nid})";
+          $title = db_select('node', 'n', array('target' => 'slave'))
+            ->fields('n', array('title'))
+            ->condition('n.nid', $nid)
+            ->execute()
+            ->fetchField();
+          $tags[$nid] = $title . ' (' . $nid .')';
         }
         $values = implode(', ', $tags);
       }
@@ -906,7 +910,7 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? 'taxonomy/autocomplete/' . $filter['filter_field'] : NULL;
   }
   else {
-    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/{$filter['filter_field']}/{$filter['type']}/{$filter['bundle']}/NULL"  : NULL;
+    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/" . $filter['filter_field'] . '/' . $filter['type'] . '/' . $filter['bundle'] . '/NULL'  : NULL;
   }
 
   $form['filter_terms'] = array(
@@ -2059,7 +2063,7 @@ function _ding_nodelist_taxonomy_autocomplete_validate($element, &$form_state) {
       $typed_terms = drupal_explode_tags($tags);
       foreach ($typed_terms as $item) {
         preg_match('/^.*\((\d+)\)$/', $item, $matches);
-        $value[] = (int) $matches[1];
+        $value[$matches[1]] = (int) $matches[1];
       }
     }
   }
