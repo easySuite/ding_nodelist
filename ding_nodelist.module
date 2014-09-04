@@ -1879,17 +1879,17 @@ function _ding_nodelist_get_dynamic_list_nodes($conf) {
   // Filter by date field.
   // @todo: remove hardcode.
   if (!empty($conf['content_filter_date'])) {
-    $query->join('field_data_field_event_date', 'fed', 'n.nid = fed.entity_id');
+    $query->join('field_data_field_ding_event_date', 'fed', 'n.nid = fed.entity_id');
     // @todo: NOW() works for visitors from the same timezone.
     $query->where(
-      'DATE_FORMAT(fed.field_event_date_value, :format) >= CURRENT_DATE()'
-      . ' OR DATE_FORMAT(fed.field_event_date_value2, :format) >= CURRENT_DATE()', array(':format' => '%Y-%m-%d'));
+      'DATE_FORMAT(fed.field_ding_event_date_value, :format) >= CURRENT_DATE()'
+      . ' OR DATE_FORMAT(fed.field_ding_event_date_value2, :format) >= CURRENT_DATE()', array(':format' => '%Y-%m-%d'));
   }
 
   if ($conf['sort_field']) {
     if ($conf['sort_field'] == 'event_date') {
-      $query->join('field_data_field_event_date', 'fed', 'fed.entity_id = n.nid');
-      $query->orderBy('fed.field_event_date_value', $conf['sort_order']);
+      $query->join('field_data_field_ding_event_date', 'fed', 'fed.entity_id = n.nid');
+      $query->orderBy('fed.field_ding_event_date_value', $conf['sort_order']);
     }
     else {
       $query->orderBy('n.' . $conf['sort_field'], $conf['sort_order']);
