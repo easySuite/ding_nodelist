@@ -10,14 +10,12 @@ if ($variables['conf']['sorting'] == 'event_date') {
   $item = array_shift(array_values($item));
 }
 $title = $item->title;
-$body = field_view_field('node', $item, 'field_ding_body', 'teaser');
-$body = render($body);
+$teaser = field_get_items('node', $item, 'field_ding_event_body');
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_formated_ding_event_date($item);
 $author = $item->name;
-
-$library = field_view_field('node', $item, 'group_audience', array('label' => 'hidden'));
+$library = field_view_field('node', $item, 'og_group_ref', array('label' => 'hidden'));
 $library = render($library);
 
 /**
@@ -49,6 +47,6 @@ $library = render($library);
     <span class="item-date"><?php print $event_date; ?></span>
     <span class="item-author"><?php print $author; ?></span>
     <span class="item-library"><?php print $library; ?></span>
-    <div class="item-body"><?php print $body; ?></div>
+    <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
   </div>
 </div>

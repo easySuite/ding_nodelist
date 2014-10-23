@@ -26,8 +26,8 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
       </h3>
       <div class="category">
       <?php
-        $body = field_view_field('node', $item, 'field_editorial_base_n', 'teaser');
-        print drupal_render($body);
+        $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
+        print drupal_render($category);
       ?>
       </div>
     </div>

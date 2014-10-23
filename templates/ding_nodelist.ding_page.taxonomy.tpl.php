@@ -6,8 +6,8 @@
  */
 
 $title = $item->title;
-$body = field_view_field('node', $item, 'field_ding_body', 'teaser');
-$body = drupal_render($body);
+$teaser = field_get_items('node', $item, 'field_ding_page_body');
+$teaser = !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 if (!empty($item->publish_on)) {
@@ -39,7 +39,7 @@ $author = $item->name;
   </div>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-date"><?php print $date ?></span><span class="item-author"><?php print $author ?></span>
-    <div class="item-body"><?php print $body ?></div>
+    <span class="item-date"><?php print $date; ?></span><span class="item-author"><?php print $author ?></span>
+    <div class="item-body"><?php print $teaser; ?></div>
   </div>
 </div>

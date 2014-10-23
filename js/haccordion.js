@@ -35,13 +35,11 @@
       });
     }
 
-    $('body').bind('responsivelayout', function(e, d) {
-      if ($(this).hasClass("responsive-layout-wide")) {
-        runAccordion(352);
-      }
-      else {
-        runAccordion(276);
-      }
-    });
+    if ($(this).hasClass("responsive-layout-desktop")) {
+      runAccordion(352);
+    }
+    else {
+      runAccordion(276);
+    }
   });
 })(jQuery);

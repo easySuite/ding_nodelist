@@ -1626,7 +1626,7 @@ function _ding_nodelist_init_image_style($widget) {
       return 'ding_nodelist_medium';
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
-      return 'ding_large';
+      return 'ding_nodelist_mini';
     default:
       return '';
   }
@@ -2159,8 +2159,8 @@ function _ding_nodelist_get_event_date($event_node) {
  * @return string
  */
 function _ding_nodelist_formated_ding_event_date($event_node) {
-  $field = field_get_items('node', $event_node, 'field_event_date');
-  $event_date = field_view_value('node', $event_node, 'field_event_date', $field[0], array('type'=>'ding_event_date'));
+  $field = field_get_items('node', $event_node, 'field_ding_event_date');
+  $event_date = field_view_value('node', $event_node, 'field_ding_event_date', $field[0], array('type'=>'ding_event_date'));
   return render($event_date);
 }
 
@@ -2281,6 +2281,8 @@ function _ding_nodelist_widgets_content_trim() {
     NL_WIDGET_CAROUSEL,
     NL_WIDGET_HOR_ACCORDION,
     NL_WIDGET_VER_ACCORDION,
+    NL_WIDGET_SLIDER,
+    NL_WIDGET_TAXONOMY_LIKE,
   );
 }
 
