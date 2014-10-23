@@ -51,7 +51,8 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
           if (is_array($fee_field)) {
             $fee = current($fee_field);
             print '&mdash; ' . $fee['value'] . 'Kr.';
-          } else {
+          }
+          else {
             print t('Gratis');
           }
         ?>

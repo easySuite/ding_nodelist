@@ -37,7 +37,7 @@ $event_date = _ding_nodelist_get_event_date($item);
       <p>
         <?php
           $teaser = field_get_items('node', $item, 'field_ding_event_body');
-          print $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
+          print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
         ?>
       </p>
     </div>

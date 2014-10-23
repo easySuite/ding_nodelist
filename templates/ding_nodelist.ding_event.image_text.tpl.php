@@ -47,7 +47,8 @@ $event_date = _ding_nodelist_get_event_date($item);
           if (is_array($fee_field)) {
             $fee = current($fee_field);
             print '&mdash; ' . $fee['value'] . 'Kr.';
-          } else {
+          }
+          else {
             print t('Gratis');
           }
         ?>
