@@ -28,8 +28,8 @@ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
           <?php print l($item->title, 'node/' . $item->nid);?>
         </h3>
         <div class="category"><?php
-          $body = field_view_field('node', $item, 'field_editorial_base_n', 'teaser');
-          print drupal_render($body);
+          $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
+          print drupal_render($category);
         ?></div>
       </div>
     </div>

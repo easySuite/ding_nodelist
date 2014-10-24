@@ -65,5 +65,11 @@
     $(window).resize(function () {
       checkWindowSizeandRun();
     });
+    if ($(this).hasClass("responsive-layout-desktop")) {
+      runAccordion(352);
+    }
+    else {
+      runAccordion(276);
+    }
   });
 })(jQuery);
