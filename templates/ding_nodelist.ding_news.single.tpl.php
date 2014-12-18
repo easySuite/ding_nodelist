@@ -27,7 +27,7 @@ $edbase = field_view_field('node', $item, 'field_editorial_base_n', 'teaser');
       <p>
         <?php
           $teaser = field_get_items('node', $item, 'field_ding_news_body');
-          print $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
+          print empty($teaser[0]['safe_summary']) ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
         ?>
       </p>
     </div>
