@@ -678,9 +678,14 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   // Forms for Bottom settings.
   $form['ding_nodelist_wrapper']['ding_nodelist_bottom_links'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Bottom links'),
+    '#title' => t('Additional links'),
     '#collapsible' => FALSE,
     '#description' => t('List of "read more" links.'),
+    '#states' => array(
+      'visible' => array(
+        'select[name="widget_type"]' => array('value' => 'slider'),
+      ),
+    ),
   );
 
   // Container for bottom links
