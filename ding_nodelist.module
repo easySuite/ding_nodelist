@@ -1896,6 +1896,10 @@ function _ding_nodelist_get_dynamic_list_nodes($conf) {
       $query->join('field_data_field_ding_event_date', 'fed', 'fed.entity_id = n.nid');
       $query->orderBy('fed.field_ding_event_date_value', $conf['sort_order']);
     }
+    // Force descending order for sticky field.
+    elseif ($conf['sort_field'] == 'sticky') {
+      $query->orderBy('n.' . $conf['sort_field'], 'DESC');
+    }
     else {
       $query->orderBy('n.' . $conf['sort_field'], $conf['sort_order']);
     }
