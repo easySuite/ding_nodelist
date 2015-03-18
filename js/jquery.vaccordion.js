@@ -31,7 +31,7 @@
 							othersHeight= cache.sliceH;
 
 							// hide the content div
-							$el.find('.va-content').hide();
+							$el.find('.va-content');
 
 							// control the navigation buttons visibility
 							if( aux.canSlideUp( $slices, settings ) )
@@ -74,10 +74,10 @@
 										  };
 
 						// animate the clicked slice and also its title (<h3>)
-						$el.stop()
+						$el.addClass('active').stop()
 						   .animate( animParam, settings.animSpeed, settings.animEasing, function() {
 								if( !expanded )
-									$el.find('.va-content').fadeIn( settings.contentAnimSpeed );
+									$el.find('.va-content');
 						   });
 
 						// animate all the others
@@ -95,14 +95,13 @@
 									t	= ( ( posother - 2 ) * othersHeight ) + settings.expandedHeight;
 							}
 
-							$other.stop()
+							$other.removeClass('active').stop()
 								  .animate( {
 										top		: t + 'px',
 										height	: othersHeight + 'px',
 										opacity	: ( expanded ) ? 1 : settings.animOpacity
 								  }, settings.animSpeed, settings.animEasing, dfd.resolve )
-								  .find('.va-content')
-								  .hide();
+								  .find('.va-content');
 						});
 					}
 				).promise();
@@ -235,8 +234,7 @@
 										opacity : settings.animOpacity,
 										top		: ( dir === 1 ) ? '-=' + othersHeight : '+=' + settings.expandedHeight
 								  }, settings.animSpeed, settings.animEasing )
-								  .find('.va-content')
-								  .hide();
+								  .find('.va-content');
 						}
 						// all the others..
 						else {
@@ -272,8 +270,6 @@
 				if( this.length ) {
 
 					var settings = {
-						// the accordion's width
-						accordionW		: 1000,
 						// the accordion's height
 						accordionH		: 450,
 						// number of visible slices
@@ -326,7 +322,7 @@
 
 						// set the accordion's width & height
 						$el.css({
-							width	: settings.accordionW + 'px',
+							width	: '100%',
 							height	: settings.accordionH + 'px'
 						});
 

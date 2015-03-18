@@ -16,8 +16,9 @@ if ($variables['conf']['sorting'] == 'event_date') {
   // Get the object from the array in the case we are sorting by date.
   $item = array_shift(array_values($item));
 }
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
-$edbase = field_view_field('node', $item, 'field_editorial_base_e', 'teaser');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
+$category = field_view_field('node', $item, 'field_ding_event_category', 'teaser');
 $event_date = _ding_nodelist_get_event_date($item);
 ?>
 <div class="item">
@@ -30,13 +31,13 @@ $event_date = _ding_nodelist_get_event_date($item);
     <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
   </div>
   <div class="article-info">
-    <div class="category"><?php print drupal_render($edbase);?></div>
+    <div class="category"><?php print drupal_render($category);?></div>
     <div class="node">
       <h3><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
       <p>
         <?php
-          $teaser = field_get_items('node', $item, 'field_ding_body');
-          print $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
+          $teaser = field_get_items('node', $item, 'field_ding_event_body');
+          print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
         ?>
       </p>
     </div>

@@ -12,7 +12,8 @@
  * group_audience
  */
 
-$image = _ding_nodelist_get_dams_image_info($item, 'field_list_image');
+$image_field = 'field_' . $item->type . '_list_image';
+$image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $edbase = field_view_field('node', $item, 'field_editorial_base_e', 'teaser');
 $event_date = _ding_nodelist_get_event_date($item);
 ?>
@@ -31,8 +32,8 @@ $event_date = _ding_nodelist_get_event_date($item);
     <div class="node">
       <p>
         <?php
-          $teaser = field_get_items('node', $item, 'field_ding_body');
-          print $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
+          $teaser = field_get_items('node', $item, 'field_ding_event_body');
+          print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
         ?>
       </p>
       <p>
