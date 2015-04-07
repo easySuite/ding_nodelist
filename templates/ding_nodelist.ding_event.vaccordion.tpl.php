@@ -19,12 +19,13 @@ if ($variables['conf']['sorting'] == 'event_date') {
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
-
+$library = field_view_field('node', $item, 'og_group_ref', 'default');
+$category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 $background_image_style = $image ? ' style="background-image: url(\'' . image_style_url($conf['image_style'], $image['path']) . '\')" title="' . $image['title'] . '"' : '';
 ?>
 <div class="item event va-slice"<?php print $background_image_style; ?>>
   <div class="va-title">
-    <div class="event-label"><?php print t('Calendar');?></div>
+    <div class="event-label"><?php print drupal_render($category);?></div>
     <div class="event-date">
       <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
@@ -42,7 +43,6 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
         <span><?php print format_date($event_date, 'custom', 'H:i'); ?></span>
       </div>
       <?php
-        $library = field_view_field('node', $item, 'og_group_ref', array('label' => 'hidden'));
         print drupal_render($library);
       ?>
       <div class="event-fee">

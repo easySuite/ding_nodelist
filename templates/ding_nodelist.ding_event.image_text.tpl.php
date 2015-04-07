@@ -14,11 +14,13 @@
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
+$library = field_view_field('node', $item, 'og_group_ref', 'default');
+$category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 ?>
 <li class="event item">
   <div class="item_content">
     <div class="expand"><?php print l($item->title, 'node/' . $item->nid);?></div>
-    <div class="label"><?php print t('Calendar');?></div>
+    <div class="label"><?php print drupal_render($category);?></div>
     <div class="event-date">
       <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
@@ -38,7 +40,6 @@ $event_date = _ding_nodelist_get_event_date($item);
           <span><?php print format_date($event_date, 'custom', 'H:i');?></span>
         </div>
         <?php
-          $library = field_view_field('node', $item, 'og_group_ref', array('label' => 'hidden'));
           print drupal_render($library);
         ?>
         <div class="event-fee">
