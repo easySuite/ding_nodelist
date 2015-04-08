@@ -43,7 +43,7 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
           print '&mdash; ' . $fee['value'] . 'Kr.';
         }
         else {
-          print t('Gratis');
+          print t('&mdash; Gratis');
         }
         ?>
       </span>

@@ -54,7 +54,7 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
               print '&mdash; ' . $fee['value'] . 'Kr.';
             }
             else {
-              print t('Gratis');
+              print t('&mdash; Gratis');
             }
           ?>
         </div>

@@ -33,7 +33,7 @@ $library = field_view_field('node', $item, 'og_group_ref', 'default');
       print $fee['value'] . 'Kr.';
     }
     else {
-      print t('Gratis');
+      print t('&mdash; Gratis');
     }
     ?>
     </span>

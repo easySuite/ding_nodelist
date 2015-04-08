@@ -39,7 +39,7 @@ $author = $item->name;
   </div>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-date"><?php print $date; ?></span><span class="item-author"><?php print $author ?></span>
+    <span class="item-author"><?php print $author ?></span>
     <div class="item-body"><?php print $teaser; ?></div>
   </div>
 </div>

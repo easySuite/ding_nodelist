@@ -14,9 +14,6 @@
 $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
 ?>
 <li class="item">
-  <span class="date-created">
-    <?php print format_date($item->created, 'custom', 'd/m/Y'); ?>
-  </span> -
   <span class="category">
     <?php print drupal_render($category);?>
   </span>

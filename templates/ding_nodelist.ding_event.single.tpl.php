@@ -46,7 +46,7 @@ $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
           print '&mdash; ' . $fee['value'] . 'Kr.';
         }
         else {
-          print t('Gratis');
+          print t('&mdash; Gratis');
         }
         ?>
       </span>
