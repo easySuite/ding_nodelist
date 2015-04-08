@@ -20,8 +20,8 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
 <li class="event item">
   <div class="item_content">
     <div class="expand"><?php print l($item->title, 'node/' . $item->nid);?></div>
-    <div class="label"><?php print drupal_render($category);?></div>
     <div class="event-date">
+      <div class="event-library"><?php print drupal_render($library);?></div>
       <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
     </div>

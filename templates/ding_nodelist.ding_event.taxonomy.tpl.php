@@ -47,7 +47,7 @@ $library = drupal_render($library);
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-category"><?php print drupal_render($category); ?></span>
+    <span class="label"><?php print drupal_render($category); ?></span>
     <span class="item-date"><?php print $event_date; ?></span>
     <span class="item-price">
       <?php
@@ -61,7 +61,7 @@ $library = drupal_render($library);
       }
       ?>
     </span>
-    <span class="item-library"><?php print $library; ?></span>
+    <span class="label"><?php print $library; ?></span>
     <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
   </div>
 </div>

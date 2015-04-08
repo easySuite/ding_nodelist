@@ -24,15 +24,16 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
   <div class="event-image">
     <a href="<?php print url('node/' . $item->nid);?>"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?></a>
   </div>
-  <div class="event-label"><?php print drupal_render($library); ?></div>
   <div class="event-date">
+    <div class="event-library"><?php print drupal_render($library); ?></div>
     <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
     <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
   </div>
   <div class="article-info">
-    <div class="category"><?php print drupal_render($category);?></div>
-    <h3><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
+    <div class="label"><?php print drupal_render($category);?></div>
+    
     <div class="node">
+      <h3><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
       <span class="item-date"><?php print $event_date_formatted; ?></span>
       <span class="item-price">
         <?php
@@ -52,9 +53,9 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
           print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
         ?>
       </p>
-      <p>
+      <div class="more">
         <?php print l(t('More'), 'node/' . $item->nid);?>
-      </p>
+      </div>
     </div>
   </div>
 </div>

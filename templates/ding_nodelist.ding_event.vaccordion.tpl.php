@@ -25,37 +25,39 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
 ?>
 <div class="item event va-slice"<?php print $background_image_style; ?>>
   <div class="va-title">
-    <div class="event-label"><?php print drupal_render($category);?></div>
     <div class="event-date">
+      <div class="event-library"><?php print drupal_render($library);?></div>
       <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
     </div>
   </div>
   <div class="va-content" data-destination="<?php print url('node/' . $item->nid) ?>">
-    <div class="caption">
-      <h3>
-        <?php print l($item->title, 'node/' . $item->nid);?>
-      </h3>
-    </div>
-    <div class="library">
-      <div class="event-time">
-        <span><?php print t('Time');?></span>
-        <span><?php print format_date($event_date, 'custom', 'H:i'); ?></span>
+    <div class="inner-wrapper">
+      <div class="caption">
+        <h3>
+          <?php print l($item->title, 'node/' . $item->nid);?>
+        </h3>
       </div>
-      <?php
-        print drupal_render($library);
-      ?>
-      <div class="event-fee">
+      <div class="library">
+        <div class="event-time">
+          <span><?php print t('Time');?></span>
+          <span><?php print format_date($event_date, 'custom', 'H:i'); ?></span>
+        </div>
         <?php
-          $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-          if (is_array($fee_field)) {
-            $fee = current($fee_field);
-            print '&mdash; ' . $fee['value'] . 'Kr.';
-          }
-          else {
-            print t('Gratis');
-          }
+          print drupal_render($library);
         ?>
+        <div class="event-fee">
+          <?php
+            $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+            if (is_array($fee_field)) {
+              $fee = current($fee_field);
+              print '&mdash; ' . $fee['value'] . 'Kr.';
+            }
+            else {
+              print t('Gratis');
+            }
+          ?>
+        </div>
       </div>
     </div>
   </div>

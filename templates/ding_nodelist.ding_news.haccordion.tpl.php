@@ -18,7 +18,7 @@ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 <li class="item news">
   <div class="item_content">
     <div class="expand"><?php print l($item->title, 'node/' . $item->nid);?></div>
-    <div class="label"><?php print t('News');?></div>
+    <div class="label"><?php print drupal_render($category);?></div>
     <div class="image">
       <a href="<?php print url('node/' . $item->nid);?>"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '';?></a>
     </div>

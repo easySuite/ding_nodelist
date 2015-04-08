@@ -17,7 +17,7 @@ $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 ?>
 <li class="item">
-  <span class="category">
+  <span class="label">
     <?php print drupal_render($category);?>
   </span>
   <span class="date-created">
@@ -37,7 +37,7 @@ $library = field_view_field('node', $item, 'og_group_ref', 'default');
     }
     ?>
     </span>
-    <span class="item-library"><?php print drupal_render($library); ?></span>
+    <span class="library"><?php print drupal_render($library); ?></span>
     <div class="item-body">
     <?php
       $teaser = field_get_items('node', $item, 'field_ding_event_body');
