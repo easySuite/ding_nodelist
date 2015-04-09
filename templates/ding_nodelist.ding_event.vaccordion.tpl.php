@@ -38,7 +38,7 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
           <?php print l($item->title, 'node/' . $item->nid);?>
         </h3>
       </div>
-      <div class="library">
+      <div class="data">
         <div class="event-timestamp">
           <span><?php print t('Time:');?></span>
           <span><?php print format_date($event_date, 'custom', 'H:i'); ?></span>
