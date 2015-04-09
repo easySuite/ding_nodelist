@@ -39,11 +39,11 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
         </h3>
       </div>
       <div class="library">
-        <div class="event-time">
+        <div class="event-timestamp">
           <span><?php print t('Time:');?></span>
           <span><?php print format_date($event_date, 'custom', 'H:i'); ?></span>
         </div>
-        <div>
+        <div class="event-details">
           <span class="event-library">
             <?php print drupal_render($library); ?>
           </span>

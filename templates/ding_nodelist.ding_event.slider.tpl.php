@@ -10,15 +10,15 @@ $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 ?>
 <li class="item">
-  <div class="label">
-    <?php print drupal_render($category);?>
-  </div>
-  <div class="date-created">
-    <?php print $event_date; ?>
+  <div class="category">
+    <span class="label label-info"><?php print drupal_render($category);?></span>
   </div>
   <h3 class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
   <div class="node">
-    <div>
+    <div class="item-date">
+      <?php print $event_date; ?>
+    </div>
+    <div class="event-details">
       <span class="library"><?php print drupal_render($library); ?></span>
       <span class="item-price">
         <?php

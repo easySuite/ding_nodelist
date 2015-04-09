@@ -15,7 +15,7 @@ $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser'
   <div class="article-info">
     <div class="label-wrapper"><?php print drupal_render($category);?></div>
     <div class="node">
-      <h class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
+      <h3 class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
       <p>
         <?php
           $teaser = field_get_items('node', $item, 'field_ding_news_body');

@@ -28,11 +28,11 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
         </h3>
       </div>
       <div class="library">
-        <div class="event-time">
+        <div class="event-timestamp">
           <span><?php print t('Time:');?></span>
           <span><?php print format_date($event_date, 'custom', 'H:i');?></span>
         </div>
-        <div>
+        <div class="event-details">
           <span class="event-library">
             <?php print drupal_render($library); ?>
           </span>

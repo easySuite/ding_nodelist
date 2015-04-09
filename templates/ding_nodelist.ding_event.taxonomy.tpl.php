@@ -49,7 +49,7 @@ $library = drupal_render($library);
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-date"><?php print $event_date; ?></div>
     <div>
-      <span class="label"><?php print $library; ?></span>
+      <span class="item-library"><?php print $library; ?></span>
       <span class="item-price">
         <?php
           $fee_field = field_get_items('node', $item, 'field_ding_event_price');
