@@ -1,15 +1,7 @@
 <?php
 /**
  * @file
- * Ding event image and text template.
- * Avaialable fields are:
- * ding_content_tags
- * field_address
- * field_ding_body
- * field_list_image
- * field_main_image
- * field_materials
- * group_audience
+ * Ding news image and text template.
  */
 
 $image_field = 'field_' . $item->type . '_list_image';
@@ -21,18 +13,18 @@ $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser'
     <a href="<?php print url('node/' . $item->nid);?>"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?></a>
   </div>
   <div class="article-info">
-    <div class="category"><?php print drupal_render($category);?></div>
-    <h3><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
+    <div class="label-wrapper"><?php print drupal_render($category);?></div>
     <div class="node">
+      <h3 class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
       <p>
         <?php
           $teaser = field_get_items('node', $item, 'field_ding_news_body');
           print $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
         ?>
       </p>
-      <p>
+      <div class="more">
         <?php print l(t('More'), 'node/' . $item->nid);?>
-      </p>
+      </div>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@ $edbase = field_view_field('node', $item, 'field_editorial_base_n', 'teaser');
   <span class="category">
     <?php print drupal_render($edbase);?>
   </span>
-  <h3><a href="<?php print url('node/' . $item->nid);?>"><?php	print $item->title;?></a></h3>
+  <h3 class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php	print $item->title;?></a></h3>
   <div class="node">
     <?php
       $body = field_view_field('node', $item, 'field_ding_body', 'teaser');
