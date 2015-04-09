@@ -26,7 +26,7 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
 <div class="item event va-slice"<?php print $background_image_style; ?>>
   <div class="va-title">
     <div class="event-date">
-      <div class="event-library"><?php print drupal_render($library);?></div>
+      <div class="event-library"><?php print date('D', $event_date);?></div>
       <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
     </div>

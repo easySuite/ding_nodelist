@@ -25,7 +25,7 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
     <a href="<?php print url('node/' . $item->nid);?>"><?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?></a>
   </div>
   <div class="event-date">
-    <div class="event-library"><?php print drupal_render($library); ?></div>
+    <div class="event-library"><?php print date('D', $event_date); ?></div>
     <div class="event-day"><?php print format_date($event_date, 'day_only'); ?></div>
     <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
   </div>
@@ -47,6 +47,7 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
         }
         ?>
       </span>
+      <span class="library"><?php print drupal_render($library); ?></span>
       <p>
         <?php
           $teaser = field_get_items('node', $item, 'field_ding_event_body');
