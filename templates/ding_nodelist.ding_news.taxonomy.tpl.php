@@ -47,8 +47,7 @@ $author = $item->name;
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-author"><?php print $author ?></span>
-    <span class="label"><?php print drupal_render($category); ?></span>
+    <div class="label"><?php print drupal_render($category); ?></div>
     <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_cummary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
   </div>
 </div>

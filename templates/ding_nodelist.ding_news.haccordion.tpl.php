@@ -1,19 +1,12 @@
 <?php
 /**
  * @file
- * Ding event image and text template.
- * Avaialable fields are:
- * ding_content_tags
- * field_address
- * field_ding_body
- * field_list_image
- * field_main_image
- * field_materials
- * group_audience
+ * Ding news horizontal accordion template.
  */
 
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
+            $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
 ?>
 <li class="item news">
   <div class="item_content">
@@ -24,13 +17,12 @@ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
     </div>
     <div class="data">
       <div class="caption">
-        <h3>
+        <h3 class="node-title">
           <?php print l($item->title, 'node/' . $item->nid);?>
         </h3>
-        <div class="category"><?php
-          $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
-          print drupal_render($category);
-        ?></div>
+        <div class="category">
+          <?php print drupal_render($category); ?>
+        </div>
       </div>
     </div>
   </div>

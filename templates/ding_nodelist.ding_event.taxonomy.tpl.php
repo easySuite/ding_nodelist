@@ -47,21 +47,23 @@ $library = drupal_render($library);
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="label"><?php print drupal_render($category); ?></span>
-    <span class="item-date"><?php print $event_date; ?></span>
-    <span class="item-price">
-      <?php
-      $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-      if (is_array($fee_field)) {
-        $fee = current($fee_field);
-        print '&mdash; ' . $fee['value'] . 'Kr.';
-      }
-      else {
-        print t('Gratis');
-      }
-      ?>
-    </span>
-    <span class="label"><?php print $library; ?></span>
+    <div class="item-date"><?php print $event_date; ?></div>
+    <div>
+      <span class="label"><?php print $library; ?></span>
+      <span class="item-price">
+        <?php
+          $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+          if (is_array($fee_field)) {
+            $fee = current($fee_field);
+            print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
+          } 
+          else {
+            print '&mdash; ' . t('Free');
+          }
+        ?>
+      </span>
+      <span class="label"><?php print drupal_render($category); ?></span>
+    </div>
     <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
   </div>
 </div>

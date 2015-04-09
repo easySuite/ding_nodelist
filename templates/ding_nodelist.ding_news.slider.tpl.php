@@ -1,23 +1,16 @@
 <?php
 /**
  * @file
- * Ding event image and text template.
- * Avaialable fields are:
- * ding_content_tags
- * field_address
- * field_ding_body
- * field_list_image
- * field_main_image
- * field_materials
- * group_audience
+ * Ding news slider template.
  */
+
 $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
 ?>
 <li class="item">
-  <span class="category">
+  <div class="category">
     <?php print drupal_render($category);?>
-  </span>
-  <h3><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
+  </div>
+  <h3 class="node-title"><a href="<?php print url('node/' . $item->nid);?>"><?php print $item->title;?></a></h3>
   <div class="node">
     <?php
       $teaser = field_get_items('node', $item, 'field_ding_news_body');
