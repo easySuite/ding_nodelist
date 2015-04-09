@@ -7,6 +7,7 @@
 
 $title = $item->title;
 $teaser = field_get_items('node', $item, 'field_ding_news_body');
+$category = field_view_field('node', $item, 'field_ding_news_category', 'default');
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 if (!empty($item->publish_on)) {
@@ -46,7 +47,7 @@ $author = $item->name;
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-date"><?php print $date ?></span><span class="item-author"><?php print $author ?></span>
+    <div class="label"><?php print drupal_render($category); ?></div>
     <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_cummary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
   </div>
 </div>

@@ -11,12 +11,13 @@ if ($variables['conf']['sorting'] == 'event_date') {
 }
 $title = $item->title;
 $teaser = field_get_items('node', $item, 'field_ding_event_body');
+$category = field_view_field('node', $item, 'field_ding_event_category', 'default');
+$price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_formated_ding_event_date($item);
-$author = $item->name;
-$library = field_view_field('node', $item, 'og_group_ref', array('label' => 'hidden'));
-$library = render($library);
+$library = field_view_field('node', $item, 'og_group_ref', 'default');
+$library = drupal_render($library);
 
 /**
  * Available variables:
@@ -46,9 +47,23 @@ $library = render($library);
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-date"><?php print $event_date; ?></span>
-    <span class="item-author"><?php print $author; ?></span>
-    <span class="item-library"><?php print $library; ?></span>
+    <div class="item-date"><?php print $event_date; ?></div>
+    <div>
+      <span class="item-library"><?php print $library; ?></span>
+      <span class="item-price">
+        <?php
+          $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+          if (is_array($fee_field)) {
+            $fee = current($fee_field);
+            print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
+          } 
+          else {
+            print '&mdash; ' . t('Free');
+          }
+        ?>
+      </span>
+      <span class="label"><?php print drupal_render($category); ?></span>
+    </div>
     <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
   </div>
 </div>

@@ -7,10 +7,6 @@
   height: 200px;
 }
 
-.ding_nodelist-title {
-  margin-bottom: 4px;
-}
-
 /* Columnar layout */
 .ding_nodelist-col-first {
   clear: left;
@@ -80,13 +76,6 @@
   -moz-border-radius: 15px;
 }
 
-h3 {
-  line-height:120%;
-  text-shadow: 1px 1px 1px #EAF1EA;
-  font-family: Myriad Pro,"Lucida Grande","Lucida Sans Unicode",Segoe UI,Helvetica,Arial,sans-serif;
-}
-
-
 .node {
   height: auto;
   padding: 10px 15px;
@@ -94,13 +83,11 @@ h3 {
   text-align: justify;
   vertical-align: baseline;
   color: #5f6a5f;
-  font: 0.8em/165% "Lucida Grande","Lucida Sans Unicode",Segoe UI,Helvetica,Arial,sans-serif;
 
 }
 
 .event_body {
   height: auto;
-  font: 0.8em/165% "Lucida Grande","Lucida Sans Unicode",Segoe UI,Helvetica,Arial,sans-serif;
   margin: 0;
   padding: 0;
   outline: 0 none;
@@ -161,8 +148,6 @@ h3 {
   float: left;
   list-style: none;
   margin-right: 20px;
-  line-height: 26px;
-  font-size: 11px;
   color: #6A6960;
   height: 20px;
 }
