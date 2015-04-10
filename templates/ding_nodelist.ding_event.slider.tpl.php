@@ -8,6 +8,8 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'teaser
 $event_date = _ding_nodelist_formated_ding_event_date($item);
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
+$lead = field_get_items('node', $item, 'field_ding_event_lead');
+$teaser = field_get_items('node', $item, 'field_ding_event_body');
 ?>
 <li class="item">
   <div class="category">
@@ -34,10 +36,17 @@ $library = field_view_field('node', $item, 'og_group_ref', 'default');
       </span>
     </div>
     <div class="item-body">
-    <?php
-      $teaser = field_get_items('node', $item, 'field_ding_event_body');
-      print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
-    ?>
+      <?php
+        if (isset($lead[0]['safe_value'])) {
+          print strip_tags($lead[0]['safe_value']);
+        }
+        elseif (isset($teaser[0]['safe_value'])) {
+          print strip_tags($teaser[0]['safe_value']);
+        }
+        else {
+          print '';
+        }
+      ?>
     </div>
   </div>
   <div class="more"><?php print l(t('More'), 'node/' . $item->nid);?></div>
