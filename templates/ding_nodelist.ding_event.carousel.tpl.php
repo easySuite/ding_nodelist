@@ -47,9 +47,11 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
         <?php
           if (isset($lead[0]['safe_value'])) {
             print strip_tags($lead[0]['safe_value']);
-          } elseif (isset($teaser[0]['safe_value'])) {
+          }
+          elseif (isset($teaser[0]['safe_value'])) {
             print strip_tags($teaser[0]['safe_value']) . '2';
-          } else {
+          }
+          else {
             print '';
           }
         ?>
