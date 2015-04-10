@@ -6,7 +6,7 @@
 
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
-            $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
+$category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
 ?>
 <li class="item news">
   <div class="item_content">

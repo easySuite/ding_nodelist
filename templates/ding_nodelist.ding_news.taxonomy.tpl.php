@@ -6,7 +6,6 @@
  */
 
 $title = $item->title;
-$teaser = field_get_items('node', $item, 'field_ding_news_body');
 $category = field_view_field('node', $item, 'field_ding_news_category', 'default');
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
@@ -18,6 +17,8 @@ else {
 }
 $date = format_date($date, 'custom', 'd/m/Y');
 $author = $item->name;
+$lead = field_get_items('node', $item, 'field_ding_news_lead');
+$teaser = field_get_items('node', $item, 'field_ding_news_body');
 
 /**
  * Available variables:
@@ -48,6 +49,16 @@ $author = $item->name;
   <div class="item-details">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="label"><?php print drupal_render($category); ?></div>
-    <div class="item-body"><?php print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_cummary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary']; ?></div>
+    <div class="item-body">
+      <?php
+        if (isset($lead[0]['safe_value'])) {
+          print strip_tags($lead[0]['safe_value']);
+        } elseif (isset($teaser[0]['safe_value'])) {
+          print strip_tags($teaser[0]['safe_value']);
+        } else {
+          print '';
+        }
+      ?>
+    </div>
   </div>
 </div>
