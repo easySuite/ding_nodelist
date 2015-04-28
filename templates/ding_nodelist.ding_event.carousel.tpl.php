@@ -11,6 +11,8 @@ $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
+$lead = field_get_items('node', $item, 'field_ding_event_lead');
+$teaser = field_get_items('node', $item, 'field_ding_event_body');
 ?>
 <div class="item">
   <div class="event-image">
@@ -43,8 +45,15 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
       </div>
       <p>
         <?php
-          $teaser = field_get_items('node', $item, 'field_ding_event_body');
-          print !isset($teaser[0]['safe_summary']) || $teaser[0]['safe_summary'] == '' ? $teaser[0]['safe_value'] : $teaser[0]['safe_summary'];
+          if (isset($lead[0]['safe_value'])) {
+            print strip_tags($lead[0]['safe_value']);
+          }
+          elseif (isset($teaser[0]['safe_value'])) {
+            print strip_tags($teaser[0]['safe_value']) . '2';
+          }
+          else {
+            print '';
+          }
         ?>
       </p>
       <div class="more">
