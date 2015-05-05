@@ -571,23 +571,22 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     ),
   );
 
-  // Date field filtering.
-  // @todo: remove hard code and make more unversal.
-  $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['content_filter_date'] = array(
-    '#type' => $node_type == 'ding_event' ? 'checkbox' : 'hidden',
-    '#title' => t('Show upcoming events only'),
-    '#description' => t('If checked only future events will be shown'),
-    '#default_value' => $node_type == 'ding_event' && isset($conf['content_filter_date']) ? $conf['content_filter_date'] : FALSE,
-    '#prefix' => '<div id="ding_nodelist-content-filter-date">',
-    '#suffix' => '</div>',
-  );
-
   // Content filter.
   $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['content_filter_promoted'] = array(
     '#type' => 'checkbox',
     '#weight' => 11,
     '#title' => t('Show "Promoted to front page" content only'),
     '#default_value' => isset($conf['content_filter_promoted']) ? $conf['content_filter_promoted'] : FALSE,
+  );
+
+  // Date field filtering.
+  $form['ding_nodelist_wrapper']['nodelist_content']['content_filter_date'] = array(
+    '#type' => $node_type == 'ding_event' ? 'checkbox' : 'hidden',
+    '#title' => t('Show upcoming events only'),
+    '#description' => t('If checked only future events will be shown'),
+    '#default_value' => $node_type == 'ding_event' && isset($conf['content_filter_date']) ? $conf['content_filter_date'] : FALSE,
+    '#prefix' => '<div id="ding_nodelist-content-filter-date">',
+    '#suffix' => '</div>',
   );
 
   // Various options.
@@ -1151,7 +1150,7 @@ function ding_nodelist_js($form, &$form_state) {
       ajax_command_replace('#ding_nodelist-selected-nodes', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_nodes']['selected_nodes'])),
       ajax_command_replace('#ding_nodelist-taxonomy-filters', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'])),
       ajax_command_replace('.form-item-widget-type', drupal_render($form['ding_nodelist_wrapper']['widget_type'])),
-      ajax_command_replace('#ding_nodelist-content-filter-date', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['content_filter_date'])),
+      ajax_command_replace('#ding_nodelist-content-filter-date', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['content_filter_date'])),
       ajax_command_replace('#ding_nodelist-sort-field', drupal_render($form['ding_nodelist_wrapper']['nodelist_various_settings']['ding_nodelist_sorting']['sort_field'])),
     ),
   );
