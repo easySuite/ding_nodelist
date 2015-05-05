@@ -1,6 +1,6 @@
 name = "easyDDB Nodelist"
 package = "easyDDB"
-version = "7.x-2.0.0"
+version = 7.x-2.0.0+easy
 core = "7.x"
 dependencies[] = "image"
 dependencies[] = "panels_ipe"
