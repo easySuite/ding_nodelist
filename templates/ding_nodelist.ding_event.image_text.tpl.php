@@ -14,7 +14,7 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
   <div class="item_content">
     <div class="expand"><?php print l($item->title, 'node/' . $item->nid);?></div>
     <div class="event-time">
-      <div class="event-day"><?php print date('D', $event_date);?></div>
+      <div class="event-day"><?php print t(date('D', $event_date));?></div>
       <div class="event-date"><?php print format_date($event_date, 'day_only'); ?></div>
       <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
     </div>
