@@ -7,8 +7,7 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function ding_nodelist_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function ding_nodelist_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -20,7 +19,7 @@ function ding_nodelist_ctools_plugin_api() {
 function ding_nodelist_image_default_styles() {
   $styles = array();
 
-  // Exported image style: ding_nodelist_extra_medium
+  // Exported image style: ding_nodelist_extra_medium.
   $styles['ding_nodelist_extra_medium'] = array(
     'name' => 'ding_nodelist_extra_medium',
     'effects' => array(
@@ -34,11 +33,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '760',
+          'width' => 760,
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => '1',
+        'weight' => 1,
       ),
       14 => array(
         'label' => 'Scale and crop',
@@ -50,15 +49,16 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '760',
-          'height' => '562',
+          'width' => 760,
+          'height' => 562,
         ),
-        'weight' => '2',
+        'weight' => 2,
       ),
     ),
+    'label' => 'ding_nodelist_extra_medium',
   );
 
-  // Exported image style: ding_nodelist_large
+  // Exported image style: ding_nodelist_large.
   $styles['ding_nodelist_large'] = array(
     'name' => 'ding_nodelist_large',
     'effects' => array(
@@ -72,11 +72,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '1160',
+          'width' => 1160,
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => '1',
+        'weight' => 1,
       ),
       16 => array(
         'label' => 'Scale and crop',
@@ -88,15 +88,16 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '1160',
-          'height' => '860',
+          'width' => 1160,
+          'height' => 860,
         ),
-        'weight' => '2',
+        'weight' => 2,
       ),
     ),
+    'label' => 'ding_nodelist_large',
   );
 
-  // Exported image style: ding_nodelist_medium
+  // Exported image style: ding_nodelist_medium.
   $styles['ding_nodelist_medium'] = array(
     'name' => 'ding_nodelist_medium',
     'effects' => array(
@@ -110,11 +111,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '560',
+          'width' => 560,
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => '1',
+        'weight' => 1,
       ),
       12 => array(
         'label' => 'Scale and crop',
@@ -126,15 +127,16 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '560',
-          'height' => '392',
+          'width' => 560,
+          'height' => 392,
         ),
-        'weight' => '2',
+        'weight' => 2,
       ),
     ),
+    'label' => 'ding_nodelist_medium',
   );
 
-  // Exported image style: ding_nodelist_mini
+  // Exported image style: ding_nodelist_mini.
   $styles['ding_nodelist_mini'] = array(
     'name' => 'ding_nodelist_mini',
     'effects' => array(
@@ -148,11 +150,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '260',
+          'width' => 260,
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => '1',
+        'weight' => 1,
       ),
       8 => array(
         'label' => 'Scale and crop',
@@ -164,15 +166,16 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '260',
-          'height' => '192',
+          'width' => 260,
+          'height' => 192,
         ),
-        'weight' => '2',
+        'weight' => 2,
       ),
     ),
+    'label' => 'ding_nodelist_mini',
   );
 
-  // Exported image style: ding_nodelist_small
+  // Exported image style: ding_nodelist_small.
   $styles['ding_nodelist_small'] = array(
     'name' => 'ding_nodelist_small',
     'effects' => array(
@@ -186,11 +189,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '360',
+          'width' => 360,
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => '1',
+        'weight' => 1,
       ),
       10 => array(
         'label' => 'Scale and crop',
@@ -202,12 +205,13 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '360',
-          'height' => '266',
+          'width' => 360,
+          'height' => 266,
         ),
-        'weight' => '2',
+        'weight' => 2,
       ),
     ),
+    'label' => 'ding_nodelist_small',
   );
 
   return $styles;
