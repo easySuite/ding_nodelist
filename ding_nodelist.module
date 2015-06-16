@@ -2395,4 +2395,11 @@ function ding_nodelist_field_widget_info_alter(&$info) {
   }
 }
 
+/**
+ * Implements hook_node_delete().
+ */
+function ding_nodelist_node_delete($node) {
+  cache_clear_all('*', 'cache_panels', TRUE);
+}
+
 include_once('ding_nodelist.features.inc');
