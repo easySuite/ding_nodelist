@@ -2402,4 +2402,11 @@ function ding_nodelist_node_delete($node) {
   cache_clear_all('*', 'cache_panels', TRUE);
 }
 
+/**
+ * Implements hook_node_update().
+ */
+function ding_nodelist_node_update($node) {
+  cache_clear_all('*', 'cache_panels', TRUE);
+}
+
 include_once('ding_nodelist.features.inc');
