@@ -331,6 +331,11 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   $form['ding_nodelist_wrapper']['nodelist_content'] = array(
     '#type' => 'fieldset',
     '#title' => t('Content'),
+    '#states' => array(
+      'invisible' => array(
+        'select[name=widget_type]' => array('value' => NL_WIDGET_SINGLE),
+      ),
+    ),
   );
 
   $form['ding_nodelist_wrapper']['nodelist_content']['list_type'] = array(
@@ -594,6 +599,11 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   $form['ding_nodelist_wrapper']['nodelist_various_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('Various'),
+    '#states' => array(
+      'invisible' => array(
+        'select[name=widget_type]' => array('value' => NL_WIDGET_SINGLE)
+      ),
+    ),
   );
 
   // Initialize drop-down array's values.
