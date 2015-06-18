@@ -1,220 +1,231 @@
-/* Widgets */
-.ding_nodelist-simple, .ding_nodelist-simple > div {
-  float: left;
-}
-
-.ding_nodelist-carousel {
-  height: 200px;
-}
-
-/* Columnar layout */
-.ding_nodelist-col-first {
-  clear: left;
-}
-
-.ding_nodelist-col-full {
-  width: 100%;
-}
-
-.ding_nodelist-col-half {
-  width: 48%;
-  margin-right: 4%;
-}
-
-.ding_nodelist-col-third {
-  width: 31%;
-  margin-right: 3%;
-}
-
-.ding_nodelist-col-quarter {
-  width: 22%;
-  margin-right: 3%;
-}
-
-.ding_nodelist-col-last {
-  margin-right: 0;
-}
-
-/* Others */
-.ding_nodelist-item {
-  margin-bottom: 8px;
-  margin-top: 10px;
-}
-
-.ding_nodelist-carousel .item {
-  height: 170px;
-}
-
-.ding_nodelist-carousel .pagination {
-  position: absolute;
-}
-
-.ding_nodelist-carousel .next-prev{
-  position: absolute;
-}
-
-.ding_editorial_article {
-  border: 1px solid #e3e2d8;
-  background: #f9f8ef;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  text-align: justify;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-  -webkit-box-shadow: 3px 7px 9px -7px #000000;
-  -moz-box-shadow: 3px 7px 7px -7px #000000;
-  box-shadow: 3px 7px 7px -7px #000000;
-}
-
-.ding_editorial_event {
-  height: auto;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  text-align: justify;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-}
-
-.node {
-  height: auto;
-  padding: 10px 15px;
-  margin-top: 20px;
-  text-align: justify;
-  vertical-align: baseline;
-  color: #5f6a5f;
-
-}
-
-.event_body {
-  height: auto;
-  margin: 0;
-  padding: 0;
-  outline: 0 none;
-  vertical-align: baseline;
-  color: #5f6a5f;
-}
-
 /*
-* Images.
+Error: Undefined mixin 'span'.
+        on line 828 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss, in `span'
+        from line 828 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss, in `@content'
+        from line 99 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss, in `@content'
+        from line 46 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss, in `respond-to'
+        from line 99 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss, in `from-medium'
+        from line 827 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss
+
+823:     }
+824: 
+825:     // Media from-medium
+826: 
+827:     @include from-medium() {
+828:       @include span(4 of 12);
+829:       text-align: right;
+830:     }
+831: 
+832:     h2 {
+833: 
+
+Backtrace:
+/home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss:828:in `span'
+/home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss:828:in `@content'
+/home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss:99:in `@content'
+/home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss:46:in `respond-to'
+/home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss:99:in `from-medium'
+/home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss:827
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:348:in `block in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `block in with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:381:in `block (3 levels) in visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:381:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:381:in `block (2 levels) in visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:380:in `block in visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `block in with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:376:in `visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:381:in `block (3 levels) in visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:381:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:381:in `block (2 levels) in visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:380:in `block in visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `block in with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:376:in `visit_content'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:52:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:512:in `visit_media'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:299:in `block (2 levels) in visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:299:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:299:in `block in visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:298:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:302:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:302:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:302:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:302:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:302:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:302:in `visit_if'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `block (4 levels) in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `block (3 levels) in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `block (2 levels) in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:84:in `perform_arguments'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:358:in `block in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `block in with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `block (4 levels) in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `block (3 levels) in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:363:in `block (2 levels) in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:84:in `perform_arguments'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:358:in `block in visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `block in with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:98:in `with_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:430:in `block (2 levels) in visit_rule'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:430:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:430:in `block in visit_rule'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:430:in `block (2 levels) in visit_rule'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:430:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:430:in `block in visit_rule'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:115:in `with_frame'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/stack.rb:79:in `with_base'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:52:in `map'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/root_node.rb:36:in `css_tree'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/tree/root_node.rb:20:in `render'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/engine.rb:268:in `render'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:17:in `block in render'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:29:in `with_import_scope'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:16:in `render'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/plugin/compiler.rb:209:in `each'
+/usr/local/rvm/gems/ruby-2.1.2/gems/sass-3.4.12/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/lib/compass/sass_compiler.rb:40:in `compile!'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/lib/compass/commands/update_project.rb:49:in `perform'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/lib/compass/commands/base.rb:18:in `execute'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/lib/compass/commands/project_base.rb:19:in `execute'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/bin/compass:30:in `block in <top (required)>'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/bin/compass:44:in `call'
+/usr/local/rvm/gems/ruby-2.1.2/gems/compass-1.0.3/bin/compass:44:in `<top (required)>'
+/usr/local/rvm/gems/ruby-2.1.2/bin/compass:23:in `load'
+/usr/local/rvm/gems/ruby-2.1.2/bin/compass:23:in `<main>'
+/usr/local/rvm/gems/ruby-2.1.2/bin/ruby_executable_hooks:15:in `eval'
+/usr/local/rvm/gems/ruby-2.1.2/bin/ruby_executable_hooks:15:in `<main>'
 */
-
-.event_image {
-  float:left;
-  padding: 5px;
-  margin-right: 10px;
-  border-color: #CCCCCC #C1C1C1 #C1C1C1 #CCCCCC;
-  border-style: solid;
-  border-width: 1px;
-  -webkit-box-shadow: 3px 3px 4px #C9C9C9;
-  -moz-box-shadow: 3px 3px 4px #C9C9C9;
-  box-shadow: 3px 3px 4px #C9C9C9;
-}
-.event_image .field-items {
-  height: 180px;
-}
-
-.news_image {
-  float:left;
-  margin-right: 20px;
-  border-color: #CCCCCC #C1C1C1 #C1C1C1 #CCCCCC;
-  border-style: solid;
-  border-width: 1px;
-  -webkit-box-shadow: 3px 3px 4px #C9C9C9;
-  -moz-box-shadow: 3px 3px 4px #C9C9C9;
-  box-shadow: 3px 3px 4px #C9C9C9;
-}
-
-.artile_image .field-item {
-  width: 220px;
-  height: 160px;
-}
-
-/*
-*Name and date.
-*/
-
-.bottom {
-  padding-bottom: 10px;
-  clear: both;
-}
-
-.bottom ul {
-  padding: 0;
-  margin: 0;
-}
-
-.bottom ul li {
-  float: left;
-  list-style: none;
-  margin-right: 20px;
-  color: #6A6960;
-  height: 20px;
-}
-
-.name {
-  background: url(../images/node-author.png) no-repeat left bottom;
-  display: block;
-  height: 20px;
-  padding-left: 15px;
-}
-
-.date {
-  float: right;
-  background: url(../images/node-created.png) no-repeat left bottom;
-  display: block;
-  height: 20px;
-  padding-left: 19px;
-}
-
-/*
-* More Links.
-*/
-
-/* .item-list {
-  text-align: justify;
-  margin-left: 10px;
-  text-shadow: 1px 1px 1px #EAF1EA;
-} */
-
-.ding_nodelist-horizontal_accordeon li.slide-closed .data {
-  display: none;
-}
-
-.ding_nodelist-horizontal_accordeon li.slide-open .data {
-  display: block;
-}
-
-.ding_nodelist-horizontal_accordeon li {
-  position: relative;
-  height: 350px;
-}
-
-.ding_nodelist-horizontal_accordeon li .event_date {
-  position: absolute;
-}
-
-
-/* Slider base styles */
-.ding_nodelist-slider {
-  height: 400px;
-  overflow: hidden;
-}
-
-.ding_nodelist-slider .legend {
-  float: left;
-  width: 300px;
-}
-
-.ding_nodelist-slider .ding_nodelist-items {
-  float: left;
-  width: 600px;
-}
-
-.ding_nodelist-slider .ding_nodelist-items .item {
-  width: 100%;
-}
-
-.ding_nodelist-vertical_accordion .va-slice {
-  cursor: pointer;
-}
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined mixin 'span'.\A         on line 828 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss, in `span'\A         from line 828 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss, in `@content'\A         from line 99 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss, in `@content'\A         from line 46 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss, in `respond-to'\A         from line 99 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/_mixins.scss, in `from-medium'\A         from line 827 of /home/ac/__builds__/easyddb/modules/ding_nodelist/sass/ding_nodelist.scss\A \A 823:     }\A 824: \A 825:     // Media from-medium\A 826: \A 827:     @include from-medium() {\A 828:       @include span(4 of 12);\A 829:       text-align: right;\A 830:     }\A 831: \A 832:     h2 {\A 833: "; }
