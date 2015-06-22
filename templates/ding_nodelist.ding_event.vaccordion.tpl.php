@@ -19,6 +19,7 @@ if ($variables['conf']['sorting'] == 'event_date') {
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
+$event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 $background_image_style = $image ? ' style="background-image: url(\'' . image_style_url($conf['image_style'], $image['path']) . '\')" title="' . $image['title'] . '"' : '';
@@ -41,7 +42,7 @@ $background_image_style = $image ? ' style="background-image: url(\'' . image_st
       <div class="data">
         <div class="event-timestamp">
           <span><?php print t('Time:');?></span>
-          <span><?php print format_date($event_date, 'custom', 'H:i'); ?></span>
+          <span><?php print $event_date_formatted; ?></span>
         </div>
         <div class="event-details">
           <span class="event-library">
