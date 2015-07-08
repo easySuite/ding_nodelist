@@ -1074,7 +1074,7 @@ fieldset {
     margin-bottom: 10px;
     overflow: hidden;
     padding: 20px;
-    min-width: 100%;
+    width: 95%;
 
     &:first-of-type {
       border-top: 0;
@@ -1106,6 +1106,12 @@ fieldset {
 
     // Media from-medium
 
+    @include small-medium() {
+      .item-list-image {
+        display: none;
+      }
+    }
+    
     @include from-medium() {
       display: table;
 
@@ -1114,7 +1120,7 @@ fieldset {
         display: table-cell;
         vertical-align: top;
       }
-
+      
       .item-list-image {
         padding-right: 10px;
         width: 159px;
