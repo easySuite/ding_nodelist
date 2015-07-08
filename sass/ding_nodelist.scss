@@ -1073,8 +1073,8 @@ fieldset {
     background-color: $lighter-gray;
     margin-bottom: 10px;
     overflow: hidden;
-    padding: 20px;
-    width: 95%;
+    padding: 0;
+    width: 100%;
 
     &:first-of-type {
       border-top: 0;
@@ -1111,7 +1111,12 @@ fieldset {
         display: none;
       }
     }
-    
+
+	.item-details,
+    .item-list-image {
+	  padding: 20px;
+	}
+	
     @include from-medium() {
       display: table;
 
