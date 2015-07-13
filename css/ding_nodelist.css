@@ -818,8 +818,8 @@ fieldset legend {
   background-color: #e5e5e5;
   margin-bottom: 10px;
   overflow: hidden;
-  padding: 20px;
-  min-width: 100%;
+  padding: 0;
+  width: 100%;
 }
 .ding_nodelist-taxonomy .item:first-of-type {
   border-top: 0;
@@ -841,6 +841,15 @@ fieldset legend {
 }
 .ding_nodelist-taxonomy .item .item-body {
   margin-top: 10px;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-taxonomy .item .item-list-image {
+    display: none;
+  }
+}
+.ding_nodelist-taxonomy .item .item-details,
+.ding_nodelist-taxonomy .item .item-list-image {
+  padding: 20px;
 }
 @media only screen and (min-width: 769px) {
   .ding_nodelist-taxonomy .item {

@@ -1073,8 +1073,8 @@ fieldset {
     background-color: $lighter-gray;
     margin-bottom: 10px;
     overflow: hidden;
-    padding: 20px;
-    min-width: 100%;
+    padding: 0;
+    width: 100%;
 
     &:first-of-type {
       border-top: 0;
@@ -1106,6 +1106,17 @@ fieldset {
 
     // Media from-medium
 
+    @include small-medium() {
+      .item-list-image {
+        display: none;
+      }
+    }
+
+    .item-details,
+    .item-list-image {
+      padding: 20px;
+    }
+    
     @include from-medium() {
       display: table;
 
@@ -1114,7 +1125,7 @@ fieldset {
         display: table-cell;
         vertical-align: top;
       }
-
+      
       .item-list-image {
         padding-right: 10px;
         width: 159px;
