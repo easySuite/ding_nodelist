@@ -1,5 +1,39 @@
-/* Widgets */
-.ding_nodelist-simple, .ding_nodelist-simple > div {
+/**
+ * Mixins
+ *
+ * @author magnify
+ */
+/* Breakpoints
+   ========================================================================== */
+/* Media query
+   ========================================================================== */
+/* Breakpoints
+   ========================================================================== */
+/* Typography mixins
+ *
+ * These are mixins to allow for use in media queries
+   ========================================================================== */
+/* Availability
+   ========================================================================== */
+/* Pseudo arrow
+ *
+ * Usage example: pseudo-arrow(10px, #000, top, center, $offset: 20px)
+   ========================================================================== */
+/* FontAwesome
+   ========================================================================== */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("../font/fontawesome-webfont.eot?v=3.0.1");
+  src: url("../font/fontawesome-webfont.eot?#iefix&v=3.0.1") format("embedded-opentype"), url("../font/fontawesome-webfont.woff?v=3.0.1") format("woff"), url("../font/fontawesome-webfont.ttf?v=3.0.1") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Colors variables
+   ========================================================================== */
+/* Widgets
+   ========================================================================== */
+.ding_nodelist-simple,
+.ding_nodelist-simple > div {
   float: left;
 }
 
@@ -7,7 +41,8 @@
   height: 200px;
 }
 
-/* Columnar layout */
+/* Layout
+   ========================================================================== */
 .ding_nodelist-col-first {
   clear: left;
 }
@@ -35,21 +70,20 @@
   margin-right: 0;
 }
 
-/* Others */
 .ding_nodelist-item {
   margin-bottom: 8px;
   margin-top: 10px;
 }
 
+/* Ding nodelist carousel
+   ========================================================================== */
 .ding_nodelist-carousel .item {
   height: 170px;
 }
-
 .ding_nodelist-carousel .pagination {
   position: absolute;
 }
-
-.ding_nodelist-carousel .next-prev{
+.ding_nodelist-carousel .next-prev {
   position: absolute;
 }
 
@@ -83,7 +117,6 @@
   text-align: justify;
   vertical-align: baseline;
   color: #5f6a5f;
-
 }
 
 .event_body {
@@ -95,29 +128,28 @@
   color: #5f6a5f;
 }
 
-/*
-* Images.
-*/
-
+/* Images
+   ========================================================================== */
 .event_image {
-  float:left;
+  float: left;
   padding: 5px;
   margin-right: 10px;
-  border-color: #CCCCCC #C1C1C1 #C1C1C1 #CCCCCC;
+  border-color: #ccc #c1c1c1 #c1c1c1 #ccc;
   border-style: solid;
   border-width: 1px;
-  -webkit-box-shadow: 3px 3px 4px #C9C9C9;
-  -moz-box-shadow: 3px 3px 4px #C9C9C9;
-  box-shadow: 3px 3px 4px #C9C9C9;
+  -webkit-box-shadow: 3px 3px 4px #c9c9c9;
+  -moz-box-shadow: 3px 3px 4px #c9c9c9;
+  box-shadow: 3px 3px 4px #c9c9c9;
 }
+
 .event_image .field-items {
   height: 180px;
 }
 
 .news_image {
-  float:left;
+  float: left;
   margin-right: 20px;
-  border-color: #CCCCCC #C1C1C1 #C1C1C1 #CCCCCC;
+  border-color: #ccc #c1c1c1 #c1c1c1 #ccc;
   border-style: solid;
   border-width: 1px;
   -webkit-box-shadow: 3px 3px 4px #C9C9C9;
@@ -130,20 +162,16 @@
   height: 160px;
 }
 
-/*
-*Name and date.
-*/
-
+/* Name and date
+   ========================================================================== */
 .bottom {
   padding-bottom: 10px;
   clear: both;
 }
-
 .bottom ul {
   padding: 0;
   margin: 0;
 }
-
 .bottom ul li {
   float: left;
   list-style: none;
@@ -167,54 +195,678 @@
   padding-left: 19px;
 }
 
-/*
-* More Links.
-*/
-
-/* .item-list {
-  text-align: justify;
-  margin-left: 10px;
-  text-shadow: 1px 1px 1px #EAF1EA;
-} */
-
+/* More links
+   ========================================================================== */
 .ding_nodelist-horizontal_accordeon li.slide-closed .data {
   display: none;
 }
-
 .ding_nodelist-horizontal_accordeon li.slide-open .data {
   display: block;
 }
-
 .ding_nodelist-horizontal_accordeon li {
   position: relative;
   height: 350px;
 }
-
 .ding_nodelist-horizontal_accordeon li .event_date {
   position: absolute;
 }
 
-
-/* Slider base styles */
+/* Slider base styles
+   ========================================================================== */
 .ding_nodelist-slider {
   height: 400px;
   overflow: hidden;
 }
-
 .ding_nodelist-slider .legend {
   float: left;
   width: 300px;
 }
-
 .ding_nodelist-slider .ding_nodelist-items {
   float: left;
   width: 600px;
 }
-
 .ding_nodelist-slider .ding_nodelist-items .item {
   width: 100%;
 }
 
 .ding_nodelist-vertical_accordion .va-slice {
   cursor: pointer;
+}
+
+.col3 .ding_nodelist-taxonomy .item .item-list-image,
+.col4 .ding_nodelist-taxonomy .item .item-list-image {
+  display: none;
+}
+
+.ding_nodelist {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.ding_nodelist .node .item-date,
+.ding_nodelist .node .library,
+.ding_nodelist .node .item-price,
+.ding_nodelist .data .event-timestamp,
+.ding_nodelist .data .event-details,
+.ding_nodelist .item-details .item-date,
+.ding_nodelist .item-details .item-library,
+.ding_nodelist .item-details .item-price {
+  font-size: 80%;
+}
+.ding_nodelist .node > p {
+  margin: 10px 0;
+}
+.ding_nodelist .node-title {
+  text-decoration: underline;
+}
+.ding_nodelist .node-title a {
+  color: #fff;
+}
+.ding_nodelist .more {
+  display: none;
+}
+.ding_nodelist .event-time {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 49;
+  padding: 0 0 5px;
+  width: 60px;
+  background-color: #fff;
+  text-align: center;
+}
+.ding_nodelist .event-time .event-day {
+  background: #ccc;
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 80%;
+  line-height: 1.4;
+}
+.ding_nodelist .event-time .event-day a {
+  color: #fff;
+}
+.ding_nodelist .event-time .event-day a:hover {
+  text-decoration: none;
+}
+.ding_nodelist .event-time .event-date,
+.ding_nodelist .event-time .event-month {
+  line-height: 1;
+}
+.ding_nodelist .event-time .event-date {
+  font-size: 120%;
+}
+.ding_nodelist .event-time .event-month {
+  font-size: 80%;
+}
+.ding_nodelist .event-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 68px;
+  background-image: url("../images/p.png");
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.ding_nodelist .label {
+  margin: 10px 5px;
+}
+.ding_nodelist .label-wrapper {
+  margin: 10px 0;
+}
+.ding_nodelist .node, .ding_nodelist.ding_nodelist-horizontal_accordion .data {
+  min-height: 40px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px !important;
+}
+.ding_nodelist .more a {
+  color: #fff;
+  display: block;
+  text-align: right;
+  text-decoration: none;
+  font-size: 120%;
+}
+.ding_nodelist .article-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 49;
+  width: 100%;
+}
+
+.ding_nodelist-carousel {
+  position: relative;
+  height: 391px;
+}
+.ding_nodelist-carousel .item {
+  position: relative;
+  height: 391px;
+}
+.ding_nodelist-carousel h2 {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  z-index: 49;
+  color: #fff;
+}
+.ding_nodelist-carousel .next-prev {
+  display: none;
+  position: relative;
+  top: 10px;
+  left: 0;
+}
+.ding_nodelist-carousel .next-prev span {
+  display: none;
+}
+.ding_nodelist-carousel .next-prev .prev {
+  left: 10px;
+}
+.ding_nodelist-carousel .next-prev .prev:after {
+  content: '\f053';
+}
+.ding_nodelist-carousel .next-prev .next {
+  left: 40px;
+}
+.ding_nodelist-carousel .next-prev .next:after {
+  content: '\f054';
+}
+.ding_nodelist-carousel .next-prev .prev,
+.ding_nodelist-carousel .next-prev .next {
+  position: absolute;
+  top: 10px;
+}
+.ding_nodelist-carousel .next-prev .prev:hover,
+.ding_nodelist-carousel .next-prev .next:hover {
+  border-radius: 50px;
+  background-color: #ccc;
+  text-decoration: none;
+}
+.ding_nodelist-carousel .next-prev .prev:hover:after,
+.ding_nodelist-carousel .next-prev .next:hover:after {
+  color: #ccc;
+}
+.ding_nodelist-carousel .next-prev .prev:after,
+.ding_nodelist-carousel .next-prev .next:after {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  line-height: 20px;
+  text-align: center;
+  font-family: 'FontAwesome';
+}
+.ding_nodelist-carousel .pagination {
+  right: 10px;
+  top: 10px;
+  position: absolute;
+}
+.ding_nodelist-carousel .pagination a {
+  border-radius: 50px;
+  background-color: #ccc;
+  display: block;
+  float: left;
+  width: 25px;
+  height: 25px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 5px;
+}
+.ding_nodelist-carousel .pagination .selected {
+  background-color: #ccc;
+  color: #fff;
+}
+.ding_nodelist-carousel h3 {
+  margin: 3px 0;
+  padding: 0;
+  text-align: left;
+}
+.ding_nodelist-carousel h3 a {
+  margin-right: 10px;
+  color: #fff;
+}
+.ding_nodelist-carousel .article_image,
+.ding_nodelist-carousel .event-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ding_nodelist-carousel .article_image a,
+.ding_nodelist-carousel .event-image a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.ding_nodelist-carousel .field-type-image {
+  margin: 0 auto;
+}
+.ding_nodelist-carousel .article_image img,
+.ding_nodelist-carousel .event-image img {
+  display: none;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+.ding_nodelist-carousel .article_image .field-label,
+.ding_nodelist-carousel .event-image .field-label {
+  display: none;
+}
+
+.ding_nodelist-horizontal_accordion {
+  background: #000;
+  overflow: hidden;
+}
+.ding_nodelist-horizontal_accordion .item {
+  position: relative;
+}
+.ding_nodelist-horizontal_accordion .item_content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.ding_nodelist-horizontal_accordion .expand {
+  border-radius: 50px;
+  position: absolute;
+  bottom: 75px;
+  left: 10px;
+  z-index: 10;
+  display: block;
+  background-color: #ccc;
+  color: #fff;
+  cursor: pointer;
+}
+.ding_nodelist-horizontal_accordion .expand:after {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 32px;
+  color: #fff;
+  content: '\f054';
+  text-align: center;
+  font-family: 'FontAwesome';
+}
+.ding_nodelist-horizontal_accordion .expand a {
+  display: none;
+}
+.ding_nodelist-horizontal_accordion .slide-open .expand {
+  right: 10px;
+  left: auto;
+}
+.ding_nodelist-horizontal_accordion .slide-open .expand:after {
+  content: '\f067';
+}
+.ding_nodelist-horizontal_accordion .slide-open .image img {
+  opacity: 1;
+}
+.ding_nodelist-horizontal_accordion .image a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+  background-color: #000;
+}
+@media only screen and (max-width: 480px) {
+  .ding_nodelist-horizontal_accordion .image a {
+    width: 310px;
+    height: 260px;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .ding_nodelist-horizontal_accordion .image a {
+    width: 400px;
+    height: 300px;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .ding_nodelist-horizontal_accordion .image a {
+    width: 450px;
+    height: 340px;
+  }
+}
+.ding_nodelist-horizontal_accordion .image img {
+  opacity: .25;
+  min-width: 100%;
+  width: auto;
+  height: 100%;
+}
+.ding_nodelist-horizontal_accordion .data {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+}
+.ding_nodelist-horizontal_accordion .data span,
+.ding_nodelist-horizontal_accordion .data .event-fee {
+  margin-right: 5px;
+}
+.ding_nodelist-horizontal_accordion .data a {
+  color: #fff;
+}
+.ding_nodelist-horizontal_accordion .caption {
+  overflow: hidden;
+}
+.ding_nodelist-horizontal_accordion .caption h3 {
+  max-height: 30px;
+  margin: 5px 0;
+}
+.ding_nodelist-horizontal_accordion .library {
+  overflow: hidden;
+  max-height: 24px;
+}
+.ding_nodelist-horizontal_accordion .library > div {
+  float: left;
+}
+
+.ding_nodelist-single {
+  overflow: hidden;
+  background-color: #fff;
+}
+.ding_nodelist-single .article_image a,
+.ding_nodelist-single .event-image a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.ding_nodelist-single .article_image img,
+.ding_nodelist-single .event-image img {
+  display: none;
+}
+.ding_nodelist-single .item {
+  position: relative;
+  overflow: hidden;
+}
+@media only screen and (min-width: 481px) {
+  .ding_nodelist-single .item {
+    height: 381px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .ding_nodelist-single .item .event-label,
+  .ding_nodelist-single .item .event-time {
+    visibility: hidden;
+  }
+}
+.ding_nodelist-single h3 {
+  margin: 0 0 10px 0;
+}
+.ding_nodelist-single h3 a {
+  display: block;
+  color: #fff;
+}
+
+.ding_nodelist-slider {
+  position: relative;
+  background-color: #fff;
+  padding-top: 10px;
+}
+.ding_nodelist-slider .item {
+  min-height: 122px;
+}
+.ding_nodelist-slider .node {
+  background: none;
+  color: #000;
+  padding: 0 !important;
+}
+.ding_nodelist-slider .item-body {
+  margin-top: 10px;
+}
+.ding_nodelist-slider .more a {
+  color: #000;
+}
+.ding_nodelist-slider .label {
+  margin-left: 0;
+}
+.ding_nodelist-slider .category {
+  float: right;
+  margin-top: 4px;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-slider .legend {
+    margin-bottom: 10px;
+    padding-right: 2em;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .ding_nodelist-slider .legend {
+    width: 32.20339%;
+    float: left;
+    margin-right: 1.69492%;
+    text-align: right;
+  }
+}
+.ding_nodelist-slider .legend span {
+  display: block;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-slider .ding_nodelist-items {
+    padding-right: 2em;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .ding_nodelist-slider .ding_nodelist-items {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 66.10169%;
+    float: right;
+    margin-right: 0;
+    padding-right: 2em;
+  }
+}
+.ding_nodelist-slider .item {
+  margin-bottom: 10px;
+}
+.ding_nodelist-slider h3.node-title {
+  margin-bottom: 5px;
+}
+.ding_nodelist-slider h3.node-title a {
+  color: #333;
+}
+.ding_nodelist-slider .node {
+  margin-top: 0;
+  padding: 0;
+}
+.ding_nodelist-slider .more {
+  margin-bottom: 5px;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-slider .more a {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+}
+.ding_nodelist-slider .next-prev {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 25px;
+}
+.ding_nodelist-slider .next-prev span {
+  display: none;
+}
+.ding_nodelist-slider .next-prev a {
+  border-radius: 50px;
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: #ccc;
+  color: #fff;
+}
+.ding_nodelist-slider .next-prev a:hover {
+  background-color: #ccc;
+}
+.ding_nodelist-slider .next-prev a:after {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  content: '\f054';
+  text-align: center;
+  font-family: 'FontAwesome';
+}
+.ding_nodelist-slider .next-prev .next {
+  bottom: 10px;
+}
+.ding_nodelist-slider .next-prev .next:after {
+  content: '\f107';
+}
+.ding_nodelist-slider .next-prev .prev {
+  top: 10px;
+}
+.ding_nodelist-slider .next-prev .prev:after {
+  content: '\f106';
+}
+
+.va-wrapper {
+  position: relative;
+}
+.va-wrapper .ding_nodelist-items .news {
+  background-color: #fff;
+  background-repeat: no-repeat;
+}
+.va-wrapper .item {
+  position: absolute;
+  z-index: 10;
+  display: block;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  height: 500px;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.va-wrapper .item:first-of-type {
+  border-top: 0;
+}
+.va-wrapper .va-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  visibility: hidden;
+  background-image: url("../images/p.png");
+  width: 100%;
+}
+.va-wrapper .va-content,
+.va-wrapper .va-content h3,
+.va-wrapper .va-content a {
+  color: #fff;
+}
+.va-wrapper .va-content .label {
+  margin-left: 0;
+}
+.va-wrapper .va-content .inner-wrapper {
+  margin: 10px;
+}
+.va-wrapper .active .va-content {
+  visibility: visible;
+}
+.va-wrapper .va-title {
+  position: relative;
+  z-index: 1;
+}
+@media only screen and (max-width: 768px) {
+  .va-wrapper .va-title {
+    visibility: hidden;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .va-wrapper .active .va-title {
+    visibility: visible;
+  }
+}
+
+fieldset legend {
+  margin: 0;
+  padding: 0;
+}
+
+.attachments-3-3 .ding_nodelist-taxonomy .item .item-list-image,
+.tertiary-content .ding_nodelist-taxonomy .item .item-list-image,
+.attachments-4-4 .ding_nodelist-taxonomy .item .item-list-image {
+  display: none;
+}
+
+.ding_nodelist-taxonomy .item:nth-child(odd) {
+  background-color: #dadada;
+}
+.ding_nodelist-taxonomy .item {
+  background-color: #e5e5e5;
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+.ding_nodelist-taxonomy .item:first-of-type {
+  border-top: 0;
+}
+.ding_nodelist-taxonomy .item .item-title {
+  font-size: 120%;
+}
+.ding_nodelist-taxonomy .item .item-title a {
+  font-weight: 700;
+}
+.ding_nodelist-taxonomy .item .item-date {
+  color: #333;
+}
+.ding_nodelist-taxonomy .item .item-author {
+  display: none;
+}
+.ding_nodelist-taxonomy .item .label {
+  margin-left: 0;
+}
+.ding_nodelist-taxonomy .item .item-body {
+  margin-top: 10px;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-taxonomy .item .item-list-image {
+    display: none;
+  }
+}
+.ding_nodelist-taxonomy .item .item-details,
+.ding_nodelist-taxonomy .item .item-list-image {
+  padding: 20px;
+}
+@media only screen and (min-width: 769px) {
+  .ding_nodelist-taxonomy .item {
+    display: table;
+  }
+  .ding_nodelist-taxonomy .item .item-details,
+  .ding_nodelist-taxonomy .item .item-list-image {
+    display: table-cell;
+    vertical-align: top;
+  }
+  .ding_nodelist-taxonomy .item .item-list-image {
+    padding-right: 10px;
+    width: 159px;
+  }
+  .ding_nodelist-taxonomy .item .item-list-image img {
+    width: 159px;
+    height: auto;
+    min-width: 159px;
+  }
 }
