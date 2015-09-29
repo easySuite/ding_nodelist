@@ -20,5 +20,15 @@ function ding_nodelist_user_default_permissions() {
     'module' => 'ding_nodelist',
   );
 
+  // Exported permission: 'nodelist cache settings'.
+  $permissions['nodelist cache settings'] = array(
+    'name' => 'nodelist cache settings',
+    'roles' => array(
+      'administrators' => 'administrators',
+      'local administrator' => 'local administrator',
+    ),
+    'module' => 'ding_nodelist',
+  );
+
   return $permissions;
 }
