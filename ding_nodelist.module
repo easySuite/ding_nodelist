@@ -161,6 +161,34 @@ function _ding_nodelist_ipe_buttons_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_BASE_FORM_ID_alter().
+ * Add custom handler to Node save button to clear panel cache.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function ding_nodelist_form_node_form_alter(&$form, &$form_state) {
+  $types = variable_get('ding_nodelist_node_types', array());
+  $node_type = $form_state['node']->type;
+  if ($types[$node_type] === $node_type) {
+    $form['actions']['submit']['#submit'][] = '_ding_nodelist_clear_panel_cache';
+  }
+}
+
+/**
+ * Clear panels cache on node unpublishing.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function _ding_nodelist_clear_panel_cache($form, &$form_state) {
+  $status = $form_state['values']['status'];
+  if ($status == 0) {
+    cache_clear_all('*', 'cache_panels', TRUE);
+  }
+}
+
+/**
  * Ctools plugin callback for settings form.
  */
 function ding_nodelist_content_type_edit_form($form, &$form_state) {
@@ -2398,13 +2426,6 @@ function ding_nodelist_field_widget_info_alter(&$info) {
  * Implements hook_node_delete().
  */
 function ding_nodelist_node_delete($node) {
-  cache_clear_all('*', 'cache_panels', TRUE);
-}
-
-/**
- * Implements hook_node_update().
- */
-function ding_nodelist_node_update($node) {
   cache_clear_all('*', 'cache_panels', TRUE);
 }
 
