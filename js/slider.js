@@ -31,7 +31,7 @@
         row_height: rowHeight,
         max_rows: 3,
         duration: 4000,
-        direction: 'down',
+        direction: 'up',
         pauseOnHover: 0,
         prevButton: $('.next-prev .prev'),
         nextButton: $('.next-prev .next')
