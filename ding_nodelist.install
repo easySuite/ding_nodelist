@@ -25,6 +25,13 @@ function ding_nodelist_schema() {
         'not null' => FALSE,
         'default' => '',
       ),
+      'content_type' => array(
+        'description' => 'Machine name of content type to which belong template.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default'=> '',
+      ),
       'widget' => array(
         'description' => 'Widget type this template is bind to.',
         'type' => 'varchar',
@@ -98,3 +105,19 @@ function ding_nodelist_uninstall() {
   variable_del('ding_nodelist_node_types');
   variable_del('ding_nodelist_cache_default_time');
 }
+
+/**
+ * Implements hook_update_N().
+ */
+function ding_nodelist_update_7001() {
+  $new_field = array(
+    'description' => 'Machine name of content type to which belong template.',
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => TRUE,
+    'default'=> '',
+  );
+
+  db_add_field('ding_nodelist_templates', 'content_type', $new_field);
+}
+

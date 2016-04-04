@@ -256,7 +256,16 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     drupal_set_message(t('No eligible content types were found, please configure a few first.'), 'error', FALSE);
   }
 
-  $node_type = isset($conf['content_type']) ? $conf['content_type'] : current(array_keys($node_types));
+  $node_type = array();
+  if (isset($conf['content_types']) && !isset($form_state['values']['content_types'])) {
+    $node_type = $conf['content_types'];
+  }
+  elseif (isset($form_state['values']['content_types'])) {
+    $node_type = $form_state['values']['content_types'];
+  }
+  else {
+    $node_type = array_keys($node_types_opts);
+  }
 
   $default_conf = array(
     'content_type' => $node_type,
@@ -282,13 +291,16 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#collapsible' => FALSE,
   );
 
-  $form['ding_nodelist_wrapper']['content_type'] = array(
+  $form['ding_nodelist_wrapper']['content_types'] = array(
     '#type' => 'select',
     '#title' => t('Content type'),
+    '#multiple' => TRUE,
     '#required' => TRUE,
     '#default_value' => $node_type,
     '#options' => $node_types_opts,
     '#description' => t('Select the content type of the list\'s items.'),
+//    '#prefix' => '<div id="nodelist-ct-selector">',
+//    '#suffix' => '</div>',
     '#ajax' => array(
       'wrapper' => 'ding_nodelist-selected-nodes',
       'callback' => 'ding_nodelist_js',
@@ -813,7 +825,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
  *
  * @param string $key
  *   Unique key for this piece.
- * @param string $type
+ * @param string $types
  *   Node type.
  * @param array $node
  *   Array with the node oject.
@@ -822,11 +834,13 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
  * @return array
  *   Form structure.
  */
-function _ding_nodelist_selected_node($key, $type, $node = NULL, $weight = 0) {
+function _ding_nodelist_selected_node($key, $types, $node = NULL, $weight = 0) {
   $form = array(
     '#tree' => TRUE,
     '#weight' => $weight,
   );
+
+  $types = urlencode(implode('|', array_filter($types, '_ding_nodelist_chosen_ct')));
 
   // Set default value for 'node'
   $node_default = (!is_null($node) && isset($node['node'])) ? $node['node'] : '';
@@ -834,7 +848,7 @@ function _ding_nodelist_selected_node($key, $type, $node = NULL, $weight = 0) {
     '#type' => 'textfield',
     '#title' => t('Select new node to add to list'),
     '#title_display' => 'invisible',
-    '#autocomplete_path' => 'ding_nodelist/autocomplete/' . $type,
+    '#autocomplete_path' => 'ding_nodelist/autocomplete/' . $types,
     '#parents' => array('selected_nodes', $key, 'node'),
     '#default_value' => $node_default,
   );
@@ -860,7 +874,7 @@ function _ding_nodelist_selected_node($key, $type, $node = NULL, $weight = 0) {
 
   $form['type'] = array(
     '#type' => 'value',
-    '#value' => $type,
+    '#value' => $types,
     '#parents' => array('selected_nodes', $key, 'type'),
   );
 
@@ -923,6 +937,21 @@ function _ding_nodelist_links_form($key, $link) {
   );
 
   return $form;
+}
+
+/**
+ * Determine which content type selected for current nodelist.
+ *
+ * @param string $content_types
+ *    Array of all possible CT's unselected contain zero as value.
+ */
+function _ding_nodelist_chosen_ct($content_type) {
+  return (!empty($content_type));
+//  foreach ($content_types as $key => $content_type) {
+//    if (empty($content_type)) {
+//      unset($content_types[$key]);
+//    }
+//  }
 }
 
 /**
@@ -1184,6 +1213,7 @@ function ding_nodelist_js($form, &$form_state) {
   return array(
     '#type' => 'ajax',
     '#commands' => array(
+      ajax_command_replace('#nodelist-ct-selector', drupal_render($form['ding_nodelist_wrapper']['content_types'])),
       ajax_command_replace('#ding_nodelist-selected-nodes', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_nodes']['selected_nodes'])),
       ajax_command_replace('#ding_nodelist-taxonomy-filters', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'])),
       ajax_command_replace('.form-item-widget-type', drupal_render($form['ding_nodelist_wrapper']['widget_type'])),
@@ -1225,13 +1255,15 @@ function ding_nodelist_js_template($form, &$form_state) {
 /**
  * Autocomplete function that gives the available nodes.
  */
-function ding_nodelist_autocomplete($type, $title = '') {
+function ding_nodelist_autocomplete($types, $title = '') {
   $nodes = array();
+
+  $types = explode('|', urldecode($types));
 
   // Fetch all published nodes.
   $nodes = db_select('node', 'n')
     ->fields('n', array('nid', 'title'))
-    ->condition('n.type', $type)
+    ->condition('n.type', $types, 'IN')
     ->condition('n.title', "%$title%", 'LIKE')
     ->condition('n.status', NODE_PUBLISHED)
     ->execute()
@@ -1538,6 +1570,7 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  *   An object with at least title and content members.
  */
 function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
+  exit;
   $content_type = 'field_' . $conf['content_type'] . '_list_image';
   $block = new stdClass();
 
@@ -1821,7 +1854,7 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   $form_state['conf']['columns'] = $form_state['values']['columns'];
   $form_state['conf']['content_filter_promoted'] = $form_state['values']['content_filter_promoted'];
   $form_state['conf']['content_filter_date'] = $form_state['values']['content_filter_date'];
-  $form_state['conf']['content_type'] = $form_state['values']['content_type'];
+  $form_state['conf']['content_types'] = $form_state['values']['content_types'];
 
   $limit = 0;
   if ($form_state['conf']['dynamic_switch'] || $form_state['conf']['list_type'] === 'all') {
@@ -2182,11 +2215,11 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
  * Returns an array of widget types that can be used as #options
  * in a select input otionally for a specific content type.
  *
- * @param $content_type
+ * @param $content_types
  *   Content type.
  * @return list of widget options
  */
-function _ding_nodelist_get_widget_types($content_type = NULL) {
+function _ding_nodelist_get_widget_types($content_types = NULL) {
   $widgets = array(
     NL_WIDGET_SINGLE => _ding_nodelist_get_widget_human_name(NL_WIDGET_SINGLE),
     NL_WIDGET_CAROUSEL => _ding_nodelist_get_widget_human_name(NL_WIDGET_CAROUSEL),
@@ -2197,10 +2230,13 @@ function _ding_nodelist_get_widget_types($content_type = NULL) {
   );
 
   // Fetch only widgets that have templates configured.
-  if ($content_type) {
+  if ($content_types) {
     $supported_widgets = db_select('ding_nodelist_templates', 't')
       ->fields('t', array('widget'))
-      ->condition('t.filename', "%.$content_type.%", 'LIKE')
+      ->condition('t.filename', "%.$content_types.%", 'LIKE')
+//    foreach ($content_types as $content_type) {
+//      $supported_widgets->condition('t.filename', "%.$content_type.%", 'LIKE');
+//    }
       ->condition('t.status', NL_TPL_ACTIVE)
       ->execute()
       ->fetchAllKeyed(0, 0);
