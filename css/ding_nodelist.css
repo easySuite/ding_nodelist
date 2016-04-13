@@ -870,3 +870,147 @@ fieldset legend {
     min-width: 159px;
   }
 }
+
+/**
+ * Rolltab
+ */
+/* Spacing variables
+   ========================================================================== */
+/* Standard color definitions
+   ========================================================================== */
+/* Variables
+   ========================================================================== */
+/* Wrapper, load and inner
+   ========================================================================== */
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-rolltab-wrapper {
+    background-color: #a32e10;
+    padding: 20px;
+  }
+}
+
+/* Tabroll tabs navigation
+   ========================================================================== */
+.ding_nodelist-rolltab-select-tabs {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-rolltab-select-tabs {
+    display: block;
+  }
+}
+/* Tabroll tabs
+   ========================================================================== */
+.ding_nodelist-rolltab-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs {
+  overflow: hidden;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav {
+  float: left;
+  width: 300%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li {
+  background: #fff;
+  display: block;
+  overflow: hidden;
+  float: none;
+  white-space: normal;
+  margin: 0px;
+  padding: 0px;
+  height: 20%;
+  border-top: 1px solid #ccc;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:first-child {
+  border-top: none;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li.ui-tabs-selected {
+  background: rgba(0, 0, 0, 0.6);
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li.ui-tabs-selected a {
+  color: #fff;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav a {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav a:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel {
+  float: right;
+  width: 900%;
+  margin-right: 0%;
+  margin-left: -100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 75%;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel .info {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  height: auto;
+  width: 93%;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel .info h3 a {
+  color: #fff;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-rolltab-wrapper .ui-tabs-nav {
+    display: none;
+  }
+  .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel {
+    float: left;
+    width: 1200%;
+    margin-left: 0%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  .ding_nodelist-rolltab-wrapper .ui-tabs .ui-tabs-panel .info {
+    position: relative;
+    width: auto;
+    right: 0;
+    bottom: 0;
+  }
+}

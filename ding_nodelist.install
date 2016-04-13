@@ -70,6 +70,7 @@ function ding_nodelist_install() {
     'ding_nodelist.ding_event.slider' => 'slider',
     'ding_nodelist.ding_event.taxonomy' => 'taxonomy',
     'ding_nodelist.ding_event.vaccordion' => 'vertical_accordion',
+
     'ding_nodelist.ding_news.carousel' => 'carousel',
     'ding_nodelist.ding_news.haccordion' => 'horizontal_accordion',
     'ding_nodelist.ding_news.single' => 'single',
@@ -77,6 +78,7 @@ function ding_nodelist_install() {
     'ding_nodelist.ding_news.text' => 'carousel',
     'ding_nodelist.ding_news.vaccordion' => 'vertical_accordion',
     'ding_nodelist.ding_news.slider' => 'slider',
+
     'ding_nodelist.ding_page.taxonomy' => 'taxonomy',
   );
 
@@ -97,4 +99,24 @@ function ding_nodelist_install() {
 function ding_nodelist_uninstall() {
   variable_del('ding_nodelist_node_types');
   variable_del('ding_nodelist_cache_default_time');
+}
+
+/**
+ * Implements hook_update().
+ */
+function ding_nodelist_update_7200() {
+  $mappings = array(
+    'ding_nodelist.ding_event.rolltab' => 'rolltab',
+    'ding_nodelist.ding_news.rolltab' => 'rolltab',
+  );
+
+  foreach ($mappings as $filename => $widget) {
+    $fields = array(
+      'filename' => $filename,
+      'title' => $filename,
+      'widget' => $widget,
+      'status' => 0,
+    );
+    db_insert('ding_nodelist_templates')->fields($fields)->execute();
+  }
 }
