@@ -108,6 +108,7 @@ function ding_nodelist_update_7200() {
   $mappings = array(
     'ding_nodelist.ding_event.rolltab' => 'rolltab',
     'ding_nodelist.ding_news.rolltab' => 'rolltab',
+    'ding_nodelist.ding_page.rolltab' => 'rolltab',
   );
 
   foreach ($mappings as $filename => $widget) {

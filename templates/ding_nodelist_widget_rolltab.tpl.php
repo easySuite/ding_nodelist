@@ -44,10 +44,11 @@
         </div>
 
         <!-- Used for responsive -->
-        <select class="ding-tabroll-select-tabs">
+        <select class="ding_nodelist-rolltab-select-tabs">
           <?php foreach ($items as $id => $result) : ?>
-            <option
-              class="tabroll-tabs-item"><?php print $result->title ?></option>
+            <option class="nodelist-tabs-item">
+              <?php print $result->title ?>
+            </option>
           <?php endforeach; ?>
         </select>
 
