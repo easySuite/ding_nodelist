@@ -102,7 +102,7 @@ function ding_nodelist_uninstall() {
 }
 
 /**
- * Implements hook_update().
+ * Adding "rolltab" display type.
  */
 function ding_nodelist_update_7200() {
   $mappings = array(

@@ -24,8 +24,8 @@
         <div id="ding_nodelist-rolltab" class="ding_nodelist-rolltab">
           <ul class="ui-tabs-nav">
             <?php foreach ($items as $i => $result) : ?>
-              <li class="ui-tabs-nav-item count-<?php print $i; ?>"><a
-                  href="#fragment-<?php print $i; ?>"><span><?php print $result->title; ?></span></a>
+              <li class="ui-tabs-nav-item count-<?php print $i; ?>">
+                <a href="#fragment-<?php print $i; ?>"><span><?php print $result->title; ?></span></a>
               </li>
             <?php endforeach; ?>
           </ul>
