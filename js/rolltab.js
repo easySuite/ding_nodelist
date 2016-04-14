@@ -43,7 +43,7 @@
     });
 
     // Hook into click events in the responsive mobile selector.
-    rolltab_select.live('change', function() {
+    rolltab_select.on('change', function() {
       rolltab.tabs("select", $(this).prop('selectedIndex'));
       rolltab.tabs().tabs('rotate', 0);
       tab_selected = true;
