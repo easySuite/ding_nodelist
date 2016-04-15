@@ -98,3 +98,24 @@ function ding_nodelist_uninstall() {
   variable_del('ding_nodelist_node_types');
   variable_del('ding_nodelist_cache_default_time');
 }
+
+/**
+ * Adding promoted nodes display type.
+ */
+function ding_nodelist_update_7200() {
+  $mappings = array(
+    'ding_nodelist.ding_event.promoted_nodes' => 'promoted_nodes',
+    'ding_nodelist.ding_news.promoted_nodes' => 'promoted_nodes',
+    'ding_nodelist.ding_page.promoted_nodes' => 'promoted_nodes',
+  );
+
+  foreach ($mappings as $filename => $widget) {
+    $fields = array(
+      'filename' => $filename,
+      'title' => $filename,
+      'widget' => $widget,
+      'status' => 0,
+    );
+    db_insert('ding_nodelist_templates')->fields($fields)->execute();
+  }
+}

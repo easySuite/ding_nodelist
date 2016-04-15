@@ -12,6 +12,7 @@ define('NL_WIDGET_HOR_ACCORDION', 'horizontal_accordion');
 define('NL_WIDGET_VER_ACCORDION', 'vertical_accordion');
 define('NL_WIDGET_SLIDER', 'slider');
 define('NL_WIDGET_TAXONOMY_LIKE', 'taxonomy');
+define('NL_WIDGET_PROMOTED_NODES', 'promoted_nodes');
 
 define('NL_COL_FULL', 'full');
 define('NL_COL_HALF', 'half');
@@ -627,7 +628,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#title' => t('Various'),
     '#states' => array(
       'invisible' => array(
-        'select[name=widget_type]' => array('value' => NL_WIDGET_SINGLE)
+        'select[name=widget_type]' => array('value' => NL_WIDGET_SINGLE),
       ),
     ),
   );
@@ -646,8 +647,13 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#description' => t('Limit amount of items displayed. This value is used only for Dynamic and All content displays.'),
     '#states' => array(
       'invisible' => array(
-        ':input[name=nodes_switch]' => array('checked' => TRUE),
-        ':input[name=dynamic_switch]' => array('checked' => FALSE),
+        array(
+          ':input[name=nodes_switch]' => array('checked' => TRUE),
+          ':input[name=dynamic_switch]' => array('checked' => FALSE),
+        ),
+        array(
+          'select[name="widget_type"]' => array('value' => 'promoted_nodes'),
+        ),
       ),
       'visible' => array(
         ':input[name=list_type]' => array(
@@ -793,7 +799,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     unset($cache_form['granularity']);
     $form['ding_nodelist_wrapper']['cache_settings'] = array_merge($form['ding_nodelist_wrapper']['cache_settings'], $cache_form);
   }
-
 
   // Restore other form elements if this is not the first form display.
   if (isset($form_state['restore'])) {
@@ -1341,6 +1346,16 @@ function ding_nodelist_theme($existing, $type, $theme, $path) {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_promoted_nodes' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_promoted_nodes',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -1706,6 +1721,8 @@ function _ding_nodelist_init_image_style($widget) {
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
       return 'ding_nodelist_mini';
+    case NL_WIDGET_PROMOTED_NODES:
+      return 'ding_nodelist_pn_large';
     default:
       return '';
   }
@@ -1838,6 +1855,9 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   $form_state['conf']['unique_id'] = 'pane-' . (microtime(TRUE) * 10000);
   $form_state['conf']['widget_type'] = $form_state['values']['widget_type'];
 
+  if ($form_state['values']['widget_type'] == NL_WIDGET_PROMOTED_NODES) {
+    $form_state['conf']['limit'] = 4;
+  }
   // @todo
   // As for now the template config is still there, so here we fetch the very
   // first assigned template.
@@ -2174,6 +2194,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     NL_WIDGET_VER_ACCORDION => t('Vertical accordion'),
     NL_WIDGET_SLIDER => t('Slider'),
     NL_WIDGET_TAXONOMY_LIKE => t('Taxonomy like'),
+    NL_WIDGET_PROMOTED_NODES => t('Promoted nodes'),
   );
   return $widgets[$machine_name];
 }
@@ -2194,6 +2215,7 @@ function _ding_nodelist_get_widget_types($content_type = NULL) {
     NL_WIDGET_VER_ACCORDION => _ding_nodelist_get_widget_human_name(NL_WIDGET_VER_ACCORDION),
     NL_WIDGET_SLIDER => _ding_nodelist_get_widget_human_name(NL_WIDGET_SLIDER),
     NL_WIDGET_TAXONOMY_LIKE => _ding_nodelist_get_widget_human_name(NL_WIDGET_TAXONOMY_LIKE),
+    NL_WIDGET_PROMOTED_NODES => _ding_nodelist_get_widget_human_name(NL_WIDGET_PROMOTED_NODES),
   );
 
   // Fetch only widgets that have templates configured.
@@ -2364,6 +2386,7 @@ function _ding_nodelist_widgets_with_titles() {
     NL_WIDGET_SLIDER,
     NL_WIDGET_TAXONOMY_LIKE,
     NL_WIDGET_VER_ACCORDION,
+    NL_WIDGET_PROMOTED_NODES,
   );
 }
 
