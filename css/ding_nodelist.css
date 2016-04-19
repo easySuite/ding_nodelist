@@ -870,3 +870,23 @@ fieldset legend {
     min-width: 159px;
   }
 }
+
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item {
+  float: left;
+  display: inline-block;
+  width: 22%;
+  height: 250px;
+  margin: 10px;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-inner {
+  padding: 10px;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .ding_news {
+  background: #5fa500;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .ding_page {
+  background: #9f9e00;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .ding_event {
+  background: #9B410E;
+}

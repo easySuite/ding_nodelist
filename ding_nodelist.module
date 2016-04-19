@@ -12,6 +12,7 @@ define('NL_WIDGET_HOR_ACCORDION', 'horizontal_accordion');
 define('NL_WIDGET_VER_ACCORDION', 'vertical_accordion');
 define('NL_WIDGET_SLIDER', 'slider');
 define('NL_WIDGET_TAXONOMY_LIKE', 'taxonomy');
+define('NL_WIDGET_NODE_BLOCKS', 'node_blocks');
 
 define('NL_COL_FULL', 'full');
 define('NL_COL_HALF', 'half');
@@ -675,8 +676,13 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#description' => t('Limit amount of items displayed. This value is used only for Dynamic and All content displays.'),
     '#states' => array(
       'invisible' => array(
-        ':input[name=nodes_switch]' => array('checked' => TRUE),
-        ':input[name=dynamic_switch]' => array('checked' => FALSE),
+        array(
+          ':input[name=nodes_switch]' => array('checked' => TRUE),
+          ':input[name=dynamic_switch]' => array('checked' => FALSE),
+        ),
+        array(
+          'select[name=widget_type]' => array('value' => 'node_blocks'),
+        ),
       ),
       'visible' => array(
         ':input[name=list_type]' => array(
@@ -1390,6 +1396,16 @@ function ding_nodelist_theme($existing, $type, $theme, $path) {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_node_blocks' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_node_blocks',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -1665,13 +1681,16 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
     }
   }
 
+  foreach ($nodes as $node) {
+    $node->item_template = 'ding_nodelist.' . $node->type . '.' . $conf['widget_type'];
+  }
+
   // Init JS for widgets
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
   $image_style = _ding_nodelist_init_image_style($conf['widget_type']);
   $theme_func = '_ding_nodelist_widget_' . $conf['widget_type'];
   $block->content = theme($theme_func, array(
     'items' => $nodes,
-    'template' => $conf['item_template'],
     'links' => $conf['more_links'],
     'conf' => array(
       'title' => $title,
@@ -1891,6 +1910,9 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   $form_state['conf']['unique_id'] = 'pane-' . (microtime(TRUE) * 10000);
   $form_state['conf']['widget_type'] = $form_state['values']['widget_type'];
 
+  if ($form_state['values']['widget_type'] == 'node_blocks') {
+    $form_state['conf']['limit'] = 8;
+  }
   // @todo
   // As for now the template config is still there, so here we fetch the very
   // first assigned template.
@@ -2227,6 +2249,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     NL_WIDGET_VER_ACCORDION => t('Vertical accordion'),
     NL_WIDGET_SLIDER => t('Slider'),
     NL_WIDGET_TAXONOMY_LIKE => t('Taxonomy like'),
+    NL_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
   );
   return $widgets[$machine_name];
 }
@@ -2247,6 +2270,7 @@ function _ding_nodelist_get_widget_types($content_types = NULL) {
     NL_WIDGET_VER_ACCORDION => _ding_nodelist_get_widget_human_name(NL_WIDGET_VER_ACCORDION),
     NL_WIDGET_SLIDER => _ding_nodelist_get_widget_human_name(NL_WIDGET_SLIDER),
     NL_WIDGET_TAXONOMY_LIKE => _ding_nodelist_get_widget_human_name(NL_WIDGET_TAXONOMY_LIKE),
+    NL_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(NL_WIDGET_NODE_BLOCKS),
   );
 
   // Fetch only widgets that have templates configured.
@@ -2417,6 +2441,7 @@ function _ding_nodelist_widgets_with_titles() {
     NL_WIDGET_SLIDER,
     NL_WIDGET_TAXONOMY_LIKE,
     NL_WIDGET_VER_ACCORDION,
+    NL_WIDGET_NODE_BLOCKS,
   );
 }
 

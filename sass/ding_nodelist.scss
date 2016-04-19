@@ -175,11 +175,11 @@ $gray-transparent-bg:     rgba( 0, 0, 0, 0.7);
 .bottom {
   padding-bottom: 10px;
   clear: both;
-   
+
   ul {
     padding: 0;
     margin: 0;
-    
+
     li {
       float: left;
       list-style: none;
@@ -220,7 +220,7 @@ $gray-transparent-bg:     rgba( 0, 0, 0, 0.7);
   li {
     position: relative;
     height: 350px;
-    
+
     .event_date {
       position: absolute;
     }
@@ -233,16 +233,16 @@ $gray-transparent-bg:     rgba( 0, 0, 0, 0.7);
 .ding_nodelist-slider {
   height: 400px;
   overflow: hidden;
-  
+
   .legend {
     float: left;
     width: 300px;
   }
-  
+
   .ding_nodelist-items {
     float: left;
     width: 600px;
-    
+
     .item {
       width: 100%;
     }
@@ -289,7 +289,7 @@ $label-bg: url('../images/p.png');
 
   .node-title {
     text-decoration: underline;
-    
+
     a {
       color: $white;
     }
@@ -884,7 +884,7 @@ $label-bg: url('../images/p.png');
 
   h3.node-title {
     margin-bottom: 5px;
-    
+
     a {
       color: $darker-gray;
     }
@@ -1116,7 +1116,7 @@ fieldset {
     .item-list-image {
       padding: 20px;
     }
-    
+
     @include from-medium() {
       display: table;
 
@@ -1125,7 +1125,7 @@ fieldset {
         display: table-cell;
         vertical-align: top;
       }
-      
+
       .item-list-image {
         padding-right: 10px;
         width: 159px;
@@ -1136,6 +1136,35 @@ fieldset {
           min-width: 159px;
         }
       }
+    }
+  }
+}
+
+.ding_nodelist-node_blocks {
+  .ding_nodelist-items {
+
+    .nb-item {
+      float: left;
+      display: inline-block;
+      width: 22%;
+      height: 250px;
+      margin: 10px;
+
+      .nb-inner {
+        padding: 10px;
+      }
+    }
+
+    .ding_news {
+      background: #5fa500;
+    }
+
+    .ding_page {
+      background: #9f9e00;
+    }
+
+    .ding_event {
+      background: #9B410E;
     }
   }
 }
