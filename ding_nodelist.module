@@ -1665,6 +1665,10 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
     }
   }
 
+  foreach ($nodes as $node) {
+    $node->item_template = 'ding_nodelist.' . $node->type . '.' . $conf['widget_type'];
+  }
+
   // Init JS for widgets
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
   $image_style = _ding_nodelist_init_image_style($conf['widget_type']);

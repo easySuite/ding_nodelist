@@ -18,7 +18,7 @@
     <div class="ding_nodelist-items">
       <?php
       foreach ($items as $node) {
-        print theme($template, array('item' => $node));
+        print theme($node->item_template, array('item' => $node));
       }
       ?>
     </div>

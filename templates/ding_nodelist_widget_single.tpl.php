@@ -18,7 +18,7 @@
     <div class="ding_nodelist-items">
       <?php
       $node = reset($items);
-      print theme($template, array('item' => $node, 'conf' => $conf));
+      print theme($node->item_template, array('item' => $node, 'conf' => $conf));
       ?>
     </div>
   </div>

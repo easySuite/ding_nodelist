@@ -75,7 +75,7 @@ function ding_nodelist_install() {
       'widget' => 'carousel',
       'content_type' => 'ding_event',
     ),
-    'ding_nodelist.ding_event.image_text' => array(
+    'ding_nodelist.ding_event.horizontal_accordion' => array(
       'widget' => 'horizontal_accordion',
       'content_type' => 'ding_event',
     ),
@@ -91,7 +91,7 @@ function ding_nodelist_install() {
       'widget' => 'taxonomy',
       'content_type' => 'ding_event',
     ),
-    'ding_nodelist.ding_event.vaccordion' => array(
+    'ding_nodelist.ding_event.vertical_accordion' => array(
       'widget' => 'vertical_accordion',
       'content_type' => 'ding_event',
     ),
@@ -99,7 +99,7 @@ function ding_nodelist_install() {
       'widget' => 'carousel',
       'content_type' => 'ding_news',
     ),
-    'ding_nodelist.ding_news.haccordion' => array(
+    'ding_nodelist.ding_news.horizontal_accordion' => array(
       'widget' => 'horizontal_accordion',
       'content_type' => 'ding_news',
     ),
@@ -115,7 +115,7 @@ function ding_nodelist_install() {
       'widget' => 'carousel',
       'content_type' => 'ding_news',
     ),
-    'ding_nodelist.ding_news.vaccordion' => array(
+    'ding_nodelist.ding_news.vertical_accordion' => array(
       'widget' => 'vertical_accordion',
       'content_type' => 'ding_news',
     ),

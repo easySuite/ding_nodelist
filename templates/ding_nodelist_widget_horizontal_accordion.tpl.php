@@ -20,10 +20,10 @@
       foreach ($items as $node) {
         if ($conf['sorting']=='event_date') {
           $values = array_values($node);
-          print theme($template, array('item' => array_shift($values), 'conf' => $conf));
+          print theme($node->item_template, array('item' => array_shift($values), 'conf' => $conf));
         }
         else {
-          print theme($template, array('item' => $node, 'conf' => $conf));
+          print theme($node->item_template, array('item' => $node, 'conf' => $conf));
         }
       }
       ?>

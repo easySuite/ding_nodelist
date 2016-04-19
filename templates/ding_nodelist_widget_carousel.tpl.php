@@ -17,10 +17,10 @@
       <?php
       foreach ($items as $node) {
         if ($conf['sorting']=='event_date') {
-          print theme($template, array('item' => array_shift(array_values($node)), 'conf' => $conf));
+          print theme($node->item_template, array('item' => array_shift(array_values($node)), 'conf' => $conf));
         }
         else {
-          print theme($template, array('item' => $node, 'conf' => $conf));
+          print theme($node->item_template, array('item' => $node, 'conf' => $conf));
         }
       }
       ?>
