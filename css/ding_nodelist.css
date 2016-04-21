@@ -906,6 +906,10 @@ fieldset legend {
   position: relative;
   overflow: hidden;
 }
+.ding_nodelist-rolltab-wrapper span.no-image {
+  min-height: 295px;
+  display: block;
+}
 .ding_nodelist-rolltab-wrapper .ui-tabs {
   overflow: hidden;
 }

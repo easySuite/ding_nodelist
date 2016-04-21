@@ -25,7 +25,16 @@
           <ul class="ui-tabs-nav">
             <?php foreach ($items as $i => $result) : ?>
               <li class="ui-tabs-nav-item count-<?php print $i; ?>">
-                <a href="#fragment-<?php print $i; ?>"><span><?php print $result->title; ?></span></a>
+                <a href="#fragment-<?php print $i; ?>">
+                  <span>
+                    <?php if ($conf['sorting'] == 'event_date') {
+                      $r = array_shift($result);
+                      print $r->title;
+                    } else {
+                       print $result->title;
+                    } ?>
+                  </span>
+                </a>
               </li>
             <?php endforeach; ?>
           </ul>
@@ -47,7 +56,12 @@
         <select class="ding_nodelist-rolltab-select-tabs">
           <?php foreach ($items as $id => $result) : ?>
             <option class="nodelist-tabs-item">
-              <?php print $result->title ?>
+              <?php if ($conf['sorting'] == 'event_date') {
+                $r = array_shift($result);
+                print $r->title;
+              } else {
+                print $result->title;
+              } ?>
             </option>
           <?php endforeach; ?>
         </select>

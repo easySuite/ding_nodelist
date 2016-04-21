@@ -1,13 +1,11 @@
 <?php
 /**
  * @file
- *
  * Template file for taxonomy-like layout.
  */
-
 if ($variables['conf']['sorting'] == 'event_date') {
   // Get the object from the array in the case we are sorting by date.
-  $item = array_shift(array_values($item));
+  $item = array_shift($item);
 }
 $title = $item->title;
 $image_field = 'field_' . $item->type . '_list_image';
@@ -17,9 +15,13 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
 ?>
 
 <div class="image">
-  <a href="<?php print url('node/' . $item->nid);?>">
-    <?php print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : ''; ?>
-  </a>
+  <?php if (!$image): ?>
+    <span class="no-image"></span>
+  <?php else: ?>
+    <a href="<?php print url('node/' . $item->nid); ?>">
+      <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))); ?>
+    </a>
+  <?php endif; ?>
 </div>
 
 <div class="info">

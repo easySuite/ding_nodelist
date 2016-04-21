@@ -2352,14 +2352,15 @@ function _ding_nodelist_trim_body($nodes, $conf) {
  */
 function _ding_nodelist_striptags($nodes) {
   foreach ($nodes as $n => $node) {
-    $body_field = 'field_' . $node->type . '_body';
     if (!is_array($node)) {
+      $body_field = 'field_' . $node->type . '_body';
       foreach ($node->{$body_field} as $lng => $body) {
         $nodes[$n]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
       }
     }
     else {
       foreach ($node as $event_date => $event_node) {
+        $body_field = 'field_' . $event_node->type . '_body';
         foreach ($event_node->{$body_field} as $lng => $body) {
           $nodes[$n][$event_date]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
         }

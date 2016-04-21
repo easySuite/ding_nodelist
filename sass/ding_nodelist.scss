@@ -1201,6 +1201,11 @@ $rolltab-tab-color:                       $white;
   position: relative;
   overflow: hidden;
 
+  span.no-image {
+    min-height: 295px;
+    display: block;
+  }
+
   .ui-tabs {
     overflow: hidden;
 
