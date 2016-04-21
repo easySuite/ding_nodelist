@@ -22,5 +22,14 @@
       }
       ?>
     </div>
+    <div class="more-links">
+      <ul>
+        <?php foreach ($links as $key => $bottom) : ?>
+          <li>
+            <?php print l(t($bottom['text']), $bottom['links']); ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
   </div>
 <?php endif; ?>
