@@ -12,6 +12,7 @@ define('NL_WIDGET_HOR_ACCORDION', 'horizontal_accordion');
 define('NL_WIDGET_VER_ACCORDION', 'vertical_accordion');
 define('NL_WIDGET_SLIDER', 'slider');
 define('NL_WIDGET_TAXONOMY_LIKE', 'taxonomy');
+define('NL_WIDGET_ROLLTAB', 'rolltab');
 
 define('NL_COL_FULL', 'full');
 define('NL_COL_HALF', 'half');
@@ -288,7 +289,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#collapsible' => FALSE,
     '#tree' => FALSE,
     '#title' => t('Configure nodelist'),
-    '#collapsible' => FALSE,
   );
 
   $form['ding_nodelist_wrapper']['content_types'] = array(
@@ -407,7 +407,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#collapsible' => FALSE,
     '#tree' => FALSE,
     '#title' => t('Custom item list'),
-    '#collapsible' => FALSE,
     '#prefix' => '<div class="clear-block" id="ding_nodelist-wrapper">',
     '#suffix' => '</div>',
     '#states' => array(
@@ -639,7 +638,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#title' => t('Various'),
     '#states' => array(
       'invisible' => array(
-        'select[name=widget_type]' => array('value' => NL_WIDGET_SINGLE)
+        'select[name=widget_type]' => array('value' => NL_WIDGET_SINGLE),
       ),
     ),
   );
@@ -886,7 +885,6 @@ function _ding_nodelist_selected_node($key, $types, $node = NULL, $weight = 0) {
     '#delta' => 50,
     '#parents' => array('selected_nodes', $key, 'weight'),
   );
-
 
   $form['node_delete_' . $key] = array(
     '#name' => 'node_delete_' . $key,
@@ -1373,6 +1371,16 @@ function ding_nodelist_theme($existing, $type, $theme, $path) {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_rolltab' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_rolltab',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -1691,6 +1699,10 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
       drupal_add_js($mod_path . '/js/jquery.easing.1.3.js', 'file');
       drupal_add_js($mod_path . '/js/jquery.vaccordion.js', 'file');
       break;
+    case NL_WIDGET_ROLLTAB:
+      drupal_add_library('system', 'ui.tabs');
+      drupal_add_js($mod_path . '/js/jquery-ui-tabs-rotate.js');
+      break;
   }
 
   // Adding JS widget init stuff
@@ -1710,6 +1722,10 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
     case NL_WIDGET_VER_ACCORDION:
       drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
       drupal_add_js($mod_path . '/js/vaccordion.js', 'file');
+      break;
+    case NL_WIDGET_ROLLTAB:
+      drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
+      drupal_add_js($mod_path . '/js/rolltab.js', 'file');
       break;
   }
 }
@@ -1739,6 +1755,8 @@ function _ding_nodelist_init_image_style($widget) {
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
       return 'ding_nodelist_mini';
+    case NL_WIDGET_ROLLTAB:
+      return 'ding_tabroll_large';
     default:
       return '';
   }
@@ -2207,6 +2225,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     NL_WIDGET_VER_ACCORDION => t('Vertical accordion'),
     NL_WIDGET_SLIDER => t('Slider'),
     NL_WIDGET_TAXONOMY_LIKE => t('Taxonomy like'),
+    NL_WIDGET_ROLLTAB => t('Rolltab'),
   );
   return $widgets[$machine_name];
 }
@@ -2227,6 +2246,7 @@ function _ding_nodelist_get_widget_types($content_types = NULL) {
     NL_WIDGET_VER_ACCORDION => _ding_nodelist_get_widget_human_name(NL_WIDGET_VER_ACCORDION),
     NL_WIDGET_SLIDER => _ding_nodelist_get_widget_human_name(NL_WIDGET_SLIDER),
     NL_WIDGET_TAXONOMY_LIKE => _ding_nodelist_get_widget_human_name(NL_WIDGET_TAXONOMY_LIKE),
+    NL_WIDGET_ROLLTAB => _ding_nodelist_get_widget_human_name(NL_WIDGET_ROLLTAB),
   );
 
   // Fetch only widgets that have templates configured.
@@ -2315,10 +2335,11 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
     $path = $image['uri'];
     $title = !empty($image['field_file_image_title_text']) ? $image['field_file_image_title_text']['und'][0]['safe_value'] : '';
     $alt = !empty($image['field_file_image_alt_text']) ? $image['field_file_image_alt_text']['und'][0]['safe_value'] : $title;
+
     return array(
       'path' => $path,
       'title' => $title,
-      'alt' => $alt
+      'alt' => $alt,
     );
   }
   return array();
@@ -2367,14 +2388,15 @@ function _ding_nodelist_trim_body($nodes, $conf) {
  */
 function _ding_nodelist_striptags($nodes) {
   foreach ($nodes as $n => $node) {
-    $body_field = 'field_' . $node->type . '_body';
     if (!is_array($node)) {
+      $body_field = 'field_' . $node->type . '_body';
       foreach ($node->{$body_field} as $lng => $body) {
         $nodes[$n]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
       }
     }
     else {
       foreach ($node as $event_date => $event_node) {
+        $body_field = 'field_' . $event_node->type . '_body';
         foreach ($event_node->{$body_field} as $lng => $body) {
           $nodes[$n][$event_date]->{$body_field}[$lng][0]['safe_value'] = preg_replace('/<[^>]+>/i', '', $body[0]['safe_value']);
         }
@@ -2400,6 +2422,7 @@ function _ding_nodelist_widgets_with_titles() {
     NL_WIDGET_SLIDER,
     NL_WIDGET_TAXONOMY_LIKE,
     NL_WIDGET_VER_ACCORDION,
+    NL_WIDGET_ROLLTAB,
   );
 }
 
@@ -2417,6 +2440,7 @@ function _ding_nodelist_widgets_content_trim() {
     NL_WIDGET_VER_ACCORDION,
     NL_WIDGET_SLIDER,
     NL_WIDGET_TAXONOMY_LIKE,
+    NL_WIDGET_ROLLTAB,
   );
 }
 
