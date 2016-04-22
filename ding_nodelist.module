@@ -1647,6 +1647,30 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
 }
 
 /**
+ * Fetching path to image from templates.
+ *
+ * @param $node
+ *  Node being loaded.
+ * @param $conf
+ *  Configuration parameters of renderable node.
+ * @param $image_field
+ *  Image field from which to fetch info.
+ * @return
+ *  Path to image.
+ */
+function _ding_nodelist_get_image_path($node, $conf, $image_field) {
+  $image = _ding_nodelist_get_dams_image_info($node, $image_field);
+  if (isset($image['path'])) {
+    $image_path = image_style_url($conf['image_style'], $image['path']);
+  }
+  else {
+    $image_path = '';
+  }
+
+  return $image_path;
+}
+
+/**
  * Add required JS libraries and initialization scripts to run widgets.
  * @param string $widget
  *   Widget type.
