@@ -14,6 +14,7 @@ define('NL_WIDGET_SLIDER', 'slider');
 define('NL_WIDGET_TAXONOMY_LIKE', 'taxonomy');
 define('NL_WIDGET_ROLLTAB', 'rolltab');
 define('NL_WIDGET_PROMOTED_NODES', 'promoted_nodes');
+define('NL_WIDGET_NODE_BLOCKS', 'node_blocks');
 
 define('NL_COL_FULL', 'full');
 define('NL_COL_HALF', 'half');
@@ -300,8 +301,8 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#default_value' => $node_type,
     '#options' => $node_types_opts,
     '#description' => t('Select the content type of the list\'s items.'),
-//    '#prefix' => '<div id="nodelist-ct-selector">',
-//    '#suffix' => '</div>',
+    '#prefix' => '<div id="nodelist-ct-selector">',
+    '#suffix' => '</div>',
     '#ajax' => array(
       'wrapper' => 'ding_nodelist-selected-nodes',
       'callback' => 'ding_nodelist_js',
@@ -508,24 +509,31 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   // Retrieve vocabularies current CT references.
   $allowed_fields = array();
   $field_settings = array();
-  $fields = field_info_instances('node', $node_type);
-  foreach ($fields as $field) {
-    $field_config = field_info_field($field['field_name']);
+  $selected_fields= array();
+  foreach ($node_type as $type) {
+    $selected_fields[$type] = field_info_instances('node', $type);
+  }
 
-    // Check if the field is a term reference or entity reference field.
-    $allowed_types = array('taxonomy_term_reference', 'entityreference');
-    if (in_array($field_config['type'], $allowed_types)) {
-      $allowed_fields[$field['field_name']] = $field['label'];
-      $field_settings[$field['field_name']] = array(
-        'filter_field' => $field_config['field_name'],
-        'term_reference' => $field_config['type'],
-      );
-      if ($field_config['type'] == 'entityreference') {
-        $field_settings[$field['field_name']]['bundle'] = $node_type;
-        $field_settings[$field['field_name']]['type'] = $field_config['settings']['target_type'];
-      }
-      else {
-        $field_settings[$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+  foreach ($selected_fields as $ct_name => $fields) {
+    foreach ($fields as $field) {
+      $ct_human_name = $node_types_opts[$ct_name];
+      $field_config = field_info_field($field['field_name']);
+
+      // Check if the field is a term reference or entity reference field.
+      $allowed_types = array('taxonomy_term_reference', 'entityreference');
+      if (in_array($field_config['type'], $allowed_types)) {
+        $allowed_fields[$ct_human_name][$field['field_name']] = $field['label'];
+        $field_settings[$ct_human_name][$field['field_name']] = array(
+          'filter_field' => $field_config['field_name'],
+          'term_reference' => $field_config['type'],
+        );
+        if ($field_config['type'] == 'entityreference') {
+          $field_settings[$ct_human_name][$field['field_name']]['bundle'] = $node_type;
+          $field_settings[$ct_human_name][$field['field_name']]['type'] = $field_config['settings']['target_type'];
+        }
+        else {
+          $field_settings[$ct_human_name][$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+        }
       }
     }
   }
@@ -536,12 +544,22 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $changed_filter_id = $form_state['triggering_element']['#parents'][1];
     $changed_filter = $form_state['values']['taxonomy_filters'][$changed_filter_id];
 
+    /* TODO: $filter variable was used to determine in _ding_nodelist_taxonomy_filter
+            by which filed of taxonomy_term or entity_reference should autocomplete work.
+            Update logic to work with multiple CT's.
+    */
     // Update auto-complete, preserve other fields.
-    $filter = $field_settings[$changed_filter['filter_field']];
+    // $filter = $field_settings[$changed_filter['filter_field']];
+    $filter = array();
+    foreach ($selected_fields as $ct_name => $selected_field) {
+      $ct_human_name = $node_types_opts[$ct_name];
+      $filter[$ct_human_name] = $field_settings[$ct_human_name][$changed_filter['filter_field']];
+    }
 
     // Important: delete old input!
     unset($form_state['input']['taxonomy_filters'][$changed_filter_id]);
-    $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$changed_filter_id] = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $changed_filter_id);
+    $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$changed_filter_id] =
+      _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $changed_filter_id);
   }
 
   $delta = 0;
@@ -663,7 +681,10 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
           ':input[name=dynamic_switch]' => array('checked' => FALSE),
         ),
         array(
-          'select[name="widget_type"]' => array('value' => 'promoted_nodes'),
+          'select[name=widget_type]' => array('value' => 'promoted_nodes'),
+        ),
+        array(
+          'select[name=widget_type]' => array('value' => 'node_blocks'),
         ),
       ),
       'visible' => array(
@@ -1396,6 +1417,16 @@ function ding_nodelist_theme($existing, $type, $theme, $path) {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_node_blocks' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_node_blocks',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -1593,8 +1624,11 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  *   An object with at least title and content members.
  */
 function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
-  exit;
-  $content_type = 'field_' . $conf['content_type'] . '_list_image';
+  /* TODO: $content_type variable was used to remove nodes which don't have images
+      override logic to work with multiple CT's selected.
+      @see commented code in this function.
+  */
+//  $content_type = 'field_' . $conf['content_type'] . '_list_image';
   $block = new stdClass();
 
   // Prepare classes for widget container.
@@ -1649,13 +1683,13 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
 
   // Remove elements if they are of type carousel, single item, vertical
   // accordion or horizontal accordion and do not contain list image.
-  if (in_array($conf['widget_type'], array('single', 'carousel', 'horizontal_accordion', 'vertical_accordion'))) {
-    foreach ($nodes as $key => $node) {
-      if (count($node->{$content_type}) <= 0) {
-        unset($nodes[$key]);
-      }
-    }
-  }
+//  if (in_array($conf['widget_type'], array('single', 'carousel', 'horizontal_accordion', 'vertical_accordion'))) {
+//    foreach ($nodes as $key => $node) {
+//      if (count($node->{$content_type}) <= 0) {
+//        unset($nodes[$key]);
+//      }
+//    }
+//  }
 
   if (count($nodes) > 0 ) {
     // Apply sorting.
@@ -1668,13 +1702,16 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
     }
   }
 
+  foreach ($nodes as $node) {
+    $node->item_template = 'ding_nodelist.' . $node->type . '.' . $conf['widget_type'];
+  }
+
   // Init JS for widgets
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
   $image_style = _ding_nodelist_init_image_style($conf['widget_type']);
   $theme_func = '_ding_nodelist_widget_' . $conf['widget_type'];
   $block->content = theme($theme_func, array(
     'items' => $nodes,
-    'template' => $conf['item_template'],
     'links' => $conf['more_links'],
     'conf' => array(
       'title' => $title,
@@ -1709,6 +1746,25 @@ function _ding_nodelist_get_image_path($node, $conf, $image_field) {
   }
 
   return $image_path;
+}
+
+/**
+ * Getting event hours.
+ *
+ * @param $period
+ *  Full date array for selected event.
+ * @return string
+ */
+function _ding_nodelist_get_event_hours($period) {
+  $start_time = new DateTime($period[0]['value'], new DateTimeZone('UTC'));
+  $start = $start_time->getTimestamp();
+  $end_time = new DateTime($period[0]['value2'], new DateTimeZone('UTC'));
+  $end = $end_time->getTimestamp();
+
+  return t('!start to !end', array(
+    '!start' => date('H:i', $start),
+    '!end' => date('H:i', $end),
+  ));
 }
 
 /**
@@ -1933,6 +1989,11 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   if ($form_state['values']['widget_type'] == NL_WIDGET_PROMOTED_NODES) {
     $form_state['conf']['limit'] = 4;
   }
+
+  if ($form_state['values']['widget_type'] == 'node_blocks') {
+    $form_state['conf']['limit'] = 8;
+  }
+
   // @todo
   // As for now the template config is still there, so here we fetch the very
   // first assigned template.
@@ -2005,7 +2066,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf) {
   }
 
   // Filter by content type/node settings.
-  $query->condition('n.type', $conf['content_type'])
+  $query->condition('n.type', $conf['content_types'], 'IN')
     ->condition('n.status', NODE_PUBLISHED)
     ->distinct();
   if (!empty($conf['content_filter_promoted'])) {
@@ -2271,6 +2332,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     NL_WIDGET_TAXONOMY_LIKE => t('Taxonomy like'),
     NL_WIDGET_ROLLTAB => t('Rolltab'),
     NL_WIDGET_PROMOTED_NODES => t('Promoted nodes'),
+    NL_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
   );
   return $widgets[$machine_name];
 }
@@ -2293,16 +2355,14 @@ function _ding_nodelist_get_widget_types($content_types = NULL) {
     NL_WIDGET_TAXONOMY_LIKE => _ding_nodelist_get_widget_human_name(NL_WIDGET_TAXONOMY_LIKE),
     NL_WIDGET_ROLLTAB => _ding_nodelist_get_widget_human_name(NL_WIDGET_ROLLTAB),
     NL_WIDGET_PROMOTED_NODES => _ding_nodelist_get_widget_human_name(NL_WIDGET_PROMOTED_NODES),
+    NL_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(NL_WIDGET_NODE_BLOCKS),
   );
 
   // Fetch only widgets that have templates configured.
   if ($content_types) {
     $supported_widgets = db_select('ding_nodelist_templates', 't')
       ->fields('t', array('widget'))
-      ->condition('t.filename', "%.$content_types.%", 'LIKE')
-//    foreach ($content_types as $content_type) {
-//      $supported_widgets->condition('t.filename', "%.$content_type.%", 'LIKE');
-//    }
+      ->condition('t.content_type', $content_types, 'IN')
       ->condition('t.status', NL_TPL_ACTIVE)
       ->execute()
       ->fetchAllKeyed(0, 0);
@@ -2405,9 +2465,9 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
 function _ding_nodelist_trim_body($nodes, $conf) {
   $title_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_title_trim', NL_TITLE_SIZE);
   $body_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_teaser_trim', NL_BODY_SIZE);
-  $content_type = 'field_' . $conf['content_type'] . '_body';
 
   foreach ($nodes as $key => $node) {
+    $content_type = 'field_' . $node->type . '_body';
     if (!is_array($node)) {
       $nodes[$key]->title = truncate_utf8($node->title, $title_length, FALSE, TRUE);
 
@@ -2470,6 +2530,7 @@ function _ding_nodelist_widgets_with_titles() {
     NL_WIDGET_VER_ACCORDION,
     NL_WIDGET_ROLLTAB,
     NL_WIDGET_PROMOTED_NODES,
+    NL_WIDGET_NODE_BLOCKS,
   );
 }
 

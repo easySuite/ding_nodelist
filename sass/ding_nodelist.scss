@@ -1345,3 +1345,32 @@ $rolltab-tab-color:                       $white;
 .ding_nodelist-pn-item {
   height: 100%;
 }
+
+.ding_nodelist-node_blocks {
+  .ding_nodelist-items {
+
+    .nb-item {
+      float: left;
+      display: inline-block;
+      width: 22%;
+      height: 250px;
+      margin: 10px;
+
+      .nb-inner {
+        padding: 10px;
+      }
+    }
+
+    .ding_news {
+      background: #5fa500;
+    }
+
+    .ding_page {
+      background: #9f9e00;
+    }
+
+    .ding_event {
+      background: #9B410E;
+    }
+  }
+}
