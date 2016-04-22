@@ -4,14 +4,9 @@
  * Ding event node blocks template.
  */
 $category = field_view_field('node', $item, 'field_ding_event_category', 'teaser');
-$event_date = _ding_nodelist_get_event_date($item);
-
 $event_period = field_get_items('node', $item, 'field_ding_event_date');
-$start_time = new DateTime($event_period[0]['value'], new DateTimeZone('UTC'));
-$start = $start_time->getTimestamp();
-$end_time = new DateTime($event_period[0]['value2'], new DateTimeZone('UTC'));
-$end = $end_time->getTimestamp();
-
+$event_date = _ding_nodelist_get_event_date($item);
+$event_hours = _ding_nodelist_get_event_hours($event_period);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $lead = field_get_items('node', $item, 'field_' . $item->type . '_lead');
@@ -38,9 +33,7 @@ $teaser = field_get_items('node', $item, 'field_' . $item->type . '_body');
     </div>
     <div class="nb-library"><?php print drupal_render($library); ?></div>
     <div class="nb-event-info">
-      <?php print date('H:i', $start); ?>
-      <?php print t('to'); ?>
-      <?php print date('H:i', $end); ?>
+      <?php print $event_hours; ?>
       <span class="nb-event-fee">
       <?php
       $fee_field = field_get_items('node', $item, 'field_ding_event_price');

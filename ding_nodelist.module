@@ -1704,6 +1704,25 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
 }
 
 /**
+ * Getting event hours.
+ *
+ * @param $period
+ *  Full date array for selected event.
+ * @return string
+ */
+function _ding_nodelist_get_event_hours($period) {
+  $start_time = new DateTime($period[0]['value'], new DateTimeZone('UTC'));
+  $start = $start_time->getTimestamp();
+  $end_time = new DateTime($period[0]['value2'], new DateTimeZone('UTC'));
+  $end = $end_time->getTimestamp();
+
+  return t('!start to !end', array(
+    '!start' => date('H:i', $start),
+    '!end' => date('H:i', $end),
+  ));
+}
+
+/**
  * Add required JS libraries and initialization scripts to run widgets.
  * @param string $widget
  *   Widget type.
