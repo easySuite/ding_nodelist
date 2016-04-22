@@ -1,5 +1,6 @@
 @import "_mixins";
 @import "susy";
+@import "zen-grids";
 
 /* FontAwesome
    ========================================================================== */
@@ -175,11 +176,11 @@ $gray-transparent-bg:     rgba( 0, 0, 0, 0.7);
 .bottom {
   padding-bottom: 10px;
   clear: both;
-   
+
   ul {
     padding: 0;
     margin: 0;
-    
+
     li {
       float: left;
       list-style: none;
@@ -220,7 +221,7 @@ $gray-transparent-bg:     rgba( 0, 0, 0, 0.7);
   li {
     position: relative;
     height: 350px;
-    
+
     .event_date {
       position: absolute;
     }
@@ -233,16 +234,16 @@ $gray-transparent-bg:     rgba( 0, 0, 0, 0.7);
 .ding_nodelist-slider {
   height: 400px;
   overflow: hidden;
-  
+
   .legend {
     float: left;
     width: 300px;
   }
-  
+
   .ding_nodelist-items {
     float: left;
     width: 600px;
-    
+
     .item {
       width: 100%;
     }
@@ -289,7 +290,7 @@ $label-bg: url('../images/p.png');
 
   .node-title {
     text-decoration: underline;
-    
+
     a {
       color: $white;
     }
@@ -884,7 +885,7 @@ $label-bg: url('../images/p.png');
 
   h3.node-title {
     margin-bottom: 5px;
-    
+
     a {
       color: $darker-gray;
     }
@@ -1116,7 +1117,7 @@ fieldset {
     .item-list-image {
       padding: 20px;
     }
-    
+
     @include from-medium() {
       display: table;
 
@@ -1125,7 +1126,7 @@ fieldset {
         display: table-cell;
         vertical-align: top;
       }
-      
+
       .item-list-image {
         padding-right: 10px;
         width: 159px;
@@ -1136,6 +1137,240 @@ fieldset {
           min-width: 159px;
         }
       }
+    }
+  }
+}
+
+/**
+ * Rolltab
+ */
+/* Spacing variables
+   ========================================================================== */
+
+$large-spacing:                   20px;
+$medium-spacing:                  10px;
+$small-spacing:                   5px;
+
+/* Standard color definitions
+   ========================================================================== */
+$white:                          #fff !default;
+$black:                          #000 !default;
+$gray:                           #d5d5d5 !default;
+$gray-light:                     lighten($gray, 10%) !default;
+$gray-lighter:                   lighten($gray, 15%) !default;
+$gray-dark:                      darken($gray, 10%) !default;
+$gray-darker:                    darken($gray, 25%) !default;
+$gray-darkest:                   darken($gray, 35%) !default;
+$red:                            #a32e10;
+$green:                          #528c10;
+$yellow:                         #f0cb28;
+$blue:                           #00caff;
+
+/* Variables
+   ========================================================================== */
+$rolltab-background-color:                $white;
+$rolltab-tab-background-color:            transparentize($black, .4);
+$rolltab-tab-color:                       $white;
+
+
+/* Wrapper, load and inner
+   ========================================================================== */
+.ding_nodelist-rolltab-wrapper {
+  @include small-medium() {
+    background-color: $red;
+    padding: $large-spacing;
+  }
+}
+
+
+/* Tabroll tabs navigation
+   ========================================================================== */
+.ding_nodelist-rolltab-select-tabs {
+  display: none;
+}
+
+@include small-medium() {
+  .ding_nodelist-rolltab-select-tabs {
+    display: block;
+  }
+}
+
+/* Tabroll tabs
+   ========================================================================== */
+.ding_nodelist-rolltab-wrapper {
+  position: relative;
+  overflow: hidden;
+
+  span.no-image {
+    min-height: 295px;
+    display: block;
+  }
+
+  .ui-tabs {
+    overflow: hidden;
+
+    ul.ui-tabs-nav {
+      @include zen-grid-item(3, 1);
+
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+      width: 25%;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+
+      li {
+        background: $rolltab-tab-color;
+        display: block;
+        overflow: hidden;
+        float: none;
+        white-space: normal;
+        margin: 0px;
+        padding: 0px;
+        height: 20%;
+        border-top: 1px solid #ccc;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        &.ui-tabs-selected {
+          background: $rolltab-tab-background-color;
+
+          a {
+            color: #fff;
+          }
+        }
+      }
+
+      a {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+
+        &:before {
+          content: "";
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .ui-tabs-panel {
+      @include zen-grid-item(9, 1, right);
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 75%;
+
+      .info {
+        z-index: 1;
+        background: $rolltab-tab-background-color;
+        color: #fff;
+        padding: $medium-spacing;
+
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+
+        height: auto;
+        width: 93%;
+
+        h3 a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  @include small-medium() {
+    .ui-tabs-nav {
+      display: none;
+    }
+
+    .ui-tabs .ui-tabs-panel {
+      @include zen-grid-item(12, 1);
+
+      margin: 0 0 20px 0;
+      padding: 0;
+
+      .info {
+        position: relative;
+        width: auto;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+// Promoted nodes
+//==========================================================================
+
+.first-row,
+.last-row {
+  display: block;
+  height: 420px;
+}
+
+.first-left-block {
+  width: 75%;
+  float: left;
+  height: 100%;
+}
+.first-right-block {
+  width: 25%;
+  float: right;
+  background-color: #5fa500;
+  height: 100%;
+}
+.last-left-block {
+  width:25%;
+  float: left;
+  background-color: #2F5BB7;
+  height: 100%;
+}
+.last-right-block {
+  width: 75%;
+  float: right;
+  height: 100%;
+}
+
+.ding_nodelist-pn-item {
+  height: 100%;
+}
+
+.ding_nodelist-node_blocks {
+  .ding_nodelist-items {
+
+    .nb-item {
+      float: left;
+      display: inline-block;
+      width: 22%;
+      height: 250px;
+      margin: 10px;
+
+      .nb-inner {
+        padding: 10px;
+      }
+    }
+
+    .ding_news {
+      background: #5fa500;
+    }
+
+    .ding_page {
+      background: #9f9e00;
+    }
+
+    .ding_event {
+      background: #9B410E;
     }
   }
 }
