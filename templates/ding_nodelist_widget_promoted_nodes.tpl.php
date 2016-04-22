@@ -27,7 +27,7 @@
               <?php $block_classes = ($key % 2 == 0 ? 'left' : 'right'); ?>
               <div
                 class="<?php print $row_classes . '-' . $block_classes; ?>-block">
-                <?php print theme($template, array(
+                <?php print theme($item->item_template, array(
                   'item' => $item,
                   'conf' => $conf,
                   'class' => array($row_classes, $block_classes),
@@ -37,6 +37,15 @@
           </div>
         <?php endforeach; ?>
       </div>
+    </div>
+    <div class="more-links">
+      <ul>
+        <?php foreach ($links as $key => $bottom) : ?>
+          <li>
+            <?php print l(t($bottom['text']), $bottom['links']); ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
     </div>
   </div>
 <?php endif; ?>

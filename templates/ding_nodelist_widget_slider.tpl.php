@@ -26,10 +26,10 @@
       <?php
       foreach ($items as $node) {
         if ($conf['sorting']=='event_date') {
-          print theme($template, array('item' => array_shift(array_values($node))));
+          print theme($node->item_template, array('item' => array_shift(array_values($node))));
         }
         else {
-          print theme($template, array('item' => $node));
+          print theme($node->item_template, array('item' => $node));
         }
       }
       ?>
