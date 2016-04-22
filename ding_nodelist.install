@@ -59,6 +59,7 @@ function ding_nodelist_schema() {
 
 /**
  * Implements hook_install().
+ *
  * Provides basic configuration of nodelist templates/widgets.
  */
 function ding_nodelist_install() {
@@ -117,20 +118,23 @@ function ding_nodelist_update_7001() {
     'type' => 'varchar',
     'length' => 255,
     'not null' => TRUE,
-    'default'=> '',
+    'default' => '',
   );
 
   db_add_field('ding_nodelist_templates', 'content_type', $new_field);
 }
 
 /**
- * Adding "rolltab" display type.
+ * Adding new display types.
  */
 function ding_nodelist_update_7002() {
   $mappings = array(
     'ding_nodelist.ding_event.rolltab' => 'rolltab',
     'ding_nodelist.ding_news.rolltab' => 'rolltab',
     'ding_nodelist.ding_page.rolltab' => 'rolltab',
+    'ding_nodelist.ding_event.promoted_nodes' => 'promoted_nodes',
+    'ding_nodelist.ding_news.promoted_nodes' => 'promoted_nodes',
+    'ding_nodelist.ding_page.promoted_nodes' => 'promoted_nodes',
   );
 
   foreach ($mappings as $filename => $widget) {
@@ -143,4 +147,3 @@ function ding_nodelist_update_7002() {
     db_insert('ding_nodelist_templates')->fields($fields)->execute();
   }
 }
-

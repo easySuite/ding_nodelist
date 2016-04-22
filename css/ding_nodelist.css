@@ -1018,3 +1018,39 @@ fieldset legend {
     bottom: 0;
   }
 }
+
+.first-row,
+.last-row {
+  display: block;
+  height: 420px;
+}
+
+.first-left-block {
+  width: 75%;
+  float: left;
+  height: 100%;
+}
+
+.first-right-block {
+  width: 25%;
+  float: right;
+  background-color: #5fa500;
+  height: 100%;
+}
+
+.last-left-block {
+  width: 25%;
+  float: left;
+  background-color: #2F5BB7;
+  height: 100%;
+}
+
+.last-right-block {
+  width: 75%;
+  float: right;
+  height: 100%;
+}
+
+.ding_nodelist-pn-item {
+  height: 100%;
+}
