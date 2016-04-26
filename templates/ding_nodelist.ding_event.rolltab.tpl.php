@@ -3,10 +3,6 @@
  * @file
  * Template file for taxonomy-like layout.
  */
-if ($variables['conf']['sorting'] == 'event_date') {
-  // Get the object from the array in the case we are sorting by date.
-  $item = array_shift($item);
-}
 $title = $item->title;
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
