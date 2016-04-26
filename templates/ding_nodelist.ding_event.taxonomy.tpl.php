@@ -5,10 +5,6 @@
  * Template file for taxonomy-like layout.
  */
 
-if ($variables['conf']['sorting'] == 'event_date') {
-  // Get the object from the array in the case we are sorting by date.
-  $item = array_shift(array_values($item));
-}
 $title = $item->title;
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
@@ -38,12 +34,11 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
 <div class="item">
   <?php if (!empty($image)): ?>
     <div class="item-list-image">
-      <a href="<?php print url('node/' . $item->nid);?>"><?php
-        print $image ? theme(
-          'image_style',
-          array_merge($image, array('style_name' => $conf['image_style']))
-        ) : '';
-      ?></a>
+      <a href="<?php print url('node/' . $item->nid); ?>">
+        <?php
+          print $image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '';
+        ?>
+      </a>
     </div>
   <?php endif ?>
   <div class="item-details">
@@ -53,29 +48,29 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
       <span class="item-library"><?php print $library; ?></span>
       <span class="item-price">
         <?php
-          $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-          if (is_array($fee_field)) {
-            $fee = current($fee_field);
-            print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
-          } 
-          else {
-            print '&mdash; ' . t('Free');
-          }
+        $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+        if (is_array($fee_field)) {
+          $fee = current($fee_field);
+          print '&mdash; ' . $fee['value'] . ' ' . t('kr.');
+        }
+        else {
+          print '&mdash; ' . t('Free');
+        }
         ?>
       </span>
       <span class="label"><?php print drupal_render($category); ?></span>
     </div>
     <div class="item-body">
       <?php
-        if (isset($lead[0]['safe_value'])) {
-          print strip_tags($lead[0]['safe_value']);
-        }
-        elseif (isset($teaser[0]['safe_value'])) {
-          print strip_tags($teaser[0]['safe_value']);
-        }
-        else {
-          print '';
-        }
+      if (isset($lead[0]['safe_value'])) {
+        print strip_tags($lead[0]['safe_value']);
+      }
+      elseif (isset($teaser[0]['safe_value'])) {
+        print strip_tags($teaser[0]['safe_value']);
+      }
+      else {
+        print '';
+      }
       ?>
     </div>
   </div>

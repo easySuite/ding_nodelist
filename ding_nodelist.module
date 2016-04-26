@@ -203,6 +203,8 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $ipe_mode = TRUE;
   }
 
+  drupal_add_js(drupal_get_path('module', 'ding_nodelist') . '/js/ding_nodelist.js');
+
   // Cache the form for correct workflow.
   $form_state['cache'] = TRUE;
 
@@ -295,6 +297,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
   $form['ding_nodelist_wrapper']['content_types'] = array(
     '#type' => 'select',
+    '#id' => 'nodelist_cts',
     '#title' => t('Content type'),
     '#multiple' => TRUE,
     '#required' => TRUE,
@@ -479,7 +482,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     '#default_value' => isset($conf['dynamic_switch']) ? $conf['dynamic_switch'] : 0,
   );
 
-
   // Dynamic list settings.
   $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic'] = array(
     '#type' => 'container',
@@ -516,27 +518,28 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
   foreach ($selected_fields as $ct_name => $fields) {
     foreach ($fields as $field) {
-      $ct_human_name = $node_types_opts[$ct_name];
       $field_config = field_info_field($field['field_name']);
 
       // Check if the field is a term reference or entity reference field.
       $allowed_types = array('taxonomy_term_reference', 'entityreference');
       if (in_array($field_config['type'], $allowed_types)) {
-        $allowed_fields[$ct_human_name][$field['field_name']] = $field['label'];
-        $field_settings[$ct_human_name][$field['field_name']] = array(
+        $allowed_fields[$field['field_name']] = $field['label'];
+
+        $field_settings[$field['field_name']] = array(
           'filter_field' => $field_config['field_name'],
           'term_reference' => $field_config['type'],
         );
         if ($field_config['type'] == 'entityreference') {
-          $field_settings[$ct_human_name][$field['field_name']]['bundle'] = $node_type;
-          $field_settings[$ct_human_name][$field['field_name']]['type'] = $field_config['settings']['target_type'];
+          $field_settings[$field['field_name']]['bundle'] = $node_type;
+          $field_settings[$field['field_name']]['type'] = $field_config['settings']['target_type'];
         }
         else {
-          $field_settings[$ct_human_name][$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+          $field_settings[$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
         }
       }
     }
   }
+
   // Check if filter vocabulary was changed.
   $changed_filter_id = NULL;
   if (!empty($form_state['triggering_element']) && isset($form_state['triggering_element']['#parents'][2])
@@ -544,20 +547,12 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $changed_filter_id = $form_state['triggering_element']['#parents'][1];
     $changed_filter = $form_state['values']['taxonomy_filters'][$changed_filter_id];
 
-    /* TODO: $filter variable was used to determine in _ding_nodelist_taxonomy_filter
-            by which filed of taxonomy_term or entity_reference should autocomplete work.
-            Update logic to work with multiple CT's.
-    */
     // Update auto-complete, preserve other fields.
-    // $filter = $field_settings[$changed_filter['filter_field']];
-    $filter = array();
-    foreach ($selected_fields as $ct_name => $selected_field) {
-      $ct_human_name = $node_types_opts[$ct_name];
-      $filter[$ct_human_name] = $field_settings[$ct_human_name][$changed_filter['filter_field']];
-    }
+     $filter = $field_settings[$changed_filter['filter_field']];
 
     // Important: delete old input!
     unset($form_state['input']['taxonomy_filters'][$changed_filter_id]);
+
     $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$changed_filter_id] =
       _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $changed_filter_id);
   }
@@ -608,6 +603,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     // Set default field value.
     $first_field = array_shift(array_keys($allowed_fields));
     $filter = $field_settings[$first_field];
+
     $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key] = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
   }
 
@@ -706,7 +702,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     'sticky' => t('Sticky first'),
   );
 
-  if ($node_type == 'ding_event') {
+  if (array_shift($node_type) == 'ding_event') {
     $sort_options['event_date'] = t('Event date');
   }
 
@@ -999,7 +995,7 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? 'taxonomy/autocomplete/' . $filter['filter_field'] : NULL;
   }
   else {
-    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/" . $filter['filter_field'] . '/' . $filter['type'] . '/' . $filter['bundle'] . '/NULL'  : NULL;
+    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/" . $filter['filter_field'] . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL'  : NULL;
   }
 
   $form['filter_terms'] = array(
@@ -1619,11 +1615,6 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  *   An object with at least title and content members.
  */
 function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
-  /* TODO: $content_type variable was used to remove nodes which don't have images
-      override logic to work with multiple CT's selected.
-      @see commented code in this function.
-  */
-//  $content_type = 'field_' . $conf['content_type'] . '_list_image';
   $block = new stdClass();
 
   // Prepare classes for widget container.
@@ -1676,16 +1667,6 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   // Load items by their IDs.
   $nodes = node_load_multiple($nodes);
 
-  // Remove elements if they are of type carousel, single item, vertical
-  // accordion or horizontal accordion and do not contain list image.
-//  if (in_array($conf['widget_type'], array('single', 'carousel', 'horizontal_accordion', 'vertical_accordion'))) {
-//    foreach ($nodes as $key => $node) {
-//      if (count($node->{$content_type}) <= 0) {
-//        unset($nodes[$key]);
-//      }
-//    }
-//  }
-
   if (count($nodes) > 0 ) {
     // Apply sorting.
     $nodes = _ding_nodelist_sort_nodes($nodes, $conf);
@@ -1693,11 +1674,14 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
 
     $trimmed_widgets = _ding_nodelist_widgets_content_trim();
     if (in_array($conf['widget_type'], $trimmed_widgets)) {
-      $nodes = _ding_nodelist_trim_body($nodes, $conf);
+      $nodes = _ding_nodelist_trim_fields($nodes, $conf);
     }
   }
 
   foreach ($nodes as $node) {
+    if(is_array($node)) {
+      $node = array_shift($node);
+    }
     $node->item_template = 'ding_nodelist.' . $node->type . '.' . $conf['widget_type'];
   }
 
@@ -2457,31 +2441,55 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
  * return array
  *    Set of altered nodes objects.
  */
-function _ding_nodelist_trim_body($nodes, $conf) {
+function _ding_nodelist_trim_fields($nodes, $conf) {
   $title_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_title_trim', NL_TITLE_SIZE);
   $body_length = variable_get('ding_nodelist_' . $conf['widget_type'] . '_teaser_trim', NL_BODY_SIZE);
 
-  foreach ($nodes as $key => $node) {
-    $content_type = 'field_' . $node->type . '_body';
-    if (!is_array($node)) {
-      $nodes[$key]->title = truncate_utf8($node->title, $title_length, FALSE, TRUE);
+  foreach ($nodes as $key => &$node) {
+    if (is_array($node)) {
+      $node = array_shift($node);
+    }
+    $settings = array(
+      'field_' . $node->type . '_body' => array(
+        'length' => $body_length,
+        'column' => 'safe_value',
+      ),
+      'field_' . $node->type . '_lead' => array(
+        'length' => $body_length,
+        'column' => 'safe_value',
+      ),
+      'title' => array(
+        'length' => $title_length,
+      ),
+    );
 
-      foreach ($node->{$content_type} as $lng => $body) {
-        $nodes[$key]->{$content_type}[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
-      }
+    if (!is_array($node)) {
+      $node = _ding_nodelist_trim($node, $settings);
     }
     else {
-      foreach ($node as $node_date => $n) {
-        $nodes[$key][$node_date]->title = truncate_utf8($n->title, $title_length, FALSE, TRUE);
-
-        foreach ($n->{$content_type} as $lng => $body) {
-          $nodes[$key][$node_date]->{$content_type}[$lng][0]['safe_value'] = truncate_utf8($body[0]['safe_value'], $body_length, FALSE, TRUE);
-        }
-      }
+      $node = array_map(function($i) use ($settings) {
+          return _ding_nodelist_trim($i, $settings);
+        },
+        $node
+      );
     }
+
   }
 
   return $nodes;
+}
+
+function _ding_nodelist_trim($node, array $settings) {
+  foreach ($settings as $field_name => $setting) {
+    if (isset($setting['column'])) {
+      $field = field_get_items('node', $node, $field_name);
+      $node->{$field_name}[LANGUAGE_NONE][0][$setting['column']] = truncate_utf8($field[0][$setting['column']], $setting['length'], FALSE, TRUE);
+    }
+    else {
+      $node->{$field_name} = truncate_utf8($node->{$field_name}, $setting['length'], FALSE, TRUE);
+    }
+  }
+  return $node;
 }
 
 /**
@@ -2544,6 +2552,8 @@ function _ding_nodelist_widgets_content_trim() {
     NL_WIDGET_SLIDER,
     NL_WIDGET_TAXONOMY_LIKE,
     NL_WIDGET_ROLLTAB,
+    NL_WIDGET_PROMOTED_NODES,
+    NL_WIDGET_NODE_BLOCKS,
   );
 }
 

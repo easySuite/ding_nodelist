@@ -12,11 +12,8 @@
     <div class="ding_nodelist-items">
       <?php
       $items = array_slice($items, 0, 8);
-      foreach ($items as $node) {
-        print theme($node->item_template, array(
-          'item' => $node,
-          'conf' => $conf,
-        ));
+      foreach ($items as $k => $node) {
+        print theme($node->item_template, array('item' => $node, 'conf' => $conf));
       }
       ?>
     </div>
