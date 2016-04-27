@@ -26,7 +26,7 @@
             <?php foreach ($items as $i => $result) : ?>
               <li class="ui-tabs-nav-item count-<?php print $i; ?>">
                 <a href="#fragment-<?php print $i; ?>">
-                  <span>
+                  <span datasrc="<?php print url('node/' . $result->nid, array('absolute' => TRUE)); ?>">
                     <?php print $result->title; ?>
                   </span>
                 </a>

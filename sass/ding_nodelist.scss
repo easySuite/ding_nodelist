@@ -1233,6 +1233,10 @@ $rolltab-tab-color:                       $white;
         height: 20%;
         border-top: 1px solid #ccc;
 
+        a {
+          cursor: pointer;
+        }
+
         &:first-child {
           border-top: none;
         }
