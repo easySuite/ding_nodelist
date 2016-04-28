@@ -943,6 +943,9 @@ fieldset legend {
   height: 20%;
   border-top: 1px solid #ccc;
 }
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a {
+  cursor: pointer;
+}
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:first-child {
   border-top: none;
 }
