@@ -37,6 +37,9 @@ $marine:                  #47cfd1;
 $yellow:                  #eae328;
 $green:                   #78a854;
 
+$zen-columns:             12;
+$zen-gutters:             20px;
+
 /* Widgets
    ========================================================================== */
 
@@ -1400,7 +1403,6 @@ $promoted-nodes-button-text-4:             $white;
 
 
 .ding_nodelist-promoted_nodes {
-  padding: 0 10px;
   width: inherit;
 
   .first-row,
@@ -1548,6 +1550,10 @@ $promoted-nodes-button-text-4:             $white;
 
 
 .ding_nodelist-node_blocks {
+  margin-left: -10px;
+  margin-right: -10px;
+  width: inherit;
+  
   .ding_nodelist-items {
 
     $ding_nodelist-node_blocks-items-background-1:  #e10d3f;
@@ -1569,16 +1575,51 @@ $promoted-nodes-button-text-4:             $white;
     $ding_nodelist-node_blocks-items-color-8:  #fff;
 
     .nb-item {
-      float: left;
-      display: inline-block;
-      width: calc(25% - 20px);
       height: 250px;
-      margin: 10px;
+      margin-bottom: 10px;
       color: #fff;
       /* text-shadow: 0 0 1px rgba(0,0,0,0.3); */
+      @include zen-grid-container;
+      
+      &:nth-child(1) {
+        @include zen-grid-item(3, 1, left);
+      }
+
+      &:nth-child(2) {
+        @include zen-grid-item(3, 4, left);
+      }
+      
+      &:nth-child(3) {
+        @include zen-grid-item(3, 7, left);
+      }
+      
+      &:nth-child(4) {
+        @include zen-grid-item(3, 1, right);
+      }
+      
+      &:nth-child(5) {
+        @include zen-grid-item(3, 1, left);
+        margin-top: 270px;
+      }
+
+      &:nth-child(6) {
+        @include zen-grid-item(3, 4);
+        margin-top: 270px;
+      }
+      
+      &:nth-child(7) {
+        @include zen-grid-item(3, 7);
+        margin-top: 270px;
+      }
+      
+      &:nth-child(8) {
+        @include zen-grid-item(3, 1, right);
+        margin-top: 270px;
+      }
 
       .nb-inner {
         padding: 10px;
+        height: 230px;
       }
 
       .nb-library a {
@@ -1630,58 +1671,75 @@ $promoted-nodes-button-text-4:             $white;
         }
       }
 
-      &:nth-child(1) {
+      &:nth-child(1) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-1;
         color: $ding_nodelist-node_blocks-items-color-1;
       }
-      &:nth-child(2) {
+      &:nth-child(2) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-2;
         color: $ding_nodelist-node_blocks-items-color-2;
       }
-      &:nth-child(3) {
+      &:nth-child(3) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-3;
         color: $ding_nodelist-node_blocks-items-color-3;
       }
-      &:nth-child(4) {
+      &:nth-child(4) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-4;
         color: $ding_nodelist-node_blocks-items-color-4;
       }
-      &:nth-child(5) {
+      &:nth-child(5) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-5;
         color: $ding_nodelist-node_blocks-items-color-5;
       }
-      &:nth-child(6) {
+      &:nth-child(6) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-6;
         color: $ding_nodelist-node_blocks-items-color-6;
       }
-      &:nth-child(7) {
+      &:nth-child(7) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-7;
         color: $ding_nodelist-node_blocks-items-color-7;
       }
-      &:nth-child(8) {
+      &:nth-child(8) .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-8;
         color: $ding_nodelist-node_blocks-items-color-8;
       }
     }
-
-    .ding_news {
-      background: #5fa500;
-    }
-
-    .ding_page {
-      background: #9f9e00;
-    }
-
-    .ding_event {
-      background: #9B410E;
-    }
   }
 }
 
-.secondary-content {
-  .ding_nodelist-items {
-    .nb-item {
-      width: calc(100% / 3 - 20px);
+.secondary-content,
+.col9 {
+  .ding_nodelist-items .nb-item {
+    &:nth-child(1) {
+      @include zen-grid-item(4, 1);
+    }
+
+    &:nth-child(2) {
+      @include zen-grid-item(4, 5);
+    }
+      
+    &:nth-child(3) {
+      @include zen-grid-item(4, 1, right);
+    }
+      
+    &:nth-child(4) {
+      @include zen-grid-item(4, 1);
+      margin-top: 270px;
+    }
+      
+    &:nth-child(5) {
+      @include zen-grid-item(4, 5);
+      margin-top: 270px;
+    }
+
+    &:nth-child(6) {
+      @include zen-grid-item(4, 1, right);
+      margin-top: 270px;
+    }
+      
+    &:nth-child(7),
+    &:nth-child(8) {
+      display: none;
     }
   }
 }
