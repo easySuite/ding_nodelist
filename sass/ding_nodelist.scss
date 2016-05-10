@@ -1410,6 +1410,10 @@ $promoted-nodes-button-text-4:             $white;
     display: block;
     height: 420px;
   }
+  
+  .first-row {
+    margin-bottom: 20px;
+  }
 
   .ding_nodelist-pn-item {
     padding: 25px;
@@ -1479,9 +1483,10 @@ $promoted-nodes-button-text-4:             $white;
 
   .first-left-block {
     color: $promoted-nodes-text-color-1;
-    height: 100%;
-    float: left;
-    width: 75%;
+    height: 420px;
+    @include zen-grid-item(8, 1);
+    padding-left: 0;
+    padding-right: 20px;
 
     a {
       color: $promoted-nodes-text-color-1;
@@ -1496,9 +1501,8 @@ $promoted-nodes-button-text-4:             $white;
   .first-right-block {
     background: $promoted-nodes-bg-1;
     color: $promoted-nodes-text-color-2;
-    height: 100%;
-    float: right;
-    width: 25%;
+    height: 420px;
+    @include zen-grid-item(4, 1, right);
 
     a {
       color: $promoted-nodes-text-color-2;
@@ -1513,9 +1517,9 @@ $promoted-nodes-button-text-4:             $white;
   .last-left-block {
     background: $promoted-nodes-bg-2;
     color: $promoted-nodes-text-color-3;
-    height: 100%;
+    height: 420px;
     float: left;
-    width: 25%;
+    @include zen-grid-item(4, 1);
 
     a {
       color: $promoted-nodes-text-color-3;
@@ -1529,10 +1533,11 @@ $promoted-nodes-button-text-4:             $white;
 
   .last-right-block {
     color: $promoted-nodes-text-color-4;
-    width: 75%;
-    float: right;
-    height: 100%;
-    
+    @include zen-grid-item(8, 1, right);
+    height: 420px;
+    padding-left: 20px;
+    padding-right: 0;
+
     a {
       color: $promoted-nodes-text-color-4;
     }
