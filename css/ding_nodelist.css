@@ -1078,6 +1078,9 @@ fieldset legend {
   display: block;
   height: 420px;
 }
+.ding_nodelist-promoted_nodes .first-row {
+  margin-bottom: 20px;
+}
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
   padding: 25px;
   position: relative;
@@ -1130,9 +1133,18 @@ fieldset legend {
 }
 .ding_nodelist-promoted_nodes .first-left-block {
   color: #fff;
-  height: 100%;
+  height: 420px;
   float: left;
-  width: 75%;
+  width: 66.66667%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 20px;
 }
 .ding_nodelist-promoted_nodes .first-left-block a {
   color: #fff;
@@ -1144,9 +1156,16 @@ fieldset legend {
 .ding_nodelist-promoted_nodes .first-right-block {
   background: #cdda6b;
   color: #fff;
-  height: 100%;
+  height: 420px;
   float: right;
-  width: 25%;
+  width: 33.33333%;
+  margin-right: 0%;
+  margin-left: -100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .ding_nodelist-promoted_nodes .first-right-block a {
   color: #fff;
@@ -1158,9 +1177,17 @@ fieldset legend {
 .ding_nodelist-promoted_nodes .last-left-block {
   background: #6a7ebc;
   color: #fff;
-  height: 100%;
+  height: 420px;
   float: left;
-  width: 25%;
+  float: left;
+  width: 33.33333%;
+  margin-left: 0%;
+  margin-right: -100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .ding_nodelist-promoted_nodes .last-left-block a {
   color: #fff;
@@ -1171,9 +1198,18 @@ fieldset legend {
 }
 .ding_nodelist-promoted_nodes .last-right-block {
   color: #fff;
-  width: 75%;
   float: right;
-  height: 100%;
+  width: 66.66667%;
+  margin-right: 0%;
+  margin-left: -100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 420px;
+  padding-left: 20px;
+  padding-right: 0;
 }
 .ding_nodelist-promoted_nodes .last-right-block a {
   color: #fff;
