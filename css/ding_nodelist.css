@@ -1178,7 +1178,7 @@ fieldset legend {
 }
 .ding_nodelist-promoted_nodes .first-right-block {
   background: #cdda6b;
-  color: #fff;
+  color: #000;
   height: 420px;
   float: right;
   width: 33.33333%;
@@ -1191,7 +1191,7 @@ fieldset legend {
   box-sizing: border-box;
 }
 .ding_nodelist-promoted_nodes .first-right-block a {
-  color: #fff;
+  color: #000;
 }
 .ding_nodelist-promoted_nodes .first-right-block .read-more a {
   background: #009fe0;
