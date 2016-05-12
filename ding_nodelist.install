@@ -25,6 +25,13 @@ function ding_nodelist_schema() {
         'not null' => FALSE,
         'default' => '',
       ),
+      'content_type' => array(
+        'description' => 'Machine name of content type to which belong template.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
       'widget' => array(
         'description' => 'Widget type this template is bind to.',
         'type' => 'varchar',
@@ -43,8 +50,7 @@ function ding_nodelist_schema() {
     ),
     'primary key' => array('filename'),
     // @todo: define when selects become clear
-    'indexes' => array(
-    ),
+    'indexes' => array(),
   );
 
   return $schema;
@@ -52,6 +58,7 @@ function ding_nodelist_schema() {
 
 /**
  * Implements hook_install().
+ *
  * Provides basic configuration of nodelist templates/widgets.
  */
 function ding_nodelist_install() {
@@ -64,27 +71,106 @@ function ding_nodelist_install() {
 
   // Create template/wid get settings.
   $mappings = array(
-    'ding_nodelist.ding_event.carousel' => 'carousel',
-    'ding_nodelist.ding_event.image_text' => 'horizontal_accordion',
-    'ding_nodelist.ding_event.single' => 'single',
-    'ding_nodelist.ding_event.slider' => 'slider',
-    'ding_nodelist.ding_event.taxonomy' => 'taxonomy',
-    'ding_nodelist.ding_event.vaccordion' => 'vertical_accordion',
-    'ding_nodelist.ding_news.carousel' => 'carousel',
-    'ding_nodelist.ding_news.haccordion' => 'horizontal_accordion',
-    'ding_nodelist.ding_news.single' => 'single',
-    'ding_nodelist.ding_news.taxonomy' => 'taxonomy',
-    'ding_nodelist.ding_news.text' => 'carousel',
-    'ding_nodelist.ding_news.vaccordion' => 'vertical_accordion',
-    'ding_nodelist.ding_news.slider' => 'slider',
-    'ding_nodelist.ding_page.taxonomy' => 'taxonomy',
+    'ding_nodelist.ding_event.carousel' => array(
+      'widget' => 'carousel',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_event.horizontal_accordion' => array(
+      'widget' => 'horizontal_accordion',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_event.single' => array(
+      'widget' => 'single',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_event.slider' => array(
+      'widget' => 'slider',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_event.taxonomy' => array(
+      'widget' => 'taxonomy',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_event.vertical_accordion' => array(
+      'widget' => 'vertical_accordion',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.carousel' => array(
+      'widget' => 'carousel',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_news.horizontal_accordion' => array(
+      'widget' => 'horizontal_accordion',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_news.single' => array(
+      'widget' => 'single',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_news.taxonomy' => array(
+      'widget' => 'taxonomy',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_news.text' => array(
+      'widget' => 'carousel',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_news.vertical_accordion' => array(
+      'widget' => 'vertical_accordion',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_news.slider' => array(
+      'widget' => 'slider',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.taxonomy' => array(
+      'widget' => 'taxonomy',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_event.rolltab' => array(
+      'widget' => 'rolltab',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.rolltab' => array(
+      'widget' => 'rolltab',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.rolltab' => array(
+      'widget' => 'rolltab',
+      'content_type' => 'ding_page',
+    ),
+    'ding_nodelist.ding_event.promoted_nodes' => array(
+      'widget' => 'promoted_nodes',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.promoted_nodes' => array(
+      'widget' => 'promoted_nodes',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.promoted_nodes' => array(
+      'widget' => 'promoted_nodes',
+      'content_type' => 'ding_page',
+    ),
+    'ding_nodelist.ding_event.node_blocks' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.node_blocks' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.node_blocks' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_page',
+    ),
   );
 
-  foreach ($mappings as $filename => $widget) {
+  foreach ($mappings as $filename => $mapping) {
     $fields = array(
       'filename' => $filename,
       'title' => $filename,
-      'widget' => $widget,
+      'content_type' => $mapping['content_type'],
+      'widget' => $mapping['widget'],
       'status' => 0,
     );
     db_insert('ding_nodelist_templates')->fields($fields)->execute();
@@ -97,4 +183,93 @@ function ding_nodelist_install() {
 function ding_nodelist_uninstall() {
   variable_del('ding_nodelist_node_types');
   variable_del('ding_nodelist_cache_default_time');
+}
+
+/**
+ * Implements new display types.
+ */
+function ding_nodelist_update_7001() {
+  // Adding "content_type" column if it's not existing.
+  if (!db_field_exists('ding_nodelist_templates', 'content_type')) {
+    $new_field = array(
+      'description' => 'Machine name of content type to which belong template.',
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => TRUE,
+      'default' => '',
+    );
+
+    db_add_field('ding_nodelist_templates', 'content_type', $new_field);
+  }
+
+  // Adding new records to db table.
+  $mappings = array(
+    'ding_nodelist.ding_event.rolltab' => array(
+      'widget' => 'rolltab',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.rolltab' => array(
+      'widget' => 'rolltab',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.rolltab' => array(
+      'widget' => 'rolltab',
+      'content_type' => 'ding_page',
+    ),
+    'ding_nodelist.ding_event.promoted_nodes' => array(
+      'widget' => 'promoted_nodes',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.promoted_nodes' => array(
+      'widget' => 'promoted_nodes',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.promoted_nodes' => array(
+      'widget' => 'promoted_nodes',
+      'content_type' => 'ding_page',
+    ),
+    'ding_nodelist.ding_event.node_blocks' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.node_blocks' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.node_blocks' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_page',
+    ),
+  );
+
+  foreach ($mappings as $filename => $mapping) {
+    $fields = array(
+      'filename' => $filename,
+      'title' => $filename,
+      'content_type' => $mapping['content_type'],
+      'widget' => $mapping['widget'],
+      'status' => 0,
+    );
+    db_insert('ding_nodelist_templates')->fields($fields)->execute();
+  }
+
+  // Correcting "Horizontal accordion" and "Vertical accordion" records.
+  $values = array(
+    'ding_nodelist.ding_event.image_text' => 'ding_nodelist.ding_event.horizontal_accordion',
+    'ding_nodelist.ding_event.vaccordion' => 'ding_nodelist.ding_event.vertical_accordion',
+    'ding_nodelist.ding_news.haccordion' => 'ding_nodelist.ding_news.horizontal_accordion',
+    'ding_nodelist.ding_news.vaccordion' => 'ding_nodelist.ding_news.vertical_accordion',
+  );
+
+  foreach ($values as $key => $value) {
+    db_update('ding_nodelist_templates')
+      ->fields(
+        array(
+          'filename' => $value,
+          'title' => $value,
+        )
+      )
+      ->condition('filename', $key, '=')
+      ->execute();
+  }
 }
