@@ -339,6 +339,7 @@
 .ding_nodelist-carousel {
   position: relative;
   height: 391px;
+  overflow: inherit;
 }
 .ding_nodelist-carousel .item {
   position: relative;
@@ -1098,6 +1099,11 @@ fieldset legend {
   font-size: 150%;
   line-height: 120%;
 }
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-promoted_nodes .ding_nodelist-pn-item div {
+    font-size: 100%;
+  }
+}
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-body {
   max-height: 86px;
   overflow: hidden;
@@ -1153,6 +1159,23 @@ fieldset legend {
   background: #009fe0;
   color: #fff;
 }
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-promoted_nodes .first-left-block {
+    float: left;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    height: 360px;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+}
 .ding_nodelist-promoted_nodes .first-right-block {
   background: #cdda6b;
   color: #fff;
@@ -1173,6 +1196,22 @@ fieldset legend {
 .ding_nodelist-promoted_nodes .first-right-block .read-more a {
   background: #009fe0;
   color: #fff;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-promoted_nodes .first-right-block {
+    float: left;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    height: 360px;
+    margin-bottom: 10px;
+  }
 }
 .ding_nodelist-promoted_nodes .last-left-block {
   background: #6a7ebc;
@@ -1196,6 +1235,22 @@ fieldset legend {
   background: #fff;
   color: #009fe0;
 }
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-promoted_nodes .last-left-block {
+    float: left;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    height: 360px;
+    margin-bottom: 10px;
+  }
+}
 .ding_nodelist-promoted_nodes .last-right-block {
   color: #fff;
   float: right;
@@ -1217,6 +1272,23 @@ fieldset legend {
 .ding_nodelist-promoted_nodes .last-right-block .read-more a {
   background: #009fe0;
   color: #fff;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-promoted_nodes .last-right-block {
+    float: left;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    height: 360px;
+    margin-bottom: 10px;
+    padding: 0;
+  }
 }
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
   height: 100%;
@@ -1373,37 +1445,28 @@ fieldset legend {
   content: '\f036';
   font-family: 'FontAwesome';
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(1) .nb-inner {
-  background: #e10d3f;
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_event .nb-inner {
+  background: #0093ba;
   color: #fff;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(2) .nb-inner {
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_news .nb-inner {
   background: #ea6621;
   color: #fff;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(3) .nb-inner {
-  background: #b9c650;
-  color: #fff;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4) .nb-inner {
-  background: #008abe;
-  color: #fff;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(5) .nb-inner {
-  background: #a34da4;
-  color: #fff;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(6) .nb-inner {
-  background: #47cfd1;
-  color: #fff;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(7) .nb-inner {
-  background: #eae328;
-  color: #fff;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(8) .nb-inner {
-  background: #78a854;
-  color: #fff;
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(1), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(2), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(3), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(5), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(6), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(7), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(8) {
+    float: left;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    margin-top: 10px;
+  }
 }
 
 .secondary-content .ding_nodelist-items .nb-item:nth-child(1),
@@ -1485,4 +1548,43 @@ fieldset legend {
 .col9 .ding_nodelist-items .nb-item:nth-child(7),
 .col9 .ding_nodelist-items .nb-item:nth-child(8) {
   display: none;
+}
+
+/* More links styles */
+.ding_nodelist .more-links {
+  background: #ccc;
+  display: block;
+  clear: both;
+  padding: 5px 10px;
+}
+.ding_nodelist .more-links ul {
+  margin: 0;
+  padding: 0;
+}
+.ding_nodelist .more-links ul li {
+  display: inline-block;
+  font-size: 90%;
+  margin: 0 10px 0 0;
+}
+.ding_nodelist .more-links ul li a {
+  color: #333;
+}
+.ding_nodelist .more-links ul li a:before {
+  color: #333;
+  content: "\f0c1";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  margin-right: 5px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ding_nodelist-promoted_nodes .more-links {
+  margin-top: 20px;
+}
+
+.ding_nodelist-node_blocks .more-links {
+  margin: 10px 10px 0;
 }
