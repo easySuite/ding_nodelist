@@ -417,6 +417,7 @@ $label-bg: url('../images/p.png');
 .ding_nodelist-carousel {
   position: relative;
   height: 391px;
+  overflow: inherit;
 
   // Item
 
@@ -1410,7 +1411,7 @@ $promoted-nodes-button-text-4:             $white;
     display: block;
     height: 420px;
   }
-  
+
   .first-row {
     margin-bottom: 20px;
   }
@@ -1435,6 +1436,10 @@ $promoted-nodes-button-text-4:             $white;
     div {
       font-size: 150%;
       line-height: 120%;
+
+      @include small-medium() {
+        font-size: 100%;
+      }
     }
 
     .item-body {
@@ -1496,6 +1501,14 @@ $promoted-nodes-button-text-4:             $white;
       background: $promoted-nodes-button-bg-1;
       color: $promoted-nodes-button-text-1;
     }
+
+    @include small-medium() {
+      @include zen-grid-item(12, 1);
+      clear: both;
+      height: 360px;
+      margin-bottom: 10px;
+      padding: 0;
+    }
   }
 
   .first-right-block {
@@ -1511,6 +1524,13 @@ $promoted-nodes-button-text-4:             $white;
     .read-more a {
       background: $promoted-nodes-button-bg-2;
       color: $promoted-nodes-button-text-2;
+    }
+
+    @include small-medium() {
+      @include zen-grid-item(12, 1);
+      clear: both;
+      height: 360px;
+      margin-bottom: 10px;
     }
   }
 
@@ -1529,6 +1549,13 @@ $promoted-nodes-button-text-4:             $white;
       background: $promoted-nodes-button-bg-3;
       color: $promoted-nodes-button-text-3;
     }
+
+    @include small-medium() {
+      @include zen-grid-item(12, 1);
+      clear: both;
+      height: 360px;
+      margin-bottom: 10px;
+    }
   }
 
   .last-right-block {
@@ -1546,6 +1573,14 @@ $promoted-nodes-button-text-4:             $white;
       background: $promoted-nodes-button-bg-4;
       color: $promoted-nodes-button-text-4;
     }
+
+    @include small-medium() {
+      @include zen-grid-item(12, 1);
+      clear: both;
+      height: 360px;
+      margin-bottom: 10px;
+      padding: 0;
+    }
   }
 
   .ding_nodelist-pn-item {
@@ -1558,26 +1593,15 @@ $promoted-nodes-button-text-4:             $white;
   margin-left: -10px;
   margin-right: -10px;
   width: inherit;
-  
+
   .ding_nodelist-items {
 
-    $ding_nodelist-node_blocks-items-background-1:  #e10d3f;
+    $ding_nodelist-node_blocks-items-background-1:  #0093ba;
     $ding_nodelist-node_blocks-items-background-2:  #ea6621;
-    $ding_nodelist-node_blocks-items-background-3:  #b9c650;
-    $ding_nodelist-node_blocks-items-background-4:  #008abe;
-    $ding_nodelist-node_blocks-items-background-5:  #a34da4;
-    $ding_nodelist-node_blocks-items-background-6:  #47cfd1;
-    $ding_nodelist-node_blocks-items-background-7:  #eae328;
-    $ding_nodelist-node_blocks-items-background-8:  #78a854;
 
     $ding_nodelist-node_blocks-items-color-1:  #fff;
     $ding_nodelist-node_blocks-items-color-2:  #fff;
-    $ding_nodelist-node_blocks-items-color-3:  #fff;
-    $ding_nodelist-node_blocks-items-color-4:  #fff;
-    $ding_nodelist-node_blocks-items-color-5:  #fff;
-    $ding_nodelist-node_blocks-items-color-6:  #fff;
-    $ding_nodelist-node_blocks-items-color-7:  #fff;
-    $ding_nodelist-node_blocks-items-color-8:  #fff;
+
 
     .nb-item {
       height: 250px;
@@ -1585,7 +1609,7 @@ $promoted-nodes-button-text-4:             $white;
       color: #fff;
       /* text-shadow: 0 0 1px rgba(0,0,0,0.3); */
       @include zen-grid-container;
-      
+
       &:nth-child(1) {
         @include zen-grid-item(3, 1, left);
       }
@@ -1593,15 +1617,15 @@ $promoted-nodes-button-text-4:             $white;
       &:nth-child(2) {
         @include zen-grid-item(3, 4, left);
       }
-      
+
       &:nth-child(3) {
         @include zen-grid-item(3, 7, left);
       }
-      
+
       &:nth-child(4) {
         @include zen-grid-item(3, 1, right);
       }
-      
+
       &:nth-child(5) {
         @include zen-grid-item(3, 1, left);
         margin-top: 270px;
@@ -1611,12 +1635,12 @@ $promoted-nodes-button-text-4:             $white;
         @include zen-grid-item(3, 4);
         margin-top: 270px;
       }
-      
+
       &:nth-child(7) {
         @include zen-grid-item(3, 7);
         margin-top: 270px;
       }
-      
+
       &:nth-child(8) {
         @include zen-grid-item(3, 1, right);
         margin-top: 270px;
@@ -1676,37 +1700,29 @@ $promoted-nodes-button-text-4:             $white;
         }
       }
 
-      &:nth-child(1) .nb-inner {
+      &.ding_event .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-1;
         color: $ding_nodelist-node_blocks-items-color-1;
       }
-      &:nth-child(2) .nb-inner {
+
+      &.ding_news .nb-inner {
         background: $ding_nodelist-node_blocks-items-background-2;
         color: $ding_nodelist-node_blocks-items-color-2;
       }
-      &:nth-child(3) .nb-inner {
-        background: $ding_nodelist-node_blocks-items-background-3;
-        color: $ding_nodelist-node_blocks-items-color-3;
-      }
-      &:nth-child(4) .nb-inner {
-        background: $ding_nodelist-node_blocks-items-background-4;
-        color: $ding_nodelist-node_blocks-items-color-4;
-      }
-      &:nth-child(5) .nb-inner {
-        background: $ding_nodelist-node_blocks-items-background-5;
-        color: $ding_nodelist-node_blocks-items-color-5;
-      }
-      &:nth-child(6) .nb-inner {
-        background: $ding_nodelist-node_blocks-items-background-6;
-        color: $ding_nodelist-node_blocks-items-color-6;
-      }
-      &:nth-child(7) .nb-inner {
-        background: $ding_nodelist-node_blocks-items-background-7;
-        color: $ding_nodelist-node_blocks-items-color-7;
-      }
-      &:nth-child(8) .nb-inner {
-        background: $ding_nodelist-node_blocks-items-background-8;
-        color: $ding_nodelist-node_blocks-items-color-8;
+      
+      @include small-medium() {
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6),
+        &:nth-child(7),
+        &:nth-child(8) {
+          @include zen-grid-item(12, 1);
+          clear: both;
+          margin-top: 10px;
+        }
       }
     }
   }
@@ -1722,16 +1738,16 @@ $promoted-nodes-button-text-4:             $white;
     &:nth-child(2) {
       @include zen-grid-item(4, 5);
     }
-      
+
     &:nth-child(3) {
       @include zen-grid-item(4, 1, right);
     }
-      
+
     &:nth-child(4) {
       @include zen-grid-item(4, 1);
       margin-top: 270px;
     }
-      
+
     &:nth-child(5) {
       @include zen-grid-item(4, 5);
       margin-top: 270px;
@@ -1741,10 +1757,61 @@ $promoted-nodes-button-text-4:             $white;
       @include zen-grid-item(4, 1, right);
       margin-top: 270px;
     }
-      
+
     &:nth-child(7),
     &:nth-child(8) {
       display: none;
     }
+  }
+}
+
+
+/* More links styles */
+
+.ding_nodelist {
+  .more-links {
+    background: #ccc;
+    display: block;
+    clear: both;
+    padding: 5px 10px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        font-size: 90%;
+        margin: 0 10px 0 0;
+
+        a {
+          color: #333;
+
+          &:before {
+            color: #333;
+            content: "\f0c1";
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            margin-right: 5px;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ding_nodelist-promoted_nodes {
+  .more-links {
+    margin-top: 20px;
+  }
+}
+
+.ding_nodelist-node_blocks {
+  .more-links {
+    margin: 10px 10px 0;
   }
 }
