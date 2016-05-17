@@ -13,18 +13,23 @@
       <?php
       $items = array_slice($items, 0, 8);
       foreach ($items as $k => $node) {
-        print theme($node->item_template, array('item' => $node, 'conf' => $conf));
+        print theme($node->item_template, array(
+          'item' => $node,
+          'conf' => $conf,
+        ));
       }
       ?>
     </div>
-    <div class="more-links">
-      <ul>
-        <?php foreach ($links as $key => $bottom) : ?>
-          <li>
-            <?php print l(t($bottom['text']), $bottom['links']); ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
+    <?php if (!empty($links)): ?>
+      <div class="more-links">
+        <ul>
+          <?php foreach ($links as $key => $bottom) : ?>
+            <li>
+              <?php print l(t($bottom['text']), $bottom['links']); ?>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php endif; ?>
   </div>
 <?php endif; ?>
