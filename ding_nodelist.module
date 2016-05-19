@@ -1679,10 +1679,18 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   }
 
   foreach ($nodes as $node) {
-    if(is_array($node)) {
+    if (is_array($node)) {
       $node = array_shift($node);
     }
     $node->item_template = 'ding_nodelist.' . $node->type . '.' . $conf['widget_type'];
+
+    $field = "field_{$node->type}_title_image";
+    if (!empty($node->$field)) {
+      $media_field = field_view_field('node', $node, $field);
+      if ($media_field['#items'][0]['type'] == 'video') {
+        $node->has_video = file_create_url($media_field['#items'][0]['uri']);
+      }
+    }
   }
 
   // Init JS for widgets
@@ -1757,6 +1765,7 @@ function _ding_nodelist_get_event_hours($period) {
  */
 function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = NULL) {
   $mod_path = drupal_get_path('module', 'ding_nodelist');
+  drupal_add_js($mod_path . '/js/video.js', 'file');
   // Adding required JS libs
   switch ($widget) {
     case NL_WIDGET_CAROUSEL:
