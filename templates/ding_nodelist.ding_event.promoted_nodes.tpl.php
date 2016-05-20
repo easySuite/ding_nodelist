@@ -14,32 +14,46 @@ $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $category = field_view_field('node', $item, 'field_ding_event_category', 'teaser');
 $condition = ($class[0] == 'first' && $class[1] == 'left' || $class[0] == 'last' && $class[1] == 'right');
+
+$classes = array();
+$classes[] = "ding_nodelist-pn-item";
+$classes[] = (empty($image_path) ? 'no-bgimage' : NULL);
+$classes[] = (isset($item->has_video) ? 'has-video' : NULL);
+$classes = implode(" ", $classes);
 ?>
 <div
-  class="ding_nodelist-pn-item<?php print (empty($image_path) ? ' no-bgimage' : ''); ?>"
+  class="<?php print $classes; ?>"
   <?php if (!empty($image_path)): ?>
     <?php if ($condition): ?>
       style="background: url(<?php print $image_path; ?>);"
     <?php endif; ?>
   <?php endif; ?>
 >
-  <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
-  <div class="item-body">
-    <?php
-    if (isset($lead[0]['safe_value'])) {
-      print strip_tags($lead[0]['safe_value']);
-    }
-    elseif (isset($teaser[0]['safe_value'])) {
-      print strip_tags($teaser[0]['safe_value']);
-    }
-    else {
-      print '';
-    }
-    ?>
-  </div>
-  <div class="item-date"><?php print $event_date_formatted; ?></div>
-  <div>
-    <span class="library"><?php print drupal_render($library); ?></span>
+  <?php if (isset($item->has_video)): ?>
+    <div class="media-container">
+      <div class="media-content"
+           data-url="<?php print $item->has_video; ?>"></div>
+      <div class="close-media"><i class="icon-cross"></i></div>
+    </div>
+  <?php endif; ?>
+  <div class="event-info">
+    <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
+    <div class="item-body">
+      <?php
+      if (isset($lead[0]['safe_value'])) {
+        print strip_tags($lead[0]['safe_value']);
+      }
+      elseif (isset($teaser[0]['safe_value'])) {
+        print strip_tags($teaser[0]['safe_value']);
+      }
+      else {
+        print '';
+      }
+      ?>
+    </div>
+    <div class="item-date"><?php print $event_date_formatted; ?></div>
+    <div>
+      <span class="library"><?php print drupal_render($library); ?></span>
         <span class="item-price">
           <?php
           $fee_field = field_get_items('node', $item, 'field_ding_event_price');
@@ -52,9 +66,17 @@ $condition = ($class[0] == 'first' && $class[1] == 'left' || $class[0] == 'last'
           }
           ?>
         </span>
-  </div>
+    </div>
 
-  <div class="read-more">
-    <?php print l(t('Read more'), 'node/' . $item->nid); ?>
+    <div class="read-more">
+      <?php print l(t('Read more'), 'node/' . $item->nid); ?>
+    </div>
+
+    <?php if (isset($item->has_video)): ?>
+      <div class='media-play'>
+        <div class='play round'><i class='icon-play'></i></div>
+      </div>
+    <?php endif; ?>
+
   </div>
 </div>
