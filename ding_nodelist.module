@@ -203,8 +203,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $ipe_mode = TRUE;
   }
 
-  drupal_add_js(drupal_get_path('module', 'ding_nodelist') . '/js/ding_nodelist.js');
-
   // Cache the form for correct workflow.
   $form_state['cache'] = TRUE;
 
@@ -511,7 +509,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   // Retrieve vocabularies current CT references.
   $allowed_fields = array();
   $field_settings = array();
-  $selected_fields= array();
+  $selected_fields = array();
   foreach ($node_type as $type) {
     $selected_fields[$type] = field_info_instances('node', $type);
   }
@@ -522,8 +520,18 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
       // Check if the field is a term reference or entity reference field.
       $allowed_types = array('taxonomy_term_reference', 'entityreference');
+
       if (in_array($field_config['type'], $allowed_types)) {
-        $allowed_fields[$field['field_name']] = $field['label'];
+        foreach ($node_types_opts as $k => $v) {
+          // Temporary hide *_groups_ref.
+          if ($field['field_name'] == "{$k}_groups_ref" || $field['field_name'] == 'og_group_ref') {
+            break;
+          }
+
+          if ($field['bundle'] == $k) {
+            $allowed_fields[$field['field_name']] = $v . ': ' . $field['label'];
+          }
+        }
 
         $field_settings[$field['field_name']] = array(
           'filter_field' => $field_config['field_name'],
@@ -548,13 +556,13 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $changed_filter = $form_state['values']['taxonomy_filters'][$changed_filter_id];
 
     // Update auto-complete, preserve other fields.
-     $filter = $field_settings[$changed_filter['filter_field']];
+    $filter = $field_settings[$changed_filter['filter_field']];
 
     // Important: delete old input!
     unset($form_state['input']['taxonomy_filters'][$changed_filter_id]);
 
-    $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$changed_filter_id] =
-      _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $changed_filter_id);
+    $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$changed_filter_id]
+      = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $changed_filter_id);
   }
 
   $delta = 0;
@@ -574,7 +582,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
             ->condition('n.nid', $nid)
             ->execute()
             ->fetchField();
-          $tags[$nid] = $title . ' (' . $nid .')';
+          $tags[$nid] = $title . ' (' . $nid . ')';
         }
         $values = implode(', ', $tags);
       }
@@ -587,7 +595,8 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
       $filter = $field_settings[$filter['filter_field']];
       $filter['filter_terms'] = $values;
 
-      $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key] = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
+      $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key]
+        = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
     }
 
     ksort($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters']);
@@ -604,7 +613,8 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
     $first_field = array_shift(array_keys($allowed_fields));
     $filter = $field_settings[$first_field];
 
-    $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key] = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
+    $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['taxonomy_filters'][$key]
+      = _ding_nodelist_taxonomy_filter($allowed_fields, $filter, $key);
   }
 
   $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['help_text'] = array(
@@ -977,6 +987,7 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     '#tree' => TRUE,
     '#weight' => $key,
   );
+
   $form['filter_field'] = array(
     '#type' => 'select',
     '#title_display' => 'invisible',
