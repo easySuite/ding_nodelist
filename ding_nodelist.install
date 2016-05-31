@@ -273,3 +273,60 @@ function ding_nodelist_update_7001() {
       ->execute();
   }
 }
+
+/**
+ * Update pane configuration.
+ */
+function ding_nodelist_update_7002() {
+  $query = db_select('panels_pane', 'pp');
+
+  $query->condition('type', 'ding_nodelist')
+    ->condition('subtype', 'ding_nodelist')
+    ->fields('pp', array('pid', 'configuration'));
+
+  $results = $query->execute();
+
+  foreach ($results as $result) {
+    $config = unserialize($result->configuration);
+
+    // Replace array key.
+    $array = ding_nodelist_replace_key($config, 'content_type', 'content_types');
+
+    // Forming content types array.
+    $cts = array();
+    $ct = $config['content_type'];
+    $cts[$ct] = $ct;
+
+    // Assing new content types array to configuration.
+    $array['content_types'] = $cts;
+
+    // Update db.
+    if (!isset($config['content_types'])) {
+      db_update('panels_pane')
+        ->fields(array('configuration' => serialize($array)))
+        ->condition('pid', $result->pid, '=')
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Helper function for replacing keys of array elements.
+ *
+ * @param $array
+ * @param $key1
+ * @param $key2
+ * @return array
+ */
+function ding_nodelist_replace_key($array, $key1, $key2) {
+  $keys = array_keys($array);
+  $index = array_search($key1, $keys);
+
+  if ($index !== FALSE) {
+    $keys[$index] = $key2;
+    $array = array_combine($keys, $array);
+  }
+
+  return $array;
+}
+
