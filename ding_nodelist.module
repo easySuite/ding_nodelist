@@ -2409,6 +2409,12 @@ function _ding_nodelist_get_event_date($event_node) {
   return $result;
 }
 
+/**
+ * Return formatted time for events.
+ *
+ * @param object $event_node
+ * @return string
+ */
 function _ding_nodelist_get_event_time($event_node) {
   $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
 

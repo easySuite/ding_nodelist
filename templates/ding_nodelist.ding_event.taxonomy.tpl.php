@@ -64,6 +64,7 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-body">
       <?php
+      // @todo: Move logic from templates.
       if (isset($lead[0]['safe_value'])) {
         print strip_tags($lead[0]['safe_value']);
       }
@@ -81,6 +82,7 @@ $teaser = field_get_items('node', $item, 'field_ding_event_body');
       <?php
       $fee_field = field_get_items('node', $item, 'field_ding_event_price');
       if (is_array($fee_field)) {
+        // @todo: Move logic from templates.
         $fee = current($fee_field);
         print $fee['value'] . ' ' . t('kr.');
       }

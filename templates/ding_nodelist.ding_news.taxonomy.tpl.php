@@ -52,6 +52,7 @@ $teaser = field_get_items('node', $item, 'field_ding_news_body');
     </div>
     <div class="item-body">
       <?php
+      // @todo: Move logic from templates.
       if (isset($lead[0]['safe_value'])) {
         print strip_tags($lead[0]['safe_value']);
       }
