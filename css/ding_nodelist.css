@@ -815,12 +815,55 @@ fieldset legend {
 .ding_nodelist-taxonomy .item:nth-child(odd) {
   background-color: #dadada;
 }
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-list-image {
+  display: none;
+}
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-details {
+  display: block;
+  padding: 10px;
+  width: calc(100% - 20px);
+  position: relative;
+}
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-title {
+  font-size: 110%;
+  margin-right: 25px;
+}
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-body {
+  display: none;
+}
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-library,
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-date,
+.ding_nodelist-taxonomy .event-list-leaf + .item .item-price {
+  color: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  margin-right: 5px;
+}
+.ding_nodelist-taxonomy .event-list-leaf + .item .event-arrow-link {
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  margin-top: -10px;
+}
 .ding_nodelist-taxonomy .item {
   background-color: #e5e5e5;
   margin-bottom: 10px;
   overflow: hidden;
   padding: 0;
   width: 100%;
+}
+.ding_nodelist-taxonomy .item .item-details {
+  overflow: hidden;
+}
+.ding_nodelist-taxonomy .item .date {
+  color: rgba(76, 76, 76, 0.5);
+  display: inline-block;
+  float: none;
+  background: none;
+  padding-left: 0;
+  position: relative;
+  top: 2px;
+  margin-right: 2px;
 }
 .ding_nodelist-taxonomy .item:first-of-type {
   border-top: 0;
@@ -837,11 +880,39 @@ fieldset legend {
 .ding_nodelist-taxonomy .item .item-author {
   display: none;
 }
-.ding_nodelist-taxonomy .item .label {
-  margin-left: 0;
+.ding_nodelist-taxonomy .item .author {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+.ding_nodelist-taxonomy .item .item-byline > .label {
+  margin: 0;
+  display: inline-block;
+}
+.ding_nodelist-taxonomy .item .item-byline > .label > .label {
+  display: inline-block;
+  font-size: 100%;
+  margin: 0;
+}
+.ding_nodelist-taxonomy .item .item-byline > .label > .label a {
+  margin: 0 2px 0 0;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-taxonomy .item .item-byline {
+    display: none;
+  }
+}
+.ding_nodelist-taxonomy .item .news-link {
+  float: right;
 }
 .ding_nodelist-taxonomy .item .item-body {
-  margin-top: 10px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+@media only screen and (max-width: 768px) {
+  .ding_nodelist-taxonomy .item .item-body {
+    color: rgba(0, 0, 0, 0.7);
+  }
 }
 @media only screen and (max-width: 768px) {
   .ding_nodelist-taxonomy .item .item-list-image {
