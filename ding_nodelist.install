@@ -164,12 +164,16 @@ function ding_nodelist_install() {
       'content_type' => 'ding_page',
     ),
     'ding_nodelist.ding_event.minimal_display' => array(
-      'widget' => 'node_blocks',
+      'widget' => 'minimal_display',
       'content_type' => 'ding_event',
     ),
     'ding_nodelist.ding_news.minimal_display' => array(
-      'widget' => 'node_blocks',
+      'widget' => 'minimal_display',
       'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.minimal_display' => array(
+      'widget' => 'minimal_display',
+      'content_type' => 'ding_page',
     ),
   );
 
@@ -330,6 +334,10 @@ function ding_nodelist_update_7003() {
     'ding_nodelist.ding_news.minimal_display' => array(
       'widget' => 'minimal_display',
       'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.minimal_display' => array(
+      'widget' => 'minimal_display',
+      'content_type' => 'ding_page',
     ),
   );
 
