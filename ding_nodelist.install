@@ -163,6 +163,14 @@ function ding_nodelist_install() {
       'widget' => 'node_blocks',
       'content_type' => 'ding_page',
     ),
+    'ding_nodelist.ding_event.minimal_display' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.minimal_display' => array(
+      'widget' => 'node_blocks',
+      'content_type' => 'ding_news',
+    ),
   );
 
   foreach ($mappings as $filename => $mapping) {
@@ -307,6 +315,33 @@ function ding_nodelist_update_7002() {
         ->condition('pid', $result->pid, '=')
         ->execute();
     }
+  }
+}
+
+/**
+ * Adding 'Minimal display' display type.
+ */
+function ding_nodelist_update_7003() {
+  $mappings = array(
+    'ding_nodelist.ding_event.minimal_display' => array(
+      'widget' => 'minimal_display',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.minimal_display' => array(
+      'widget' => 'minimal_display',
+      'content_type' => 'ding_news',
+    ),
+  );
+
+  foreach ($mappings as $filename => $mapping) {
+    $fields = array(
+      'filename' => $filename,
+      'title' => $filename,
+      'content_type' => $mapping['content_type'],
+      'widget' => $mapping['widget'],
+      'status' => 0,
+    );
+    db_insert('ding_nodelist_templates')->fields($fields)->execute();
   }
 }
 
