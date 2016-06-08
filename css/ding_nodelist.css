@@ -1742,3 +1742,27 @@ fieldset legend {
 .ding_nodelist.ding_nodelist-promoted_nodes .last-right-block .media-container {
   left: 0;
 }
+
+.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item {
+  display: inline-block;
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: -.46em;
+}
+.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item .minimal-title {
+  float: left;
+}
+.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item .minimal-title a {
+  font-weight: bold;
+  color: #000;
+}
+.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item .minimal-date {
+  float: right;
+  padding-right: 20px;
+}
+.ding_nodelist-minimal_display .ding_nodelist-minimal-items .even {
+  background: #E8E8E8;
+}
+.ding_nodelist-minimal_display .ding_nodelist-minimal-items .odd {
+  background: #f2f2f2;
+}

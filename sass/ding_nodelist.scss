@@ -1997,3 +1997,35 @@ $promoted-nodes-button-text-4:             $white;
     }
   }
 }
+
+.ding_nodelist-minimal_display {
+  .ding_nodelist-minimal-items {
+    .minimal-item {
+      display: inline-block;
+      width: 100%;
+      padding: 6px 10px;
+      margin-bottom: -.46em;
+
+      .minimal-title {
+        float: left;
+        a {
+          font-weight: bold;
+          color: $black;
+        }
+      }
+
+      .minimal-date {
+        float: right;
+        padding-right: 20px;
+      }
+    }
+
+    .even {
+      background: #E8E8E8;
+    }
+
+    .odd {
+      background: #f2f2f2;
+    }
+  }
+}

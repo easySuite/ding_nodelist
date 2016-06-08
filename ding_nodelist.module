@@ -15,6 +15,7 @@ define('NL_WIDGET_TAXONOMY_LIKE', 'taxonomy');
 define('NL_WIDGET_ROLLTAB', 'rolltab');
 define('NL_WIDGET_PROMOTED_NODES', 'promoted_nodes');
 define('NL_WIDGET_NODE_BLOCKS', 'node_blocks');
+define('NL_WIDGET_MINIMAL_DISPLAY', 'minimal_display');
 
 define('NL_COL_FULL', 'full');
 define('NL_COL_HALF', 'half');
@@ -1429,6 +1430,16 @@ function ding_nodelist_theme($existing, $type, $theme, $path) {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_minimal_display' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_minimal_display',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -2332,6 +2343,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     NL_WIDGET_ROLLTAB => t('Rolltab'),
     NL_WIDGET_PROMOTED_NODES => t('Promoted nodes'),
     NL_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
+    NL_WIDGET_MINIMAL_DISPLAY => t('Minimal display'),
   );
   return $widgets[$machine_name];
 }
@@ -2355,6 +2367,7 @@ function _ding_nodelist_get_widget_types($content_types = NULL) {
     NL_WIDGET_ROLLTAB => _ding_nodelist_get_widget_human_name(NL_WIDGET_ROLLTAB),
     NL_WIDGET_PROMOTED_NODES => _ding_nodelist_get_widget_human_name(NL_WIDGET_PROMOTED_NODES),
     NL_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(NL_WIDGET_NODE_BLOCKS),
+    NL_WIDGET_MINIMAL_DISPLAY => _ding_nodelist_get_widget_human_name(NL_WIDGET_MINIMAL_DISPLAY),
   );
 
   // Fetch only widgets that have templates configured.
@@ -2585,6 +2598,7 @@ function _ding_nodelist_widgets_with_titles() {
     NL_WIDGET_ROLLTAB,
     NL_WIDGET_PROMOTED_NODES,
     NL_WIDGET_NODE_BLOCKS,
+    NL_WIDGET_MINIMAL_DISPLAY,
   );
 }
 
