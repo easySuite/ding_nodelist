@@ -1789,10 +1789,10 @@ fieldset legend {
   color: rgba(0, 0, 0, 0.87);
 }
 .ding_nodelist-minimal-items .even {
-  background: #dadada;
+  background: #f2f2f2;
 }
 .ding_nodelist-minimal-items .odd {
-  background: #ccc;
+  background: #e8e8e8;
 }
 
 .tertiary-content .pane-ding-nodelist
