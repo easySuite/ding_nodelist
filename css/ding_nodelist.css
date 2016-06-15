@@ -1743,26 +1743,63 @@ fieldset legend {
   left: 0;
 }
 
-.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item {
+.ding_nodelist.ding_nodelist-minimal_display {
+  padding: 15px 15px 3px 15px;
+  background: #fff;
+  clear: both;
+  width: auto !important;
+  overflow: hidden;
+}
+.ding_nodelist.ding_nodelist-minimal_display .ding_nodelist-title {
+  font-size: 160%;
+}
+.ding_nodelist.ding_nodelist-minimal_display .more-links {
+  background: #fff;
+  float: right;
+  padding: 0;
+}
+.ding_nodelist.ding_nodelist-minimal_display .more-links ul li {
+  margin: 0;
+}
+.ding_nodelist.ding_nodelist-minimal_display .more-links ul li a {
+  font-size: 16px;
+  color: #00b7e7;
+}
+.ding_nodelist.ding_nodelist-minimal_display .more-links ul li a:before {
+  content: "";
+}
+
+.ding_nodelist-minimal-items .minimal-item {
   display: inline-block;
   width: 100%;
-  padding: 6px 10px;
   margin-bottom: -.46em;
 }
-.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item .minimal-title {
+.ding_nodelist-minimal-items .minimal-item .minimal-title {
   float: left;
+  padding: 6px 10px 0 10px;
 }
-.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item .minimal-title a {
+.ding_nodelist-minimal-items .minimal-item .minimal-title a {
+  display: inline-block;
   font-weight: bold;
   color: #000;
 }
-.ding_nodelist-minimal_display .ding_nodelist-minimal-items .minimal-item .minimal-date {
+.ding_nodelist-minimal-items .minimal-item .minimal-date {
   float: right;
-  padding-right: 20px;
+  padding: 10px 20px 0 0;
+  color: rgba(0, 0, 0, 0.87);
 }
-.ding_nodelist-minimal_display .ding_nodelist-minimal-items .even {
-  background: #E8E8E8;
-}
-.ding_nodelist-minimal_display .ding_nodelist-minimal-items .odd {
+.ding_nodelist-minimal-items .even {
   background: #f2f2f2;
+}
+.ding_nodelist-minimal-items .odd {
+  background: #e8e8e8;
+}
+
+.tertiary-content .pane-ding-nodelist
+.ding_nodelist-minimal_display
+.minimal-item .minimal-title a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240px !important;
 }
