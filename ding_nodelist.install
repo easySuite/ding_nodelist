@@ -58,8 +58,6 @@ function ding_nodelist_schema() {
 
 /**
  * Implements hook_install().
- *
- * Provides basic configuration of nodelist templates/widgets.
  */
 function ding_nodelist_install() {
   // Set available node types.

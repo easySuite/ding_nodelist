@@ -1,4 +1,6 @@
 (function ($) {
+  "use strict";
+
   $(document).ready(function(){
     $('.ding_nodelist-vertical_accordion .ding_nodelist-items').each(function(){
       var c_width = $(this).width();
