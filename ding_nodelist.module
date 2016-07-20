@@ -1173,7 +1173,7 @@ function ding_nodelist_content_type_edit_form_validate($form, &$form_state) {
   foreach ($form_state['values']['more_links'] as $key => &$bottom) {
     if (!empty($bottom['text']) || !empty($bottom['links'])) {
       if (!_ding_nodelist_is_valid_link($bottom['links'])) {
-        $msg = t('Invalid local or external link. External links must begin with "http" or "https", local links should point to existing pages.'));
+        $msg = t('Invalid local or external link. External links must begin with "http" or "https", local links should point to existing pages.');
         form_set_error("more_links][$key][links", $msg);
       }
     }
