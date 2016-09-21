@@ -510,34 +510,36 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   }
 
   foreach ($selected_fields as $ct_name => $fields) {
-    foreach ($fields as $field) {
+    foreach ($fields as $field_machine_name => $field) {
       $field_config = field_info_field($field['field_name']);
+
+      // Because library reference field for news and event have same machine name,
+      // we add CT name to differ them in nodelist.
+      $field_name = ($field['field_name'] == 'og_group_ref')
+        ? $field['bundle'] . '_' . $field_machine_name
+        : $field_machine_name;
 
       // Check if the field is a term reference or entity reference field.
       $allowed_types = array('taxonomy_term_reference', 'entityreference');
 
       if (in_array($field_config['type'], $allowed_types)) {
         foreach ($node_types_opts as $k => $v) {
-          // Temporary hide *_groups_ref.
-          if ($field['field_name'] == "{$k}_groups_ref" || $field['field_name'] == 'og_group_ref') {
-            break;
-          }
 
           if ($field['bundle'] == $k) {
-            $allowed_fields[$field['field_name']] = $v . ': ' . $field['label'];
+            $allowed_fields[$field_name] = $v . ': ' . $field['label'];
           }
         }
 
-        $field_settings[$field['field_name']] = array(
-          'filter_field' => $field_config['field_name'],
+        $field_settings[$field_name] = array(
+          'filter_field' => $field_name,
           'term_reference' => $field_config['type'],
         );
         if ($field_config['type'] == 'entityreference') {
-          $field_settings[$field['field_name']]['bundle'] = $node_type;
-          $field_settings[$field['field_name']]['type'] = $field_config['settings']['target_type'];
+          $field_settings[$field_name]['bundle'] = $node_type;
+          $field_settings[$field_name]['type'] = $field_config['settings']['target_type'];
         }
         else {
-          $field_settings[$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+          $field_settings[$field_name]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
         }
       }
     }
@@ -1002,7 +1004,14 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? 'taxonomy/autocomplete/' . $filter['filter_field'] : NULL;
   }
   else {
-    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/" . $filter['filter_field'] . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL' : NULL;
+    $autocomplete = NULL;
+    if (!is_null($filter) && !empty($filter['filter_field'])) {
+      $filter_field = (strpos($filter['filter_field'], 'og_group_ref'))
+        ? 'og_group_ref'
+        : $filter['filter_field'];
+
+      $autocomplete = "entityreference/autocomplete/tags/" . $filter_field . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL';
+    }
   }
 
   $form['filter_terms'] = array(
