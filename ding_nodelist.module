@@ -515,9 +515,9 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
       // Because library reference field for news and event have same machine name,
       // we add CT name to differ them in nodelist.
-      $field_name = ($field['field_name'] == 'og_group_ref')
-        ? $field['bundle'] . '_' . $field_machine_name
-        : $field_machine_name;
+//      $field_name = ($field['field_name'] == 'og_group_ref')
+//        ? $field['bundle'] . '_' . $field_machine_name
+//        : $field_machine_name;
 
       // Check if the field is a term reference or entity reference field.
       $allowed_types = array('taxonomy_term_reference', 'entityreference');
@@ -526,20 +526,21 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
         foreach ($node_types_opts as $k => $v) {
 
           if ($field['bundle'] == $k) {
-            $allowed_fields[$field_name] = $v . ': ' . $field['label'];
+            $allowed_fields[$field_machine_name] = $v . ': ' . $field['label'];
+//            $allowed_fields[$field_name] = $v . ': ' . $field['label'];
           }
         }
 
-        $field_settings[$field_name] = array(
-          'filter_field' => $field_name,
+        $field_settings[$field_machine_name] = array(
+          'filter_field' => $field_machine_name,
           'term_reference' => $field_config['type'],
         );
         if ($field_config['type'] == 'entityreference') {
-          $field_settings[$field_name]['bundle'] = $node_type;
-          $field_settings[$field_name]['type'] = $field_config['settings']['target_type'];
+          $field_settings[$field_machine_name]['bundle'] = $node_type;
+          $field_settings[$field_machine_name]['type'] = $field_config['settings']['target_type'];
         }
         else {
-          $field_settings[$field_name]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+          $field_settings[$field_machine_name]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
         }
       }
     }
@@ -1004,14 +1005,15 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
     $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? 'taxonomy/autocomplete/' . $filter['filter_field'] : NULL;
   }
   else {
-    $autocomplete = NULL;
-    if (!is_null($filter) && !empty($filter['filter_field'])) {
-      $filter_field = (strpos($filter['filter_field'], 'og_group_ref'))
-        ? 'og_group_ref'
-        : $filter['filter_field'];
-
-      $autocomplete = "entityreference/autocomplete/tags/" . $filter_field . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL';
-    }
+    $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/" . $filter['filter_field'] . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL' : NULL;
+//    $autocomplete = NULL;
+//    if (!is_null($filter) && !empty($filter['filter_field'])) {
+//      $filter_field = (strpos($filter['filter_field'], 'og_group_ref'))
+//        ? 'og_group_ref'
+//        : $filter['filter_field'];
+//
+//      $autocomplete = "entityreference/autocomplete/tags/" . $filter_field . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL';
+//    }
   }
 
   $form['filter_terms'] = array(
@@ -2058,7 +2060,7 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   // @todo
   // As for now the template config is still there, so here we fetch the very
   // first assigned template.
-  $item_templates = _ding_nodelist_get_templates(FALSE, $form_state['values']['content_type'], $form_state['conf']['widget_type']);
+  $item_templates = _ding_nodelist_get_templates(FALSE, $form_state['values']['content_types'], $form_state['conf']['widget_type']);
   $template = is_array($item_templates) ? reset($item_templates) : NULL;
   $form_state['conf']['item_template'] = isset($template['filename']) ? $template['filename'] : '';
 
@@ -2145,7 +2147,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
 
   // Filter by date field.
   // @todo: remove hardcode.
-  if (!empty($conf['content_filter_date']) && $conf['content_type'] == 'ding_event') {
+  if (!empty($conf['content_filter_date']) && in_array('ding_event', $conf['content_types'])) {
     $query->join('field_data_field_ding_event_date', 'fed', 'n.nid = fed.entity_id');
     // @todo: NOW() works for visitors from the same timezone.
     $query->where(
