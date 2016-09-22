@@ -617,7 +617,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['help_text'] = array(
     '#prefix' => '<div class="ding-nodelist-help-text">',
     '#suffix' => '</div>',
-    '#markup' => t('Explain the OR/AND syntax.'),
+    '#markup' => t('For each filter (row) the AND syntax will be used and for each term within a filter (separate by comma) the OR syntax will be used.'),
     '#weight' => 9,
   );
 
