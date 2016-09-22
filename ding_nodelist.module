@@ -289,10 +289,9 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   );
 
   $form['ding_nodelist_wrapper']['content_types'] = array(
-    '#type' => 'select',
+    '#type' => 'checkboxes',
     '#id' => 'nodelist_cts',
     '#title' => t('Content type'),
-    '#multiple' => TRUE,
     '#required' => TRUE,
     '#default_value' => $node_type,
     '#options' => $node_types_opts,
@@ -1195,6 +1194,11 @@ function ding_nodelist_content_type_edit_form_validate($form, &$form_state) {
  * Edit form submit function.
  */
 function ding_nodelist_content_type_edit_form_submit($form, &$form_state) {
+  foreach ($form_state['values']['content_types'] as $ct_name => $selected) {
+    if (!$selected) {
+      unset($form_state['values']['content_types'][$ct_name]);
+    }
+  }
 
   // Removing empty nodes.
   if (!empty($form_state['values']['selected_nodes'])) {
