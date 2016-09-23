@@ -289,10 +289,9 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   );
 
   $form['ding_nodelist_wrapper']['content_types'] = array(
-    '#type' => 'select',
+    '#type' => 'checkboxes',
     '#id' => 'nodelist_cts',
     '#title' => t('Content type'),
-    '#multiple' => TRUE,
     '#required' => TRUE,
     '#default_value' => $node_type,
     '#options' => $node_types_opts,
@@ -471,8 +470,10 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['dynamic_switch'] = array(
     '#type' => 'checkbox',
     '#title' => t('Dynamic content?'),
-    '#prefix' => '<hr />',
+    '#prefix' => '<div id="node_list-dynamic-content-switch">',
+    '#suffix' => '</div>',
     '#default_value' => isset($conf['dynamic_switch']) ? $conf['dynamic_switch'] : 0,
+    '#disabled' => (count(array_filter($node_type)) > 1),
   );
 
   // Dynamic list settings.
@@ -510,34 +511,37 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   }
 
   foreach ($selected_fields as $ct_name => $fields) {
-    foreach ($fields as $field) {
+    foreach ($fields as $field_machine_name => $field) {
       $field_config = field_info_field($field['field_name']);
+
+      // Because library reference field for news and event have same machine name,
+      // we add CT name to differ them in nodelist.
+//      $field_name = ($field['field_name'] == 'og_group_ref')
+//        ? $field['bundle'] . '_' . $field_machine_name
+//        : $field_machine_name;
 
       // Check if the field is a term reference or entity reference field.
       $allowed_types = array('taxonomy_term_reference', 'entityreference');
 
       if (in_array($field_config['type'], $allowed_types)) {
         foreach ($node_types_opts as $k => $v) {
-          // Temporary hide *_groups_ref.
-          if ($field['field_name'] == "{$k}_groups_ref" || $field['field_name'] == 'og_group_ref') {
-            break;
-          }
 
           if ($field['bundle'] == $k) {
-            $allowed_fields[$field['field_name']] = $v . ': ' . $field['label'];
+            $allowed_fields[$field_machine_name] = $v . ': ' . $field['label'];
+//            $allowed_fields[$field_name] = $v . ': ' . $field['label'];
           }
         }
 
-        $field_settings[$field['field_name']] = array(
-          'filter_field' => $field_config['field_name'],
+        $field_settings[$field_machine_name] = array(
+          'filter_field' => $field_machine_name,
           'term_reference' => $field_config['type'],
         );
         if ($field_config['type'] == 'entityreference') {
-          $field_settings[$field['field_name']]['bundle'] = $node_type;
-          $field_settings[$field['field_name']]['type'] = $field_config['settings']['target_type'];
+          $field_settings[$field_machine_name]['bundle'] = $node_type;
+          $field_settings[$field_machine_name]['type'] = $field_config['settings']['target_type'];
         }
         else {
-          $field_settings[$field['field_name']]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
+          $field_settings[$field_machine_name]['vocabulary'] = $field_config['settings']['allowed_values'][0]['vocabulary'];
         }
       }
     }
@@ -615,7 +619,7 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   $form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['ding_nodelist_dynamic']['help_text'] = array(
     '#prefix' => '<div class="ding-nodelist-help-text">',
     '#suffix' => '</div>',
-    '#markup' => t('Explain the OR/AND syntax.'),
+    '#markup' => t('For each filter (row) the AND syntax will be used and for each term within a filter (separate by comma) the OR syntax will be used.'),
     '#weight' => 9,
   );
 
@@ -1003,6 +1007,14 @@ function _ding_nodelist_taxonomy_filter($fields, $filter, $key) {
   }
   else {
     $autocomplete = !is_null($filter) && !empty($filter['filter_field']) ? "entityreference/autocomplete/tags/" . $filter['filter_field'] . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL' : NULL;
+//    $autocomplete = NULL;
+//    if (!is_null($filter) && !empty($filter['filter_field'])) {
+//      $filter_field = (strpos($filter['filter_field'], 'og_group_ref'))
+//        ? 'og_group_ref'
+//        : $filter['filter_field'];
+//
+//      $autocomplete = "entityreference/autocomplete/tags/" . $filter_field . '/' . $filter['type'] . '/' . array_shift($filter['bundle']) . '/NULL';
+//    }
   }
 
   $form['filter_terms'] = array(
@@ -1184,6 +1196,11 @@ function ding_nodelist_content_type_edit_form_validate($form, &$form_state) {
  * Edit form submit function.
  */
 function ding_nodelist_content_type_edit_form_submit($form, &$form_state) {
+  foreach ($form_state['values']['content_types'] as $ct_name => $selected) {
+    if (!$selected) {
+      unset($form_state['values']['content_types'][$ct_name]);
+    }
+  }
 
   // Removing empty nodes.
   if (!empty($form_state['values']['selected_nodes'])) {
@@ -1240,6 +1257,7 @@ function ding_nodelist_js($form, &$form_state) {
       ajax_command_replace('.form-item-widget-type', drupal_render($form['ding_nodelist_wrapper']['widget_type'])),
       ajax_command_replace('#ding_nodelist-content-filter-date', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['content_filter_date'])),
       ajax_command_replace('#ding_nodelist-sort-field', drupal_render($form['ding_nodelist_wrapper']['nodelist_various_settings']['ding_nodelist_sorting']['sort_field'])),
+      ajax_command_replace('#node_list-dynamic-content-switch', drupal_render($form['ding_nodelist_wrapper']['nodelist_content']['nodelist_content_wrapper']['dynamic_switch'])),
     ),
   );
 }
@@ -2049,7 +2067,7 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   // @todo
   // As for now the template config is still there, so here we fetch the very
   // first assigned template.
-  $item_templates = _ding_nodelist_get_templates(FALSE, $form_state['values']['content_type'], $form_state['conf']['widget_type']);
+  $item_templates = _ding_nodelist_get_templates(FALSE, $form_state['values']['content_types'], $form_state['conf']['widget_type']);
   $template = is_array($item_templates) ? reset($item_templates) : NULL;
   $form_state['conf']['item_template'] = isset($template['filename']) ? $template['filename'] : '';
 
@@ -2136,7 +2154,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
 
   // Filter by date field.
   // @todo: remove hardcode.
-  if (!empty($conf['content_filter_date']) && $conf['content_type'] == 'ding_event') {
+  if (!empty($conf['content_filter_date']) && in_array('ding_event', $conf['content_types'])) {
     $query->join('field_data_field_ding_event_date', 'fed', 'n.nid = fed.entity_id');
     // @todo: NOW() works for visitors from the same timezone.
     $query->where(
