@@ -365,6 +365,26 @@ function ding_nodelist_update_7004() {
 }
 
 /**
+ * Setting correct relation between content type and template.
+ */
+function ding_nodelist_update_7005() {
+  $rows = db_select('ding_nodelist_templates', 'dnt')
+    ->fields('dnt')
+    ->execute();
+
+  foreach ($rows as $row) {
+    if (empty($row->content_type)) {
+      $template = explode('.', $row->filename);
+
+      db_update('ding_nodelist_templates')
+        ->fields(array('content_type' => $template[1]))
+        ->condition('filename', $row->filename, '=')
+        ->execute();
+    }
+  }
+}
+
+/**
  * Helper function for replacing keys of array elements.
  *
  * @param $array
@@ -383,4 +403,3 @@ function ding_nodelist_replace_key($array, $key1, $key2) {
 
   return $array;
 }
-
