@@ -648,10 +648,10 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
 
   // Date field filtering.
   $form['ding_nodelist_wrapper']['nodelist_content']['content_filter_date'] = array(
-    '#type' => $node_type == 'ding_event' ? 'checkbox' : 'hidden',
+    '#type' => reset($node_type) == 'ding_event' ? 'checkbox' : 'hidden',
     '#title' => t('Show upcoming events only'),
     '#description' => t('If checked only future events will be shown'),
-    '#default_value' => ($node_type == 'ding_event') ? TRUE : isset($conf['content_filter_date']),
+    '#default_value' => $node_type == 'ding_event' && isset($conf['content_filter_date']) ? $conf['content_filter_date'] : FALSE,
     '#prefix' => '<div id="ding_nodelist-content-filter-date">',
     '#suffix' => '</div>',
   );
