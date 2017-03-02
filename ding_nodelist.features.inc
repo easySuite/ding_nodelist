@@ -22,8 +22,26 @@ function ding_nodelist_image_default_styles() {
   // Exported image style: ding_nodelist_extra_medium.
   $styles['ding_nodelist_extra_medium'] = array(
     'name' => 'ding_nodelist_extra_medium',
+    'label' => 'ding_nodelist_extra_medium',
     'effects' => array(
-      13 => array(
+      4 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 760,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_extra_medium',
+        ),
+        'weight' => 0,
+      ),
+      1 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -39,7 +57,7 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      14 => array(
+      2 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -55,14 +73,31 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_extra_medium',
   );
 
   // Exported image style: ding_nodelist_large.
   $styles['ding_nodelist_large'] = array(
     'name' => 'ding_nodelist_large',
+    'label' => 'ding_nodelist_large',
     'effects' => array(
-      15 => array(
+      7 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 1160,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_large',
+        ),
+        'weight' => 0,
+      ),
+      5 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -78,7 +113,7 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      16 => array(
+      6 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -94,14 +129,31 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_large',
   );
 
   // Exported image style: ding_nodelist_medium.
   $styles['ding_nodelist_medium'] = array(
     'name' => 'ding_nodelist_medium',
+    'label' => 'ding_nodelist_medium',
     'effects' => array(
-      11 => array(
+      10 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 560,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_medium',
+        ),
+        'weight' => 0,
+      ),
+      8 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -117,7 +169,7 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      12 => array(
+      9 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -133,14 +185,31 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_medium',
   );
 
   // Exported image style: ding_nodelist_mini.
   $styles['ding_nodelist_mini'] = array(
     'name' => 'ding_nodelist_mini',
+    'label' => 'ding_nodelist_mini',
     'effects' => array(
-      7 => array(
+      13 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 260,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_mini',
+        ),
+        'weight' => 0,
+      ),
+      11 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -156,7 +225,7 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      8 => array(
+      12 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -172,52 +241,30 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_mini',
-  );
-
-  // Exported image style: ding_nodelist_small.
-  $styles['ding_nodelist_small'] = array(
-    'name' => 'ding_nodelist_small',
-    'effects' => array(
-      9 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
-        'name' => 'image_scale',
-        'data' => array(
-          'width' => 360,
-          'height' => '',
-          'upscale' => 0,
-        ),
-        'weight' => 1,
-      ),
-      10 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 360,
-          'height' => 266,
-        ),
-        'weight' => 2,
-      ),
-    ),
-    'label' => 'ding_nodelist_small',
   );
 
   // Exported image style: ding_nodelist_pn_large.
   $styles['ding_nodelist_pn_large'] = array(
     'name' => 'ding_nodelist_pn_large',
+    'label' => 'ding_nodelist_pn_large',
     'effects' => array(
+      19 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 920,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_pn_large',
+        ),
+        'weight' => 0,
+      ),
       17 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
@@ -250,14 +297,31 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_pn_large',
   );
 
   // Exported image style: ding_nodelist_pn_medium.
   $styles['ding_nodelist_pn_medium'] = array(
     'name' => 'ding_nodelist_pn_medium',
+    'label' => 'ding_nodelist_pn_medium',
     'effects' => array(
-      19 => array(
+      22 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 690,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_pn_medium',
+        ),
+        'weight' => 0,
+      ),
+      20 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -273,7 +337,7 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      20 => array(
+      21 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -289,14 +353,31 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_pn_medium',
   );
 
   // Exported image style: ding_nodelist_pn_small.
   $styles['ding_nodelist_pn_small'] = array(
     'name' => 'ding_nodelist_pn_small',
+    'label' => 'ding_nodelist_pn_small',
     'effects' => array(
-      21 => array(
+      25 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 340,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_pn_small',
+        ),
+        'weight' => 0,
+      ),
+      23 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -312,7 +393,7 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      22 => array(
+      24 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -328,7 +409,62 @@ function ding_nodelist_image_default_styles() {
         'weight' => 2,
       ),
     ),
-    'label' => 'ding_nodelist_pn_small',
+  );
+
+  // Exported image style: ding_nodelist_small.
+  $styles['ding_nodelist_small'] = array(
+    'name' => 'ding_nodelist_small',
+    'label' => 'ding_nodelist_small',
+    'effects' => array(
+      16 => array(
+        'label' => 'Manual Crop: Custom crop',
+        'help' => 'Crop a freely user-selected area.',
+        'effect callback' => 'manualcrop_crop_effect',
+        'form callback' => 'manualcrop_crop_form',
+        'summary theme' => 'manualcrop_crop_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_crop',
+        'data' => array(
+          'width' => 360,
+          'height' => '',
+          'keepproportions' => 0,
+          'reuse_crop_style' => '',
+          'style_name' => 'ding_nodelist_small',
+        ),
+        'weight' => 0,
+      ),
+      14 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 360,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+      15 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 360,
+          'height' => 266,
+        ),
+        'weight' => 2,
+      ),
+    ),
   );
 
   return $styles;
