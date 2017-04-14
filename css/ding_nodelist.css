@@ -1746,7 +1746,7 @@ fieldset legend {
 .ding_nodelist.ding_nodelist-minimal_display {
   background: #fff;
   clear: both;
-  width: auto !important;
+  width: auto;
   overflow: hidden;
 }
 .ding_nodelist.ding_nodelist-minimal_display .ding_nodelist-title {
