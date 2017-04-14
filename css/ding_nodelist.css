@@ -1744,7 +1744,6 @@ fieldset legend {
 }
 
 .ding_nodelist.ding_nodelist-minimal_display {
-  padding: 15px 15px 3px 15px;
   background: #fff;
   clear: both;
   width: auto !important;
@@ -1801,5 +1800,12 @@ fieldset legend {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 240px !important;
+  max-width: 220px;
+}
+@media only screen and (max-width: 480px) {
+  .tertiary-content .pane-ding-nodelist
+  .ding_nodelist-minimal_display
+  .minimal-item .minimal-title a {
+    max-width: 200px !important;
+  }
 }
