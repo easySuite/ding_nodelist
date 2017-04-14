@@ -2068,6 +2068,6 @@ $promoted-nodes-button-text-4:             $white;
   max-width: 220px ;
 
   @include small() {
-    max-width: 200px !important;
+    max-width: 12em;
   }
 }
