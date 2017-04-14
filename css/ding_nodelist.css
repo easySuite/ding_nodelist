@@ -1806,6 +1806,6 @@ fieldset legend {
   .tertiary-content .pane-ding-nodelist
   .ding_nodelist-minimal_display
   .minimal-item .minimal-title a {
-    max-width: 200px !important;
+    max-width: 12em;
   }
 }
