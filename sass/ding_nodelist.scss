@@ -1998,7 +1998,6 @@ $promoted-nodes-button-text-4:             $white;
 }
 
 .ding_nodelist.ding_nodelist-minimal_display {
-  padding: 15px 15px 3px 15px;
   background: $white;
   clear: both;
   width: auto !important;
@@ -2066,5 +2065,9 @@ $promoted-nodes-button-text-4:             $white;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 240px!important;
+  max-width: 220px ;
+
+  @include small() {
+    max-width: 200px !important;
+  }
 }
