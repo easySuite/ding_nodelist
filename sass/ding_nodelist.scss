@@ -2000,7 +2000,7 @@ $promoted-nodes-button-text-4:             $white;
 .ding_nodelist.ding_nodelist-minimal_display {
   background: $white;
   clear: both;
-  width: auto !important;
+  width: auto;
   overflow: hidden;
 
   .ding_nodelist-title {
