@@ -14,10 +14,10 @@
 #  templates/ding_nodelist.ding_news.text.tpl.php: n/a
 #  plugins/content_types/ding_nodelist.inc: n/a
 #  ding_nodelist.info: n/a
-#  templates/ding_nodelist.ding_event.image_text.tpl.php: n/a
-#  templates/ding_nodelist.ding_event.vaccordion.tpl.php: n/a
+#  templates/ding_nodelist.ding_event.horizontal_accordion.tpl.php: n/a
+#  templates/ding_nodelist.ding_event.vertical_accordion.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.haccordion.tpl.php: n/a
-#  templates/ding_nodelist.ding_news.vaccordion.tpl.php: n/a
+#  templates/ding_nodelist.ding_news.vertical_accordion.tpl.php: n/a
 #
 msgid ""
 msgstr ""
