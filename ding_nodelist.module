@@ -2151,17 +2151,19 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
   if (empty($conf['content_types']) && !empty($conf['content_type'])) {
     $conf['content_types'] = array($conf['content_type']);
   }
-  // Filter by content type/node settings.
-  $query->condition('n.type', $conf['content_types'], 'IN')
-    ->condition('n.status', NODE_PUBLISHED)
-    ->distinct();
+  if (!empty($conf['content_types'])) {
+    // Filter by content type/node settings.
+    $query->condition('n.type', $conf['content_types'], 'IN')
+      ->condition('n.status', NODE_PUBLISHED)
+      ->distinct();
+  }
   if (!empty($conf['content_filter_promoted'])) {
     $query->condition('n.promote', NODE_PROMOTED);
   }
 
   // Filter by date field.
   // @todo: remove hardcode.
-  if (!empty($conf['content_filter_date']) && in_array('ding_event', $conf['content_types'])) {
+  if (!empty($conf['content_filter_date']) && !empty($conf['content_types']) && in_array('ding_event', $conf['content_types'])) {
     $query->join('field_data_field_ding_event_date', 'fed', 'n.nid = fed.entity_id');
     // @todo: NOW() works for visitors from the same timezone.
     $query->where(
