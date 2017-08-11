@@ -1908,22 +1908,22 @@ function _ding_nodelist_init_image_style($widget) {
   // Init image_styles for region.
   switch ($widget) {
     case NL_WIDGET_HOR_ACCORDION:
-      return 'ding_nodelist_medium';
+      return 'ding_nodelist_medium_reused';
 
     case NL_WIDGET_CAROUSEL:
     case NL_WIDGET_SINGLE:
     case NL_WIDGET_VER_ACCORDION:
-      return 'ding_nodelist_medium';
+      return 'ding_nodelist_medium_reused';
 
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
-      return 'ding_nodelist_mini';
+      return 'ding_nodelist_mini_reused';
 
     case NL_WIDGET_ROLLTAB:
-      return 'ding_tabroll_large';
+      return 'ding_tabroll_large_reused';
 
     case NL_WIDGET_PROMOTED_NODES:
-      return 'ding_nodelist_pn_large';
+      return 'ding_nodelist_pn_large_reused';
 
     default:
       return '';
@@ -2151,17 +2151,19 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
   if (empty($conf['content_types']) && !empty($conf['content_type'])) {
     $conf['content_types'] = array($conf['content_type']);
   }
-  // Filter by content type/node settings.
-  $query->condition('n.type', $conf['content_types'], 'IN')
-    ->condition('n.status', NODE_PUBLISHED)
-    ->distinct();
+  if (!empty($conf['content_types'])) {
+    // Filter by content type/node settings.
+    $query->condition('n.type', $conf['content_types'], 'IN')
+      ->condition('n.status', NODE_PUBLISHED)
+      ->distinct();
+  }
   if (!empty($conf['content_filter_promoted'])) {
     $query->condition('n.promote', NODE_PROMOTED);
   }
 
   // Filter by date field.
   // @todo: remove hardcode.
-  if (!empty($conf['content_filter_date']) && in_array('ding_event', $conf['content_types'])) {
+  if (!empty($conf['content_filter_date']) && !empty($conf['content_types']) && in_array('ding_event', $conf['content_types'])) {
     $query->join('field_data_field_ding_event_date', 'fed', 'n.nid = fed.entity_id');
     // @todo: NOW() works for visitors from the same timezone.
     $query->where(
@@ -2577,9 +2579,46 @@ function _ding_nodelist_formated_ding_event_date($event_node) {
  *   or empty array if no image/attributes were found.
  */
 function _ding_nodelist_get_dams_image_info($node, $image_field) {
-  $image = field_get_items('node', $node, $image_field);
-  if ($image) {
-    $image = reset($image);
+  $list_image = field_get_items('node', $node, $image_field);
+
+  if ($image_field == 'field_ding_news_list_image') {
+    $title_image = field_get_items('node', $node,'field_ding_news_title_image');
+
+    if ($list_image[0]['fid'] == $title_image[0]['fid']) {
+      $file_entity = file_load($title_image[0]['fid']);
+      $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
+      // Returning new image into nodelist.
+      $list_image = array(
+        '0' => (array) $img,
+      );
+
+      // Updating image field values.
+      $fid = $img->fid;
+      $alt = $img->field_file_image_alt_text[LANGUAGE_NONE][0]['value'];
+      $title = $img->field_file_image_title_text[LANGUAGE_NONE][0]['value'];
+
+      $node_wrapper = entity_metadata_wrapper('node', $node);
+      $node_wrapper->field_ding_news_list_image->set(
+        array('fid' => $fid, 'alt' => $alt, 'title' => $title)
+      );
+      $node_wrapper->save();
+
+      // Updating 'manualcrop' table with new 'fid'.
+      db_update('manualcrop')
+        ->fields(
+          array(
+            'fid' => $img->fid,
+          )
+        )
+        ->condition('fid', $title_image[0]['fid'], '=')
+        ->condition('style_name', 'ding_list_large', '=')
+        ->execute();
+    }
+  }
+
+  if ($list_image) {
+    $image = reset($list_image);
+
     $path = $image['uri'];
     $title = !empty($image['field_file_image_title_text']) ? $image['field_file_image_title_text']['und'][0]['safe_value'] : '';
     $alt = !empty($image['field_file_image_alt_text']) ? $image['field_file_image_alt_text']['und'][0]['safe_value'] : $title;
