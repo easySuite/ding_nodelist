@@ -11,6 +11,10 @@
   font-weight: bold;
 }
 
+#modalContent .option-text-aligner {
+  display: grid;
+}
+
 /**
  * Tables.
  */
@@ -22,7 +26,7 @@
 }
 #modalContent table td,
 #modalContent table th {
-  vertical-align: middle;
+  vertical-align: top;
   padding: 8px 10px;
   border: 0;
   color: #000;
@@ -131,9 +135,7 @@
   margin: 1em 0;
 }
 #modalContent fieldset .fieldset-legend {
-  margin-top: 0.5em;
   padding-left: 15px; /* LTR */
-  position: absolute;
   text-transform: uppercase;
 }
 #modalContent fieldset .fieldset-wrapper {
@@ -142,6 +144,12 @@
 #modalContent fieldset.collapsed {
   background-color: transparent;
 }
+
+#modalContent #edit-ding-bottom-links-more {
+  background: url("../images/icon-add.png") 250px no-repeat;
+  color: #5a5a5a;
+}
+
 html.js fieldset.collapsed {
   border-width: 1px;
   height: auto;
@@ -175,7 +183,6 @@ html.js fieldset.collapsed {
 }
 #modalContent .form-item label {
   margin: 0;
-  padding: 0;
 }
 #modalContent .form-item label.option {
   font-size: 0.923em;
@@ -191,6 +198,15 @@ html.js fieldset.collapsed {
 #modalContent .form-disabled select.form-select {
   background-color: #eee;
   color: #777;
+}
+
+#modalContent #ding_nodelist-sort-field,
+#modalContent #edit-cache-settings .fieldset-wrapper {
+  float: inherit;
+}
+
+#modalContent #edit-cache-settings .fieldset-title::after {
+  margin-right: 15px;
 }
 
 /* Filter */
@@ -220,7 +236,7 @@ html.js fieldset.collapsed {
 }
 #modalContent div.form-type-radio div.description,
 #modalContent div.form-type-checkbox div.description {
-  margin-left: 1.5em; /* LTR */
+  margin-left: 4em; /* LTR */
 }
 #modalContent input.form-submit,
 #modalContent a.button {
@@ -228,7 +244,6 @@ html.js fieldset.collapsed {
   padding: 4px 17px;
   margin-bottom: 1em;
   margin-right: 1em; /* LTR */
-  color: #5a5a5a;
   text-align: center;
   font-weight: normal;
   font-size: 1.077em;
@@ -237,7 +252,6 @@ html.js fieldset.collapsed {
   border-bottom: 1px solid #b4b4b4;
   border-left-color: #d2d2d2;
   border-right-color: #d2d2d2;
-  background: url(images/buttons.png) 0 0 repeat-x;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
@@ -298,9 +312,13 @@ html.js input.throbbing {
 }
 #modalContent ul.action-links a {
   padding-left: 15px; /* LTR */
-  background: transparent url(images/add.png) no-repeat 0 center;
+  background: transparent url(../images/icon-add.png) no-repeat 0 center;
   line-height: 30px;
 }
 .ding-nodelist-help-text {
   margin-bottom: 10px;
+}
+
+#modalContent #edit-buttons {
+  display: -webkit-inline-box;
 }
