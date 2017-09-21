@@ -986,9 +986,16 @@ fieldset legend {
 }
 /* Tabroll tabs
    ========================================================================== */
+.ding_nodelist-rolltab {
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
 .ding_nodelist-rolltab-wrapper {
   position: relative;
   overflow: hidden;
+  border-radius: 0;
 }
 .ding_nodelist-rolltab-wrapper span.no-image {
   min-height: 295px;
@@ -1038,8 +1045,14 @@ fieldset legend {
   z-index: 1;
   width: 25%;
   height: 100%;
+  border-radius: 0;
+  border: none;
+  background: transparent;
   position: absolute;
-  top: 0;
+  top: 1;
+}
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav .ui-state-default {
+  border: none;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li {
   background: #fff;
@@ -1049,23 +1062,24 @@ fieldset legend {
   white-space: normal;
   margin: 0px;
   padding: 0px;
-  height: 20%;
-  border-top: 1px solid #ccc;
+  height: 19.60%;
+  border-top: 1px solid #ddd !important;
+  border-radius: 0;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover {
-  border-top: 1px solid #00caff;
+  border-top: 1px solid #ddd;
 }
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a {
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover a {
   cursor: pointer;
 }
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a:hover {
-  background: #00caff;
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover a:hover {
+  background: #4d898f;
 }
-.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li a:hover span {
+.ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:hover a span {
   color: #fff;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li:first-child {
-  border-top: none;
+  border-top: none !important;
 }
 .ding_nodelist-rolltab-wrapper .ui-tabs ul.ui-tabs-nav li.ui-tabs-selected {
   background: rgba(0, 0, 0, 0.6);

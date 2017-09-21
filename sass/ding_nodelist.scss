@@ -1269,7 +1269,6 @@ $rolltab-background-color:                $white;
 $rolltab-tab-background-color:            transparentize($black, .4);
 $rolltab-tab-color:                       $white;
 
-
 /* Wrapper, load and inner
    ========================================================================== */
 .ding_nodelist-rolltab-wrapper {
@@ -1309,9 +1308,16 @@ $rolltab-tab-color:                       $white;
 
 /* Tabroll tabs
    ========================================================================== */
+.ding_nodelist-rolltab {
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
 .ding_nodelist-rolltab-wrapper {
   position: relative;
   overflow: hidden;
+  border-radius: 0;
 
   span.no-image {
     min-height: 295px;
@@ -1353,15 +1359,22 @@ $rolltab-tab-color:                       $white;
     ul.ui-tabs-nav {
       @include zen-grid-item(3, 1);
 
+      .ui-state-default {
+        border: none;
+      }
+
       list-style: none;
       margin: 0;
       padding: 0;
       z-index: 1;
       width: 25%;
       height: 100%;
+      border-radius: 0;
+      border: none;
+      background: transparent;
 
       position: absolute;
-      top: 0;
+      top: 1;
 
       li {
         background: $rolltab-tab-color;
@@ -1371,18 +1384,19 @@ $rolltab-tab-color:                       $white;
         white-space: normal;
         margin: 0px;
         padding: 0px;
-        height: 20%;
-        border-top: 1px solid #ccc;
+        height: 19.60%;
+        border-top: 1px solid #ddd !important;
+        border-radius: 0;
 
         &:hover {
-          border-top: 1px solid $blue;
-        }
+          border-top: 1px solid #ddd;
 
         a {
           cursor: pointer;
 
           &:hover {
-            background: $blue;
+            background: #4d898f;
+          }
 
             span {
               color: #fff;
@@ -1391,7 +1405,7 @@ $rolltab-tab-color:                       $white;
         }
 
         &:first-child {
-          border-top: none;
+          border-top: none !important;
         }
 
         &.ui-tabs-selected {
@@ -1804,7 +1818,7 @@ $promoted-nodes-button-text-4:             $white;
         background: $ding_nodelist-node_blocks-items-background-2;
         color: $ding_nodelist-node_blocks-items-color-2;
       }
-      
+
       @include small-medium() {
         &:nth-child(1),
         &:nth-child(2),
