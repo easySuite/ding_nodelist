@@ -246,6 +246,32 @@ $zen-gutters:             20px;
   height: 400px;
   overflow: hidden;
 
+  ul {
+    li {
+      list-style: none;
+
+      .library {
+        // display: inline-block;
+        float: left;
+        clear: left;
+
+        .field-label {
+          display: none;
+        }
+
+        .field-item a {
+          display: inline-block;
+        }
+      }
+
+      .item-price {
+        display: inline-block;
+        clear: left;
+        padding-left: 5px;
+      }
+    }
+  }
+
   .legend {
     float: left;
     width: 300px;
@@ -1082,8 +1108,61 @@ fieldset {
     background-color: $light-gray;
   }
 
+  .event-list-leaf {
+    background: #ccc;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+    .event-list-date-wrapper {
+      display: inline-block;
+      font-size: 75%;
+      margin-right: 10px;
+      min-width: 65px;
+      text-align: center;
+      vertical-align: top;
+
+      .event-list-day {
+        line-height: 16.8px;
+        background-color: #4d898e;
+        color: #ffffff;
+        display: block;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+      }
+
+      .event-list-inner-wrapper {
+        background: #fff;
+      }
+
+      .event-list-date {
+        display: block;
+        font-size: 130%;
+        padding-top: 5px;
+        margin-bottom: -10px;
+      }
+
+      .event-list-month {
+        display: inline-block;
+        font-size: 75%;
+        min-width: 65px;
+        text-align: center;
+        vertical-align: top;
+      }
+    }
+
+    .event-list-fulldate {
+      color: rgba(0,0,0,0.7);
+      display: inline-block;
+      font-size: 130%;
+      font-weight: normal;
+      margin-top: 17px;
+    }
+  }
+
   .event-list-leaf ~ .item {
-    .item-list-image {
+    .item-list-image,
+    .item-library .field-label {
       display: none;
     }
 
@@ -1097,6 +1176,7 @@ fieldset {
     .item-title {
       font-size: 110%;
       margin-right: 25px;
+      margin-bottom: 5px;
     }
 
     .item-body {
@@ -1109,6 +1189,7 @@ fieldset {
       color: rgba(0, 0, 0, 0.7);
       display: inline-block;
       margin-right: 5px;
+      float: left;
     }
 
     .event-arrow-link {
@@ -1148,6 +1229,7 @@ fieldset {
 
     .item-title {
       font-size: 120%;
+      margin-bottom: 5px;
 
       a {
         font-weight: 700;
@@ -1191,6 +1273,7 @@ fieldset {
 
     .news-link {
       float: right;
+      margin-top: 30px;
     }
 
     .item-body {
@@ -1269,6 +1352,7 @@ $rolltab-background-color:                $white;
 $rolltab-tab-background-color:            transparentize($black, .4);
 $rolltab-tab-color:                       $white;
 
+
 /* Wrapper, load and inner
    ========================================================================== */
 .ding_nodelist-rolltab-wrapper {
@@ -1293,6 +1377,27 @@ $rolltab-tab-color:                       $white;
   }
 }
 
+.ding_nodelist-rolltab {
+  border: none;
+  background: inherit;
+
+
+  #ding_nodelist-rolltab {
+    border: none;
+    background: inherit;
+
+    ul {
+      border: none;
+      border-radius: initial;
+
+      li {
+        border-left: none;
+        border-right: none;
+        border-radius: initial;
+      }
+    }
+  }
+}
 
 /* Tabroll tabs navigation
    ========================================================================== */
@@ -1308,16 +1413,9 @@ $rolltab-tab-color:                       $white;
 
 /* Tabroll tabs
    ========================================================================== */
-.ding_nodelist-rolltab {
-  border-radius: 0;
-  border: none;
-  background: transparent;
-}
-
 .ding_nodelist-rolltab-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 0;
 
   span.no-image {
     min-height: 295px;
@@ -1359,22 +1457,15 @@ $rolltab-tab-color:                       $white;
     ul.ui-tabs-nav {
       @include zen-grid-item(3, 1);
 
-      .ui-state-default {
-        border: none;
-      }
-
       list-style: none;
       margin: 0;
       padding: 0;
       z-index: 1;
       width: 25%;
       height: 100%;
-      border-radius: 0;
-      border: none;
-      background: transparent;
 
       position: absolute;
-      top: 1;
+      top: 0;
 
       li {
         background: $rolltab-tab-color;
@@ -1384,19 +1475,18 @@ $rolltab-tab-color:                       $white;
         white-space: normal;
         margin: 0px;
         padding: 0px;
-        height: 19.60%;
-        border-top: 1px solid #ddd !important;
-        border-radius: 0;
+        height: 20%;
+        border-top: 1px solid #ccc;
 
         &:hover {
-          border-top: 1px solid #ddd;
+          border-top: 1px solid $blue;
+        }
 
         a {
           cursor: pointer;
 
           &:hover {
-            background: #4d898f;
-          }
+            background: $blue;
 
             span {
               color: #fff;
@@ -1405,7 +1495,7 @@ $rolltab-tab-color:                       $white;
         }
 
         &:first-child {
-          border-top: none !important;
+          border-top: none;
         }
 
         &.ui-tabs-selected {
@@ -1772,6 +1862,10 @@ $promoted-nodes-button-text-4:             $white;
         }
       }
 
+      .nb-library .field-label {
+        display: none;
+      }
+
       h3 a {
         color: #fff;
         text-shadow: 0 1px 1px rgba(0,0,0,0.3);
@@ -1818,7 +1912,7 @@ $promoted-nodes-button-text-4:             $white;
         background: $ding_nodelist-node_blocks-items-background-2;
         color: $ding_nodelist-node_blocks-items-color-2;
       }
-
+      
       @include small-medium() {
         &:nth-child(1),
         &:nth-child(2),
@@ -1915,6 +2009,26 @@ $promoted-nodes-button-text-4:             $white;
 .ding_nodelist-promoted_nodes {
   .more-links {
     margin-top: 20px;
+  }
+
+  .library {
+    .field-label {
+      display: none;
+    }
+
+    .field-item {
+      display: inline-block;
+    }
+
+    .field-label-inline {
+      display: inline-block;
+      float: left;
+    }
+  }
+
+  .item-price {
+    display: inline-block;
+    clear: left;
   }
 }
 
