@@ -251,7 +251,6 @@ $zen-gutters:             20px;
       list-style: none;
 
       .library {
-        // display: inline-block;
         float: left;
         clear: left;
 
@@ -1110,10 +1109,7 @@ fieldset {
 
   .event-list-leaf {
     background: #ccc;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    padding: 10px;
 
     .event-list-date-wrapper {
       display: inline-block;
@@ -1380,7 +1376,6 @@ $rolltab-tab-color:                       $white;
 .ding_nodelist-rolltab {
   border: none;
   background: inherit;
-
 
   #ding_nodelist-rolltab {
     border: none;
@@ -1912,7 +1907,7 @@ $promoted-nodes-button-text-4:             $white;
         background: $ding_nodelist-node_blocks-items-background-2;
         color: $ding_nodelist-node_blocks-items-color-2;
       }
-      
+
       @include small-medium() {
         &:nth-child(1),
         &:nth-child(2),
