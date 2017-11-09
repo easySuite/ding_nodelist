@@ -227,3 +227,19 @@ $breakpoint-x-large:              1210px;
   height: auto !important;
   height: $value;
 }
+
+// Border-radius
+//==========================================================================
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// Box-shadow
+//==========================================================================
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
