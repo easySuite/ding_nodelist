@@ -47,8 +47,14 @@
   clear: left;
 }
 
-.ding_nodelist-col-full {
-  width: 100%;
+.ding_nodelist-col-full:before {
+  content: "";
+  display: table;
+}
+.ding_nodelist-col-full:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .ding_nodelist-col-half {
@@ -96,9 +102,10 @@
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
-  -webkit-box-shadow: 3px 7px 9px -7px #000000;
+  -webkit-box-shadow: 3px 7px 7px -7px #000000;
   -moz-box-shadow: 3px 7px 7px -7px #000000;
   box-shadow: 3px 7px 7px -7px #000000;
+  -webkit-box-shadow: 3px 7px 9px -7px #000000;
 }
 
 .ding_editorial_event {
@@ -108,6 +115,7 @@
   text-align: justify;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
+  border-radius: 15px;
 }
 
 .node {
@@ -152,9 +160,9 @@
   border-color: #ccc #c1c1c1 #c1c1c1 #ccc;
   border-style: solid;
   border-width: 1px;
-  -webkit-box-shadow: 3px 3px 4px #C9C9C9;
-  -moz-box-shadow: 3px 3px 4px #C9C9C9;
-  box-shadow: 3px 3px 4px #C9C9C9;
+  -webkit-box-shadow: 3px 3px 4px #c9c9c9;
+  -moz-box-shadow: 3px 3px 4px #c9c9c9;
+  box-shadow: 3px 3px 4px #c9c9c9;
 }
 
 .artile_image .field-item {
@@ -398,6 +406,8 @@
 }
 .ding_nodelist-carousel .next-prev .prev:hover,
 .ding_nodelist-carousel .next-prev .next:hover {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
   border-radius: 50px;
   background-color: #ccc;
   text-decoration: none;
@@ -421,6 +431,8 @@
   position: absolute;
 }
 .ding_nodelist-carousel .pagination a {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
   border-radius: 50px;
   background-color: #ccc;
   display: block;
@@ -470,7 +482,7 @@
 }
 .ding_nodelist-carousel .article_image img,
 .ding_nodelist-carousel .event-image img {
-  display: none;
+  display: block;
   margin: 0 auto;
   width: 100%;
   height: auto;
@@ -496,6 +508,8 @@
   overflow: hidden;
 }
 .ding_nodelist-horizontal_accordion .expand {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
   border-radius: 50px;
   position: absolute;
   bottom: 75px;
@@ -726,6 +740,8 @@
   display: none;
 }
 .ding_nodelist-slider .next-prev a {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
   border-radius: 50px;
   position: absolute;
   display: block;
@@ -1806,6 +1822,8 @@ fieldset legend {
   width: 30px;
   height: 30px;
   background: #fff;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
   border-radius: 100px;
   cursor: pointer;
   text-align: center;
@@ -1825,6 +1843,8 @@ fieldset legend {
   right: 10px;
   bottom: 22px;
   background: #fff;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
   border-radius: 100px;
   width: 40px;
   height: 40px;
