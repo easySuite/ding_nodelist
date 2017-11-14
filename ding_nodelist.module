@@ -1917,6 +1917,7 @@ function _ding_nodelist_init_image_style($widget) {
 
     case NL_WIDGET_TAXONOMY_LIKE:
     case NL_WIDGET_SLIDER:
+    case NL_WIDGET_NODE_BLOCKS:
       return 'ding_nodelist_mini_reused';
 
     case NL_WIDGET_ROLLTAB:
