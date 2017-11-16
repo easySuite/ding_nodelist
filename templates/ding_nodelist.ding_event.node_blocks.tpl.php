@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Ding event node blocks template.
@@ -32,7 +33,7 @@ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
       $fee_field = field_get_items('node', $item, 'field_ding_event_price');
       if (is_array($fee_field)) {
         $fee = current($fee_field);
-        print $fee['value'] . ' ' . t('kr.');
+        print $fee['value'] . ' ' . $currency;
       }
       else {
         print t('Free');

@@ -1,9 +1,7 @@
-name = easyDDB Nodelist
+name = Ding Nodelist
 description = Module for creating lists.
 core = 7.x
-package = easyOPAC
-version = 7.x-3.1.0
-project = ding_nodelist
+package = Ding!
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = image

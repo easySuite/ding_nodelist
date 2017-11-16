@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Ding news promoted nodes template.
@@ -16,7 +17,6 @@ $news_date = date('d.m.y', $item->created);
 if ($item->created != $item->changed) {
   $news_date = date('d.m.y', $item->changed);
 }
-
 $classes = array();
 $classes[] = "ding_nodelist-pn-item";
 $classes[] = (empty($image_path) ? 'no-bgimage' : NULL);
@@ -50,17 +50,7 @@ $classes = implode(" ", $classes);
       <?php print $news_date; ?>
 
     <div class="item-body">
-      <?php
-      if (isset($lead[0]['safe_value'])) {
-        print strip_tags($lead[0]['safe_value']);
-      }
-      elseif (isset($teaser[0]['safe_value'])) {
-        print strip_tags($teaser[0]['safe_value']);
-      }
-      else {
-        print '';
-      }
-      ?>
+      <?php print $item->teaser_lead; ?>
     </div>
 
     <div class="read-more">

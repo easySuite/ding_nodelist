@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Ding news node blocks template.
