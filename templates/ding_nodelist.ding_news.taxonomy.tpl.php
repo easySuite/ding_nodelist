@@ -64,8 +64,8 @@ $teaser = field_get_items('node', $item, 'field_ding_news_body');
       }
       ?>
     </div>
-    <div class="news-link more-link">
+  </div>
+  <div class="news-link more-link">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
-    </div>
   </div>
 </div>
