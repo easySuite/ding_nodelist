@@ -1173,7 +1173,7 @@ $label-bg: url('../images/p.png');
   .first-left-block {
     color: $white;
     height: 300px;
-    @include span(3 of 5);
+    @include span(3 of 4.5);
     padding: 0;
     margin-right: 0;
 
