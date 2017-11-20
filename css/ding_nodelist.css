@@ -932,7 +932,7 @@
   padding: 0;
 }
 .ding_nodelist-rolltab .ding_nodelist-rolltab-wrapper div.image {
-  min-height: 351px;
+  height: 335px;
 }
 .ding_nodelist-rolltab .ding_nodelist-rolltab-wrapper div.image span.no-image {
   background-color: #fff;
@@ -1154,7 +1154,7 @@
   float: right;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-image {
-  min-height: 263px;
+  height: 235px;
   background: #fff;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-image img {

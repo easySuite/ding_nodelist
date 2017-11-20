@@ -1053,7 +1053,7 @@ $label-bg: url('../images/p.png');
     }
 
     div.image {
-      min-height: 351px;
+      height: 335px;
       span.no-image {
         background-color: $white;
         width: 100%;
@@ -1286,7 +1286,7 @@ $label-bg: url('../images/p.png');
       }
 
       .nb-image{
-        min-height: 263px;
+        height: 235px;
         background: #fff;
 
         img {
