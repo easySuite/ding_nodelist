@@ -466,7 +466,7 @@ msgid "Manage content templates."
 msgstr "Administrer indholdsskabeloner."
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
-msgid "easyDDB Nodelist"
+msgid "easyOPAC Nodelist"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
@@ -474,7 +474,7 @@ msgid "Module for creating lists."
 msgstr "Modul til at lave indholdslister."
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.info:0
-msgid "easyDDB"
+msgid "easyOPAC"
 msgstr ""
 
 #: profiles/ding2/modules/ding_nodelist/plugins/content_types/ding_nodelist.inc:12
