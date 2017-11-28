@@ -24,7 +24,7 @@ $classes[] = (isset($item->has_video) ? 'has-video' : NULL);
 $classes = implode(" ", $classes);
 ?>
 <div
-  class="<?php print $classes; ?>"
+  class="<?php print $classes; ?> nb-image"
   <?php if (!empty($image_path)): ?>
     <?php if ($condition): ?>
       style="background: url(<?php print $image_path; ?>);"
@@ -45,7 +45,7 @@ $classes = implode(" ", $classes);
   <?php endif; ?>
   <div class="event-info">
     <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
-    <div class="item-body">
+    <div class="item-event-body">
       <?php print $item->teaser_lead; ?>
     </div>
     <div class="item-date"><?php print $event_date_formatted; ?></div>

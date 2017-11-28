@@ -47,7 +47,7 @@ $classes = implode(" ", $classes);
   <div class="news-info">
     <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
       <?php print drupal_render($category); ?>
-      <?php print $news_date; ?>
+      <div class="item-date"> <?php print $news_date; ?></div>
 
     <div class="item-body">
       <?php print $item->teaser_lead; ?>
