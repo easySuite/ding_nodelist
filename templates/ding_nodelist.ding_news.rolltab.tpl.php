@@ -25,4 +25,4 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
       </p>
     </div>
   </div>
-</div> 
+</div>
