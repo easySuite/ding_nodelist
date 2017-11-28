@@ -18,9 +18,6 @@
       <?php if (!empty($conf['title'])): ?>
         <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
       <?php endif; ?>
-      <?php if (!empty($links)): ?>
-        <?php print theme('_more_links', array('links' => $links)); ?>
-      <?php endif; ?>
     </div>
     <ul class="ding_nodelist-items">
       <?php
@@ -33,5 +30,8 @@
       <a class="prev" href="#"><span>prev</span></a>
       <a class="next" href="#"><span>next</span></a>
     </div>
+    <?php if (!empty($links)): ?>
+        <?php print theme('_more_links', array('links' => $links)); ?>
+      <?php endif; ?>
   </div>
 <?php endif; ?>
