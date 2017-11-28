@@ -74,6 +74,5 @@ $classes = implode(" ", $classes);
         <div class='play round'><i class='icon-play'></i></div>
       </div>
     <?php endif; ?>
-
   </div>
 </div>
