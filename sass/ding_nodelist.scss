@@ -35,6 +35,15 @@ $label-bg: url('../images/p.png');
     font-size: 85%;
   }
 
+  h3 a {
+    font-family: FaktPro-SemiBold,sans-serif;
+  }
+
+  span,
+  p {
+    font-family: FaktPro-Normal,sans-serif;
+  }
+
   .node > p {
     margin: 10px 0;
   }
@@ -103,23 +112,8 @@ $label-bg: url('../images/p.png');
     letter-spacing: .5px;
   }
 
-  // Category
-  .label {
-    margin: 10px 5px;
-  }
-
   .label-wrapper {
     margin: 10px 0;
-  }
-
-  // Node info wrapper
-  .node,
-  &.ding_nodelist-horizontal_accordion .data {
-    min-height: 40px;
-    overflow: hidden;
-    background-color: $grey-transparent-bg;
-    color: $white;
-    padding: 10px;
   }
 
     // More link
@@ -141,16 +135,26 @@ $label-bg: url('../images/p.png');
     z-index: 49;
     width: 100%;
   }
-}
 
-//Info
-.node {
-  height: auto;
-  padding: 10px 15px;
-  margin-top: 20px;
-  text-align: justify;
-  vertical-align: baseline;
-  color: #5f6a5f;
+  .more-links {
+    float: right;
+    display: block;
+
+    ul {
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-left: 10px;
+
+      a {
+        margin-top: 20px;
+        width: 170px;
+      }
+    }
+  }
 }
 
 // Ding nodelist single item
@@ -224,16 +228,37 @@ $label-bg: url('../images/p.png');
   height: 391px;
   overflow: inherit;
 
+  .label-wrapper a,
+  .field-name-field-ding-event-category {
+    margin-left: 10px;
+    color: $color-standard-text;
+  }
+
   .item {
     position: relative;
     height: 391px;
 
     .node {
       padding-left: 10px;
+      min-height: 120px;
+
+      p {
+        font-size: 18px;
+        color: $white;
+      }
 
       .library .field-label {
         display: none;
       }
+    }
+
+    .article-info {
+      background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 60%);
+      height: auto;
+    }
+
+    .item-date {
+      color: $white;
     }
   }
 
@@ -321,6 +346,7 @@ $label-bg: url('../images/p.png');
     margin: 3px 0;
     padding: 0;
     text-align: left;
+    font-size: 24px;
 
     a {
       margin-right: 10px;
@@ -371,12 +397,26 @@ $label-bg: url('../images/p.png');
   }
 }
 
+.nl-link .more-links {
+  float: right;
+
+  li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+
 // Horizontal accordion
 //==========================================================================
 
 .ding_nodelist-horizontal_accordion {
   background: $black;
   overflow: hidden;
+
+  ul.ding_nodelist-items {
+    margin: 0;
+  }
 
   // Item
   .item {
@@ -430,6 +470,23 @@ $label-bg: url('../images/p.png');
       }
     }
 
+    &:hover {
+      .data {
+        padding-top: 60px;
+        position: absolute;
+        height: 100%;
+      &::after{  background-color: $black-overlay;
+        padding-top: 60px;
+        position: absolute;
+        height: 100%;}
+
+        .teaser {
+          opacity: 1;
+          height: auto;
+        }
+      }
+    }
+
     .image img {
       opacity: 1;
     }
@@ -475,12 +532,30 @@ $label-bg: url('../images/p.png');
 
   // Data block
   .data {
-    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 10px;
     color: $white;
+    @include transition(height $speed*3 $ease);  
+    background-color: transparent;
+    background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 50%);
+    font-size: 18px;
+    line-height: 24px;
+    position: absolute;
+    height: 100px;
+    padding: 10px 10px 10px 25px;
+
+    a {
+      padding-bottom: 10px;
+    }
+
+    .teaser {
+      opacity: 0;
+      height: 0;
+      font-size: 18px;
+
+     p { margin: 0;}
+    }
 
     span,
     .event-fee {
@@ -489,6 +564,8 @@ $label-bg: url('../images/p.png');
 
     a {
       color: $white;
+      font-size: 24px;
+      padding-bottom: 10px;
 
       @include media($mobile) {
         white-space: nowrap; 
@@ -505,7 +582,7 @@ $label-bg: url('../images/p.png');
 
     h3 {
       max-height: 30px;
-      margin: 5px 0;
+      padding-top: 15px;
     }
   }
 
@@ -601,11 +678,33 @@ $label-bg: url('../images/p.png');
 
 .ding_nodelist-slider {
   position: relative;
-  background-color: $white;
   padding-top: 10px;
+  width: 100%;
+
+  .more-links {
+    float: none;
+    display: block;
+
+    li {
+      display: block;
+    }
+
+    @include media($mobile) {
+      display: none;
+
+    }
+  }
 
   .item {
-    min-height: 122px;
+    min-height: auto;
+    @include media($tablet) {
+      max-width: 500px;
+      width: 100%;
+
+      @include media($mobile) {
+        height: auto !important;
+      }
+    }
   }
 
   // Title
@@ -613,6 +712,7 @@ $label-bg: url('../images/p.png');
     background: none;
     color: $black;
     padding: 0;
+    font-family: FaktPro-Normal,sans-serif;
   }
 
   .item-body {
@@ -630,13 +730,21 @@ $label-bg: url('../images/p.png');
   .category {
     float: right;
     margin-top: 4px;
-    padding-right: 10px;
+    padding-right: 15px;
+    position: relative;
+    top: -30px;
+
+
+    @include media($mobile) {
+      float: none;
+      position: initial;
+    }
   }
 
   .legend {
 
     @include media($notebook) {
-      float: right;
+      //float: right;
       margin-bottom: 10px;
       padding-right: 2em;
     }
@@ -656,7 +764,8 @@ $label-bg: url('../images/p.png');
   .ding_nodelist-items {
     float: right;
     margin-right: 40px;
-    width: 600px;  margin-right: 40px;
+    width: 600px; 
+    margin-right: 40px;
 
     // Media medium
     @include media($tablet) {
@@ -666,8 +775,9 @@ $label-bg: url('../images/p.png');
 
     // Media medium
     @include media($mobile) {
-      width: 600px;
+      width: 100%;
       padding-left: 10px;
+      padding-right: 40px;
       padding-top: 0;
     }
   }
@@ -727,10 +837,6 @@ $label-bg: url('../images/p.png');
       height: 24px;
       background-color: $color-primary;
       color: $white;
-
-      &:hover {
-        background-color: $grey-medium;
-      }
 
       &:after {
         display: inline-block;
@@ -794,7 +900,7 @@ $label-bg: url('../images/p.png');
 
   .legend {
     float: left;
-    width: 300px;
+   // width: 300px;
   }
 }
 
@@ -813,11 +919,9 @@ $label-bg: url('../images/p.png');
 }
 
 .ding_nodelist-taxonomy {
-  background-color: $grey-light;
   padding: 15px;
 
   .event-list-leaf {
-    background: $grey-medium;
     padding: 10px;
 
     .event-list-date-wrapper {
@@ -930,7 +1034,22 @@ $label-bg: url('../images/p.png');
     }
 
     .item-byline {
-     display: none;
+      .label {
+        display: inline-block;
+        margin: 0;
+        
+        a.label-info {
+          margin: 0;
+        }
+      }
+
+      .date {
+        display: inline-block;
+      }
+
+      .author {
+        display: none;
+      }
     }
 
     .item-title {
@@ -946,12 +1065,18 @@ $label-bg: url('../images/p.png');
     }
 
     .news-link {
-      padding: 20px;
+      margin: 20px;
       float: right;
-      display: inline;
+
+      @include  media($tablet) {
+        position: absolute;
+        bottom: 5px;
+        right: 0; 
+        margin: 10px;
+      }
 
       @include  media($mobile) {
-        display: block;
+        position: relative;
       }
     }
 
@@ -959,15 +1084,23 @@ $label-bg: url('../images/p.png');
       margin-top: 1em;
       margin-bottom: 1em;
 
+      @include  media($tablet) {
+        padding-right: 155px;
+      }
+
+
       @include  media($mobile) {
-        color: rgba(0, 0, 0, 0.7);
-        padding: 10px;
+        padding-right: 0;
       }
     }
 
     .item-details,
     .item-list-image {
       padding: 20px;
+
+      @include  media($tablet,$mobile) {
+        padding: 10px;
+      }
     }
 
     .item-details,
@@ -1001,6 +1134,10 @@ $label-bg: url('../images/p.png');
 .ding_nodelist-rolltab {
   border: none;
 
+  .ding_nodelist-rolltab-select-tabs {
+    display: none;
+  }
+
   &.ui-widget-content {
     background: transparent;
   }
@@ -1022,12 +1159,35 @@ $label-bg: url('../images/p.png');
       background: transparent;
 
       a {
-        padding-left: 0;
+        padding-left: 0;  
+        
+        @include media($tablet) {
+          white-space: nowrap;
+          width: 6em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        @include media($mobile) {
+          width: auto;
+        }
       }
 
       &.ui-state-default {
         @include media($mobile) {
-          display: none;
+          background: transparent;
+          border: none;
+        }
+      }
+
+      span {
+        color: $charcoal-opacity-dark;
+        font-size: 14px;
+
+        &:hover {
+          border-bottom: solid 3px $color-text-link;
+          padding-bottom: 5px;
+          color: $color-standard-text;
         }
       }
 
@@ -1035,16 +1195,14 @@ $label-bg: url('../images/p.png');
         span {
           border-bottom: solid 3px $color-text-link;
           padding-bottom: 5px;
+          color: $color-standard-text;
         }
 
-        @include media($mobile) {
-          display: block;
-        }
       }
     }
 
-    ul.ui-tabs-nav {
-      padding-bottom: 5px;
+    .ui-tabs-nav {
+      margin-bottom: 10px;
     }
 
     .ui-tabs,
@@ -1053,50 +1211,14 @@ $label-bg: url('../images/p.png');
     }
 
     div.image {
-      height: 335px;
       span.no-image {
         background-color: $white;
         width: 100%;
       }
     }
 
-    .info {
-      background-color: transparent;
-      background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
-      font-size: 18px;
-      line-height: 24px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      color: $white;
-      padding-bottom: 25px;
-
-      h3 {
-        margin: 0;
-        font-size: 30px;
-
-        a {
-          color: $white;
-          display: block;
-          margin: 0;
-          padding: 40px 15px 15px;
-        }
-      }
-
-      p {
-        float: left;
-        display: block;
-        margin-bottom: 0;
-        padding: 0 15px;
-        width: 50%;
-        font-size: 20px;
-        font-weight: bold;
-
-        @include media($mobile) {
-          width: auto;
-        }
-      }
+    .info p  {
+      margin-right: 10px!important;
     }
   }
 }
@@ -1105,6 +1227,10 @@ $label-bg: url('../images/p.png');
 //==========================================================================
 .ding_nodelist-promoted_nodes {
   width: inherit;
+
+  .more-links {
+    margin-right: 12px;
+  }
 
   .first-row,
   .last-row {
@@ -1120,6 +1246,14 @@ $label-bg: url('../images/p.png');
     padding: 5px;
     position: relative;
     box-sizing: border-box;
+
+    .item-body,
+    .item-event-body {
+      opacity: 0;
+      color: $white;
+      height: 0;
+      @include transition(opacity $speed $ease);      
+    }
 
     h3 {
       font-size: 120%;
@@ -1150,7 +1284,6 @@ $label-bg: url('../images/p.png');
     }
 
     .library,
-    .item-body,
     .read-more a {
       display: none;
     }
@@ -1177,12 +1310,70 @@ $label-bg: url('../images/p.png');
     padding: 0;
     margin-right: 0;
 
-    a {
+    .field-name-field-ding-news-category a {
+      display: block;
+      color: $color-text;
+    }
+
+    h3 a {
       color: $white;
+      font-family: FaktPro-SemiBold,sans-serif;
+      font-size: 30px;
+    }
+
+    &:hover {
+      .news-info,
+      .event-info,
+      .page-info {
+        padding-top: 30px;
+        position: absolute;
+        margin-top: -10px;
+        height: 100%;
+        z-index: 1;
+
+        @include media($tablet,$mobile) {
+          background-color: transparent;
+          background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
+          height: auto;
+        }
+      }
+
+      .nb-image:after {
+        background-color: $black-overlay;
+        content: ' ';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 0;
+      }
+
+      .item-body,
+      .item-event-body {
+        position: absolute;
+        margin-top: 10px;
+        opacity: 1;
+        margin-left: 0;
+        color: $white;
+        height: 100px;
+        
+        @include media($tablet,$mobile) {
+          opacity: 0;
+          height: 0;
+        }
+      }
+
+      .item-event-body {
+        margin-top: 50px;
+        height: 100px;
+      }
     }
 
     .news-info,
-    .event-info {
+    .event-info,
+    .page-info {
+      @include transition(height $speed $ease);  
       background-color: transparent;
       background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
       font-size: 18px;
@@ -1191,17 +1382,42 @@ $label-bg: url('../images/p.png');
       bottom: 0;
       left: 0;
       width: 100%;
-      color: $white;
+      height: 100px;
       padding-bottom: 25px;
       padding-left: 10px;
+    }
+
+    .item-event-body {
+      height: 0;
     }
 
     @include  media($mobile) {
       @include span(3 of 3);
       clear: both;
       height: 100%;
-      margin-bottom: 10px;
       padding: 0;
+    }
+  }
+
+  .last-left-block,
+  .first-right-block {
+    @include  media($mobile) {
+      margin-left: 0;
+      margin: 0;
+
+      .news-info,
+      .event-info,
+      .page-info {
+        line-height: 24px;
+        position: absolute;
+        bottom: 0px;
+        left: 10px;;
+        width: 100%;
+      }
+
+      img {
+        height: 100%;
+      }
     }
   }
 
@@ -1211,6 +1427,11 @@ $label-bg: url('../images/p.png');
 
     @include  media($mobile) {
       margin-left: 0;
+      margin: 0;
+
+      img {
+        height: 100%;
+      }
     }
   }
 
@@ -1223,6 +1444,58 @@ $label-bg: url('../images/p.png');
   
     .ding_nodelist-pn-item  {
       padding: 0;
+      position: relative;
+
+      img {
+        height: 200px;
+        @include  media($mobile) {
+          height: 100%;
+        }
+      }
+
+      .news-info {
+        margin-top: 10px;
+      }
+      
+      &:hover {
+        .news-info,
+        .event-info,
+        .page-info {
+          &::after {
+            background-color: $black-overlay;
+            width: 100%;
+            content: ".";
+            position: absolute;
+            height: 200px;
+            width: 100%;
+            top: 0;
+              @include media($notebook) {
+                height: 216px;
+              }
+
+            @include media($tablet,$mobile) {
+              background-color: transparent;
+              width: 100%;
+              content: "";
+            }
+          }
+         }
+
+        .item-body,
+        .item-event-body {
+          position: absolute;
+          opacity: 1;
+          top: 10px; 
+          margin-left: 0;
+          z-index: 1;
+          padding: 5px;
+
+          @include media($tablet,$mobile) {
+            opacity: 0;
+            height: 0;
+          }
+        }
+      }
     }
 
     h3 {
@@ -1242,12 +1515,33 @@ $label-bg: url('../images/p.png');
       @include span(3 of 3);
       clear: both;
       height: 300px;
-      margin-bottom: 10px;
     }
   }
 
   .ding_nodelist-pn-item {
     height: 100%;
+  }
+
+  @include media($mobile) {
+    .ding_nodelist-pn-item {
+      h3 a {
+        font-family: FaktPro-SemiBold,sans-serif;
+        font-size: 18px;
+        line-height: 24px;
+        color: $white;
+      }
+
+      .item-date {
+        color: $white-opacity-dark;
+        font-size: 16px;
+      }
+
+      .field-name-field-ding-news-category a {
+        display: block;
+        color: $color-text;
+        font-size: 16px;
+      }
+    }
   }
 }
 
@@ -1258,50 +1552,184 @@ $label-bg: url('../images/p.png');
   margin-left: -10px;
   margin-right: -10px;
   width: inherit;
+  overflow: initial;
+
+  .more-links {
+    margin-right: 25px;
+  }
 
   .ding_nodelist-items {
+
+    &:after { 
+      content: "."; 
+      visibility: hidden; 
+      display: block; 
+      height: 0; 
+      clear: both;
+    }
+
     .nb-item {
-      height: auto;
       margin-bottom: 20px;
-      text-shadow: 0 0 1px rgba(0,0,0,0.3);
-      width: 100%;
       height: 100%;
       display: block;
-      @include span(1 of 1);
+      position: relative;
+
+      &.is-hovered {
+        z-index: 2;
+      }
+
+      &:after { 
+        content: "."; 
+        visibility: hidden; 
+        display: block; 
+        height: 0; 
+        clear: both;
+      }
+
+
+      .nb-inner {
+        @include transition(
+          width $speed $ease,
+          background-color $speed $ease,
+          box-shadow $speed $ease
+        );
+
+        position: absolute;
+        width: 100%;
+        padding: 10px;
+
+       &:after { 
+        content: "."; 
+        visibility: hidden; 
+        display: block; 
+        height: 0; 
+        clear: both;
+      }
+    }
+
+      .title-and-lead {
+        @include transition(
+          min-height $speed $ease
+        );
+        min-height: 25px;
+        width: 100%;
+      }
+
+      .more-link {
+        @include transition(
+          min-height $speed $ease
+        );
+        min-height: 5px;
+        opacity: 0;
+        a {
+          height: 0;
+        }
+      }
+
+      &.ding_event .nb-inner,
+      &.ding_news .nb-inner,
+      &.ding_page .nb-inner {
+        background: $grey;
+        color: $white;
+      }
+
+      .nb-image{
+        margin: -10px -10px 10px -10px;
+        z-index: 1;
+
+        img { 
+          width: 100%;
+          height: 200px;
+          max-width: 352px;
+        }
+
+        @include media($notebook) {
+          height: auto;
+          min-height: auto; 
+          background: transparent;
+        }
+
+        @include media($tablet) {
+          height: auto;
+          min-height: auto; 
+          background: transparent;
+        }
+
+        @include media($mobile) {
+          display: none;
+        }
+      }
+
+      &:hover {
+        .nb-inner {
+          width: 115%;
+          background: $white;
+          box-shadow: $box-shadow;
+          z-index: 1;
+
+          // Tablet
+          @include media($tablet) {
+            width: 110%;
+          }
+
+          // Mobile
+          @include media($mobile) {
+            width: 100%;
+            background-color: $grey;
+            box-shadow: none;
+          }
+        }
+
+        .title-and-lead {
+          width: 100%;
+
+          .nb-teaser {
+            opacity: 1;
+            height: auto;
+          }
+        }
+        .more-link {
+          opacity: 1;
+          float: right;
+          a {
+            height: auto;
+          }
+        }
+      }
 
       &:nth-child(1),
       &:nth-child(2),
       &:nth-child(3),
       &:nth-child(4),
       &:nth-child(5),
-      &:nth-child(6),
-      &:nth-child(7),
-      &:nth-child(8) {
-        @include span(3 of 9.2);
+      &:nth-child(6) {
+        @include span(3 of 9.3);
       }
 
       &:nth-child(4),
-      &:nth-child(8) {
+      &:nth-child(5) {
        float: right;
+       left: -10px;
       }
 
-      .nb-image{
-        height: 235px;
-        background: #fff;
+      &:nth-child(4) {
+        clear: both;
+       }
 
-        img {
-          width: 100%;
+      .nb-teaser {
+        opacity: 0;
+        height: 0;
+        width: 330px;
+        padding-right: 10px;
+        color: $color-standard-text;
+
+        @include media($tablet) {
+          width: auto;
         }
 
         @include media($mobile) {
-          min-height: 80px;
-          background: #fff;
+          display: none;
         }
-      }
-
-      .nb-inner {
-        padding: 10px;
-        height: auto;
       }
 
       .nb-event-date,
@@ -1337,23 +1765,9 @@ $label-bg: url('../images/p.png');
         }
       }
 
-      h3 a {
-        color: $color-text-link;
-      }
-
       &.ding_event h3,
       &.ding_news h3 {
         margin-bottom: 10px;
-      }
-
-      &.ding_event .nb-inner {
-        background: $grey;
-        color: $white;
-      }
-
-      &.ding_news .nb-inner {
-        background: $grey;
-        color: $white;
       }
 
       @include  media($mobile) {
@@ -1376,53 +1790,12 @@ $label-bg: url('../images/p.png');
 
 // Minimal nodelist
 //==========================================================================
-
-.ding_nodelist-minimal-items {
-  .minimal-item {
-    display: inline-block;
+table {
+  tr.minimal-item {
     width: 100%;
-    margin-bottom: -.46em;
 
-    .minimal-title {
-      float: left;
-      padding: 6px 10px 0 10px;
-      a {
-        display: inline-block;
-        font-weight: bold;
-        color: $black;
-      }
-    }
-
-    .minimal-date {
-      float: right;
-      padding: 10px 20px 0 0;
-      color: rgba(0, 0, 0, 0.87);
-    }
-  }
-
-  .even {
-    background: $grey-light;
-  }
-
-  .odd {
-    background: $grey;
-  }
-}
-
-.pane-ding-nodelist {
-  .pane-content {
-    height: 100%;
-  }
-
-  .ding_nodelist-minimal_display
-  .minimal-item .minimal-title a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 220px;
-
-    @include media($mobile) {
-      max-width: 12em;
+    td.minimal-date {
+      width: 20%;
     }
   }
 }
