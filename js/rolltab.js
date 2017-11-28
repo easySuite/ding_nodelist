@@ -29,7 +29,7 @@
       // Start tabs rotate when mouse is out.
       rolltab.mouseleave(function() {
         if (!tab_selected) {
-          rolltab.tabs().tabs("rotate", 500000);
+          rolltab.tabs().tabs("rotate", 5000);
         }
       });
     }
