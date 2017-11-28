@@ -46,7 +46,7 @@ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
         ?>
       </span>
     </div>
-    <div class="news-link more-link">
+    <div class="news-link button">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
     </div>
   </div>
