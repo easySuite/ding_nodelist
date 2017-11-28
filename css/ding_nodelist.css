@@ -1463,6 +1463,7 @@
   height: 100%;
   display: block;
   position: relative;
+  padding: 0 15px 10px 15px;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.is-hovered {
   z-index: 2;
@@ -1475,9 +1476,6 @@
   clear: both;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-inner {
-  -webkit-transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   position: absolute;
   width: 100%;
   padding: 10px;
@@ -1490,21 +1488,14 @@
   clear: both;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead {
-  -webkit-transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  min-height: 25px;
   width: 100%;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .more-link {
-  -webkit-transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  min-height: 5px;
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .button {
   opacity: 0;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .more-link a {
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .button a {
   height: 0;
+  color: #262627;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_event .nb-inner, .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_news .nb-inner, .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.ding_page .nb-inner {
   background: #e5e5e5;
@@ -1539,6 +1530,9 @@
   }
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
+  -webkit-transition: width 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: width 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: width 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   width: 115%;
   background: #fff;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.3);
@@ -1558,17 +1552,33 @@
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead {
   width: 100%;
+  -webkit-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead a, .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead div {
+  color: #262627;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead .nb-teaser {
+  -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 1;
   height: auto;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .more-link {
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button {
+  -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 1;
   float: right;
+  margin-top: 10px;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .more-link a {
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button a {
   height: auto;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button:hover a {
+  color: #fff;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(1), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(2), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(3), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(5), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(6) {
   width: 30.76923%;
