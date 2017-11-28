@@ -29,18 +29,10 @@
       // Start tabs rotate when mouse is out.
       rolltab.mouseleave(function() {
         if (!tab_selected) {
-          rolltab.tabs().tabs("rotate", 5000);
+          rolltab.tabs().tabs("rotate", 500000);
         }
       });
     }
-
-    // Add mouseover event to select tabs options.
-    $('.ui-tabs-nav-item', rolltab).mouseover(function(e) {
-      e.preventDefault();
-      rolltab.tabs({event: "mouseover"}).tabs('rotate', 0);
-      tab_selected = true;
-      return false;
-    });
 
     // Add click event on selected tab to redirect user to selected tab node.
     $(".ui-tabs-nav-item span").click(function () {
