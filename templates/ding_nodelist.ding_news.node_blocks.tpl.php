@@ -24,7 +24,7 @@ if ($item->created < $item->changed) {
     <div class="title-and-lead">
       <h3><?php print l($item->title, 'node/' . $item->nid); ?></h3>
       <div class="nb-teaser">
-        <?php print $item->teaser_lead; ?>
+        <span><?php print $item->teaser_lead; ?></span>
       </div>
     </div>
     <div class="news-link button">

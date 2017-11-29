@@ -27,7 +27,7 @@ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
     <div class="title-and-lead">
       <h3><?php print l($item->title, 'node/' . $item->nid); ?></h3>
       <div class="nb-teaser">
-        <?php print $item->teaser_lead; ?>
+       <span> <?php print $item->teaser_lead; ?></span>
       </div>
     </div>
     <div class="nb-library"><?php print drupal_render($library); ?></div>
