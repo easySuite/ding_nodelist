@@ -1584,8 +1584,12 @@ $label-bg: url('../images/p.png');
         clear: both;
       }
 
-
       .nb-inner {
+        @include transition(
+          width $speed $ease,
+          background-color $speed $ease,
+          box-shadow $speed $ease
+        );
         position: absolute;
         width: 100%;
         padding: 10px;
@@ -1600,11 +1604,20 @@ $label-bg: url('../images/p.png');
     }
 
       .title-and-lead {
+        @include transition(
+          min-height $speed*3 $ease
+        );
+        min-height: 25px;
         width: 100%;
+
+        .nb-teaser {
+          height: 0;
+        }
       }
 
       .button {
         opacity: 0;
+        height: 0;
         a {
           height: 0;
           color:  $color-text;
@@ -1645,64 +1658,69 @@ $label-bg: url('../images/p.png');
         }
       }
 
-      &:hover {
-        .nb-inner {
-          @include transition(
-            width $speed $hover-delay $ease,
-            background-color $speed $ease,
-            box-shadow $speed $ease
-          );
-          width: 115%;
-          background: $white;
-          box-shadow: $box-shadow;
-          z-index: 1;
+      .no-touch & {
+        &:hover {
+          .nb-inner {
+            width: 115%;
+            background: $white;
+            box-shadow: $box-shadow;
+            z-index: 1;
 
-          // Tablet
-          @include media($tablet) {
-            width: 110%;
+            // Tablet
+            @include media($tablet) {
+              width: 110%;
+            }
+
+            // Mobile
+            @include media($mobile) {
+              width: 100%;
+              background-color: $grey;
+              box-shadow: none;
+            }
           }
 
-          // Mobile
-          @include media($mobile) {
+          .title-and-lead {
             width: 100%;
-            background-color: $grey;
-            box-shadow: none;
-          }
-        }
-
-        .title-and-lead {
-          width: 100%;
-          @include transition(
-            min-height $speed $hover-delay $ease
-          );
-          //min-height: 41px;
-
-          a, div {
-          color: $color-text;
-          }
-          .nb-teaser {
             @include transition(
-              opacity $speed $hover-delay $ease
+              min-height $speed*3 $ease
             );
-            opacity: 1;
-            height: auto;
-          }
-        }
-        .button {
-          @include transition(
-            opacity $speed $hover-delay $ease,
-            background-color $speed $ease,
-            color $speed $ease
-          );
-          opacity: 1;
-          float: right;
-          margin-top: 10px;
+            min-height: 100px;
 
-          a {
-            height: auto;
+            a, div {
+              @include transition(
+                opacity $speed $hover-delay $ease,
+                background-color $speed $ease,
+                color $speed $ease
+              );
+              color: $color-text;
+            }
+            .nb-teaser {
+              opacity: 1;
+            }
           }
-          &:hover a {
-            color: $white;
+
+          .nb-library {
+            margin-top: 10px;
+          }
+
+          .button {
+            @include transition(
+              opacity $speed $hover-delay $ease,
+              background-color $speed $ease,
+              color $speed $ease
+            );
+
+            opacity: 1;
+            float: right;
+            margin-top: 10px;
+            height: auto;
+
+            a {
+              height: auto;
+            }
+            &:hover a {
+              color: $white;
+            }
           }
         }
       }
@@ -1729,7 +1747,6 @@ $label-bg: url('../images/p.png');
       .nb-teaser {
         opacity: 0;
         height: 0;
-        width: 330px;
         padding-right: 10px;
         color: $color-standard-text;
 

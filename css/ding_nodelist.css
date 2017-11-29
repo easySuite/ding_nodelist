@@ -1476,6 +1476,9 @@
   clear: both;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-inner {
+  -webkit-transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: width 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   position: absolute;
   width: 100%;
   padding: 10px;
@@ -1488,10 +1491,18 @@
   clear: both;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead {
+  -webkit-transition: min-height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: min-height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: min-height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  min-height: 25px;
   width: 100%;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .nb-teaser {
+  height: 0;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .button {
   opacity: 0;
+  height: 0;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .button a {
   height: 0;
@@ -1529,55 +1540,56 @@
     display: none;
   }
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
-  -webkit-transition: width 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: width 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: width 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
   width: 115%;
   background: #fff;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 @media screen and (max-width: 950px) {
-  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
+  .no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
     width: 110%;
   }
 }
 @media screen and (max-width: 600px) {
-  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
+  .no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-inner {
     width: 100%;
     background-color: #e5e5e5;
     box-shadow: none;
   }
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead {
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead {
   width: 100%;
-  -webkit-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: min-height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: min-height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: min-height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  min-height: 100px;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead a, .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead div {
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead a, .no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead div {
+  -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   color: #262627;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead .nb-teaser {
-  -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead .nb-teaser {
   opacity: 1;
-  height: auto;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button {
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .nb-library {
+  margin-top: 10px;
+}
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button {
   -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1), color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 1;
   float: right;
   margin-top: 10px;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button a {
   height: auto;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button:hover a {
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button a {
+  height: auto;
+}
+.no-touch .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .button:hover a {
   color: #fff;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(1), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(2), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(3), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(5), .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(6) {
@@ -1595,7 +1607,6 @@
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-teaser {
   opacity: 0;
   height: 0;
-  width: 330px;
   padding-right: 10px;
   color: #474747;
 }

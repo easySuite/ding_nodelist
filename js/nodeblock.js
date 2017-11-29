@@ -15,13 +15,14 @@
 
         $('.nb-item.item-wrapper').mouseenter(function () {
           // Set height for title and lead text.
-          var title_and_lead_height = $(this).find('.title-and-lead > h3').outerHeight(true) + $(this).find('.title-and-lead .nb-teaser').outerHeight(true);
+          var title_and_lead_height = $(this).find('.title-and-lead > h3').outerHeight(true) + $(this).find('.nb-teaser span').outerHeight(true);
           $(this).find('.title-and-lead').css('min-height', title_and_lead_height);
 
           // Set timeout to make shure element is still above while it animates
           // out.
-
+          setTimeout(function(){
           $(this).addClass('is-hovered');
+        }, 300);
         }).mouseleave(function () {
           $(this).removeClass('is-hovered');
           $(this).find('.title-and-lead').css('min-height', '');
