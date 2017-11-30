@@ -27,8 +27,8 @@
       }
       ?>
     </ul>
-    <?php if (!empty($links)): ?>
-      <?php print theme('_more_links', array('links' => $links)); ?>
-    <?php endif; ?>
   </div>
+  <?php if (!empty($links)): ?>
+     <div class="nl-link"> <?php print theme('_more_links', array('links' => $links)); ?> </div>
+    <?php endif; ?>
 <?php endif; ?>

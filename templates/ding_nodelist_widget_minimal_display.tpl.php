@@ -29,7 +29,7 @@
           'class' => $row_classes,
         ));
       }
-      ?>
+      ?> 
     </div>
     <?php if (!empty($links)): ?>
       <?php print theme('_more_links', array('links' => $links)); ?>

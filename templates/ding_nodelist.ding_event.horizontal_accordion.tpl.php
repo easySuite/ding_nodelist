@@ -35,6 +35,7 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
           <span><?php print t('Time:');?></span>
           <span><?php print $event_date_formatted;?></span>
         </div>
+       
         <div class="event-details">
           <span class="event-library">
             <?php print $library[0]['#markup']; ?>
@@ -53,6 +54,11 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
           </span>
         </div>
       </div>
+      <div class="teaser">
+          <p>
+            <?php print $item->teaser_lead; ?>
+          </p>
+       </div>
     </div>
   </div>
 </li>

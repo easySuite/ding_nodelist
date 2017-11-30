@@ -49,8 +49,8 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
     <div class="item-body">
       <?php print $item->teaser_lead; ?>
     </div>
-    <div class="news-link">
+  </div>
+  <div class="news-link more-link">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
-    </div>
   </div>
 </div>

@@ -12,7 +12,7 @@
     <?php endif; ?>
     <div class="ding_nodelist-items">
       <?php
-      $items = array_slice($items, 0, 8);
+      $items = array_slice($items, 0, 6);
       foreach ($items as $k => $node) {
         print theme($node->item_template, array(
           'item' => $node,
