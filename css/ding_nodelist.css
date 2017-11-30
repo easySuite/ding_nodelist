@@ -81,7 +81,6 @@
 
 .ding_nodelist {
   overflow: hidden;
-  margin-bottom: 20px;
 }
 .ding_nodelist .node .item-date,
 .ding_nodelist .node .library,
@@ -820,9 +819,6 @@
   display: none;
 }
 
-.ding_nodelist-taxonomy {
-  padding: 15px;
-}
 .ding_nodelist-taxonomy .event-list-leaf {
   padding: 10px;
 }
