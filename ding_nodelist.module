@@ -1783,7 +1783,7 @@ function _ding_nodelist_striptags($nodes) {
  *   List of widgets with titles.
  */
 function _ding_nodelist_widgets_with_titles() {
-  // For more info search ".ding_nodelist-title" in core.css file.
+  // For more info search ".pane-title" in core.css file.
   // Without title: horizontal_accordion, single.
   return array(
     DING_NODELIST_WIDGET_CAROUSEL,
