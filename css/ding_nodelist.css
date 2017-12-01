@@ -82,16 +82,6 @@
 .ding_nodelist {
   overflow: hidden;
 }
-.ding_nodelist .node .item-date,
-.ding_nodelist .node .library,
-.ding_nodelist .node .item-price,
-.ding_nodelist .data .event-timestamp,
-.ding_nodelist .data .event-details,
-.ding_nodelist .item-details .item-date,
-.ding_nodelist .item-details .item-library,
-.ding_nodelist .item-details .item-price {
-  font-size: 85%;
-}
 .ding_nodelist h3 a {
   font-family: FaktPro-SemiBold,sans-serif;
 }
@@ -122,7 +112,7 @@
   text-align: center;
 }
 .ding_nodelist .event-time .event-day {
-  background: #4d898e;
+  background: #4d898f;
   color: #fff;
   margin-bottom: 5px;
   font-size: 80%;
@@ -255,7 +245,7 @@
   min-height: 120px;
 }
 .ding_nodelist-carousel .item .node p {
-  font-size: 18px;
+  font-size: 100%;
   color: #fff;
 }
 .ding_nodelist-carousel .item .node .library .field-label {
@@ -333,14 +323,13 @@
   line-height: 2;
 }
 .ding_nodelist-carousel .pagination .selected {
-  background-color: #4d898e;
+  background-color: #4d898f;
   color: #fff;
 }
 .ding_nodelist-carousel h3 {
   margin: 3px 0;
   padding: 0;
   text-align: left;
-  font-size: 24px;
 }
 .ding_nodelist-carousel h3 a {
   margin-right: 10px;
@@ -421,7 +410,7 @@
   left: 10px;
   z-index: 10;
   display: block;
-  background-color: #4d898e;
+  background-color: #4d898f;
   color: #fff;
   cursor: pointer;
 }
@@ -505,7 +494,7 @@
   transition: height 900ms cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: transparent;
   background-image: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 50%);
-  font-size: 18px;
+  font-size: 100%;
   line-height: 24px;
   position: absolute;
   height: 100px;
@@ -517,7 +506,7 @@
 .ding_nodelist-horizontal_accordion .data .teaser {
   opacity: 0;
   height: 0;
-  font-size: 18px;
+  font-size: 100%;
 }
 .ding_nodelist-horizontal_accordion .data .teaser p {
   margin: 0;
@@ -528,7 +517,7 @@
 }
 .ding_nodelist-horizontal_accordion .data a {
   color: #fff;
-  font-size: 24px;
+  font-size: 100%;
   padding-bottom: 10px;
 }
 @media screen and (max-width: 600px) {
@@ -755,7 +744,7 @@
   display: block;
   width: 24px;
   height: 24px;
-  background-color: #4d898e;
+  background-color: #4d898f;
   color: #fff;
 }
 .ding_nodelist-slider .next-prev a:after {
@@ -832,7 +821,7 @@
 }
 .ding_nodelist-taxonomy .event-list-leaf .event-list-date-wrapper .event-list-day {
   line-height: 16.8px;
-  background-color: #4d898e;
+  background-color: #4d898f;
   color: #fff;
   display: block;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -871,7 +860,6 @@
   position: relative;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-title {
-  font-size: 110%;
   margin-right: 25px;
   margin-bottom: 5px;
 }
@@ -921,7 +909,8 @@
   margin: 0;
 }
 .ding_nodelist-taxonomy .item .item-byline .label a.label-info {
-  margin: 0;
+  margin-right: 5px;
+  color: #4d898f;
 }
 .ding_nodelist-taxonomy .item .item-byline .date {
   display: inline-block;
@@ -930,7 +919,6 @@
   display: none;
 }
 .ding_nodelist-taxonomy .item .item-title {
-  font-size: 120%;
   margin-bottom: 5px;
 }
 @media screen and (max-width: 600px) {
@@ -1055,7 +1043,7 @@
 .ding_nodelist-rolltab .ding_nodelist-rolltab-wrapper ul.ui-tabs-nav span,
 .ding_nodelist-rolltab .ding_nodelist-rolltab-wrapper li.ui-tabs-nav-item span {
   color: rgba(38, 38, 38, 0.54);
-  font-size: 14px;
+  font-size: 100%;
 }
 .ding_nodelist-rolltab .ding_nodelist-rolltab-wrapper ul.ui-tabs-nav span:hover,
 .ding_nodelist-rolltab .ding_nodelist-rolltab-wrapper li.ui-tabs-nav-item span:hover {
@@ -1171,7 +1159,7 @@
 .ding_nodelist-promoted_nodes .first-left-block h3 a {
   color: #fff;
   font-family: FaktPro-SemiBold,sans-serif;
-  font-size: 30px;
+  font-size: 100%;
 }
 .ding_nodelist-promoted_nodes .last-right-block:hover .news-info,
 .ding_nodelist-promoted_nodes .last-right-block:hover .event-info,
@@ -1244,7 +1232,7 @@
   transition: height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   background-color: transparent;
   background-image: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-  font-size: 18px;
+  font-size: 100%;
   line-height: 24px;
   position: absolute;
   bottom: 0;
@@ -1423,18 +1411,18 @@
 @media screen and (max-width: 600px) {
   .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 a {
     font-family: FaktPro-SemiBold,sans-serif;
-    font-size: 18px;
+    font-size: 100%;
     line-height: 24px;
     color: #fff;
   }
   .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-date {
     color: rgba(255, 255, 255, 0.54);
-    font-size: 16px;
+    font-size: 100%;
   }
   .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .field-name-field-ding-news-category a {
     display: block;
     color: #262627;
-    font-size: 16px;
+    font-size: 100%;
   }
 }
 

@@ -16,7 +16,7 @@
   <div class="<?php print $conf['classes'] ?>">
     <div class="legend">
       <?php if (!empty($conf['title'])): ?>
-        <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
+        <h2 class="pane-title"><?php print $conf['title']; ?></h2>
       <?php endif; ?>
     </div>
     <ul class="ding_nodelist-items">

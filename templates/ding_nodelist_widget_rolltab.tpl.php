@@ -16,10 +16,10 @@
  */
 ?>
 <?php if ($items): ?>
+  <?php if (!empty($conf['title'])): ?>
+    <h2 class="pane-title"><?php print $conf['title']; ?></h2>
+  <?php endif; ?>
   <div class="<?php print $conf['classes'] ?>">
-    <?php if (!empty($conf['title'])): ?>
-      <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
-    <?php endif; ?>
     <div class="ding_nodelist-items">
       <div class="ding_nodelist-rolltab-wrapper">
         <div id="ding_nodelist-rolltab" class="ding_nodelist-rolltab ding-tabroll">
