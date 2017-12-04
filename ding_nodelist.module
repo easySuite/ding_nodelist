@@ -1633,6 +1633,9 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
       if (isset($list_image[0]['fid']) && $list_image[0]['fid'] == $title_image[0]['fid']) {
         $file_entity = file_load($title_image[0]['fid']);
         if (!empty($file_entity)) {
+          if (!empty(file_exists($file_entity->uri))) {
+            return;
+          }
           $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
           // Returning new image into nodelist.
           $list_image = array(
