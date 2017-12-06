@@ -1048,7 +1048,7 @@ $label-bg: url('../images/p.png');
 
     h2.item-title {
       margin-bottom: 5px;
-      font-size: 20px;
+      font-size: 140%;
 
       @include  media($mobile) {
         padding-left: 10px;
@@ -1063,13 +1063,6 @@ $label-bg: url('../images/p.png');
       float: right;
       display: inline-block;
 
-      @include  media($tablet) {
-        position: absolute;
-        bottom: 5px;
-        right: 0; 
-        margin: 10px;
-      }
-
       @include  media($mobile) {
         position: relative;
       }
@@ -1079,11 +1072,6 @@ $label-bg: url('../images/p.png');
       margin-top: 1em;
       margin-bottom: 1em;
 
-      @include  media($tablet) {
-        padding-right: 155px;
-      }
-
-
       @include  media($mobile) {
         padding-right: 0;
       }
@@ -1091,7 +1079,7 @@ $label-bg: url('../images/p.png');
 
     .item-details,
     .item-list-image {
-       @include  media($tablet,$mobile) {
+      @include  media($tablet,$mobile) {
         padding: 10px;
       }
     }

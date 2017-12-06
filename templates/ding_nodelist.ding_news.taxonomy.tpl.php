@@ -51,6 +51,6 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
     </div>
     <div class="news-link more-link">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
-  </div>
+    </div>
   </div>
 </div>
