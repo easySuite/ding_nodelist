@@ -865,7 +865,10 @@
   margin-bottom: 5px;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-body {
-  display: none;
+  display: block;
+  clear: both;
+  padding-top: 10px;
+  padding-right: 25px;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-library,
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-date,
@@ -939,9 +942,8 @@
 }
 .ding_nodelist-taxonomy .item .news-link {
   margin: 10px;
-  right: 0;
-  bottom: 0;
-  position: absolute;
+  float: right;
+  display: inline-block;
 }
 @media screen and (max-width: 950px) {
   .ding_nodelist-taxonomy .item .news-link {
@@ -982,7 +984,10 @@
   vertical-align: top;
 }
 .ding_nodelist-taxonomy .item .item-details.news {
-  padding: 10px 10px 75px 10px;
+  padding: 10px;
+}
+.ding_nodelist-taxonomy .item .item-details.news .item-body {
+  display: inline;
 }
 .ding_nodelist-taxonomy .item .item-list-image {
   padding: 10px 0 5px 10px;
