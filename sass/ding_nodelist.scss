@@ -906,6 +906,7 @@ $label-bg: url('../images/p.png');
 .ding_nodelist-taxonomy {
   .event-list-leaf {
     padding: 10px;
+    background-color: $grey-medium;
 
     .event-list-date-wrapper {
       display: inline-block;
@@ -971,7 +972,10 @@ $label-bg: url('../images/p.png');
     }
 
     .item-body {
-      display: none;
+      display: block;
+      clear: both;
+      padding-top: 10px;
+      padding-right: 25px;
     }
 
     .item-library,
@@ -989,6 +993,15 @@ $label-bg: url('../images/p.png');
       right: 15px;
       top: 50%;
       margin-top: -10px;
+      font-size: 20px;
+
+      &:after {
+        color: $color-primary;
+        content: '\e903';
+        text-align: center;
+        font-family: 'icomoon';
+
+      }
     }
   }
 
@@ -1007,7 +1020,6 @@ $label-bg: url('../images/p.png');
 
     .item-details {
       overflow: hidden;
-      width: 550px; 
       
       @include  media($mobile) {
         width: auto;
@@ -1034,27 +1046,22 @@ $label-bg: url('../images/p.png');
       }
     }
 
-    .item-title {
+    h2.item-title {
       margin-bottom: 5px;
+      font-size: 140%;
 
       @include  media($mobile) {
         padding-left: 10px;
       }
       a {
-        font-weight: 700;
+        font-family: $font-family-bold;
       }
     }
 
     .news-link {
-      margin: 20px;
+      margin: 10px;
       float: right;
-
-      @include  media($tablet) {
-        position: absolute;
-        bottom: 5px;
-        right: 0; 
-        margin: 10px;
-      }
+      display: inline-block;
 
       @include  media($mobile) {
         position: relative;
@@ -1065,11 +1072,6 @@ $label-bg: url('../images/p.png');
       margin-top: 1em;
       margin-bottom: 1em;
 
-      @include  media($tablet) {
-        padding-right: 155px;
-      }
-
-
       @include  media($mobile) {
         padding-right: 0;
       }
@@ -1077,8 +1079,6 @@ $label-bg: url('../images/p.png');
 
     .item-details,
     .item-list-image {
-      padding: 20px;
-
       @include  media($tablet,$mobile) {
         padding: 10px;
       }
@@ -1090,14 +1090,20 @@ $label-bg: url('../images/p.png');
       vertical-align: top;
     }
 
+    .item-details.news{
+      padding: 10px;
+
+      .item-body {
+        display: inline;
+      }
+    }    
+    
     .item-list-image {
-      padding-right: 10px;
-      width: 159px;
+      padding: 10px 0 5px 10px;
 
       img {
-        width: 159px;
+        width: 100%;
         height: auto;
-        min-width: 159px;
       }
     }
   }
