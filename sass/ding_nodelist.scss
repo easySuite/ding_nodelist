@@ -1239,7 +1239,8 @@ $label-bg: url('../images/p.png');
       opacity: 0;
       color: $white;
       height: 0;
-      @include transition(opacity $speed $ease);      
+      @include transition(opacity $speed $ease);
+      position: absolute;
     }
 
     h3 {
@@ -1296,6 +1297,12 @@ $label-bg: url('../images/p.png');
     @include span(3 of 4.5);
     padding: 0;
     margin-right: 0;
+    position: relative;
+
+    .item-body,
+    .item-event-body {
+      z-index: -1;
+    }
 
     .field-name-field-ding-news-category a {
       display: block;
@@ -1325,7 +1332,7 @@ $label-bg: url('../images/p.png');
         }
       }
 
-      .nb-image:after {
+      .ding_nodelist-pn-item:after {
         background-color: $black-overlay;
         content: ' ';
         position: absolute;
@@ -1338,13 +1345,9 @@ $label-bg: url('../images/p.png');
 
       .item-body,
       .item-event-body {
-        position: absolute;
-        margin-top: 10px;
         opacity: 1;
-        margin-left: 0;
-        color: $white;
-        height: 100px;
-        
+        z-index: 1;
+
         @include media($tablet,$mobile) {
           opacity: 0;
           height: 0;
@@ -1352,8 +1355,8 @@ $label-bg: url('../images/p.png');
       }
 
       .item-event-body {
-        margin-top: 50px;
-        height: 100px;
+        margin-top: 45px;
+        height: auto;
       }
     }
 
@@ -1428,6 +1431,7 @@ $label-bg: url('../images/p.png');
     height: 220px;
     @include span(3 of 9);
     margin-right: 0;
+    position: relative;
   
     .ding_nodelist-pn-item  {
       padding: 0;
@@ -1444,6 +1448,15 @@ $label-bg: url('../images/p.png');
         margin-top: 10px;
       }
       
+      .item-body,
+      .item-event-body {
+        top: 10px;
+        margin-left: 0;
+        z-index: 1;
+        padding: 5px;
+        position: absolute;
+      }
+
       &:hover {
         .news-info,
         .event-info,
@@ -1470,12 +1483,7 @@ $label-bg: url('../images/p.png');
 
         .item-body,
         .item-event-body {
-          position: absolute;
           opacity: 1;
-          top: 10px; 
-          margin-left: 0;
-          z-index: 1;
-          padding: 5px;
 
           @include media($tablet,$mobile) {
             opacity: 0;
