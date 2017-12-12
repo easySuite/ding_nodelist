@@ -8,10 +8,8 @@
 include_once 'ding_nodelist.features.inc';
 
 define('DING_NODELIST_WIDGET_LIST', 'simple');
-define('DING_NODELIST_WIDGET_SINGLE', 'single');
 define('DING_NODELIST_WIDGET_CAROUSEL', 'carousel');
 define('DING_NODELIST_WIDGET_HOR_ACCORDION', 'horizontal_accordion');
-define('DING_NODELIST_WIDGET_VER_ACCORDION', 'vertical_accordion');
 define('DING_NODELIST_WIDGET_SLIDER', 'slider');
 define('DING_NODELIST_WIDGET_TAXONOMY_LIKE', 'taxonomy');
 define('DING_NODELIST_WIDGET_ROLLTAB', 'rolltab');
@@ -619,29 +617,9 @@ function ding_nodelist_theme() {
         'conf' => NULL,
       ),
     ),
-    '_ding_nodelist_widget_single' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_single',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
     '_ding_nodelist_widget_horizontal_accordion' => array(
       'path' => $path,
       'template' => 'ding_nodelist_widget_horizontal_accordion',
-      'variables' => array(
-        'items' => NULL,
-        'template' => NULL,
-        'links' => NULL,
-        'conf' => NULL,
-      ),
-    ),
-    '_ding_nodelist_widget_vertical_accordion' => array(
-      'path' => $path,
-      'template' => 'ding_nodelist_widget_vertical_accordion',
       'variables' => array(
         'items' => NULL,
         'template' => NULL,
@@ -989,13 +967,6 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
       drupal_add_js($mod_path . '/js/haccordion.js', 'file');
       break;
 
-    case DING_NODELIST_WIDGET_VER_ACCORDION:
-      drupal_add_js($mod_path . '/js/jquery.easing.1.3.js', 'file');
-      drupal_add_js($mod_path . '/js/jquery.vaccordion.js', 'file');
-      drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
-      drupal_add_js($mod_path . '/js/vaccordion.js', 'file');
-      break;
-
     case DING_NODELIST_WIDGET_ROLLTAB:
       drupal_add_library('system', 'ui.tabs');
       drupal_add_js($mod_path . '/js/jquery-ui-tabs-rotate.js');
@@ -1027,8 +998,6 @@ function _ding_nodelist_init_image_style($widget) {
       return 'ding_nodelist_medium_reused';
 
     case DING_NODELIST_WIDGET_CAROUSEL:
-    case DING_NODELIST_WIDGET_SINGLE:
-    case DING_NODELIST_WIDGET_VER_ACCORDION:
       return 'ding_nodelist_medium_reused';
 
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
@@ -1156,11 +1125,6 @@ function _ding_nodelist_get_templates($include_hidden = TRUE, $content_type = NU
  *   Array of node IDs.
  */
 function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
-  // Do not fetch anything if custom content already did for single item widget.
-  if (!empty($conf['custom_content']) && $conf['widget_type'] == DING_NODELIST_WIDGET_SINGLE) {
-    return array();
-  }
-
   // Support for slave-master DB servers.
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
   $content_types = array();
@@ -1227,11 +1191,8 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
     }
   }
 
-  // Limit to 1 for single node widget.
-  if ($conf['widget_type'] == DING_NODELIST_WIDGET_SINGLE) {
-    $query->range(0, 1);
-  }
-  elseif ($conf['limit']) {
+  // Add limit for list nodes.
+  if ($conf['limit']) {
     $query->range(0, $conf['limit']);
   }
 
@@ -1258,10 +1219,6 @@ function _ding_nodelist_get_custom_list_nodes(&$conf = array()) {
     }
     // Sort the nodes according to their weight.
     ksort($nodes);
-    $conf['custom_content'] = TRUE;
-    if ($conf['widget_type'] == DING_NODELIST_WIDGET_SINGLE) {
-      return array_slice($nodes, 0, 1);
-    }
   }
 
   return $nodes;
@@ -1333,7 +1290,7 @@ function _ding_nodelist_sort_nodes($nodes = array(), $conf = array()) {
  *
  * @param array $event_nodes
  *   An array containing:
- *     Associative arrays which themselves contain single elements of:
+ *     Associative arrays which themselves contain elements of:
  *     - date: Is the key of the element.
  *     - event: An event object as value of the element.
  * @param array $sorting_order
@@ -1467,10 +1424,8 @@ function _ding_nodelist_is_valid_link($link = '') {
  */
 function _ding_nodelist_get_widget_human_name($machine_name) {
   $widgets = array(
-    DING_NODELIST_WIDGET_SINGLE => t('Single item'),
     DING_NODELIST_WIDGET_CAROUSEL => t('Carousel'),
     DING_NODELIST_WIDGET_HOR_ACCORDION => t('Horizontal accordion'),
-    DING_NODELIST_WIDGET_VER_ACCORDION => t('Vertical accordion'),
     DING_NODELIST_WIDGET_SLIDER => t('Slider'),
     DING_NODELIST_WIDGET_TAXONOMY_LIKE => t('Taxonomy like'),
     DING_NODELIST_WIDGET_ROLLTAB => t('Rolltab'),
@@ -1495,10 +1450,8 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
  */
 function _ding_nodelist_get_widget_types($content_types = '') {
   $widgets = array(
-    DING_NODELIST_WIDGET_SINGLE => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_SINGLE),
     DING_NODELIST_WIDGET_CAROUSEL => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_CAROUSEL),
     DING_NODELIST_WIDGET_HOR_ACCORDION => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_HOR_ACCORDION),
-    DING_NODELIST_WIDGET_VER_ACCORDION => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_VER_ACCORDION),
     DING_NODELIST_WIDGET_SLIDER => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_SLIDER),
     DING_NODELIST_WIDGET_TAXONOMY_LIKE => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_TAXONOMY_LIKE),
     DING_NODELIST_WIDGET_ROLLTAB => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_ROLLTAB),
@@ -1787,13 +1740,12 @@ function _ding_nodelist_striptags($nodes) {
  */
 function _ding_nodelist_widgets_with_titles() {
   // For more info search ".pane-title" in core.css file.
-  // Without title: horizontal_accordion, single.
+  // Without title: horizontal_accordion.
   return array(
     DING_NODELIST_WIDGET_CAROUSEL,
     DING_NODELIST_WIDGET_LIST,
     DING_NODELIST_WIDGET_SLIDER,
     DING_NODELIST_WIDGET_TAXONOMY_LIKE,
-    DING_NODELIST_WIDGET_VER_ACCORDION,
     DING_NODELIST_WIDGET_ROLLTAB,
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
@@ -1809,10 +1761,8 @@ function _ding_nodelist_widgets_with_titles() {
  */
 function _ding_nodelist_widgets_content_trim() {
   return array(
-    DING_NODELIST_WIDGET_SINGLE,
     DING_NODELIST_WIDGET_CAROUSEL,
     DING_NODELIST_WIDGET_HOR_ACCORDION,
-    DING_NODELIST_WIDGET_VER_ACCORDION,
     DING_NODELIST_WIDGET_SLIDER,
     DING_NODELIST_WIDGET_TAXONOMY_LIKE,
     DING_NODELIST_WIDGET_ROLLTAB,

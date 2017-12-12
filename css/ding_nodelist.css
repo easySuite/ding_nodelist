@@ -179,53 +179,6 @@
   width: 170px;
 }
 
-.ding_nodelist-single {
-  overflow: hidden;
-  background-color: #fff;
-  height: 390px;
-}
-.ding_nodelist-single .ding_nodelist-items {
-  height: 100%;
-}
-.ding_nodelist-single .article_image a,
-.ding_nodelist-single .event-image a {
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-.ding_nodelist-single .article_image img,
-.ding_nodelist-single .event-image img {
-  display: none;
-}
-.ding_nodelist-single .item {
-  position: relative;
-  height: 100%;
-}
-.ding_nodelist-single .item .node {
-  padding-left: 10px;
-}
-.ding_nodelist-single .item .node .library .field-label {
-  display: none;
-}
-@media screen and (max-width: 600px) {
-  .ding_nodelist-single .item {
-    height: 381px;
-  }
-  .ding_nodelist-single .item .event-label,
-  .ding_nodelist-single .item .event-time {
-    visibility: hidden;
-  }
-}
-.ding_nodelist-single h3 {
-  margin: 0 0 10px 0;
-}
-.ding_nodelist-single h3 a {
-  display: block;
-  color: #fff;
-}
-
 .ding_nodelist-carousel {
   position: relative;
   height: 391px;
@@ -541,68 +494,6 @@
 }
 .ding_nodelist-horizontal_accordion .library > div {
   float: left;
-}
-
-.ding_nodelist-vertical_accordion .va-slice {
-  cursor: pointer;
-}
-
-.va-wrapper {
-  position: relative;
-}
-.va-wrapper .ding_nodelist-items .news {
-  background-color: #fff;
-  background-repeat: no-repeat;
-}
-.va-wrapper .item {
-  position: absolute;
-  z-index: 10;
-  display: block;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-  height: 500px;
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.va-wrapper .item:first-of-type {
-  border-top: 0;
-}
-.va-wrapper .va-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  visibility: hidden;
-  background-image: url("../images/p.png");
-  width: 100%;
-}
-.va-wrapper .va-content,
-.va-wrapper .va-content h3,
-.va-wrapper .va-content a {
-  color: #fff;
-}
-.va-wrapper .va-content .label {
-  margin-left: 0;
-}
-.va-wrapper .va-content .inner-wrapper {
-  margin: 10px;
-}
-.va-wrapper .active .va-content {
-  visibility: visible;
-}
-.va-wrapper .va-title {
-  position: relative;
-  z-index: 1;
-}
-@media screen and (max-width: 950px) {
-  .va-wrapper .va-title {
-    visibility: hidden;
-  }
-  .va-wrapper .active .va-title {
-    visibility: visible;
-  }
 }
 
 .ding_nodelist-slider {

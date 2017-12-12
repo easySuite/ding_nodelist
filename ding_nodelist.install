@@ -49,6 +49,7 @@ function ding_nodelist_schema() {
       ),
     ),
     'primary key' => array('filename'),
+    // @todo: define when selects become clear
     'indexes' => array(),
   );
 
@@ -76,20 +77,12 @@ function ding_nodelist_install() {
       'widget' => 'horizontal_accordion',
       'content_type' => 'ding_event',
     ),
-    'ding_nodelist.ding_event.single' => array(
-      'widget' => 'single',
-      'content_type' => 'ding_event',
-    ),
     'ding_nodelist.ding_event.slider' => array(
       'widget' => 'slider',
       'content_type' => 'ding_event',
     ),
     'ding_nodelist.ding_event.taxonomy' => array(
       'widget' => 'taxonomy',
-      'content_type' => 'ding_event',
-    ),
-    'ding_nodelist.ding_event.vertical_accordion' => array(
-      'widget' => 'vertical_accordion',
       'content_type' => 'ding_event',
     ),
     'ding_nodelist.ding_news.carousel' => array(
@@ -100,20 +93,12 @@ function ding_nodelist_install() {
       'widget' => 'horizontal_accordion',
       'content_type' => 'ding_news',
     ),
-    'ding_nodelist.ding_news.single' => array(
-      'widget' => 'single',
-      'content_type' => 'ding_news',
-    ),
     'ding_nodelist.ding_news.taxonomy' => array(
       'widget' => 'taxonomy',
       'content_type' => 'ding_news',
     ),
     'ding_nodelist.ding_news.text' => array(
       'widget' => 'carousel',
-      'content_type' => 'ding_news',
-    ),
-    'ding_nodelist.ding_news.vertical_accordion' => array(
-      'widget' => 'vertical_accordion',
       'content_type' => 'ding_news',
     ),
     'ding_nodelist.ding_news.slider' => array(
@@ -262,12 +247,10 @@ function ding_nodelist_update_7001() {
     db_insert('ding_nodelist_templates')->fields($fields)->execute();
   }
 
-  // Correcting "Horizontal accordion" and "Vertical accordion" records.
+  // Correcting "Horizontal accordion" records.
   $values = array(
     'ding_nodelist.ding_event.image_text' => 'ding_nodelist.ding_event.horizontal_accordion',
-    'ding_nodelist.ding_event.vaccordion' => 'ding_nodelist.ding_event.vertical_accordion',
     'ding_nodelist.ding_news.haccordion' => 'ding_nodelist.ding_news.horizontal_accordion',
-    'ding_nodelist.ding_news.vaccordion' => 'ding_nodelist.ding_news.vertical_accordion',
   );
 
   foreach ($values as $key => $value) {
