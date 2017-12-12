@@ -6,10 +6,8 @@
 #  ding_nodelist.admin.inc: n/a
 #  ding_nodelist.module: n/a
 #  templates/ding_nodelist.ding_event.carousel.tpl.php: n/a
-#  templates/ding_nodelist.ding_event.single.tpl.php: n/a
 #  templates/ding_nodelist.ding_event.slider.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.carousel.tpl.php: n/a
-#  templates/ding_nodelist.ding_news.single.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.slider.tpl.php: n/a
 #  templates/ding_nodelist.ding_news.text.tpl.php: n/a
 #  plugins/content_types/ding_nodelist.inc: n/a
@@ -151,10 +149,6 @@ msgstr "Listetype"
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:288
 msgid "- Select -"
 msgstr "- Vælg -"
-
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:289
-msgid "If single item selected, only the first item will be rendered"
-msgstr "Vælg hvordan din liste skal se ud."
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:310
 msgid "Delay (miliseconds)"
@@ -410,10 +404,6 @@ msgstr "Ingen information"
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2072
 msgid "Invalid term(s)."
 msgstr ""
-
-#: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2144
-msgid "Single item"
-msgstr "Enkeltstående"
 
 #: profiles/ding2/modules/ding_nodelist/ding_nodelist.module:2145
 msgid "Carousel"

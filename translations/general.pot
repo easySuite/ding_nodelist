@@ -6,10 +6,8 @@
 #  profiles/ding2/modules/ding_nodelist/ding_nodelist.admin.inc: n/a
 #  profiles/ding2/modules/ding_nodelist/ding_nodelist.module: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.carousel.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.single.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_event.slider.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.carousel.tpl.php: n/a
-#  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.single.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.slider.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/templates/ding_nodelist.ding_news.text.tpl.php: n/a
 #  profiles/ding2/modules/ding_nodelist/plugins/content_types/ding_nodelist.inc: n/a
