@@ -312,7 +312,7 @@ $label-bg: url('../images/p.png');
 
     @include media($mobile) {
       display: none;
-    } 
+    }
   }
 
   .article_image .field-label,
@@ -460,7 +460,7 @@ $label-bg: url('../images/p.png');
     left: 0;
     width: 100%;
     color: $white;
-    @include transition(height $speed*3 $ease);  
+    @include transition(height $speed*3 $ease);
     background-color: transparent;
     background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 50%);
     font-size: 100%;
@@ -492,10 +492,10 @@ $label-bg: url('../images/p.png');
       padding-bottom: 10px;
 
       @include media($mobile) {
-        white-space: nowrap; 
-        width: 12em; 
+        white-space: nowrap;
+        width: 12em;
         overflow: hidden;
-        text-overflow: clip; 
+        text-overflow: clip;
       }
     }
   }
@@ -611,7 +611,7 @@ $label-bg: url('../images/p.png');
   .ding_nodelist-items {
     float: right;
     margin-right: 40px;
-    width: 600px; 
+    width: 600px;
     margin-right: 40px;
 
     // Media medium
@@ -647,7 +647,7 @@ $label-bg: url('../images/p.png');
   .node {
     margin-top: 0;
     padding-left: 0;
-    width: 100%;    
+    width: 100%;
   }
 
   // More link
@@ -875,13 +875,13 @@ $label-bg: url('../images/p.png');
     display: table;
     position: relative;
 
-    @include  media($mobile) { 
+    @include  media($mobile) {
       display: block;
     }
 
     .item-details {
       overflow: hidden;
-      
+
       @include  media($mobile) {
         width: auto;
       }
@@ -891,7 +891,7 @@ $label-bg: url('../images/p.png');
       .label {
         display: inline-block;
         margin: 0;
-        
+
         a.label-info {
           margin-right: 5px;
           color: $color-text-link;
@@ -957,18 +957,19 @@ $label-bg: url('../images/p.png');
       .item-body {
         display: inline;
       }
-    }    
-    
+    }
+
     .item-list-image {
-      padding: 10px 0 5px 10px;
+      padding: 10px 0 10px 10px;
 
       img {
-        width: 100%;
+        width: 260px;
+        max-width: 260px;
         height: auto;
       }
     }
   }
-    // Media medium
+  // Media medium
   @include  media($mobile) {
     .item .item-list-image {
       display: none;
@@ -996,7 +997,7 @@ $label-bg: url('../images/p.png');
 
   .ding_nodelist-rolltab-wrapper,
   #ding_nodelist-rolltab,
-  ul.ui-tabs-nav, 
+  ul.ui-tabs-nav,
   li.ui-tabs-nav-item {
     border: none;
   }
@@ -1007,8 +1008,8 @@ $label-bg: url('../images/p.png');
       background: transparent;
 
       a {
-        padding-left: 0;  
-        
+        padding-left: 0;
+
         @include media($tablet) {
           white-space: nowrap;
           width: 6em;
@@ -1224,7 +1225,7 @@ $label-bg: url('../images/p.png');
     .news-info,
     .event-info,
     .page-info {
-      @include transition(height $speed $ease);  
+      @include transition(height $speed $ease);
       background-color: transparent;
       background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
       font-size: 100%;
@@ -1293,7 +1294,7 @@ $label-bg: url('../images/p.png');
     @include span(3 of 9);
     margin-right: 0;
     position: relative;
-  
+
     .ding_nodelist-pn-item  {
       padding: 0;
       position: relative;
@@ -1308,7 +1309,7 @@ $label-bg: url('../images/p.png');
       .news-info {
         margin-top: 10px;
       }
-      
+
       .item-body,
       .item-event-body {
         top: 10px;
@@ -1416,11 +1417,11 @@ $label-bg: url('../images/p.png');
 
   .ding_nodelist-items {
 
-    &:after { 
-      content: "."; 
-      visibility: hidden; 
-      display: block; 
-      height: 0; 
+    &:after {
+      content: ".";
+      visibility: hidden;
+      display: block;
+      height: 0;
       clear: both;
     }
 
@@ -1435,11 +1436,11 @@ $label-bg: url('../images/p.png');
         z-index: 2;
       }
 
-      &:after { 
-        content: "."; 
-        visibility: hidden; 
-        display: block; 
-        height: 0; 
+      &:after {
+        content: ".";
+        visibility: hidden;
+        display: block;
+        height: 0;
         clear: both;
       }
 
@@ -1453,11 +1454,11 @@ $label-bg: url('../images/p.png');
         width: 100%;
         padding: 10px;
 
-       &:after { 
-        content: "."; 
-        visibility: hidden; 
-        display: block; 
-        height: 0; 
+       &:after {
+        content: ".";
+        visibility: hidden;
+        display: block;
+        height: 0;
         clear: both;
       }
     }
@@ -1494,7 +1495,7 @@ $label-bg: url('../images/p.png');
         margin: -10px -10px 10px -10px;
         z-index: 1;
 
-        img { 
+        img {
           width: 100%;
           height: 200px;
           max-width: 352px;
@@ -1502,13 +1503,13 @@ $label-bg: url('../images/p.png');
 
         @include media($notebook) {
           height: auto;
-          min-height: auto; 
+          min-height: auto;
           background: transparent;
         }
 
         @include media($tablet) {
           height: auto;
-          min-height: auto; 
+          min-height: auto;
           background: transparent;
         }
 

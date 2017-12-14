@@ -868,10 +868,11 @@
   display: inline;
 }
 .ding_nodelist-taxonomy .item .item-list-image {
-  padding: 10px 0 5px 10px;
+  padding: 10px 0 10px 10px;
 }
 .ding_nodelist-taxonomy .item .item-list-image img {
-  width: 100%;
+  width: 260px;
+  max-width: 260px;
   height: auto;
 }
 @media screen and (max-width: 600px) {
