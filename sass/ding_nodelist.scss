@@ -136,11 +136,6 @@ $label-bg: url('../images/p.png');
       list-style: none;
       display: inline-block;
       margin-left: 10px;
-
-      a {
-        margin-top: 20px;
-        width: 170px;
-      }
     }
   }
 }
@@ -243,6 +238,12 @@ $label-bg: url('../images/p.png');
     .article-info {
       background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 60%);
       height: auto;
+
+      a.label-info,
+      .library a,
+      .item-price {
+          color: $color-text-link;
+      }
     }
 
     .item-date {
@@ -1027,6 +1028,9 @@ $label-bg: url('../images/p.png');
     }
 
     .item-byline {
+      margin-bottom: 5px;
+      color: rgba(38,38,38,.54);
+
       .label {
         display: inline-block;
         margin: 0;
@@ -1102,9 +1106,10 @@ $label-bg: url('../images/p.png');
       padding: 10px 0 10px 10px;
 
       img {
-        width: 260px;
-        max-width: 260px;
+        width: 159px;
+        max-width: 159px;
         height: auto;
+        min-width: 159px;
       }
     }
   }
