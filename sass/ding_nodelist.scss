@@ -949,19 +949,25 @@ $label-bg: url('../images/p.png');
       }
     }
 
-    .item-details,
-    .item-list-image {
+    .item-details {
+      padding: 10px;
       display: table-cell;
       vertical-align: top;
+      .item-list-image {
+        display: table-cell;
+        vertical-align: top;
+      }
     }
 
-    .item-details.news{
+    .item-details.news {
+      width: 100%;
       padding: 10px;
 
       .item-body {
         display: inline;
       }
     }
+
 
     .item-list-image {
       padding: 10px 0 10px 10px;

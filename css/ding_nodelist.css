@@ -861,12 +861,17 @@
     padding: 10px;
   }
 }
-.ding_nodelist-taxonomy .item .item-details,
-.ding_nodelist-taxonomy .item .item-list-image {
+.ding_nodelist-taxonomy .item .item-details {
+  padding: 10px;
+  display: table-cell;
+  vertical-align: top;
+}
+.ding_nodelist-taxonomy .item .item-details .item-list-image {
   display: table-cell;
   vertical-align: top;
 }
 .ding_nodelist-taxonomy .item .item-details.news {
+  width: 100%;
   padding: 10px;
 }
 .ding_nodelist-taxonomy .item .item-details.news .item-body {

@@ -1586,6 +1586,9 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
       if (isset($list_image[0]['fid']) && $list_image[0]['fid'] == $title_image[0]['fid']) {
         $file_entity = file_load($title_image[0]['fid']);
         if (!empty($file_entity)) {
+          if (file_exists($file_entity->uri == FALSE)) {
+            return;
+          }
           $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
           // Returning new image into nodelist.
           $list_image = array(
@@ -1825,11 +1828,11 @@ function ding_nodelist_preprocess(&$variables, $hook) {
         $lead = field_get_items("node", $item, "field_{$item->type}_lead");
         $teaser = field_get_items("node", $item, "field_{$item->type}_body");
 
-        if (isset($lead[0]['safe_value'])) {
-          $output = strip_tags($lead[0]['safe_value']);
+        if (isset($lead[0]['value'])) {
+          $output = strip_tags($lead[0]['value']);
         }
-        elseif (isset($teaser[0]['safe_value'])) {
-          $output = strip_tags($teaser[0]['safe_value']);
+        elseif (isset($teaser[0]['value'])) {
+          $output = strip_tags($teaser[0]['value']);
         }
 
         $items[$key]->teaser_lead = $output;
