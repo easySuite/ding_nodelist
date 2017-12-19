@@ -547,15 +547,19 @@
 .ding_nodelist-slider .category {
   float: right;
   margin-top: 4px;
-  padding-right: 15px;
+  padding-right: 70px;
   position: relative;
-  top: -30px;
 }
 @media screen and (max-width: 600px) {
   .ding_nodelist-slider .category {
     float: none;
     position: initial;
   }
+}
+.ding_nodelist-slider .legend {
+  float: left;
+  width: 25%;
+  padding-left: 10px;
 }
 @media screen and (max-width: 1100px) {
   .ding_nodelist-slider .legend {
@@ -575,10 +579,8 @@
   display: block;
 }
 .ding_nodelist-slider .ding_nodelist-items {
-  float: right;
-  margin-right: 40px;
-  width: 600px;
-  margin-right: 40px;
+  padding-left: 40px;
+  height: 175px !important;
 }
 @media screen and (max-width: 950px) {
   .ding_nodelist-slider .ding_nodelist-items {
@@ -664,7 +666,6 @@
 }
 
 .ding_nodelist-slider {
-  height: 400px;
   overflow: hidden;
 }
 .ding_nodelist-slider ul li {
@@ -684,9 +685,6 @@
   display: inline-block;
   clear: left;
   padding-left: 5px;
-}
-.ding_nodelist-slider .legend {
-  float: left;
 }
 
 .col3 .ding_nodelist-taxonomy .item .item-list-image,
