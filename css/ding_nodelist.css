@@ -174,10 +174,6 @@
   display: inline-block;
   margin-left: 10px;
 }
-.ding_nodelist .more-links li a {
-  margin-top: 20px;
-  width: 170px;
-}
 
 .ding_nodelist-carousel {
   position: relative;
@@ -207,6 +203,11 @@
 .ding_nodelist-carousel .item .article-info {
   background-image: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 60%);
   height: auto;
+}
+.ding_nodelist-carousel .item .article-info a.label-info,
+.ding_nodelist-carousel .item .article-info .library a,
+.ding_nodelist-carousel .item .article-info .item-price {
+  color: #4d898f;
 }
 .ding_nodelist-carousel .item .item-date {
   color: #fff;
@@ -805,6 +806,10 @@
     width: auto;
   }
 }
+.ding_nodelist-taxonomy .item .item-byline {
+  margin-bottom: 5px;
+  color: rgba(38, 38, 38, 0.54);
+}
 .ding_nodelist-taxonomy .item .item-byline .label {
   display: inline-block;
   margin: 0;
@@ -868,11 +873,13 @@
   display: inline;
 }
 .ding_nodelist-taxonomy .item .item-list-image {
-  padding: 10px 0 5px 10px;
+  padding: 10px 0 10px 10px;
 }
 .ding_nodelist-taxonomy .item .item-list-image img {
-  width: 100%;
+  width: 159px;
+  max-width: 159px;
   height: auto;
+  min-width: 159px;
 }
 @media screen and (max-width: 600px) {
   .ding_nodelist-taxonomy .item .item-list-image {
