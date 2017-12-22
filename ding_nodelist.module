@@ -1825,11 +1825,11 @@ function ding_nodelist_preprocess(&$variables, $hook) {
         $lead = field_get_items("node", $item, "field_{$item->type}_lead");
         $teaser = field_get_items("node", $item, "field_{$item->type}_body");
 
-        if (isset($lead[0]['safe_value'])) {
-          $output = strip_tags($lead[0]['safe_value']);
+        if (isset($lead[0]['value'])) {
+          $output = strip_tags($lead[0]['value']);
         }
-        elseif (isset($teaser[0]['safe_value'])) {
-          $output = strip_tags($teaser[0]['safe_value']);
+        elseif (isset($teaser[0]['value'])) {
+          $output = strip_tags($teaser[0]['value']);
         }
 
         $items[$key]->teaser_lead = $output;
