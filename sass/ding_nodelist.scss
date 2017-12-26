@@ -524,7 +524,6 @@ $label-bg: url('../images/p.png');
 
 // Nodelist slider
 //==========================================================================
-
 .ding_nodelist-slider {
   position: relative;
   padding-top: 10px;
@@ -540,7 +539,6 @@ $label-bg: url('../images/p.png');
 
     @include media($mobile) {
       display: none;
-
     }
   }
 
@@ -579,10 +577,8 @@ $label-bg: url('../images/p.png');
   .category {
     float: right;
     margin-top: 4px;
-    padding-right: 15px;
+    padding-right: 70px;
     position: relative;
-    top: -30px;
-
 
     @include media($mobile) {
       float: none;
@@ -591,6 +587,9 @@ $label-bg: url('../images/p.png');
   }
 
   .legend {
+    float: left;
+    width: 25%;
+    padding-left: 10px;
 
     @include media($notebook) {
       margin-bottom: 10px;
@@ -610,10 +609,8 @@ $label-bg: url('../images/p.png');
 
   // Carousel
   .ding_nodelist-items {
-    float: right;
-    margin-right: 40px;
-    width: 600px;
-    margin-right: 40px;
+    padding-left: 40px;
+    height: 175px !important;
 
     // Media medium
     @include media($tablet) {
@@ -656,7 +653,6 @@ $label-bg: url('../images/p.png');
     margin-bottom: 5px;
 
     a {
-
       // Media medium
       @include media($tablet) {
         display: inline-block;
@@ -718,7 +714,6 @@ $label-bg: url('../images/p.png');
 }
 
 .ding_nodelist-slider {
-  height: 400px;
   overflow: hidden;
 
   ul {
@@ -744,10 +739,6 @@ $label-bg: url('../images/p.png');
         padding-left: 5px;
       }
     }
-  }
-
-  .legend {
-    float: left;
   }
 }
 
@@ -949,14 +940,15 @@ $label-bg: url('../images/p.png');
       }
     }
 
-    .item-details,
-    .item-list-image {
+    .item-details {
+      width: 100%;
+      padding: 10px;
       display: table-cell;
       vertical-align: top;
-    }
-
-    .item-details.news{
-      padding: 10px;
+      .item-list-image {
+        display: table-cell;
+        vertical-align: top;
+      }
 
       .item-body {
         display: inline;

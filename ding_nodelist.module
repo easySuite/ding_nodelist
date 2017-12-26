@@ -1579,11 +1579,10 @@ function _ding_nodelist_formated_ding_event_date($event_node) {
 function _ding_nodelist_get_dams_image_info($node, $image_field) {
   $list_image = field_get_items('node', $node, $image_field);
 
-  if (!empty($list_image)) {
+  if (empty($list_image)) {
     if ($image_field == 'field_ding_news_list_image') {
       $title_image = field_get_items('node', $node, 'field_ding_news_title_image');
-
-      if (isset($list_image[0]['fid']) && $list_image[0]['fid'] == $title_image[0]['fid']) {
+      if (!isset($list_image[0]['fid'])) {
         $file_entity = file_load($title_image[0]['fid']);
         if (!empty($file_entity)) {
           $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
