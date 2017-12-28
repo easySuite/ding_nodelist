@@ -995,22 +995,21 @@ function _ding_nodelist_init_image_style($widget) {
   // Init image_styles for region.
   switch ($widget) {
     case DING_NODELIST_WIDGET_HOR_ACCORDION:
-      return 'ding_nodelist_medium_reused';
+      return 'ding_nodelist_medium';
 
     case DING_NODELIST_WIDGET_CAROUSEL:
-      return 'ding_nodelist_medium_reused';
+      return 'ding_nodelist_medium';
 
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
     case DING_NODELIST_WIDGET_SLIDER:
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
-
-      return 'ding_nodelist_mini_reused';
+      return 'ding_nodelist_mini';
 
     case DING_NODELIST_WIDGET_ROLLTAB:
-      return 'ding_tabroll_large_reused';
+      return 'ding_tabroll_large';
 
     case DING_NODELIST_WIDGET_PROMOTED_NODES:
-      return 'ding_nodelist_pn_large_reused';
+      return 'ding_nodelist_pn_large';
 
     default:
       return '';
