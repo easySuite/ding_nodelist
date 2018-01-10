@@ -314,7 +314,7 @@
 }
 .ding_nodelist-carousel .article_image img,
 .ding_nodelist-carousel .event-image img {
-  display: block;
+  display: none;
   margin: 0 auto;
   width: 100%;
   height: auto;
