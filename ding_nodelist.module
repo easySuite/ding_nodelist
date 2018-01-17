@@ -1713,6 +1713,7 @@ function _ding_nodelist_striptags($nodes) {
       $body_field = 'field_' . $node->type . '_body';
       foreach ($node->{$body_field} as $lng => $body) {
         $nodes[$n]->{$body_field}[$lng][0]['value'] = preg_replace('/<[^>]+>/i', '', $body[0]['value']);
+        $nodes[$n]->{$body_field}[$lng][0]['value'] = preg_replace('/\[(.*)\]/i', '', $body[0]['value']);
       }
     }
     else {
@@ -1720,6 +1721,7 @@ function _ding_nodelist_striptags($nodes) {
         $body_field = 'field_' . $event_node->type . '_body';
         foreach ($event_node->{$body_field} as $lng => $body) {
           $nodes[$n][$event_date]->{$body_field}[$lng][0]['value'] = preg_replace('/<[^>]+>/i', '', $body[0]['value']);
+          $nodes[$n][$event_date]->{$body_field}[$lng][0]['value'] = preg_replace('/\[(.*)\]/i', '', $body[0]['value']);
         }
       }
     }
