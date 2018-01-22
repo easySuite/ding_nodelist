@@ -72,7 +72,8 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
   }
 
   // Load default CSS.
-  drupal_add_css(drupal_get_path('module', 'ding_nodelist') . '/css/ding_nodelist.css', 'file');
+  $uri = 'public://nodelist_colored_css/ding_nodelist.css';
+  drupal_add_css($uri, 'file');
 
   // Fetch content IDs.
   $nids = _ding_nodelist_get_custom_list_nodes($conf);
