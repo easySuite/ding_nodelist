@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Rolltab widget template.
@@ -15,13 +16,13 @@
  */
 ?>
 <?php if ($items): ?>
+  <?php if (!empty($conf['title'])): ?>
+    <h2 class="pane-title"><?php print $conf['title']; ?></h2>
+  <?php endif; ?>
   <div class="<?php print $conf['classes'] ?>">
-    <?php if (!empty($conf['title'])): ?>
-      <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
-    <?php endif; ?>
     <div class="ding_nodelist-items">
       <div class="ding_nodelist-rolltab-wrapper">
-        <div id="ding_nodelist-rolltab" class="ding_nodelist-rolltab">
+        <div id="ding_nodelist-rolltab" class="ding_nodelist-rolltab ding-tabroll">
           <ul class="ui-tabs-nav">
             <?php foreach ($items as $i => $result) : ?>
               <li class="ui-tabs-nav-item count-<?php print $i; ?>">
@@ -36,10 +37,11 @@
           </ul>
 
           <?php foreach ($items as $id => $row): ?>
-            <div id="fragment-<?php print $id; ?>"
-                 class="ui-tabs-panel<?php if ($id >= "1") {
-                   print " ui-tabs-hide";
-                 } ?>">
+            <div id="fragment-<?php print $id; ?>" class="ui-tabs-panel
+                <?php if ($id >= "1") {
+                    print " ui-tabs-hide";
+                } ?>
+            ">
               <?php print theme($row->item_template, array(
                 'item' => $row,
                 'conf' => $conf,
@@ -60,15 +62,7 @@
       </div>
     </div>
     <?php if (!empty($links)): ?>
-      <div class="more-links">
-        <ul>
-          <?php foreach ($links as $key => $bottom) : ?>
-            <li>
-              <?php print l(t($bottom['text']), $bottom['links']); ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+      <?php print theme('_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>

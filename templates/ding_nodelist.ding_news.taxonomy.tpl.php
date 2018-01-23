@@ -1,7 +1,21 @@
 <?php
+
 /**
  * @file
  * Template file for taxonomy-like layout.
+ *
+ * Available variables:
+ *
+ * $title
+ *   Node title.
+ * $body
+ *   Node body teaser.
+ * $image
+ *   Node list image html tag.
+ * $date
+ *   Node date, created or published if set.
+ * $author
+ *   Node author name.
  */
 
 $title = $item->title;
@@ -17,33 +31,15 @@ else {
 $date = format_date($date, 'ding_long_date_only', 'd/m/Y');
 $author = l($item->name, 'user/' . $item->uid);
 $author = t('by !author', array('!author' => $author));
-$lead = field_get_items('node', $item, 'field_ding_news_lead');
-$teaser = field_get_items('node', $item, 'field_ding_news_body');
-
-/**
- * Available variables:
- *
- * $title
- *   Node title.
- * $body
- *   Node body teaser.
- * $image
- *   Node list image html tag.
- * $date
- *   Node date, created or published if set.
- * $author
- *   Node author name.
- */
+$back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
 ?>
 <div class="item">
   <?php if (!empty($image)): ?>
     <div class="item-list-image">
-      <a href="<?php print url('node/' . $item->nid); ?>">
-        <?php print $image ? theme('image_style', array_merge($image, array('style_name' => 'ding_list_large'))) : ''; ?>
-      </a>
+      <?php print $back_image; ?>
     </div>
   <?php endif ?>
-  <div class="item-details">
+  <div class="item-details news">
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-byline">
       <div class="label"><?php print drupal_render($category); ?></div>
@@ -51,20 +47,9 @@ $teaser = field_get_items('node', $item, 'field_ding_news_body');
       <div class="author"><?php print $author; ?></div>
     </div>
     <div class="item-body">
-      <?php
-      // @todo: Move logic from templates.
-      if (isset($lead[0]['safe_value'])) {
-        print strip_tags($lead[0]['safe_value']);
-      }
-      elseif (isset($teaser[0]['safe_value'])) {
-        print strip_tags($teaser[0]['safe_value']);
-      }
-      else {
-        print '';
-      }
-      ?>
+      <?php print $item->teaser_lead; ?>
     </div>
-    <div class="news-link">
+    <div class="news-link more-link">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
     </div>
   </div>

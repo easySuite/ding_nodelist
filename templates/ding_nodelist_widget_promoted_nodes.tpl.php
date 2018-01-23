@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Promoted nodes list widget template.
@@ -12,10 +13,10 @@
  */
 ?>
 <?php if ($items): ?>
+  <?php if (!empty($conf['title'])): ?>
+    <h2 class="pane-title"><?php print $conf['title']; ?></h2>
+  <?php endif; ?>
   <div class="<?php print $conf['classes'] ?>">
-    <?php if (!empty($conf['title'])): ?>
-      <h2 class="ding_nodelist-title"><?php print $conf['title']; ?></h2>
-    <?php endif; ?>
     <div class="ding_nodelist-items">
       <div class="ding_nodelist-pn-items">
         <?php
@@ -39,15 +40,7 @@
       </div>
     </div>
     <?php if (!empty($links)): ?>
-      <div class="more-links">
-        <ul>
-          <?php foreach ($links as $key => $bottom) : ?>
-            <li>
-              <?php print l(t($bottom['text']), $bottom['links']); ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+      <?php print theme('_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>

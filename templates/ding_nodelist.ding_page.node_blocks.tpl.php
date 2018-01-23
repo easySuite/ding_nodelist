@@ -1,26 +1,24 @@
 <?php
+
 /**
  * @file
  * Ding page node blocks template.
  */
-$lead = field_get_items('node', $item, 'field_' . $item->type . '_lead');
-$teaser = field_get_items('node', $item, 'field_' . $item->type . '_body');
+ $image_field = 'field_' . $item->type . '_list_image';
+ $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 ?>
-<div class="nb-item <?php print $item->type; ?>">
-  <div class="nb-inner">
-    <h3><?php print l($item->title, 'node/' . $item->nid); ?></h3>
-    <div class="nb-event-summary">
-      <?php
-      if (isset($lead[0]['safe_value'])) {
-        print strip_tags($lead[0]['safe_value']);
-      }
-      elseif (isset($teaser[0]['safe_value'])) {
-        print strip_tags($teaser[0]['safe_value']);
-      }
-      else {
-        print '';
-      }
-      ?>
+<div class="nb-item item-wrapper <?php print $item->type; ?>">
+ <div class="nb-inner">
+    <div class="nb-image">
+      <?php if (!empty($image)): ?>
+        <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))); ?>
+      <?php endif; ?>
+    </div>
+    <div class="title-and-lead">
+      <h3><?php print l($item->title, 'node/' . $item->nid); ?></h3>
+      <div class="nb-teaser">
+        <?php print $item->teaser_lead; ?>
+      </div>
     </div>
   </div>
 </div>
