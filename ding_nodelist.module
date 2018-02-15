@@ -111,7 +111,6 @@ function ding_nodelist_ctools_plugin_directory($module, $plugin) {
 /**
  * Implements hook_ajax_render_alter().
  *
- * @global boolean $_ding_nodelist_ipe_mode
  * @global boolean $_ding_nodelist_ipe_redirect
  */
 function ding_nodelist_ajax_render_alter(&$commands = array()) {
@@ -119,13 +118,7 @@ function ding_nodelist_ajax_render_alter(&$commands = array()) {
   // of telling Drupal the order of CSS files in order to
   // cascade styles properly. See the link.
   // @link http://drupal.org/node/561858#comment-3171846
-  global $_ding_nodelist_ipe_mode, $_ding_nodelist_ipe_redirect;
-
-  if ($_ding_nodelist_ipe_mode) {
-    $path = drupal_get_path('module', 'ding_nodelist') . "/css/ipe.css";
-    $styles = '<style type="text/css" media="all">@import url("' . $path . '");</style>';
-    $commands[] = ajax_command_append('head', $styles);
-  }
+  global $_ding_nodelist_ipe_redirect;
 
   if ($_ding_nodelist_ipe_redirect) {
     ctools_include('ajax');
