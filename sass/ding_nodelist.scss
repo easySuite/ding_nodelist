@@ -451,7 +451,6 @@ $label-bg: url('../images/p.png');
       opacity: .25;
       min-width: 100%;
       width: auto;
-      height: 100%;
     }
   }
 
@@ -525,13 +524,41 @@ $label-bg: url('../images/p.png');
 // Nodelist slider
 //==========================================================================
 .ding_nodelist-slider {
+  overflow: hidden;
   position: relative;
   padding-top: 10px;
   width: 100%;
 
+  ul {
+    li {
+      list-style: none;
+
+      .library {
+        float: left;
+        clear: left;
+
+        .field-label {
+          display: none;
+        }
+
+        .field-item a {
+          display: inline-block;
+        }
+      }
+
+      .item-price {
+        display: inline-block;
+        clear: left;
+        padding-left: 5px;
+      }
+    }
+  }
   .more-links {
     float: none;
     display: block;
+    min-width: 26%;
+    margin-top: 10px;
+    margin-bottom: 5px;
 
     li {
       display: block;
@@ -708,35 +735,6 @@ $label-bg: url('../images/p.png');
       &:after {
         content: '\e903';
         transform: rotate(-90deg);
-      }
-    }
-  }
-}
-
-.ding_nodelist-slider {
-  overflow: hidden;
-
-  ul {
-    li {
-      list-style: none;
-
-      .library {
-        float: left;
-        clear: left;
-
-        .field-label {
-          display: none;
-        }
-
-        .field-item a {
-          display: inline-block;
-        }
-      }
-
-      .item-price {
-        display: inline-block;
-        clear: left;
-        padding-left: 5px;
       }
     }
   }

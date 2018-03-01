@@ -436,7 +436,6 @@
   opacity: .25;
   min-width: 100%;
   width: auto;
-  height: 100%;
 }
 .ding_nodelist-horizontal_accordion .data {
   bottom: 0;
@@ -498,13 +497,35 @@
 }
 
 .ding_nodelist-slider {
+  overflow: hidden;
   position: relative;
   padding-top: 10px;
   width: 100%;
 }
+.ding_nodelist-slider ul li {
+  list-style: none;
+}
+.ding_nodelist-slider ul li .library {
+  float: left;
+  clear: left;
+}
+.ding_nodelist-slider ul li .library .field-label {
+  display: none;
+}
+.ding_nodelist-slider ul li .library .field-item a {
+  display: inline-block;
+}
+.ding_nodelist-slider ul li .item-price {
+  display: inline-block;
+  clear: left;
+  padding-left: 5px;
+}
 .ding_nodelist-slider .more-links {
   float: none;
   display: block;
+  min-width: 26%;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 .ding_nodelist-slider .more-links li {
   display: block;
@@ -663,28 +684,6 @@
 .ding_nodelist-slider .next-prev .prev:after {
   content: '\e903';
   transform: rotate(-90deg);
-}
-
-.ding_nodelist-slider {
-  overflow: hidden;
-}
-.ding_nodelist-slider ul li {
-  list-style: none;
-}
-.ding_nodelist-slider ul li .library {
-  float: left;
-  clear: left;
-}
-.ding_nodelist-slider ul li .library .field-label {
-  display: none;
-}
-.ding_nodelist-slider ul li .library .field-item a {
-  display: inline-block;
-}
-.ding_nodelist-slider ul li .item-price {
-  display: inline-block;
-  clear: left;
-  padding-left: 5px;
 }
 
 .col3 .ding_nodelist-taxonomy .item .item-list-image,
