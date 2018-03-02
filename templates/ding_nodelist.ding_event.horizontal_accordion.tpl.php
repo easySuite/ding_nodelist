@@ -8,7 +8,7 @@
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
-$event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
+$event_date_formatted = _ding_nodelist_format_event_time($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 $back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
