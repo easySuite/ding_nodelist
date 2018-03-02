@@ -7,9 +7,9 @@
 ?>
 <div class="more-links">
   <ul>
-    <?php foreach ($links as $key => $bottom) : ?>
+    <?php foreach ($links as $key => $link) : ?>
       <li>
-      <div class="more-link"> <?php print l($bottom['text'], $bottom['links'], array('attributes' => array('class' => 'more-link'))); ?></div>
+        <div class="more-link"> <?php print l(t($link['text']), $link['links']); ?></div>
       </li>
     <?php endforeach; ?>
   </ul>
