@@ -1,8 +1,8 @@
 name = Ding Nodelist
 description = Module for creating lists.
 core = 7.x
-version = 7.x-4.0.2
 package = Ding!
+version = 7.x-4.0.2
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = image
@@ -26,3 +26,4 @@ features[variable][] = date_format_short_month_only
 features[variable][] = ding_nodelist_cache_default_time
 features[variable][] = ding_nodelist_node_types
 features_exclude[dependencies][ding_nodelist] = ding_nodelist
+mtime = 1520238567

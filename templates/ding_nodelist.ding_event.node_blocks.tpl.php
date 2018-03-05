@@ -14,12 +14,10 @@ $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 ?>
 <div class="nb-item item-wrapper <?php print $item->type; ?>">
+  <?php if (!empty($image)): ?>
+    <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style'], 'attributes' => array('class' => 'nb-image')))); ?>
+  <?php endif; ?>
  <div class="nb-inner">
-    <div class="nb-image">
-      <?php if (!empty($image)): ?>
-        <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))); ?>
-      <?php endif; ?>
-    </div>
     <div class="nb-category"><?php print drupal_render($category); ?></div>
     <div class="nb-event-date">
       <?php print t(date('d.m.Y', $event_date)); ?>

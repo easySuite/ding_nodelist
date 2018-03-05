@@ -104,7 +104,7 @@ function ding_nodelist_image_default_styles() {
     'name' => 'ding_nodelist_medium',
     'label' => 'ding_nodelist_medium',
     'effects' => array(
-      35 => array(
+      6 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -115,36 +115,12 @@ function ding_nodelist_image_default_styles() {
         'name' => 'image_scale',
         'data' => array(
           'width' => '',
-          'height' => '600',
+          'height' => 600,
           'upscale' => 1,
         ),
         'weight' => 1,
       ),
-    ),
-  );
-
-  // Exported image style: ding_nodelist_mini.
-  $styles['ding_nodelist_mini'] = array(
-    'name' => 'ding_nodelist_mini',
-    'label' => 'ding_nodelist_mini',
-    'effects' => array(
-      38 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
-        'name' => 'image_scale',
-        'data' => array(
-          'width' => 260,
-          'height' => '',
-          'upscale' => 1,
-        ),
-        'weight' => 1,
-      ),
-      49 => array(
+      7 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -154,11 +130,51 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 260,
-          'height' => 192,
+          'width' => 600,
+          'height' => 600,
           'anchor' => 'center-center',
         ),
-        'weight' => 4,
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: ding_nodelist_mini.
+  $styles['ding_nodelist_mini'] = array(
+    'name' => 'ding_nodelist_mini',
+    'label' => 'ding_nodelist_mini',
+    'effects' => array(
+      8 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 560,
+          'height' => '',
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+      9 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 560,
+          'height' => 260,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 2,
       ),
     ),
   );

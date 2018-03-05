@@ -9,6 +9,9 @@
 
           $('.nb-item.item-wrapper').each(function (delta, view) {
             ding_nodeblock_teaser_height = $(this).find('.nb-inner').outerHeight();
+            if ($(this).find('.nb-image').length > 0) {
+              $(this).addClass('has-image');
+            }
             $(this).height(ding_nodeblock_teaser_height);
           });
         });
