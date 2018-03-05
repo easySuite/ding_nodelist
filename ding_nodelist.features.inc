@@ -104,7 +104,7 @@ function ding_nodelist_image_default_styles() {
     'name' => 'ding_nodelist_medium',
     'label' => 'ding_nodelist_medium',
     'effects' => array(
-      35 => array(
+      6 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -114,13 +114,13 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 560,
-          'height' => '',
+          'width' => '',
+          'height' => 600,
           'upscale' => 1,
         ),
         'weight' => 1,
       ),
-      53 => array(
+      7 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -130,11 +130,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 560,
-          'height' => 392,
+          'width' => 600,
+          'height' => 600,
           'anchor' => 'center-center',
         ),
-        'weight' => 3,
+        'weight' => 2,
       ),
     ),
   );
@@ -144,7 +144,7 @@ function ding_nodelist_image_default_styles() {
     'name' => 'ding_nodelist_mini',
     'label' => 'ding_nodelist_mini',
     'effects' => array(
-      38 => array(
+      8 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -154,13 +154,13 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 260,
+          'width' => 560,
           'height' => '',
           'upscale' => 1,
         ),
         'weight' => 1,
       ),
-      49 => array(
+      9 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -170,11 +170,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 260,
-          'height' => 192,
+          'width' => 560,
+          'height' => 260,
           'anchor' => 'center-center',
         ),
-        'weight' => 4,
+        'weight' => 2,
       ),
     ),
   );

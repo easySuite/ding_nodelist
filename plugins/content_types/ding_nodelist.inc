@@ -451,10 +451,6 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
     $form_state['conf']['limit'] = 4;
   }
 
-  if ($form_state['values']['widget_type'] == 'node_blocks') {
-    $form_state['conf']['limit'] = 8;
-  }
-
   // @todo
   // As for now the template config is still there, so here we fetch the very
   // first assigned template.
@@ -946,9 +942,6 @@ function _ding_nodelist_plugin_various_section(&$form, $node_type, $conf, $defau
         ),
         array(
           'select[name=widget_type]' => array('value' => 'promoted_nodes'),
-        ),
-        array(
-          'select[name=widget_type]' => array('value' => 'node_blocks'),
         ),
       ),
       'visible' => array(

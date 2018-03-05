@@ -1542,6 +1542,37 @@ function _ding_nodelist_get_event_time($event_node) {
 }
 
 /**
+ * Return formatted time for events of the same day.
+ *
+ * @param object $event_node
+ *   Event node object.
+ *
+ * @return string
+ */
+function _ding_nodelist_format_event_time($event_node) {
+  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
+
+  $start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
+  $end = new DateTime($event_date[0]['value2'], new DateTimeZone('UTC'));
+
+  $start_timestamp = $start->getTimestamp();
+  $start_string = format_date($start_timestamp, 'ding_time_only');
+
+  if ($start->diff($end)->days > 0) {
+    $result = $start_string;
+  }
+  elseif (format_date($start_timestamp, 'ding_time_only') == '0:00') {
+    $result = t('All day');
+  }
+  else {
+    $end_string = format_date($end->getTimestamp(), 'ding_time_only');
+    $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
+  }
+
+  return $result;
+}
+
+/**
  * Get formatted ding_event_date field value.
  *
  * @param object $event_node
