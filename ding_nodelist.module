@@ -991,18 +991,19 @@ function _ding_nodelist_init_image_style($widget) {
       return 'ding_nodelist_medium';
 
     case DING_NODELIST_WIDGET_CAROUSEL:
-      return 'ding_nodelist_medium';
+      return 'ding_nodelist_large';
 
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
-    case DING_NODELIST_WIDGET_SLIDER:
+      return 'ding_secondary_small';
+
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
-      return 'ding_nodelist_mini';
+      return 'ding_panorama_list_large';
 
     case DING_NODELIST_WIDGET_ROLLTAB:
       return 'ding_tabroll_large';
 
     case DING_NODELIST_WIDGET_PROMOTED_NODES:
-      return 'ding_nodelist_pn_large';
+      return 'ding_panorama_list_large_wide';
 
     default:
       return '';
