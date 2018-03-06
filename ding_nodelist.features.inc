@@ -64,7 +64,21 @@ function ding_nodelist_image_default_styles() {
     'name' => 'ding_nodelist_large',
     'label' => 'ding_nodelist_large',
     'effects' => array(
-      31 => array(
+      21 => array(
+        'label' => 'Manual Crop: Reuse cropped style',
+        'help' => 'Reuse a crop selection from another Manual Crop enabled image style.',
+        'effect callback' => 'manualcrop_reuse_effect',
+        'form callback' => 'manualcrop_reuse_form',
+        'summary theme' => 'manualcrop_reuse_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_reuse',
+        'data' => array(
+          'reuse_crop_style' => 'crop_22_9',
+          'apply_all_effects' => 0,
+        ),
+        'weight' => 0,
+      ),
+      19 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -80,22 +94,6 @@ function ding_nodelist_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      33 => array(
-        'label' => 'Crop',
-        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
-        'effect callback' => 'image_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_crop_form',
-        'summary theme' => 'image_crop_summary',
-        'module' => 'image',
-        'name' => 'image_crop',
-        'data' => array(
-          'width' => 1160,
-          'height' => 860,
-          'anchor' => 'center-center',
-        ),
-        'weight' => 3,
-      ),
     ),
   );
 
@@ -104,7 +102,21 @@ function ding_nodelist_image_default_styles() {
     'name' => 'ding_nodelist_medium',
     'label' => 'ding_nodelist_medium',
     'effects' => array(
-      6 => array(
+      17 => array(
+        'label' => 'Manual Crop: Reuse cropped style',
+        'help' => 'Reuse a crop selection from another Manual Crop enabled image style.',
+        'effect callback' => 'manualcrop_reuse_effect',
+        'form callback' => 'manualcrop_reuse_form',
+        'summary theme' => 'manualcrop_reuse_summary',
+        'module' => 'manualcrop',
+        'name' => 'manualcrop_reuse',
+        'data' => array(
+          'reuse_crop_style' => 'crop_16_9',
+          'apply_all_effects' => 0,
+        ),
+        'weight' => 0,
+      ),
+      18 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -114,27 +126,11 @@ function ding_nodelist_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '',
+          'width' => 600,
           'height' => 600,
           'upscale' => 1,
         ),
-        'weight' => 1,
-      ),
-      7 => array(
-        'label' => 'Crop',
-        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
-        'effect callback' => 'image_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_crop_form',
-        'summary theme' => 'image_crop_summary',
-        'module' => 'image',
-        'name' => 'image_crop',
-        'data' => array(
-          'width' => 600,
-          'height' => 600,
-          'anchor' => 'center-center',
-        ),
-        'weight' => 2,
+        'weight' => 3,
       ),
     ),
   );
