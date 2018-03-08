@@ -174,13 +174,13 @@ $label-bg: url('../images/p.png');
     }
 
     .article-info {
-      background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 60%);
+      background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 60%);
       height: auto;
 
       a.label-info,
       .library a,
       .item-price {
-          color: $color-text-link;
+        color: $color-text-link;
       }
     }
 
@@ -363,7 +363,7 @@ $label-bg: url('../images/p.png');
   .expand {
     border-radius: 50px;
     position: absolute;
-    bottom: 75px;
+    bottom: 95px;
     left: 10px;
     z-index: 10;
     display: block;
@@ -402,10 +402,13 @@ $label-bg: url('../images/p.png');
         padding-top: 60px;
         position: absolute;
         height: 100%;
-      &::after{  background-color: $black-overlay;
-        padding-top: 60px;
-        position: absolute;
-        height: 100%;}
+
+        &::after {
+          background-color: $black-overlay;
+          padding-top: 60px;
+          position: absolute;
+          height: 100%;
+        }
 
         .teaser {
           opacity: 1;
@@ -429,29 +432,13 @@ $label-bg: url('../images/p.png');
       z-index: 0;
       display: block;
       background-color: $black;
-
-      // Media mobile
-      @include media($mobile) {
-        width: 310px;
-        height: 260px;
-      }
-
-      // Media tablet
-      @include media($tablet) {
-        width: 400px;
-        height: 300px;
-      }
-
-      // Media notebook
-      @include media($notebook) {
-        width: 450px;
-        height: 340px;
-      }
+      height: 280px;
     }
 
     img {
       opacity: .25;
       min-width: 100%;
+      object-fit: cover;
     }
   }
 
@@ -463,12 +450,12 @@ $label-bg: url('../images/p.png');
     color: $white;
     @include transition(height $speed*3 $ease);
     background-color: transparent;
-    background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 50%);
+    background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 50%);
     font-size: 100%;
     line-height: 24px;
     position: absolute;
     height: 100px;
-    padding: 10px 10px 10px 25px;
+    padding: 10px;
 
     a {
       padding-bottom: 10px;
@@ -479,7 +466,9 @@ $label-bg: url('../images/p.png');
       height: 0;
       font-size: 100%;
 
-     p { margin: 0;}
+     p {
+       margin: 0;
+     }
     }
 
     span,
@@ -1091,6 +1080,9 @@ $label-bg: url('../images/p.png');
     padding: 5px;
     position: relative;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 
     .item-body,
     .item-event-body {
@@ -1185,7 +1177,7 @@ $label-bg: url('../images/p.png');
 
         @include media($tablet,$mobile) {
           background-color: transparent;
-          background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
+          background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
           height: auto;
         }
       }
@@ -1223,7 +1215,7 @@ $label-bg: url('../images/p.png');
     .page-info {
       @include transition(height $speed $ease);
       background-color: transparent;
-      background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
+      background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
       font-size: 100%;
       line-height: 24px;
       position: absolute;

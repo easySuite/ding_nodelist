@@ -27,7 +27,7 @@ $classes = implode(" ", $classes);
   class="<?php print $classes; ?> nb-image"
   <?php if (!empty($image_path)): ?>
     <?php if ($condition): ?>
-      style="background: url(<?php print $image_path; ?>);"
+      style="background-image: url(<?php print $image_path; ?>);"
     <?php endif; ?>
   <?php endif; ?>
 >
