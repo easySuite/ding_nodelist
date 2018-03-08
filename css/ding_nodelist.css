@@ -362,7 +362,7 @@
 .ding_nodelist-horizontal_accordion .expand {
   border-radius: 50px;
   position: absolute;
-  bottom: 75px;
+  bottom: 95px;
   left: 10px;
   z-index: 10;
   display: block;
@@ -415,28 +415,12 @@
   z-index: 0;
   display: block;
   background-color: #000;
-}
-@media screen and (max-width: 600px) {
-  .ding_nodelist-horizontal_accordion .image a {
-    width: 310px;
-    height: 260px;
-  }
-}
-@media screen and (max-width: 950px) {
-  .ding_nodelist-horizontal_accordion .image a {
-    width: 400px;
-    height: 300px;
-  }
-}
-@media screen and (max-width: 1100px) {
-  .ding_nodelist-horizontal_accordion .image a {
-    width: 450px;
-    height: 340px;
-  }
+  height: 280px;
 }
 .ding_nodelist-horizontal_accordion .image img {
   opacity: .25;
   min-width: 100%;
+  object-fit: cover;
 }
 .ding_nodelist-horizontal_accordion .data {
   bottom: 0;
@@ -452,7 +436,7 @@
   line-height: 24px;
   position: absolute;
   height: 100px;
-  padding: 10px 10px 10px 25px;
+  padding: 10px;
 }
 .ding_nodelist-horizontal_accordion .data a {
   padding-bottom: 10px;
@@ -987,6 +971,9 @@
   padding: 5px;
   position: relative;
   box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-body,
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .item-event-body {
