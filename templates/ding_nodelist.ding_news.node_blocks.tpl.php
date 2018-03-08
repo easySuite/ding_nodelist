@@ -30,15 +30,11 @@ if ($item->created < $item->changed) {
       <div class="info-top">
         <?php print drupal_render($category); ?>
       </div>
-      <div class="date"><?php print $news_date; ?></div>
       <div class="title-and-lead" style="">
         <h3 class="title"><?php print l($item->title, 'node/' . $item->nid); ?></h3>
         <?php print drupal_render($lead); ?>
       </div>
       <div class="info-bottom">
-        <div class="library">
-          <?php print drupal_render($library); ?>
-        </div>
       </div>
     </div>
   </div>
