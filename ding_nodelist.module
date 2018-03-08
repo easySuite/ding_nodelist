@@ -970,7 +970,6 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
       case DING_NODELIST_WIDGET_NODE_BLOCKS:
       drupal_add_library('system', 'ui.tabs');
       drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
-      drupal_add_js($mod_path . '/js/nodeblock.js', 'file');
       break;
   }
 }
@@ -991,18 +990,19 @@ function _ding_nodelist_init_image_style($widget) {
       return 'ding_nodelist_medium';
 
     case DING_NODELIST_WIDGET_CAROUSEL:
-      return 'ding_nodelist_medium';
+      return 'ding_nodelist_large';
 
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
-    case DING_NODELIST_WIDGET_SLIDER:
+      return 'ding_secondary_small';
+
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
-      return 'ding_nodelist_mini';
+      return 'ding_panorama_list_large';
 
     case DING_NODELIST_WIDGET_ROLLTAB:
       return 'ding_tabroll_large';
 
     case DING_NODELIST_WIDGET_PROMOTED_NODES:
-      return 'ding_nodelist_pn_large';
+      return 'ding_panorama_list_large_wide';
 
     default:
       return '';
@@ -1566,6 +1566,33 @@ function _ding_nodelist_format_event_time($event_node) {
   }
   else {
     $end_string = format_date($end->getTimestamp(), 'ding_time_only');
+    $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
+  }
+
+  return $result;
+}
+
+/**
+ * Format event dates as period of time.
+ *
+ * @param stdClass $event_node
+ *   Ding event node.
+ *
+ * @return string
+ *   Formatted event date period.
+ */
+function _ding_nodelist_format_event_date($event_node) {
+  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
+
+  $start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
+  $end = new DateTime($event_date[0]['value2'], new DateTimeZone('UTC'));
+
+  $start_timestamp = $start->getTimestamp();
+  $start_string = format_date($start_timestamp, 'custom', 'd.m.y');
+
+  $result = $start_string;
+  if ($start->diff($end)->days > 0) {
+    $end_string = format_date($end->getTimestamp(),  'custom', 'd.m.y');
     $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
   }
 
