@@ -1298,6 +1298,11 @@
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
   height: 100%;
 }
+.ding_nodelist-promoted_nodes .ding_nodelist-pn-item .nb-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center center;
+}
 @media screen and (max-width: 600px) {
   .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 a {
     font-family: FaktPro-SemiBold,sans-serif;

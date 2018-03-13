@@ -1360,6 +1360,11 @@ $label-bg: url('../images/p.png');
 
   .ding_nodelist-pn-item {
     height: 100%;
+    .nb-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center center;
+    }
   }
 
   @include media($mobile) {
