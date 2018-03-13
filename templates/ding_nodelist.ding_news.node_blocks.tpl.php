@@ -21,12 +21,12 @@ if ($item->created < $item->changed) {
 }
 ?>
 
-<article class="node node-ding-event node-promoted node-teaser nb-item <?php print (!empty($image)) ? 'has-image' : ''; ?>">
+<article class="node node-ding-news node-promoted node-teaser nb-item <?php print (!empty($image)) ? 'has-image' : ''; ?>">
   <div class="inner">
     <div class="background">
       <div class="button"><?php print l(t('Read more'), 'node/' . $item->nid); ?></div>
     </div>
-    <div class="event-text">
+    <div class="news-text">
       <div class="info-top">
         <?php print drupal_render($category); ?>
       </div>
@@ -39,6 +39,6 @@ if ($item->created < $item->changed) {
     </div>
   </div>
   <?php if(!empty($image)): ?>
-    <div class="event-list-image nb-image" style="background-image:url(<?php print $img_url; ?>);"></div>
+    <div class="ding-news-list-image nb-image" style="background-image:url(<?php print $img_url; ?>);"></div>
   <?php endif; ?>
 </article>
