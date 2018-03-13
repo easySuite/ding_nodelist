@@ -185,16 +185,9 @@ function ding_nodelist_content_type_admin_info($subtype, $conf, $context = NULL)
  * Ctools plugin callback for settings form.
  */
 function ding_nodelist_content_type_edit_form($form, &$form_state) {
-  global $_ding_nodelist_ipe_mode;
   form_load_include($form_state, 'inc', 'ding_nodelist', 'plugins/content_types/ding_nodelist');
 
   drupal_add_css(drupal_get_path('module', 'ding_nodelist') . '/css/ding_nodelist-admin.css', 'file');
-
-  // Tell to load additional CSS to make edit form look normally
-  // in case of IPE.
-  if (strpos($form_state['form_info']['path'], '/ipe/')) {
-    $_ding_nodelist_ipe_mode = TRUE;
-  }
 
   // Cache the form for correct workflow.
   $form_state['cache'] = TRUE;
@@ -456,10 +449,6 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
 
   if ($form_state['values']['widget_type'] == DING_NODELIST_WIDGET_PROMOTED_NODES) {
     $form_state['conf']['limit'] = 4;
-  }
-
-  if ($form_state['values']['widget_type'] == 'node_blocks') {
-    $form_state['conf']['limit'] = 8;
   }
 
   // @todo
@@ -953,9 +942,6 @@ function _ding_nodelist_plugin_various_section(&$form, $node_type, $conf, $defau
         ),
         array(
           'select[name=widget_type]' => array('value' => 'promoted_nodes'),
-        ),
-        array(
-          'select[name=widget_type]' => array('value' => 'node_blocks'),
         ),
       ),
       'visible' => array(

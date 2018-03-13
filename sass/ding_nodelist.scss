@@ -127,6 +127,7 @@ $label-bg: url('../images/p.png');
   .more-links {
     float: right;
     display: block;
+    margin-top: 10px;
 
     ul {
       margin: 0;
@@ -173,13 +174,13 @@ $label-bg: url('../images/p.png');
     }
 
     .article-info {
-      background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 60%);
+      background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 60%);
       height: auto;
 
       a.label-info,
       .library a,
       .item-price {
-          color: $color-text-link;
+        color: $color-text-link;
       }
     }
 
@@ -295,6 +296,7 @@ $label-bg: url('../images/p.png');
       bottom: 0;
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: center center;
       width: 100%;
       height: 100%;
     }
@@ -324,6 +326,7 @@ $label-bg: url('../images/p.png');
 
 .nl-link .more-links {
   float: right;
+  margin-top: 10px;
 
   li {
     list-style: none;
@@ -361,7 +364,7 @@ $label-bg: url('../images/p.png');
   .expand {
     border-radius: 50px;
     position: absolute;
-    bottom: 75px;
+    bottom: 95px;
     left: 10px;
     z-index: 10;
     display: block;
@@ -400,10 +403,13 @@ $label-bg: url('../images/p.png');
         padding-top: 60px;
         position: absolute;
         height: 100%;
-      &::after{  background-color: $black-overlay;
-        padding-top: 60px;
-        position: absolute;
-        height: 100%;}
+
+        &::after {
+          background-color: $black-overlay;
+          padding-top: 60px;
+          position: absolute;
+          height: 100%;
+        }
 
         .teaser {
           opacity: 1;
@@ -427,31 +433,13 @@ $label-bg: url('../images/p.png');
       z-index: 0;
       display: block;
       background-color: $black;
-
-      // Media mobile
-      @include media($mobile) {
-        width: 310px;
-        height: 260px;
-      }
-
-      // Media tablet
-      @include media($tablet) {
-        width: 400px;
-        height: 300px;
-      }
-
-      // Media notebook
-      @include media($notebook) {
-        width: 450px;
-        height: 340px;
-      }
+      height: 280px;
     }
 
     img {
       opacity: .25;
       min-width: 100%;
-      width: auto;
-      height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -463,12 +451,12 @@ $label-bg: url('../images/p.png');
     color: $white;
     @include transition(height $speed*3 $ease);
     background-color: transparent;
-    background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 50%);
+    background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 50%);
     font-size: 100%;
     line-height: 24px;
     position: absolute;
-    height: 100px;
-    padding: 10px 10px 10px 25px;
+    height: 85px;
+    padding: 10px;
 
     a {
       padding-bottom: 10px;
@@ -479,7 +467,9 @@ $label-bg: url('../images/p.png');
       height: 0;
       font-size: 100%;
 
-     p { margin: 0;}
+     p {
+       margin: 0;
+     }
     }
 
     span,
@@ -506,7 +496,7 @@ $label-bg: url('../images/p.png');
     overflow: hidden;
 
     h3 {
-      max-height: 30px;
+      max-height: 22px;
       padding-top: 15px;
     }
   }
@@ -525,13 +515,41 @@ $label-bg: url('../images/p.png');
 // Nodelist slider
 //==========================================================================
 .ding_nodelist-slider {
+  overflow: hidden;
   position: relative;
   padding-top: 10px;
   width: 100%;
 
+  ul {
+    li {
+      list-style: none;
+
+      .library {
+        float: left;
+        clear: left;
+
+        .field-label {
+          display: none;
+        }
+
+        .field-item a {
+          display: inline-block;
+        }
+      }
+
+      .item-price {
+        display: inline-block;
+        clear: left;
+        padding-left: 5px;
+      }
+    }
+  }
   .more-links {
     float: none;
     display: block;
+    min-width: 26%;
+    margin-top: 10px;
+    margin-bottom: 5px;
 
     li {
       display: block;
@@ -713,35 +731,6 @@ $label-bg: url('../images/p.png');
   }
 }
 
-.ding_nodelist-slider {
-  overflow: hidden;
-
-  ul {
-    li {
-      list-style: none;
-
-      .library {
-        float: left;
-        clear: left;
-
-        .field-label {
-          display: none;
-        }
-
-        .field-item a {
-          display: inline-block;
-        }
-      }
-
-      .item-price {
-        display: inline-block;
-        clear: left;
-        padding-left: 5px;
-      }
-    }
-  }
-}
-
 // Taxonomy nodelist
 //==========================================================================
 
@@ -827,8 +816,6 @@ $label-bg: url('../images/p.png');
     .item-body {
       display: block;
       clear: both;
-      padding-top: 10px;
-      padding-right: 25px;
     }
 
     .item-library,
@@ -925,8 +912,7 @@ $label-bg: url('../images/p.png');
     }
 
     .item-body {
-      margin-top: 1em;
-      margin-bottom: 1em;
+      padding-top: 7px;
 
       @include  media($mobile) {
         padding-right: 0;
@@ -948,10 +934,6 @@ $label-bg: url('../images/p.png');
       .item-list-image {
         display: table-cell;
         vertical-align: top;
-      }
-
-      .item-body {
-        display: inline;
       }
     }
 
@@ -1092,6 +1074,9 @@ $label-bg: url('../images/p.png');
     padding: 5px;
     position: relative;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 
     .item-body,
     .item-event-body {
@@ -1186,7 +1171,7 @@ $label-bg: url('../images/p.png');
 
         @include media($tablet,$mobile) {
           background-color: transparent;
-          background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
+          background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
           height: auto;
         }
       }
@@ -1224,7 +1209,7 @@ $label-bg: url('../images/p.png');
     .page-info {
       @include transition(height $speed $ease);
       background-color: transparent;
-      background-image: -webkit-linear-gradient(transparent 0%,  $grey-transparent-bg 100%);
+      background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
       font-size: 100%;
       line-height: 24px;
       position: absolute;
@@ -1374,6 +1359,11 @@ $label-bg: url('../images/p.png');
 
   .ding_nodelist-pn-item {
     height: 100%;
+    .nb-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center center;
+    }
   }
 
   @include media($mobile) {
@@ -1413,17 +1403,9 @@ $label-bg: url('../images/p.png');
   }
 
   .ding_nodelist-items {
-
-    &:after {
-      content: ".";
-      visibility: hidden;
-      display: block;
-      height: 0;
-      clear: both;
-    }
-
     .nb-item {
-      margin-bottom: 20px;
+      width: 31%;
+      margin: 0 2% 2% 0;
       height: 100%;
       display: block;
       position: relative;
@@ -1433,51 +1415,30 @@ $label-bg: url('../images/p.png');
         z-index: 2;
       }
 
-      &:after {
-        content: ".";
-        visibility: hidden;
-        display: block;
-        height: 0;
-        clear: both;
-      }
-
-      .nb-inner {
-        @include transition(
-          width $speed $ease,
-          background-color $speed $ease,
-          box-shadow $speed $ease
-        );
-        position: absolute;
-        width: 100%;
-        padding: 10px;
-
-       &:after {
-        content: ".";
-        visibility: hidden;
-        display: block;
-        height: 0;
-        clear: both;
-      }
-    }
-
       .title-and-lead {
         @include transition(
           min-height $speed*3 $ease
         );
         min-height: 25px;
         width: 100%;
-
-        .nb-teaser {
-          height: 0;
+        clear: left;
+        a {
+          position: static;
         }
       }
-
+      .info-top,
+      .info-bottom {
+        a {
+          position: static;
+        }
+      }
       .button {
         opacity: 0;
         height: 0;
         a {
           height: 0;
           color:  $color-text;
+          position: static;
         }
       }
 
@@ -1488,15 +1449,10 @@ $label-bg: url('../images/p.png');
         color: $white;
       }
 
-      .nb-image{
-        margin: -10px -10px 10px -10px;
+      .nb-image {
+        position: absolute;
         z-index: 1;
-
-        img {
-          width: 100%;
-          height: 200px;
-          max-width: 352px;
-        }
+        left: 0;
 
         @include media($notebook) {
           height: auto;
@@ -1517,11 +1473,14 @@ $label-bg: url('../images/p.png');
 
       .no-touch & {
         &:hover {
+          .nb-image {
+            z-index: 3;
+          }
           .nb-inner {
             width: 115%;
             background: $white;
             box-shadow: $box-shadow;
-            z-index: 1;
+            z-index: 2;
 
             // Tablet
             @include media($tablet) {
@@ -1589,12 +1548,6 @@ $label-bg: url('../images/p.png');
       &:nth-child(5),
       &:nth-child(6) {
         @include span(3 of 9.3);
-      }
-
-      &:nth-child(4),
-      &:nth-child(5) {
-       float: right;
-       left: -10px;
       }
 
       &:nth-child(4) {

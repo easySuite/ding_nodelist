@@ -27,7 +27,7 @@ $classes = implode(" ", $classes);
   class="<?php print $classes; ?> nb-image"
   <?php if (!empty($image_path)): ?>
     <?php if ($condition): ?>
-      style="background: url(<?php print $image_path; ?>);"
+      style="background-image: url(<?php print $image_path; ?>);"
     <?php endif; ?>
   <?php endif; ?>
 >
@@ -40,7 +40,7 @@ $classes = implode(" ", $classes);
   <?php endif; ?>
   <?php if (!empty($image_path)): ?>
     <?php if (!$condition): ?>
-      <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))); ?>
+      <div class="nb-image" style="background-image:url(<?php print $image_path; ?>);"></div>
     <?php endif; ?>
   <?php endif; ?>
   <div class="event-info">

@@ -43,7 +43,6 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
     <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-byline">
       <div class="label"><?php print drupal_render($category); ?></div>
-      <div class="date"><?php print render($date); ?></div>
       <div class="author"><?php print $author; ?></div>
     </div>
     <div class="item-body">
