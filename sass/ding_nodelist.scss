@@ -912,8 +912,7 @@ $label-bg: url('../images/p.png');
     }
 
     .item-body {
-      margin-top: 1em;
-      margin-bottom: 1em;
+      padding-top: 7px;
 
       @include  media($mobile) {
         padding-right: 0;
