@@ -41,13 +41,12 @@ $classes = implode(" ", $classes);
 
   <?php if (!empty($image_path)): ?>
     <?php if (!$condition): ?>
-      <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))); ?>
+      <div class="nb-image" style="background-image:url(<?php print $image_path; ?>);"></div>
     <?php endif; ?>
   <?php endif; ?>
   <div class="news-info">
     <h3><?php print l($title, 'node/' . $item->nid); ?></h3>
       <?php print drupal_render($category); ?>
-      <div class="item-date"> <?php print $news_date; ?></div>
 
     <div class="item-body">
       <?php print $item->teaser_lead; ?>

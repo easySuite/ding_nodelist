@@ -421,7 +421,6 @@
 .ding_nodelist-horizontal_accordion .image img {
   opacity: .25;
   min-width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 .ding_nodelist-horizontal_accordion .data {
@@ -743,8 +742,6 @@
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-body {
   display: block;
   clear: both;
-  padding-top: 10px;
-  padding-right: 25px;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-library,
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-date,
@@ -854,9 +851,6 @@
 .ding_nodelist-taxonomy .item .item-details .item-list-image {
   display: table-cell;
   vertical-align: top;
-}
-.ding_nodelist-taxonomy .item .item-details .item-body {
-  display: inline;
 }
 .ding_nodelist-taxonomy .item .item-list-image {
   padding: 10px 0 10px 10px;
@@ -1303,6 +1297,11 @@
 }
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
   height: 100%;
+}
+.ding_nodelist-promoted_nodes .ding_nodelist-pn-item .nb-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center center;
 }
 @media screen and (max-width: 600px) {
   .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 a {
