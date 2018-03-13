@@ -828,8 +828,7 @@
   }
 }
 .ding_nodelist-taxonomy .item .item-body {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  padding-top: 7px;
 }
 @media screen and (max-width: 600px) {
   .ding_nodelist-taxonomy .item .item-body {
