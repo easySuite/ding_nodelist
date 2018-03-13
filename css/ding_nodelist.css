@@ -742,8 +742,6 @@
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-body {
   display: block;
   clear: both;
-  padding-top: 10px;
-  padding-right: 25px;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-library,
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-date,
@@ -853,9 +851,6 @@
 .ding_nodelist-taxonomy .item .item-details .item-list-image {
   display: table-cell;
   vertical-align: top;
-}
-.ding_nodelist-taxonomy .item .item-details .item-body {
-  display: inline;
 }
 .ding_nodelist-taxonomy .item .item-list-image {
   padding: 10px 0 10px 10px;

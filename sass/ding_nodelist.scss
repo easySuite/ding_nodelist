@@ -816,8 +816,6 @@ $label-bg: url('../images/p.png');
     .item-body {
       display: block;
       clear: both;
-      padding-top: 10px;
-      padding-right: 25px;
     }
 
     .item-library,
@@ -937,10 +935,6 @@ $label-bg: url('../images/p.png');
       .item-list-image {
         display: table-cell;
         vertical-align: top;
-      }
-
-      .item-body {
-        display: inline;
       }
     }
 
