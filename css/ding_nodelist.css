@@ -1321,7 +1321,6 @@
 }
 
 .ding_nodelist-node_blocks {
-  margin-left: -10px;
   margin-right: -10px;
   width: inherit;
   overflow: initial;
@@ -1402,6 +1401,9 @@
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .title {
   min-height: 24px;
   margin-bottom: 10px;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .field-item {
+  color: #474747;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-bottom a {
   position: static;
@@ -1525,6 +1527,8 @@
 }
 .ding_nodelist-node_blocks .more-links {
   margin-right: 25px;
+  float: left;
+  clear: left;
 }
 
 table tr.minimal-item {

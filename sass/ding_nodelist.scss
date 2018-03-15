@@ -1,6 +1,5 @@
 @import "../../../themes/ddbasic/sass/_base.scss";
 @import "susy";
-
 /* Colors variables
    ========================================================================== */
 
@@ -16,7 +15,6 @@ $label-bg: url('../images/p.png');
 .ding_nodelist-col-full {
   width: 100%;
 }
-
 // All nodelists
 //==========================================================================
 
@@ -144,7 +142,6 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-
 // Ding nodelist carousel
 //==========================================================================
 
@@ -327,7 +324,6 @@ $label-bg: url('../images/p.png');
     display: none;
   }
 }
-
 .nl-link .more-links {
   float: right;
   margin-top: 10px;
@@ -338,7 +334,6 @@ $label-bg: url('../images/p.png');
     margin-left: 10px;
   }
 }
-
 // Horizontal accordion
 //==========================================================================
 
@@ -515,7 +510,6 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-
 // Nodelist slider
 //==========================================================================
 .ding_nodelist-slider {
@@ -734,7 +728,6 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-
 // Taxonomy nodelist
 //==========================================================================
 
@@ -742,13 +735,11 @@ $label-bg: url('../images/p.png');
 .col4 .ding_nodelist-taxonomy .item .item-list-image {
   display: none;
 }
-
 .attachments-3-3 .ding_nodelist-taxonomy .item .item-list-image,
 .tertiary-content .ding_nodelist-taxonomy .item .item-list-image,
 .attachments-4-4 .ding_nodelist-taxonomy .item .item-list-image {
   display: none;
 }
-
 .ding_nodelist-taxonomy {
   .event-list-leaf {
     padding: 10px;
@@ -844,7 +835,6 @@ $label-bg: url('../images/p.png');
         content: '\e903';
         text-align: center;
         font-family: 'icomoon';
-
       }
     }
   }
@@ -959,7 +949,6 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-
 /* Tabroll tabs
    ========================================================================== */
 .ding_nodelist-rolltab {
@@ -1053,7 +1042,6 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-
 // Promoted nodes
 //==========================================================================
 .ding_nodelist-promoted_nodes {
@@ -1391,12 +1379,9 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-
 // Nodes blocks
 //==========================================================================
-
 .ding_nodelist-node_blocks {
-  margin-left: -10px;
   margin-right: -10px;
   width: inherit;
   overflow: initial;
@@ -1482,6 +1467,9 @@ $label-bg: url('../images/p.png');
         .title {
           min-height: 24px;
           margin-bottom: 10px;
+        }
+        .field-item {
+          color: $color-standard-text;
         }
       }
 
@@ -1635,9 +1623,10 @@ $label-bg: url('../images/p.png');
 
   .more-links {
     margin-right: 25px;
+    float: left;
+    clear: left;
   }
 }
-
 // Minimal nodelist
 //==========================================================================
 table {
