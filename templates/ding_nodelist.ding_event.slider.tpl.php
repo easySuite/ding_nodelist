@@ -5,7 +5,7 @@
  * Ding event slider template.
  */
 
-$category = field_view_field('node', $item, 'field_ding_event_category', 'teaser');
+$category = field_view_field('node', $item, 'field_ding_event_category', array('label' => 'hidden', 'type' => 'taxonomy_term_reference_link'));
 $event_date = _ding_nodelist_formated_ding_event_date($item);
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
