@@ -11,8 +11,8 @@ if (!empty($image['path'])) {
   $img_url = image_style_url($conf['image_style'], $image['path']);
 }
 
-$library = field_view_field('node', $item, 'og_group_ref', 'default');
-$category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
+$library = field_view_field('node', $item, 'og_group_ref', array('label' => 'hidden', 'type' => 'entityreference_label', 'settings' => array('link' => TRUE)));
+$category = field_view_field('node', $item, 'field_ding_news_category', array('label' => 'hidden', 'type' => 'taxonomy_term_reference_link'));
 $lead = field_view_field('node', $item, 'field_ding_news_lead', array('label' => 'hidden', 'type' => 'text_trimmed', 'settings' => array('trim_length' => 120)));
 
 $news_date = date('d.m.y', $item->created);
@@ -35,6 +35,9 @@ if ($item->created < $item->changed) {
         <?php print drupal_render($lead); ?>
       </div>
       <div class="info-bottom">
+        <div class="library">
+          <?php print drupal_render($library); ?>
+        </div>
       </div>
     </div>
   </div>
