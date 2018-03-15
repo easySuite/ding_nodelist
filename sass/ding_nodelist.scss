@@ -1468,6 +1468,9 @@ $label-bg: url('../images/p.png');
         > div {
           float: left;
         }
+        a {
+          position: static;
+        }
       }
 
       .title-and-lead {
@@ -1482,7 +1485,6 @@ $label-bg: url('../images/p.png');
         }
       }
 
-      .info-top,
       .info-bottom {
         a {
           position: static;
@@ -1498,7 +1500,6 @@ $label-bg: url('../images/p.png');
       }
 
       .library {
-        float: left;
         .field-item {
           width: 100%;
           white-space: nowrap;
@@ -1511,44 +1512,6 @@ $label-bg: url('../images/p.png');
         padding: 0;
         color: $color-text;
       }
-
-      /*      .nb-event-date,
-            .nb-news-date {
-              color: $color-text;
-              font-weight: bold;
-            }*/
-
-      /*      .nb-library a,
-            .nb-event-info {
-              color: $color-text;
-
-              span {
-                display: block;
-              }
-            }*/
-
-      /*      .nb-category {
-              .field-item,
-              a.label {
-                color: $grey-dark;
-                padding-bottom: 10px;
-                margin: 0;
-              }
-            }*/
-
-      /*      .nb-library {
-              .field-label {
-                display: none;
-              }
-              a {
-                text-decoration: none;
-              }
-            }*/
-
-      /*      &.ding_event h3,
-            &.ding_news h3 {
-              margin-bottom: 10px;
-            }*/
 
       a {
         position: absolute;
