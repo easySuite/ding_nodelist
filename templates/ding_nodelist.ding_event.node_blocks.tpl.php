@@ -4,9 +4,9 @@
  * Ding event node blocks template.
  */
 
-$category = field_view_field('node', $item, 'field_ding_event_category', 'teaser');
+$category = field_view_field('node', $item, 'field_ding_event_category', array('label' => 'hidden', 'type' => 'taxonomy_term_reference_link'));
 $lead = field_view_field('node', $item, 'field_ding_event_lead', array('label' => 'hidden', 'type' => 'text_trimmed', 'settings' => array('trim_length' => 120)));
-$library = field_view_field('node', $item, 'og_group_ref', 'default');
+$library = field_view_field('node', $item, 'og_group_ref', array('label' => 'hidden', 'type' => 'entityreference_label', 'settings' => array('link' => TRUE)));
 
 $event_period = field_get_items('node', $item, 'field_ding_event_date');
 $event_date = _ding_nodelist_format_event_date($item);
