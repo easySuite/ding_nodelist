@@ -1387,6 +1387,7 @@
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-top > div {
   float: left;
+  width: 100%;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-top a {
   position: static;
