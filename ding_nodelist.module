@@ -16,6 +16,7 @@ define('DING_NODELIST_WIDGET_ROLLTAB', 'rolltab');
 define('DING_NODELIST_WIDGET_PROMOTED_NODES', 'promoted_nodes');
 define('DING_NODELIST_WIDGET_NODE_BLOCKS', 'node_blocks');
 define('DING_NODELIST_WIDGET_MINIMAL_DISPLAY', 'minimal_display');
+define('DING_NODELIST_WIDGET_GRID_IMAGES', 'grid_images');
 
 define('DING_NODELIST_COL_FULL', 'full');
 define('DING_NODELIST_COL_HALF', 'half');
@@ -690,6 +691,16 @@ function ding_nodelist_theme() {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_grid_images' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_grid_images',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -1003,6 +1014,9 @@ function _ding_nodelist_init_image_style($widget) {
 
     case DING_NODELIST_WIDGET_PROMOTED_NODES:
       return 'ding_panorama_list_large_wide';
+
+    case DING_NODELIST_WIDGET_GRID_IMAGES:
+      return 'ding_panorama_list_large';
 
     default:
       return '';
@@ -1424,6 +1438,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     DING_NODELIST_WIDGET_PROMOTED_NODES => t('Promoted nodes'),
     DING_NODELIST_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY => t('Minimal display'),
+    DING_NODELIST_WIDGET_GRID_IMAGES => t('Grid Images'),
   );
   return $widgets[$machine_name];
 }
@@ -1450,6 +1465,7 @@ function _ding_nodelist_get_widget_types($content_types = '') {
     DING_NODELIST_WIDGET_PROMOTED_NODES => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_PROMOTED_NODES),
     DING_NODELIST_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_NODE_BLOCKS),
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_MINIMAL_DISPLAY),
+    DING_NODELIST_WIDGET_GRID_IMAGES => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_GRID_IMAGES),
   );
 
   // Fetch only widgets that have templates configured.
@@ -1798,6 +1814,7 @@ function _ding_nodelist_widgets_with_titles() {
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY,
+    DING_NODELIST_WIDGET_GRID_IMAGES,
   );
 }
 
@@ -1816,6 +1833,7 @@ function _ding_nodelist_widgets_content_trim() {
     DING_NODELIST_WIDGET_ROLLTAB,
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
+    DING_NODELIST_WIDGET_GRID_IMAGES,
   );
 }
 

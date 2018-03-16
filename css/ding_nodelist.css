@@ -1538,3 +1538,137 @@ table tr.minimal-item {
 table tr.minimal-item td.minimal-date {
   width: 20%;
 }
+
+.ding_nodelist-grid_images .ding_nodelist-items {
+  display: inline-block;
+  width: 100%;
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item {
+  position: relative;
+  float: left;
+  display: block;
+  margin-: 2.4911%;
+  width: 31.24555%;
+  margin: 0 10px 10px 10px;
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:last-child {
+  margin-: 0;
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item :last-child {
+  margin-right: -10px;
+}
+@media only screen and (max-width: 1080px) {
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item {
+    float: left;
+    display: block;
+    margin-: 2.4911%;
+    width: 44.48399%;
+  }
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:last-child {
+    margin-: 0;
+  }
+}
+@media screen and (max-width: 950px) {
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item {
+    float: left;
+    display: block;
+    margin-: 2.4911%;
+    width: 44.48399%;
+  }
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:last-child {
+    margin-: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item {
+    float: left;
+    display: block;
+    margin-: 10.76923%;
+    width: 100%;
+    margin: 0;
+    float: none;
+    padding-bottom: 15px;
+  }
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:last-child {
+    margin-: 0;
+  }
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .field-name-field-ding-news-lead,
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .field-name-field-ding-event-lead,
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .field-name-field-ding-page-lead {
+  -webkit-transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+  opacity: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 25px 15px;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .field-name-field-ding-news-lead,
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .field-name-field-ding-event-lead,
+  .ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .field-name-field-ding-page-lead {
+    display: none;
+  }
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:hover .grid-images-item-image::after {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:hover .field-name-field-ding-news-lead,
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:hover .field-name-field-ding-event-lead,
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item:hover .field-name-field-ding-page-lead {
+  -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 1;
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 25px 15px;
+}
+.ding_nodelist-grid_images .ding_nodelist-items .nodelist-item .grid-images-item-title {
+  font-size: 120%;
+}
+.ding_nodelist-grid_images .ding_nodelist-items a {
+  display: block;
+  color: #262627;
+}
+.ding_nodelist-grid_images .ding_nodelist-items .grid-images-item-image {
+  display: block;
+  position: relative;
+  background-color: #e5e5e5;
+  padding-top: 56.25%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  overflow: hidden;
+  background-size: cover;
+}
+.ding_nodelist-grid_images .ding_nodelist-items .grid-images-item-image::after {
+  -webkit-transition: background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-grid_images .ding_nodelist-items .grid-images-item-image {
+    display: block;
+    position: relative;
+    background-color: #e5e5e5;
+    padding-top: 56.25%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+}

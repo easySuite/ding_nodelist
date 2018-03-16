@@ -1639,3 +1639,107 @@ table {
     }
   }
 }
+
+// Grid Images
+//==========================================================================
+.ding_nodelist-grid_images {
+  .ding_nodelist-items {
+    display: inline-block;
+    width: 100%;
+    .nodelist-item {
+      position: relative;
+      @include span-columns(3.95 of 12);
+      margin: 0 10px 10px 10px;
+      :last-child {
+        margin-right: -10px;
+      }
+
+      @media only screen and (max-width: 1080px) {
+        @include span-columns(5.5 of 12);
+      }
+
+      @include media($tablet) {
+        @include span-columns(5.5 of 12);
+      }
+
+      @include media($mobile) {
+        @include span-columns(3 of 3);
+        margin: 0;
+        float: none;
+        padding-bottom: 15px;
+      }
+
+      .field-name-field-ding-news-lead,
+      .field-name-field-ding-event-lead,
+      .field-name-field-ding-page-lead {
+        @include transition(
+                        opacity $speed $ease
+        );
+
+        width: 100%;
+        opacity: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 25px 15px;
+
+        // Mobile
+        @include media($mobile) {
+          display: none;
+        }
+      }
+
+      &:hover {
+        .grid-images-item-image {
+          &::after {
+            background-color: $black-overlay;
+          }
+        }
+        .field-name-field-ding-news-lead,
+        .field-name-field-ding-event-lead,
+        .field-name-field-ding-page-lead {
+          @include transition(
+                          opacity $speed $hover-delay $ease
+          );
+          opacity: 1;
+          color: #ffffff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 25px 15px;
+        }
+      }
+
+      .grid-images-item-title {
+        font-size: 120%;
+      }
+    }
+
+    a {
+      display: block;
+      color: $color-text;
+    }
+
+    .grid-images-item-image {
+      @include aspect-ratio-background-image(16, 9);
+      overflow: hidden;
+      background-size: cover;
+      &::after {
+        @include transition(background-color $speed $ease);
+        opacity: 1;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      // Mobile
+      @include media($mobile) {
+        @include aspect-ratio-background-image(16, 9);
+        background-size: cover;
+      }
+    }
+  }
+}
