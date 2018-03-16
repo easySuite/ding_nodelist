@@ -85,6 +85,8 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
   if (!$only_custom_content) {
     $nids = array_merge($nids, _ding_nodelist_get_dynamic_list_nodes($conf));
   }
+  // Limit items on widgets.
+  $nids = array_slice($nids, 0, $conf['limit']);
 
   // Load items by their IDs.
   $nodes = node_load_multiple($nids);
@@ -432,12 +434,7 @@ function _ding_nodelist_content_type_form_save(&$form_state, $rebuild = FALSE) {
   $form_state['conf']['content_filter_date'] = $form_state['values']['content_filter_date'];
   $form_state['conf']['content_types'] = $form_state['values']['content_types'];
 
-  $limit = 0;
-  if ($form_state['conf']['dynamic_switch'] || $form_state['conf']['list_type'] === 'all') {
-    $limit = $form_state['values']['limit'];
-  }
-
-  $form_state['conf']['limit'] = $limit;
+  $form_state['conf']['limit'] = $form_state['values']['limit'];
   $form_state['conf']['more_links'] = !empty($form_state['values']['more_links']) ? $form_state['values']['more_links'] : array();
   $form_state['conf']['override_title_text'] = $form_state['values']['override_title_text'];
   $form_state['conf']['selected_nodes'] = !empty($form_state['values']['selected_nodes']) && $form_state['conf']['nodes_switch'] ? $form_state['values']['selected_nodes'] : array();
