@@ -1465,6 +1465,7 @@ $label-bg: url('../images/p.png');
             min-height $speed $ease
         );
         min-height: 61px;
+        max-height: 85px;
         .title {
           min-height: 24px;
           margin-bottom: 10px;
