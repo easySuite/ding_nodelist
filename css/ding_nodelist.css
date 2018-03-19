@@ -1398,6 +1398,7 @@
   -moz-transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
   min-height: 61px;
+  max-height: 85px;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .title {
   min-height: 24px;
