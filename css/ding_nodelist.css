@@ -1326,6 +1326,7 @@
   overflow: initial;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item {
+  float: left;
   width: 31%;
   margin: 0 2% 2% 0;
   height: 100%;
