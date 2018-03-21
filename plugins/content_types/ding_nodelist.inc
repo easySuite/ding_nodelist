@@ -86,7 +86,9 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
     $nids = array_merge($nids, _ding_nodelist_get_dynamic_list_nodes($conf));
   }
   // Limit items on widgets.
-  $nids = array_slice($nids, 0, $conf['limit']);
+  if ($conf['limit']) {
+    $nids = array_slice($nids, 0, $conf['limit']);
+  }
 
   // Load items by their IDs.
   $nodes = node_load_multiple($nids);
