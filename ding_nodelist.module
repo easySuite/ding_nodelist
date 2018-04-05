@@ -1147,6 +1147,10 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
         // Use $i in argument placeholder as workaround.
         $ti_l = $query->join('taxonomy_index', $ti_r, "$ti_l.nid = $ti_r.nid AND $ti_r.tid IN (:tids$i)", array(":tids$i" => $filter['filter_terms']));
       }
+      elseif (empty($conf['term_reference']) && $filter['filter_field'] == 'uid') {
+        $author = user_load_by_name($filter['filter_terms'][0]);
+        $query->condition('uid', $author->uid);
+      }
       else {
         $query->join('og_membership', $og, "n.nid = $og.etid AND $og.gid IN (:tids$i) AND $og.field_name = :name$i", array(":tids$i" => $filter['filter_terms'], ":name$i" => $filter['filter_name']));
       }
