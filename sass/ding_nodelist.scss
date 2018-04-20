@@ -1557,13 +1557,11 @@ $label-bg: url('../images/p.png');
         }
 
         @include media($notebook) {
-          height: auto;
           min-height: auto;
           background: transparent;
         }
 
         @include media($tablet) {
-          height: auto;
           min-height: auto;
           background: transparent;
         }
