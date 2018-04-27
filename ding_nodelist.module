@@ -506,6 +506,7 @@ function ding_nodelist_add_bottom_link_submit(&$form, &$form_state) {
  * Autocomplete function that gives the available nodes.
  */
 function ding_nodelist_autocomplete($types, $title = '') {
+  global $language;
   $types = explode('|', urldecode($types));
 
   // Fetch all published nodes.
@@ -514,6 +515,7 @@ function ding_nodelist_autocomplete($types, $title = '') {
     ->condition('n.type', $types, 'IN')
     ->condition('n.title', "%$title%", 'LIKE')
     ->condition('n.status', NODE_PUBLISHED)
+    ->condition('n.language', $language->language)
     ->execute()
     ->fetchAllKeyed();
 
@@ -1117,6 +1119,7 @@ function _ding_nodelist_get_templates($include_hidden = TRUE, $content_type = NU
  *   Array of node IDs.
  */
 function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
+  global $language;
   // Support for slave-master DB servers.
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
   $content_types = array();
@@ -1150,6 +1153,8 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
       ->condition('n.status', NODE_PUBLISHED)
       ->distinct();
   }
+
+  $query->condition('n.language', $language->language, '=');
 
   // Filter by content type/node settings.
   $query->condition('n.type', $conf['content_types'], 'IN')
