@@ -1212,8 +1212,8 @@
 }
 .ding_nodelist-promoted_nodes .has-video .media-container {
   position: absolute;
-  left: -10px;
-  right: -10px;
+  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
   height: 100%;
