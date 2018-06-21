@@ -1653,9 +1653,8 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
     if ($image_field == 'field_ding_news_list_image') {
       $title_image = field_get_items('node', $node, 'field_ding_news_title_image');
       if (!isset($list_image[0]['fid'])) {
-        $file_entity = file_load($title_image[0]['fid']);
-        if (!empty($file_entity)) {
-          $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
+        $img = file_load($title_image[0]['fid']);
+        if (!empty($img)) {
           // Returning new image into nodelist.
           $list_image = array(
             '0' => (array) $img,
