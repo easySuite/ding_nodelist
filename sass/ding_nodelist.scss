@@ -1242,6 +1242,11 @@ $label-bg: url('../images/p.png');
       height: 0;
     }
 
+    @include media($tablet) {
+      @include span(3 of 4.8);
+        margin-right: 0;
+    }
+
     @include media($mobile) {
       @include span(3 of 3);
       clear: both;
@@ -1250,27 +1255,36 @@ $label-bg: url('../images/p.png');
     }
   }
 
+  .last-left-block {
+    @include media($mobile) {
+      margin-bottom: 20px;
+    }
+  }
+
   .last-left-block,
   .first-right-block {
-    @include media($mobile) {
-      margin-left: 0;
-      margin: 0;
+    @include media($tablet, $mobile) {
+      .nb-image {
+        height: 100%;
+      }
 
       .news-info,
       .event-info,
       .page-info {
+        @include transition(height $speed $ease);
+        background-color: transparent;
+        background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 100%);
+        font-size: 100%;
         line-height: 24px;
         position: absolute;
-        bottom: 0px;
-        left: 10px;;
+        bottom: 0;
+        left: 0;
         width: 100%;
-      }
-
-      img {
-        height: 100%;
+        height: 100px;
+        padding-bottom: 25px;
+        padding-left: 10px;
       }
     }
-
   }
   .has-video {
     .media-container {
@@ -1402,10 +1416,15 @@ $label-bg: url('../images/p.png');
       color: $grey-dark;
     }
 
+    @include media($tablet) {
+      @include span(3 of 9);
+      margin-right: 0;
+    }
+
     @include media($mobile) {
       @include span(3 of 3);
-      clear: both;
       height: 300px;
+      margin-top: 20px;
     }
   }
 
@@ -1415,6 +1434,10 @@ $label-bg: url('../images/p.png');
       height: 200px;
       background-size: cover;
       background-position: center center;
+
+      @include media($mobile) {
+        height: 100%;
+      }
     }
   }
 
@@ -1570,6 +1593,7 @@ $label-bg: url('../images/p.png');
         width: 100%;
         height: 100%;
         color: $color-text-link;
+        right: 5px;
       }
 
       &:nth-child(4) {
