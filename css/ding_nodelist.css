@@ -1175,6 +1175,15 @@
 .ding_nodelist-promoted_nodes .first-left-block .item-event-body {
   height: 0;
 }
+@media screen and (max-width: 950px) {
+  .ding_nodelist-promoted_nodes .last-right-block,
+  .ding_nodelist-promoted_nodes .first-left-block {
+    width: 60.86957%;
+    float: left;
+    margin-right: 4.34783%;
+    margin-right: 0;
+  }
+}
 @media screen and (max-width: 600px) {
   .ding_nodelist-promoted_nodes .last-right-block,
   .ding_nodelist-promoted_nodes .first-left-block {
@@ -1188,10 +1197,14 @@
   }
 }
 @media screen and (max-width: 600px) {
-  .ding_nodelist-promoted_nodes .last-left-block,
-  .ding_nodelist-promoted_nodes .first-right-block {
-    margin-left: 0;
-    margin: 0;
+  .ding_nodelist-promoted_nodes .last-left-block {
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .ding_nodelist-promoted_nodes .last-left-block .nb-image,
+  .ding_nodelist-promoted_nodes .first-right-block .nb-image {
+    height: 100%;
   }
   .ding_nodelist-promoted_nodes .last-left-block .news-info,
   .ding_nodelist-promoted_nodes .last-left-block .event-info,
@@ -1199,15 +1212,20 @@
   .ding_nodelist-promoted_nodes .first-right-block .news-info,
   .ding_nodelist-promoted_nodes .first-right-block .event-info,
   .ding_nodelist-promoted_nodes .first-right-block .page-info {
+    -webkit-transition: height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition: height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: transparent;
+    background-image: -webkit-linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    font-size: 100%;
     line-height: 24px;
     position: absolute;
-    bottom: 0px;
-    left: 10px;
+    bottom: 0;
+    left: 0;
     width: 100%;
-  }
-  .ding_nodelist-promoted_nodes .last-left-block img,
-  .ding_nodelist-promoted_nodes .first-right-block img {
-    height: 100%;
+    height: 100px;
+    padding-bottom: 25px;
+    padding-left: 10px;
   }
 }
 .ding_nodelist-promoted_nodes .has-video .media-container {
@@ -1361,6 +1379,15 @@
   margin: 0;
   color: #808285;
 }
+@media screen and (max-width: 950px) {
+  .ding_nodelist-promoted_nodes .last-left-block,
+  .ding_nodelist-promoted_nodes .first-right-block {
+    width: 31.81818%;
+    float: left;
+    margin-right: 2.27273%;
+    margin-right: 0;
+  }
+}
 @media screen and (max-width: 600px) {
   .ding_nodelist-promoted_nodes .last-left-block,
   .ding_nodelist-promoted_nodes .first-right-block {
@@ -1368,8 +1395,8 @@
     float: left;
     margin-left: 0;
     margin-right: 0;
-    clear: both;
     height: 300px;
+    margin-top: 20px;
   }
 }
 .ding_nodelist-promoted_nodes .ding_nodelist-pn-item {
@@ -1379,6 +1406,11 @@
   height: 200px;
   background-size: cover;
   background-position: center center;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-promoted_nodes .ding_nodelist-pn-item .nb-image {
+    height: 100%;
+  }
 }
 @media screen and (max-width: 600px) {
   .ding_nodelist-promoted_nodes .ding_nodelist-pn-item h3 a {
@@ -1512,6 +1544,7 @@
   width: 100%;
   height: 100%;
   color: #4d898f;
+  right: 5px;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4) {
   clear: both;
