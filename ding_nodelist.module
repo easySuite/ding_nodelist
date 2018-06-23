@@ -1003,9 +1003,8 @@ function _ding_nodelist_init_image_style($widget) {
     case DING_NODELIST_WIDGET_CAROUSEL:
       return 'ding_nodelist_large';
 
+    case DING_NODELIST_WIDGET_GRID_IMAGES:
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
-      return 'ding_secondary_small';
-
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
       return 'ding_panorama_list_large';
 
@@ -1014,9 +1013,6 @@ function _ding_nodelist_init_image_style($widget) {
 
     case DING_NODELIST_WIDGET_PROMOTED_NODES:
       return 'ding_panorama_list_large_wide';
-
-    case DING_NODELIST_WIDGET_GRID_IMAGES:
-      return 'ding_panorama_list_large';
 
     default:
       return '';
