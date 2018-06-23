@@ -1649,43 +1649,6 @@ function _ding_nodelist_formated_ding_event_date($event_node) {
 function _ding_nodelist_get_dams_image_info($node, $image_field) {
   $list_image = field_get_items('node', $node, $image_field);
 
-  if (empty($list_image)) {
-    if ($image_field == 'field_ding_news_list_image') {
-      $title_image = field_get_items('node', $node, 'field_ding_news_title_image');
-      if (!isset($list_image[0]['fid'])) {
-        $img = file_load($title_image[0]['fid']);
-        if (!empty($img)) {
-          // Returning new image into nodelist.
-          $list_image = array(
-            '0' => (array) $img,
-          );
-
-          // Updating image field values.
-          $fid = $img->fid;
-          $alt = $img->field_file_image_alt_text[LANGUAGE_NONE][0]['value'];
-          $title = $img->field_file_image_title_text[LANGUAGE_NONE][0]['value'];
-
-          $node_wrapper = entity_metadata_wrapper('node', $node);
-          $node_wrapper->field_ding_news_list_image->set(
-            array('fid' => $fid, 'alt' => $alt, 'title' => $title)
-          );
-          $node_wrapper->save();
-
-          // Updating 'manualcrop' table with new 'fid'.
-          db_update('manualcrop')
-            ->fields(
-              array(
-                'fid' => $img->fid,
-              )
-            )
-            ->condition('fid', $title_image[0]['fid'], '=')
-            ->condition('style_name', 'ding_list_large', '=')
-            ->execute();
-        }
-      }
-    }
-  }
-
   if ($list_image) {
     $image = reset($list_image);
 
