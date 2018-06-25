@@ -1279,11 +1279,27 @@
 .ding_nodelist-promoted_nodes .first-right-block {
   color: #808285;
   height: 220px;
-  width: 31.81818%;
+  width: 32.94118%;
   float: left;
-  margin-right: 2.27273%;
+  margin-right: 2.35294%;
   margin-right: 0;
   position: relative;
+}
+.col8 .ding_nodelist-promoted_nodes .last-left-block, .col8
+.ding_nodelist-promoted_nodes .first-right-block {
+  width: 30.76923%;
+  float: left;
+  margin-right: 2.1978%;
+  margin-right: 0;
+}
+@media screen and (max-width: 600px) {
+  .col8 .ding_nodelist-promoted_nodes .last-left-block, .col8
+  .ding_nodelist-promoted_nodes .first-right-block {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 .ding_nodelist-promoted_nodes .last-left-block .ding_nodelist-pn-item,
 .ding_nodelist-promoted_nodes .first-right-block .ding_nodelist-pn-item {

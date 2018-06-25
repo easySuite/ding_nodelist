@@ -1335,13 +1335,24 @@ $label-bg: url('../images/p.png');
     }
   }
 
+
+
   .last-left-block,
   .first-right-block {
     color: $grey-dark;
     height: 220px;
-    @include span(3 of 9);
+    @include span(3 of 8.7);
     margin-right: 0;
     position: relative;
+
+    .col8 & {
+      @include span(3 of 9.3);
+      margin-right: 0;
+      @include media($mobile) {
+        @include span(3 of 3);
+      }
+
+    }
 
     .ding_nodelist-pn-item {
       padding: 0;
