@@ -19,10 +19,10 @@
         autoplaySpeed: 2000,
         responsive: true,
         dots: true,
-        infinite: false,
+        infinite: true,
         slidesToScroll: 1,
         slidesToShow: 1,
-        customPaging: function(slick,index) {
+        customPaging: function(slick, index) {
           return '<a>' + (index + 1) + '</a>';
         }
       });
