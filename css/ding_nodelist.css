@@ -229,49 +229,58 @@
 }
 .ding_nodelist-carousel .next-prev {
   display: none;
-  position: relative;
-  top: 10px;
-  left: 0;
 }
-.ding_nodelist-carousel .next-prev span {
-  display: none;
-}
-.ding_nodelist-carousel .next-prev .prev {
+.ding_nodelist-carousel .fa-prev {
   left: 10px;
 }
-.ding_nodelist-carousel .next-prev .next {
-  left: 40px;
-}
-.ding_nodelist-carousel .next-prev .prev,
-.ding_nodelist-carousel .next-prev .next {
-  position: absolute;
-  top: 10px;
-}
-.ding_nodelist-carousel .next-prev .prev:hover,
-.ding_nodelist-carousel .next-prev .next:hover {
-  border-radius: 50px;
-  background-color: #ccc;
-  text-decoration: none;
-}
-.ding_nodelist-carousel .next-prev .prev:hover:after,
-.ding_nodelist-carousel .next-prev .next:hover:after {
-  color: #ccc;
-}
-.ding_nodelist-carousel .next-prev .prev:after,
-.ding_nodelist-carousel .next-prev .next:after {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  line-height: 20px;
+.ding_nodelist-carousel .fa-prev:after {
+  content: '\e903';
+  transform: rotate(180deg);
   text-align: center;
   font-family: 'icomoon';
 }
-.ding_nodelist-carousel .pagination {
+.ding_nodelist-carousel .fa-next {
+  right: 10px;
+}
+.ding_nodelist-carousel .fa-next:after {
+  content: '\e903';
+  text-align: center;
+  font-family: 'icomoon';
+}
+.ding_nodelist-carousel .fa-next.slick-arrow,
+.ding_nodelist-carousel .fa-prev.slick-arrow {
+  color: #4d898f;
+  font-style: normal;
+  position: absolute;
+  text-indent: 0px;
+  top: 30%;
+}
+.ding_nodelist-carousel .fa-next.slick-arrow:after,
+.ding_nodelist-carousel .fa-prev.slick-arrow:after {
+  display: inline-block;
+  line-height: 2;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+}
+.ding_nodelist-carousel .fa-next.slick-arrow.slick-disabled,
+.ding_nodelist-carousel .fa-prev.slick-arrow.slick-disabled {
+  color: #ccc;
+}
+.ding_nodelist-carousel .fa-next.slick-arrow:hover:after,
+.ding_nodelist-carousel .fa-prev.slick-arrow:hover:after {
+  color: #ccc;
+}
+.ding_nodelist-carousel .slick-dots {
+  list-style: none;
   right: 10px;
   top: 10px;
   position: absolute;
 }
-.ding_nodelist-carousel .pagination a {
+.ding_nodelist-carousel .slick-dots li {
+  display: inline-block;
+}
+.ding_nodelist-carousel .slick-dots li a {
   border-radius: 50px;
   background-color: #ccc;
   display: block;
@@ -284,7 +293,7 @@
   margin-left: 5px;
   line-height: 2;
 }
-.ding_nodelist-carousel .pagination .selected {
+.ding_nodelist-carousel .slick-dots li.slick-active a {
   background-color: #4d898f;
   color: #fff;
 }

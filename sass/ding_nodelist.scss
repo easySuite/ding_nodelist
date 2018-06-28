@@ -198,75 +198,87 @@ $label-bg: url('../images/p.png');
     color: $white;
   }
 
-  // Next / Previous buttons
   .next-prev {
     display: none;
-    position: relative;
-    top: 10px;
-    left: 0;
-
-    span {
-      display: none;
-    }
-
-    .prev {
+  }
+  // Next / Previous buttons
+    .fa-prev {
       left: 10px;
-    }
-
-    .next {
-      left: 40px;
-    }
-
-    .prev,
-    .next {
-      position: absolute;
-      top: 10px;
-
-      &:hover {
-        border-radius: 50px;
-        background-color: $grey-medium;
-        text-decoration: none;
-
-        &:after {
-          color: $grey-medium;
-        }
-      }
 
       &:after {
-        display: inline-block;
-        width: 25px;
-        height: 25px;
-        line-height: 20px;
+        content: '\e903';
+        transform: rotate(180deg);
         text-align: center;
         font-family: 'icomoon';
       }
     }
-  }
+
+    .fa-next {
+      right: 10px;
+
+      &:after {
+        content: '\e903';
+        text-align: center;
+        font-family: 'icomoon';
+      }
+    }
+
+    .fa-next.slick-arrow,
+    .fa-prev.slick-arrow {
+      color: $color-text-link;
+      font-style: normal;
+      position: absolute;
+      text-indent: 0px;
+      top: 30%;
+
+      &:after {
+        display: inline-block;
+        line-height: 2;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+      }
+
+      &.slick-disabled {
+        color: $grey-medium;
+      }
+
+      &:hover {
+        &:after {
+          color: $grey-medium;
+        }
+      }
+    }
 
   // Pagination
-  .pagination {
+  .slick-dots {
+    list-style: none;
     right: 10px;
     top: 10px;
     position: absolute;
 
-    a {
-      border-radius: 50px;
-      background-color: $grey-medium;
-      display: block;
-      float: left;
-      width: 25px;
-      height: 25px;
-      color: $white;
-      text-align: center;
-      text-decoration: none;
-      margin-left: 5px;
-      line-height: 2;
-    }
+    li {
+      display: inline-block;
 
-    // Active
-    .selected {
-      background-color: $color-text-link;
-      color: $white;
+      a {
+        border-radius: 50px;
+        background-color: $grey-medium;
+        display: block;
+        float: left;
+        width: 25px;
+        height: 25px;
+        color: $white;
+        text-align: center;
+        text-decoration: none;
+        margin-left: 5px;
+        line-height: 2;
+      }
+
+       // Active
+      &.slick-active a {
+        background-color: $color-text-link;
+        color: $white;
+      }
     }
   }
 
