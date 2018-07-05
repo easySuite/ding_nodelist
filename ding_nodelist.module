@@ -515,10 +515,13 @@ function ding_nodelist_autocomplete($types, $title = '') {
     ->fields('n', array('nid', 'title'))
     ->condition('n.type', $types, 'IN')
     ->condition('n.title', "%$title%", 'LIKE')
-    ->condition('n.status', NODE_PUBLISHED)
-    ->condition('n.language', $language->language)
-    ->execute()
-    ->fetchAllKeyed();
+    ->condition('n.status', NODE_PUBLISHED);
+
+  if (module_exists('ding_language')) {
+    $nodes->condition('n.language', $language->language);
+  }
+
+  $nodes = $nodes->execute()->fetchAllKeyed();
 
   // Make a beautiful select.
   $formatted_result = array();
@@ -1167,7 +1170,9 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
       ->distinct();
   }
 
-  $query->condition('n.language', $language->language, '=');
+  if (module_exists('ding_language')) {
+    $query->condition('n.language', $language->language, '=');
+  }
 
   // Filter by content type/node settings.
   $query->condition('n.type', $conf['content_types'], 'IN')
