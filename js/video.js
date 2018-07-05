@@ -145,7 +145,7 @@
           mediasrc = "vimeo";
           stripurl = url.replace("http://vimeo.com/", '');
           mediaurl = "http://player.vimeo.com/video/" + stripurl + "?autoplay=1";
-          iframe = '<iframe class="media-vimeo-player" width="640" height="390" src="' + mediaurl + '" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" id="target"></iframe>';
+          iframe = '<iframe class="media-vimeo-player" width="100%" height="300px" src="' + mediaurl + '" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" id="target"></iframe>';
 
           //fade out info
           top.children('.news-info').fadeOut();
@@ -165,7 +165,7 @@
             stripurl = url.replace("http://www.youtube.com/watch?v=", '');
             //console.log(stripurl);
             mediaurl = "https://www.youtube.com/embed/" + stripurl + "?autoplay=1&autohide=1&enablejsapi=1";
-            iframe = '<iframe class="media-youtube-player" width="640" height="390" src="' + mediaurl + '" frameborder="0" allowfullscreen="" id="target" autohide="1"></iframe>';
+            iframe = '<iframe class="media-youtube-player" width="100%" height="300px" src="' + mediaurl + '" frameborder="0" allowfullscreen="" id="target" autohide="1"></iframe>';
 
             top.children('.news-info').fadeOut();
             top.children('.event-info').fadeOut();
@@ -181,7 +181,7 @@
               mediasrc = "sc";
               stripurl = url.replace("http:", '');
               mediaurl = "//w.soundcloud.com/player/?url=http%3A" + stripurl + "&amp;visual=1&amp;auto_play=true&amp";
-              iframe = '<iframe class="media-soundcloud-player" width="640" height="450" src="' + mediaurl + '" frameborder="0" allowfullscreen="" id="target"></iframe> ';
+              iframe = '<iframe class="media-soundcloud-player" width="100%" height="300px" src="' + mediaurl + '" frameborder="0" allowfullscreen="" id="target"></iframe> ';
 
               top.children('.news-info').fadeOut();
               top.children('.event-info').fadeOut();

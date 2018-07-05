@@ -17,7 +17,6 @@
  * $author
  *   Node author name.
  */
-
 $title = $item->title;
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
@@ -33,7 +32,7 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
   <div class="event-list-leaf">
     <div class="event-list-date-wrapper">
       <span class="event-list-day">
-        <?php print t('@day', array('@day' => date('D', $event_date))); ?>
+        <?php print format_date($event_date, 'custom', 'D'); ?>
       </span>
       <div class="event-list-inner-wrapper">
         <span class="event-list-date">

@@ -5,30 +5,48 @@
  * Ding news node blocks template.
  */
 $image_field = 'field_' . $item->type . '_list_image';
-$image = _ding_nodelist_get_dams_image_info($item, $image_field);
-$category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
+$image       = _ding_nodelist_get_dams_image_info($item, $image_field);
+$img_url     = FALSE;
+if (!empty($image['path'])) {
+  $img_url = image_style_url($conf['image_style'], $image['path']);
+}
+
+$category = field_view_field('node', $item, 'field_ding_news_category', array(
+  'label' => 'hidden',
+  'type'  => 'taxonomy_term_reference_plain',
+));
+$lead     = field_view_field('node', $item, 'field_ding_news_lead', array(
+  'label' => 'hidden',
+  'type' => 'text_trimmed',
+  'settings' => array('trim_length' => 120),
+));
+
 $news_date = date('d.m.y', $item->created);
 if ($item->created < $item->changed) {
   $news_date = date('d.m.y', $item->changed);
 }
 ?>
-<div class="nb-item item-wrapper <?php print $item->type; ?>">
- <div class="nb-inner">
-    <div class="nb-image">
-      <?php if (!empty($image)): ?>
-        <?php print theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))); ?>
-      <?php endif; ?>
-    </div>
-    <div class="nb-category"><?php print drupal_render($category); ?></div>
-   <div class="nb-news-date"> <?php print $news_date; ?> </div>
-    <div class="title-and-lead">
-      <h3><?php print l($item->title, 'node/' . $item->nid); ?></h3>
-      <div class="nb-teaser">
-        <span><?php print $item->teaser_lead; ?></span>
+
+<article
+    class="node node-ding-news node-promoted node-teaser nb-item <?php print (!empty($image)) ? 'has-image' : ''; ?>">
+  <a href="<?php print '/node/' . $item->nid; ?>">
+    <div class="inner">
+      <div class="background">
+        <div class="button"><?php print t('Read more'); ?></div>
+      </div>
+      <div class="news-text">
+        <div class="info-top">
+          <?php print drupal_render($category); ?>
+        </div>
+        <div class="title-and-lead" style="">
+          <h3 class="title"><?php print $item->title; ?></h3>
+          <?php print drupal_render($lead); ?>
+        </div>
       </div>
     </div>
-    <div class="news-link button">
-      <?php print l(t('Read more'), 'node/' . $item->nid); ?>
-  </div>
-  </div>
-</div>
+    <?php if (!empty($image)): ?>
+      <div class="ding-news-list-image nb-image"
+           style="background-image:url(<?php print $img_url; ?>);"></div>
+    <?php endif; ?>
+  </a>
+</article>
