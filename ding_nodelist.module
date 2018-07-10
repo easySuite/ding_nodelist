@@ -518,7 +518,7 @@ function ding_nodelist_autocomplete($types, $title = '') {
     ->condition('n.status', NODE_PUBLISHED);
 
   if (module_exists('ding_language')) {
-    $nodes->condition('n.language', $language->language);
+    $nodes->addTag('language');
   }
 
   $nodes = $nodes->execute()->fetchAllKeyed();
