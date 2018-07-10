@@ -1171,7 +1171,7 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
   }
 
   if (module_exists('ding_language')) {
-    $query->condition('n.language', $language->language, '=');
+    $query->addTag('language');
   }
 
   // Filter by content type/node settings.
