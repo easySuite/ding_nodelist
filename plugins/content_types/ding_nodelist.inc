@@ -49,7 +49,7 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
   // Build title.
   $title = NULL;
   if (!empty($conf['override_title_text'])) {
-    $title = check_plain($conf['override_title_text']);
+    $title = t(check_plain($conf['override_title_text']));
   }
 
   // Create proper layout for variable-width lists.
@@ -131,6 +131,7 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
       'classes' => implode(' ', $classes),
       'image_style' => $image_style,
       'sorting' => $conf['sort_field'],
+      'image_field' => !empty($conf['image_field']) ? $conf['image_field'] : '',
     ),
   ));
 

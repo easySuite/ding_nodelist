@@ -157,6 +157,18 @@ function ding_nodelist_install() {
       'widget' => 'minimal_display',
       'content_type' => 'ding_page',
     ),
+    'ding_nodelist.ding_event.grid_images' => array(
+      'widget' => 'grid_images',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.grid_images' => array(
+      'widget' => 'grid_images',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.grid_images' => array(
+      'widget' => 'grid_images',
+      'content_type' => 'ding_page',
+    ),
   );
 
   foreach ($mappings as $filename => $mapping) {
@@ -394,4 +406,35 @@ function ding_nodelist_replace_key($array, $key1, $key2) {
   }
 
   return $array;
+}
+
+/**
+ * Adding 'Grid Images' display type.
+ */
+function ding_nodelist_update_7007() {
+  $mappings = array(
+    'ding_nodelist.ding_event.grid_images' => array(
+      'widget' => 'grid_images',
+      'content_type' => 'ding_event',
+    ),
+    'ding_nodelist.ding_news.grid_images' => array(
+      'widget' => 'grid_images',
+      'content_type' => 'ding_news',
+    ),
+    'ding_nodelist.ding_page.grid_images' => array(
+      'widget' => 'grid_images',
+      'content_type' => 'ding_page',
+    ),
+  );
+
+  foreach ($mappings as $filename => $mapping) {
+    db_update('ding_nodelist_templates')
+      ->fields(array(
+        'content_type' => $mapping['content_type'],
+        'widget' => $mapping['widget'],
+        'status' => 0,
+      ))
+      ->condition('filename', $filename)
+      ->execute();
+  }
 }

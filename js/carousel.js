@@ -11,31 +11,19 @@
           delay = parseInt(Drupal.settings.ding_nodelist[item]);
         }
       });
-      $(this).find('.ding_nodelist-items').carouFredSel({
-        circular: true,
-        infinite: true,
-        direction: 'left',
-        auto : {
-          pauseOnHover: true,
-          pauseDuration: delay
-        },
-        width: '100%',
-        align: 'center',
+
+      $(this).find('.ding_nodelist-items').slick({
+        nextArrow: '<i class="fa fa-next"></i>',
+        prevArrow: '<i class="fa fa-prev"></i>',
+        autoplay: true,
+        autoplaySpeed: 2000,
         responsive: true,
-        items: 1,
-        scroll : {
-          items: 1
-        },
-        pagination : {
-          container : $(this).find('.pagination')
-        },
-        prev: {
-          button: $(this).find('.prev'),
-          key: "left"
-        },
-        next: {
-          button: $(this).find('.next'),
-          key: "right"
+        dots: true,
+        infinite: true,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        customPaging: function(slick, index) {
+          return '<a>' + (index + 1) + '</a>';
         }
       });
     });

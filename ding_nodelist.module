@@ -16,6 +16,7 @@ define('DING_NODELIST_WIDGET_ROLLTAB', 'rolltab');
 define('DING_NODELIST_WIDGET_PROMOTED_NODES', 'promoted_nodes');
 define('DING_NODELIST_WIDGET_NODE_BLOCKS', 'node_blocks');
 define('DING_NODELIST_WIDGET_MINIMAL_DISPLAY', 'minimal_display');
+define('DING_NODELIST_WIDGET_GRID_IMAGES', 'grid_images');
 
 define('DING_NODELIST_COL_FULL', 'full');
 define('DING_NODELIST_COL_HALF', 'half');
@@ -506,6 +507,7 @@ function ding_nodelist_add_bottom_link_submit(&$form, &$form_state) {
  * Autocomplete function that gives the available nodes.
  */
 function ding_nodelist_autocomplete($types, $title = '') {
+  global $language;
   $types = explode('|', urldecode($types));
 
   // Fetch all published nodes.
@@ -513,9 +515,13 @@ function ding_nodelist_autocomplete($types, $title = '') {
     ->fields('n', array('nid', 'title'))
     ->condition('n.type', $types, 'IN')
     ->condition('n.title', "%$title%", 'LIKE')
-    ->condition('n.status', NODE_PUBLISHED)
-    ->execute()
-    ->fetchAllKeyed();
+    ->condition('n.status', NODE_PUBLISHED);
+
+  if (module_exists('ding_language')) {
+    $nodes->addTag('language');
+  }
+
+  $nodes = $nodes->execute()->fetchAllKeyed();
 
   // Make a beautiful select.
   $formatted_result = array();
@@ -683,6 +689,16 @@ function ding_nodelist_theme() {
     '_ding_nodelist_widget_minimal_display' => array(
       'path' => $path,
       'template' => 'ding_nodelist_widget_minimal_display',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
+    '_ding_nodelist_widget_grid_images' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_grid_images',
       'variables' => array(
         'items' => NULL,
         'template' => NULL,
@@ -942,7 +958,6 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
   // Adding required JS libs.
   switch ($widget) {
     case DING_NODELIST_WIDGET_CAROUSEL:
-      drupal_add_js($mod_path . '/js/jquery.carouFredSel-5.5.0-packed.js', 'file');
       drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
       drupal_add_js($mod_path . '/js/carousel.js', 'file');
       break;
@@ -992,9 +1007,8 @@ function _ding_nodelist_init_image_style($widget) {
     case DING_NODELIST_WIDGET_CAROUSEL:
       return 'ding_nodelist_large';
 
+    case DING_NODELIST_WIDGET_GRID_IMAGES:
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
-      return 'ding_secondary_small';
-
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
       return 'ding_panorama_list_large';
 
@@ -1117,6 +1131,7 @@ function _ding_nodelist_get_templates($include_hidden = TRUE, $content_type = NU
  *   Array of node IDs.
  */
 function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
+  global $language;
   // Support for slave-master DB servers.
   $query = db_select('node', 'n', array('target' => 'slave'))->fields('n', array('nid'));
   $content_types = array();
@@ -1132,6 +1147,10 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
       if ($filter['term_reference'] == 'taxonomy_term_reference') {
         // Use $i in argument placeholder as workaround.
         $ti_l = $query->join('taxonomy_index', $ti_r, "$ti_l.nid = $ti_r.nid AND $ti_r.tid IN (:tids$i)", array(":tids$i" => $filter['filter_terms']));
+      }
+      elseif (empty($conf['term_reference']) && $filter['filter_field'] == 'uid') {
+        $author = user_load_by_name($filter['filter_terms'][0]);
+        $query->condition('uid', $author->uid);
       }
       else {
         $query->join('og_membership', $og, "n.nid = $og.etid AND $og.gid IN (:tids$i) AND $og.field_name = :name$i", array(":tids$i" => $filter['filter_terms'], ":name$i" => $filter['filter_name']));
@@ -1149,6 +1168,10 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
     $query->condition('n.type', $conf['content_types'], 'IN')
       ->condition('n.status', NODE_PUBLISHED)
       ->distinct();
+  }
+
+  if (module_exists('ding_language')) {
+    $query->addTag('language');
   }
 
   // Filter by content type/node settings.
@@ -1424,6 +1447,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     DING_NODELIST_WIDGET_PROMOTED_NODES => t('Promoted nodes'),
     DING_NODELIST_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY => t('Minimal display'),
+    DING_NODELIST_WIDGET_GRID_IMAGES => t('Grid Images'),
   );
   return $widgets[$machine_name];
 }
@@ -1450,6 +1474,7 @@ function _ding_nodelist_get_widget_types($content_types = '') {
     DING_NODELIST_WIDGET_PROMOTED_NODES => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_PROMOTED_NODES),
     DING_NODELIST_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_NODE_BLOCKS),
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_MINIMAL_DISPLAY),
+    DING_NODELIST_WIDGET_GRID_IMAGES => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_GRID_IMAGES),
   );
 
   // Fetch only widgets that have templates configured.
@@ -1519,10 +1544,10 @@ function _ding_nodelist_get_event_date($event_node) {
 function _ding_nodelist_get_event_time($event_node) {
   $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
 
-  $raw_start = new DateTime($event_date[0]['value'], new DateTimeZone('UTC'));
+  $raw_start = new DateTime($event_date[0]['value'], new DateTimeZone($event_date[0]['timezone']));
   $raw_start = $raw_start->getTimestamp();
 
-  $raw_end = new DateTime($event_date[0]['value2'], new DateTimeZone('UTC'));
+  $raw_end = new DateTime($event_date[0]['value2'], new DateTimeZone($event_date[0]['timezone']));
   $raw_end = $raw_end->getTimestamp();
 
   $start = format_date($raw_start, 'ding_time_only');
@@ -1531,7 +1556,7 @@ function _ding_nodelist_get_event_time($event_node) {
   if ($raw_start != $raw_end) {
     $result = t('!start to !end', array('!start' => $start, '!end' => $end));
   }
-  elseif ($start == "0:00") {
+  elseif ($raw_start == $raw_end) {
     $result = t('All day');
   }
   else {
@@ -1628,44 +1653,6 @@ function _ding_nodelist_formated_ding_event_date($event_node) {
  */
 function _ding_nodelist_get_dams_image_info($node, $image_field) {
   $list_image = field_get_items('node', $node, $image_field);
-
-  if (empty($list_image)) {
-    if ($image_field == 'field_ding_news_list_image') {
-      $title_image = field_get_items('node', $node, 'field_ding_news_title_image');
-      if (!isset($list_image[0]['fid'])) {
-        $file_entity = file_load($title_image[0]['fid']);
-        if (!empty($file_entity)) {
-          $img = file_copy($file_entity, 'public://list_image/news', FILE_EXISTS_REPLACE);
-          // Returning new image into nodelist.
-          $list_image = array(
-            '0' => (array) $img,
-          );
-
-          // Updating image field values.
-          $fid = $img->fid;
-          $alt = $img->field_file_image_alt_text[LANGUAGE_NONE][0]['value'];
-          $title = $img->field_file_image_title_text[LANGUAGE_NONE][0]['value'];
-
-          $node_wrapper = entity_metadata_wrapper('node', $node);
-          $node_wrapper->field_ding_news_list_image->set(
-            array('fid' => $fid, 'alt' => $alt, 'title' => $title)
-          );
-          $node_wrapper->save();
-
-          // Updating 'manualcrop' table with new 'fid'.
-          db_update('manualcrop')
-            ->fields(
-              array(
-                'fid' => $img->fid,
-              )
-            )
-            ->condition('fid', $title_image[0]['fid'], '=')
-            ->condition('style_name', 'ding_list_large', '=')
-            ->execute();
-        }
-      }
-    }
-  }
 
   if ($list_image) {
     $image = reset($list_image);
@@ -1798,6 +1785,7 @@ function _ding_nodelist_widgets_with_titles() {
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY,
+    DING_NODELIST_WIDGET_GRID_IMAGES,
   );
 }
 
@@ -1816,6 +1804,7 @@ function _ding_nodelist_widgets_content_trim() {
     DING_NODELIST_WIDGET_ROLLTAB,
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
+    DING_NODELIST_WIDGET_GRID_IMAGES,
   );
 }
 
