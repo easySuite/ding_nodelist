@@ -10,7 +10,7 @@ $img_url = FALSE;
 if (!empty($image['path'])) {
   $img_url = image_style_url($conf['image_style'], $image['path']);
 }
-$lead = field_view_field('node', $item, 'field_ding_page_lead', array('label' => 'hidden', 'type' => 'text_trimmed', 'settings' => array('trim_length' => 120)));
+$lead = field_view_field('node', $item, 'field_ding_page_lead', array('label' => 'hidden'));
 $library = field_view_field('node', $item, 'ding_page_group_ref', array('label' => 'hidden', 'type' => 'entityreference_label', 'settings' => array('link' => TRUE)));
 ?>
 
@@ -22,7 +22,13 @@ $library = field_view_field('node', $item, 'ding_page_group_ref', array('label' 
     <div class="event-text">
       <div class="title-and-lead" style="">
         <h3 class="title"><?php print l($item->title, 'node/' . $item->nid); ?></h3>
-        <?php print drupal_render($lead); ?>
+        <div class="field-name-field-ding-page-lead">
+          <div class="field-items">
+            <div class="field-item">
+              <?php print $lead['#items'][0]['value']; ?>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="info-bottom">
         <div class="library">
