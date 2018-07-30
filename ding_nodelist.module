@@ -1211,6 +1211,8 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
     $query->range(0, $conf['limit']);
   }
 
+  drupal_alter('ding_nodelist_get_dynamic_list_query', $query);
+
   $nodes = $query->execute()->fetchCol();
 
   return $nodes;
