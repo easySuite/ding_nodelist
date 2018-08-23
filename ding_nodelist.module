@@ -1546,14 +1546,14 @@ function _ding_nodelist_get_event_date($event_node) {
 function _ding_nodelist_get_event_time($event_node) {
   $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
 
-  $raw_start = new DateTime($event_date[0]['value'], new DateTimeZone($event_date[0]['timezone']));
+  $raw_start = new DateTime($event_date[0]['value'], new DateTimeZone($event_date[0]['timezone_db']));
   $raw_start = $raw_start->getTimestamp();
 
-  $raw_end = new DateTime($event_date[0]['value2'], new DateTimeZone($event_date[0]['timezone']));
+  $raw_end = new DateTime($event_date[0]['value2'], new DateTimeZone($event_date[0]['timezone_db']));
   $raw_end = $raw_end->getTimestamp();
 
-  $start = format_date($raw_start, 'ding_time_only');
-  $end = format_date($raw_end, 'ding_time_only');
+  $start = format_date($raw_start, 'ding_time_only', '', $event_date[0]['timezone']);
+  $end = format_date($raw_end, 'ding_time_only', '', $event_date[0]['timezone']);
 
   if ($raw_start != $raw_end) {
     $result = t('!start to !end', array('!start' => $start, '!end' => $end));
