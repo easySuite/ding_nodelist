@@ -1605,8 +1605,8 @@ $label-bg: url('../images/p.png');
           text-overflow: ellipsis;
         }
       }
+
       .field-name-field-ding-news-lead {
-        position: relative;
         padding: 0;
         color: $color-text;
       }
@@ -1680,6 +1680,13 @@ $label-bg: url('../images/p.png');
       }
 
       &:hover {
+        .field-name-field-ding-news-lead {
+          position: relative;
+          padding-bottom: 10px;
+          @include transition(
+            opacity $speed $hover-delay $ease
+          )
+        }
         .background {
           @include transition(
               width $speed $hover-delay $ease,
@@ -1702,6 +1709,7 @@ $label-bg: url('../images/p.png');
             box-shadow: none;
           }
         }
+
         .button {
           @include transition(
               opacity $speed $hover-delay $ease,
@@ -1781,7 +1789,7 @@ table {
       .field-name-field-ding-event-lead,
       .field-name-field-ding-page-lead {
         @include transition(
-                        opacity $speed $ease
+          opacity $speed $ease
         );
 
         width: 100%;
@@ -1808,7 +1816,7 @@ table {
         .field-name-field-ding-event-lead,
         .field-name-field-ding-page-lead {
           @include transition(
-                          opacity $speed $hover-delay $ease
+            opacity $speed $hover-delay $ease
           );
           opacity: 1;
           color: #ffffff;
