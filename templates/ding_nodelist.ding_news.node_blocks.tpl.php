@@ -36,9 +36,10 @@ if ($item->created < $item->changed) {
         <div class="info-top">
           <?php print drupal_render($category); ?>
         </div>
-        <div class="title-and-lead" style="">
+        <div class="title-and-lead">
           <h3 class="title"><?php print $item->title; ?></h3>
-          <div class="field-name-field-ding-news-lead">
+          <div
+             class="field field-name-field-ding-news-lead field-type-text-long field-label-hidden">
             <div class="field-items">
               <div class="field-item">
                 <?php print $lead['#items'][0]['value']; ?>
