@@ -3,20 +3,20 @@
 
   var video_play_once = 0;
   Drupal.behaviors.video_play = { //VIMEO, YOUTUBE AND SOUNCLOUD CUSTOM PLAY-BUTTONS
-    attach: function (context, settings) {
-      var src, stripsrc, newsrc, mediasrc, thecontext;
+    attach: function (context) {
+      var src, stripsrc, newsrc, mediasrc;
 
-      if ($(".media-content .content > div")
+      if ($(".media-content .content > div", context)
           .hasClass("media-vimeo-video")) {
         mediasrc = "vimeo";
       }
       else {
-        if ($(".media-content .content > div")
+        if ($(".media-content .content > div", context)
             .hasClass("media-youtube-video")) {
           mediasrc = "yt";
         }
         else {
-          if ($(".media-content .content > div")
+          if ($(".media-content .content > div", context)
               .hasClass("media-soundcloud-audio")) {
             mediasrc = "sc";
           }
@@ -65,7 +65,7 @@
                 'onReady': onPlayerReady01
               }
             });
-          }
+          };
           var tag = document.createElement('script');
           tag.src = "https://www.youtube.com/iframe_api";
           var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -107,10 +107,7 @@
         }
       }
 
-      initPlayer();
-
-      function onPlayerReady01(event) {
-        //console.log('ready');
+      function onPlayerReady01() {
         // bind events
         $('.overlay', context).on("click", function () {
           var $this = $(this);
@@ -122,6 +119,9 @@
           }
         });
       }
+
+      initPlayer();
+
 
       //////////////////FRONT PAGE //////////////
       $('.media-play', context).on('click', function (event) {
@@ -141,7 +141,7 @@
           .show(); //show the close btn
 
         //Vimeo
-        if (url.indexOf("vimeo") != -1) {
+        if (url.indexOf("vimeo") !== -1) {
           mediasrc = "vimeo";
           stripurl = url.replace("http://vimeo.com/", '');
           mediaurl = "http://player.vimeo.com/video/" + stripurl + "?autoplay=1";
@@ -160,7 +160,7 @@
         //Youtube
 
         else {
-          if (url.indexOf("youtube") != -1) {
+          if (url.indexOf("youtube") !== -1) {
             mediasrc = "yt";
             stripurl = url.replace("http://www.youtube.com/watch?v=", '');
             //console.log(stripurl);
@@ -177,7 +177,7 @@
 
           //Soundcloud
           else {
-            if (url.indexOf("soundcloud") != -1) {
+            if (url.indexOf("soundcloud") !== -1) {
               mediasrc = "sc";
               stripurl = url.replace("http:", '');
               mediaurl = "//w.soundcloud.com/player/?url=http%3A" + stripurl + "&amp;visual=1&amp;auto_play=true&amp";
@@ -193,7 +193,7 @@
             }
           }
         }
-      })
+      });
       //End media-play click
 
       //Close btn
@@ -204,7 +204,7 @@
         $this.parent().parent().children('.news-info').fadeIn();
         $this.parent().parent().children('.event-info').fadeIn();
         $this.parent().parent().children('.page-info').fadeIn();
-      })
+      });
     }
   };
 

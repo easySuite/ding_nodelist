@@ -4,6 +4,7 @@
  * @file
  * Node blocks list widget template.
  */
+
 ?>
 <?php if ($items): ?>
   <?php if (!empty($conf['title'])): ?>

@@ -9,6 +9,7 @@
  * $conf - list configuration with:
  *  - classes - widget-specific CSS classes.
  */
+
 ?>
 <?php if ($items): ?>
   <?php if (!empty($conf['title'])): ?>

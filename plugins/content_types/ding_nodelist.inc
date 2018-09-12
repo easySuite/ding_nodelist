@@ -49,7 +49,7 @@ function ding_nodelist_content_type_render($subtype, array $conf, array $args, $
   // Build title.
   $title = NULL;
   if (!empty($conf['override_title_text'])) {
-    $title = t(check_plain($conf['override_title_text']));
+    $title = t('!title', array('!title' => check_plain($conf['override_title_text'])));
   }
 
   // Create proper layout for variable-width lists.
@@ -492,13 +492,6 @@ function _ding_nodelist_simple_cache_save(&$form_state) {
 
 /**
  * Handler for "Content types" form section.
- *
- * @param array $form
- *   Current form.
- * @param array $node_type
- *   Selected node types.
- * @param array $node_types_opts
- *   Available node types.
  */
 function _ding_nodelist_plugin_content_types(&$form, $node_type, $node_types_opts) {
   $form['ding_nodelist_wrapper']['content_types'] = array(
@@ -522,15 +515,6 @@ function _ding_nodelist_plugin_content_types(&$form, $node_type, $node_types_opt
 
 /**
  * Handler for "Widget type" section and its settings.
- *
- * @param array $form
- *   Current form.
- * @param array $node_type
- *   Current node types.
- * @param array $conf
- *   Current pane configuration options.
- * @param array $default_conf
- *   Default configs.
  */
 function _ding_nodelist_plugin_widget_section(&$form, $node_type, $conf, $default_conf) {
   $entity = entity_get_info('node');
@@ -583,7 +567,7 @@ function _ding_nodelist_plugin_widget_section(&$form, $node_type, $conf, $defaul
       '#type' => 'textfield',
       '#title' => t('List title'),
       '#description' => t('Enter a title to be shown above the list items. Leave empty to omit the title.') . ' ' .
-        t('You may use %keywords from contexts, as well as %title to contain the original title.'),
+      t('You may use %keywords from contexts, as well as %title to contain the original title.'),
       '#required' => FALSE,
       '#default_value' => isset($conf['override_title_text']) ? $conf['override_title_text'] : '',
     );
@@ -592,17 +576,6 @@ function _ding_nodelist_plugin_widget_section(&$form, $node_type, $conf, $defaul
 
 /**
  * Handler for "Content" section of the form.
- *
- * @param array $form
- *   Current form.
- * @param array $form_state
- *   Current form state.
- * @param array $node_type
- *   Current pane selected node types.
- * @param array $conf
- *   Current pane configuration options.
- * @param array $node_types_opts
- *   All node types enabled for usage in nodelists.
  */
 function _ding_nodelist_plugin_content_section(&$form, &$form_state, $node_type, $conf, $node_types_opts) {
   $form['ding_nodelist_wrapper']['nodelist_content'] = array(
@@ -901,17 +874,8 @@ function _ding_nodelist_plugin_content_section(&$form, &$form_state, $node_type,
 
 /**
  * Handler for "Various" settings section of the form.
- *
- * @param array $form
- *   Current form.
- * @param array $node_type
- *   Current pane selected node types.
- * @param array $conf
- *   Current pane configuration options.
- * @param array $default_conf
- *   Nodelists default configuration options.
  */
-function _ding_nodelist_plugin_various_section(&$form, $node_type, $conf, $default_conf) {
+function _ding_nodelist_plugin_various_section(&$form = array(), $node_type = array(), $conf = array(), $default_conf = array()) {
   $form['ding_nodelist_wrapper']['nodelist_various_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('Various'),
@@ -1009,13 +973,6 @@ function _ding_nodelist_plugin_various_section(&$form, $node_type, $conf, $defau
 
 /**
  * Handler for "Bottom links" section of the form.
- *
- * @param array $form
- *   Current form.
- * @param array $form_state
- *   Current form state.
- * @param array $conf
- *   Current pane configuration options.
  */
 function _ding_nodelist_plugin_bottom_links_section(&$form, &$form_state, $conf) {
   $form['ding_nodelist_wrapper']['ding_nodelist_bottom_links'] = array(
@@ -1071,11 +1028,6 @@ function _ding_nodelist_plugin_bottom_links_section(&$form, &$form_state, $conf)
 
 /**
  * Handler for "Cache settings" section of the form.
- *
- * @param array $form
- *   Current form.
- * @param array $form_state
- *   Current form state.
  */
 function _ding_nodelist_plugin_cache_section(&$form, &$form_state) {
   $form['ding_nodelist_wrapper']['cache_settings'] = array(
