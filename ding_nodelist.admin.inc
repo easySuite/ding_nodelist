@@ -67,7 +67,6 @@ function ding_nodelist_settings_form() {
  * Template settings form.
  */
 function ding_nodelist_templates_form($form, &$form_state) {
-
   $form['templates'] = array(
     '#type' => 'fieldset',
     '#title' => t('Templates'),

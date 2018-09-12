@@ -1556,7 +1556,10 @@ function _ding_nodelist_get_event_time($event_node) {
   $end = format_date($raw_end, 'ding_time_only', '', $event_date[0]['timezone']);
 
   if ($raw_start != $raw_end) {
-    $result = t('!start to !end', array('!start' => $start, '!end' => $end));
+    $result = t('!start to !end', array(
+      '!start' => $start,
+      '!end' => $end,
+    ));
   }
   elseif ($raw_start == $raw_end) {
     $result = t('All day');
@@ -1575,6 +1578,7 @@ function _ding_nodelist_get_event_time($event_node) {
  *   Event node object.
  *
  * @return string
+ *   Formatted event time period.
  */
 function _ding_nodelist_format_event_time($event_node) {
   $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
@@ -1602,7 +1606,7 @@ function _ding_nodelist_format_event_time($event_node) {
 /**
  * Format event dates as period of time.
  *
- * @param stdClass $event_node
+ * @param object $event_node
  *   Ding event node.
  *
  * @return string
@@ -1620,7 +1624,10 @@ function _ding_nodelist_format_event_date($event_node) {
   $result = $start_string;
   if ($start->diff($end)->days > 0) {
     $end_string = format_date($end->getTimestamp(),  'custom', 'd.m.y');
-    $result = t('!start - !end', array('!start' => $start_string, '!end' => $end_string));
+    $result = t('!start - !end', array(
+      '!start' => $start_string,
+      '!end' => $end_string,
+    ));
   }
 
   return $result;
@@ -1662,6 +1669,19 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
     $path = $image['uri'];
     $title = !empty($image['field_file_image_title_text']) ? $image['field_file_image_title_text']['und'][0]['safe_value'] : '';
     $alt = !empty($image['field_file_image_alt_text']) ? $image['field_file_image_alt_text']['und'][0]['safe_value'] : $title;
+
+    if (!empty($node->has_video) && $image['filemime'] == 'video/youtube') {
+      $video_id = explode("?v=", $node->has_video);
+      $video_id = $video_id[1];
+      $url = "http://img.youtube.com/vi/$video_id/maxresdefault.jpg";
+
+      $file = system_retrieve_file($url, 'public://list_image/news', TRUE, FILE_EXISTS_RENAME);
+      file_save($file);
+
+      $path = $file->uri;
+      $title = $image['title'] ? $image['title'] : $image['filename'];
+      $alt = $image['alt'] ? $image['alt'] : $title;
+    }
 
     return array(
       'path' => $path,
