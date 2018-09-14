@@ -16,7 +16,6 @@ $library = field_view_field('node', $item, 'og_group_ref', array(
   'settings' => array('link' => FALSE)
 ));
 
-$event_period = field_get_items('node', $item, 'field_ding_event_date');
 $event_date   = _ding_nodelist_format_event_date($item);
 $event_hours  = _ding_nodelist_format_event_time($item);
 

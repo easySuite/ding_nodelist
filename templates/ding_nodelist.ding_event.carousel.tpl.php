@@ -5,7 +5,8 @@
  * Ding event image and text template.
  */
 
-$event_date = _ding_nodelist_get_event_date($item);
+$date = field_get_items('node', $item, 'field_ding_event_date');
+$timestamp = _ding_nodelist_get_event_date($item);
 $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
@@ -25,9 +26,9 @@ if (!empty($image['path'])) {
          style="background-image:url(<?php print $slide_image; ?>);"></div>
   <?php endif; ?>
   <div class="event-time">
-    <div class="event-day"><?php print format_date($event_date, 'custom', 'D');?></div>
-    <div class="event-date"><?php print format_date($event_date, 'day_only'); ?></div>
-    <div class="event-month"><?php print format_date($event_date, 'short_month_only'); ?></div>
+    <div class="event-day"><?php print format_date($timestamp, 'custom', 'D', $date[0]['timezone']); ?></div>
+    <div class="event-date"><?php print format_date($timestamp, 'custom', 'd', $date[0]['timezone']); ?></div>
+    <div class="event-month"><?php print format_date($timestamp, 'custom', 'M', $date[0]['timezone']); ?></div>
   </div>
   <div class="article-info">
     <div class="label"><?php print drupal_render($category);?></div>

@@ -13,10 +13,7 @@ $lead = field_get_items('node', $item, 'field_ding_news_lead');
 $teaser = field_get_items('node', $item, 'field_ding_news_body');
 $condition = ($class[0] == 'first' && $class[1] == 'left' || $class[0] == 'last' && $class[1] == 'right');
 $category = field_view_field('node', $item, 'field_ding_news_category', 'teaser');
-$news_date = date('d.m.y', $item->created);
-if ($item->created != $item->changed) {
-  $news_date = date('d.m.y', $item->changed);
-}
+
 $classes = array();
 $classes[] = "ding_nodelist-pn-item";
 $classes[] = (empty($image_path) ? 'no-bgimage' : NULL);

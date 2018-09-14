@@ -19,9 +19,9 @@ $lead = field_view_field('node', $item, 'field_ding_news_lead', array(
   'label' => 'hidden',
 ));
 
-$news_date = date('d.m.y', $item->created);
+$news_date = format_date($item->created, 'custom', 'd.m.y', 'UTC');
 if ($item->created < $item->changed) {
-  $news_date = date('d.m.y', $item->changed);
+  $news_date = format_date($item->changed, 'custom', 'd.m.y', 'UTC');
 }
 ?>
 

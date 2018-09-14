@@ -10,7 +10,6 @@ $image_path = _ding_nodelist_get_image_path($item, $conf, $image_field);
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $lead = field_get_items('node', $item, 'field_ding_event_lead');
 $teaser = field_get_items('node', $item, 'field_ding_event_body');
-$event_date = _ding_nodelist_get_event_date($item);
 $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $price = field_view_field('node', $item, 'field_ding_event_price', 'default');

@@ -22,20 +22,8 @@ $plugin = array(
 
 /**
  * Run-time rendering of the body of the list.
- *
- * @param string $subtype
- *   Content type sub-type.
- * @param array $conf
- *   Configuration as done at admin time.
- * @param array $args
- *   Special arguments to use.
- * @param string $context
- *   Possible context details.
- *
- * @return object
- *   An object with at least title and content members.
  */
-function ding_nodelist_content_type_render($subtype, array $conf, array $args, $context = '') {
+function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
 
   // Prepare classes for widget container.
