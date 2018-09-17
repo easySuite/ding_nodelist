@@ -1439,15 +1439,13 @@ function _ding_nodelist_get_event_date($date) {
 /**
  * Return formatted time for events of the same day.
  *
- * @param object $event
- *   Event node object.
+ * @param array $event
+ *   Event node field.
  *
  * @return string
  *   Formatted event time period.
  */
-function _ding_nodelist_format_event_time($event) {
-  $date = field_get_items('node', $event, 'field_ding_event_date');
-
+function _ding_nodelist_format_event_time($date) {
   $start = strtotime($date[0]['value']);
   $end = strtotime($date[0]['value2']);
 
@@ -1470,15 +1468,13 @@ function _ding_nodelist_format_event_time($event) {
 /**
  * Format event dates as period of time.
  *
- * @param object $event_node
- *   Ding event node.
+ * @param array $date
+ *   Ding event date field.
  *
  * @return string
  *   Formatted event date period.
  */
-function _ding_nodelist_format_event_date($event) {
-  $date = field_get_items('node', $event, 'field_ding_event_date');
-
+function _ding_nodelist_format_event_date($date) {
   $start = strtotime($date[0]['value']);
   $end = strtotime($date[0]['value2']);
 
@@ -1494,21 +1490,6 @@ function _ding_nodelist_format_event_date($event) {
   }
 
   return $result;
-}
-
-/**
- * Get formatted ding_event_date field value.
- *
- * @param object $event_node
- *   Node.
- *
- * @return string
- *   Formatted event date.
- */
-function _ding_nodelist_formated_ding_event_date($event_node) {
-  $field = field_get_items('node', $event_node, 'field_ding_event_date');
-  $event_date = field_view_value('node', $event_node, 'field_ding_event_date', $field[0], array('type' => 'ding_event_date'));
-  return render($event_date);
 }
 
 /**
@@ -1711,24 +1692,58 @@ function ding_nodelist_preprocess(&$variables, $hook) {
         $output = '';
         $lead = field_get_items("node", $item, "field_{$item->type}_lead");
         $teaser = field_get_items("node", $item, "field_{$item->type}_body");
-
         if (isset($lead[0]['value'])) {
           $output = strip_tags($lead[0]['value']);
         }
         elseif (isset($teaser[0]['value'])) {
           $output = strip_tags($teaser[0]['value']);
         }
-
         $items[$key]->teaser_lead = $output;
-      }
 
+        $image_field = 'field_' . $item->type . '_list_image';
+        $image = _ding_nodelist_get_dams_image_info($item, $image_field);
+        $img_url = FALSE;
+        if (!empty($image['path'])) {
+          $img_url = image_style_url($variables['conf']['image_style'], $image['path']);
+        }
+        $items[$key]->image = $img_url;
+        $items[$key]->image_link = l($image ? theme('image_style', array_merge($image, array('style_name' => $variables['conf']['image_style']))) : '',
+          'node/' . $item->nid,
+          array('html' => TRUE)
+        );
+
+        $library = field_view_field('node', $item, 'og_group_ref', array(
+          'label' => 'hidden',
+          'type' => 'entityreference_label',
+          'settings' => array('link' => TRUE)
+        ));
+        $items[$key]->library = $library;
+
+        $category = field_view_field('node', $item, 'field_ding_event_category', array(
+          'label' => 'hidden',
+          'type' => 'taxonomy_term_reference_plain'
+        ));
+        $items[$key]->category = $category;
+
+        $date = field_get_items('node', $item, 'field_ding_event_date');
+        if ($date) {
+          $event_date = field_view_value('node', $item, 'field_ding_event_date', $date[0], array('type' => 'ding_event_date'));
+          $items[$key]->formated_date = $event_date;
+          $items[$key]->date = _ding_nodelist_format_event_date($date);
+          $items[$key]->hours = _ding_nodelist_format_event_time($date);
+          $items[$key]->timestamp = _ding_nodelist_get_event_date($date);
+          $items[$key]->timezone = $date[0]['timezone'];
+        }
+
+        $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+        $items[$key]->price = t('Free');
+        if (is_array($fee_field)) {
+          $fee = current($fee_field);
+          $items[$key]->price = $fee['value'] . ' ' . variable_get('ding_event_currency_type', 'Kr');
+        }
+      }
       $variables['items'] = $items;
     }
-  }
-
-  if (strpos($hook, 'ding_nodelist.ding_event') !== FALSE) {
-    $currency = variable_get('ding_event_currency_type', 'Kr');
-    $variables['currency'] = $currency;
   }
 }
 
