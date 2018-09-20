@@ -27,12 +27,12 @@
       ?>
     </div>
     <div class="next-prev">
-      <a class="prev" href="#"><span>prev</span></a>
-      <a class="next" href="#"><span>next</span></a>
+      <a class="prev" href="#"><span><?php print t('prev');?></span></a>
+      <a class="next" href="#"><span><?php print t('next');?></span></a>
     </div>
     <div class="pagination"></div>
     <?php if (!empty($links)): ?>
-      <?php print theme('_more_links', array('links' => $links)); ?>
+      <?php print theme('ding_nodelist_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>

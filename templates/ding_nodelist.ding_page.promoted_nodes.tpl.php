@@ -4,29 +4,27 @@
  * @file
  * Ding event promoted nodes template.
  */
-$condition = ($class[0] == 'first' && $class[1] == 'left' || $class[0] == 'last' && $class[1] == 'right');
+$position = ($class[0] == 'first' && $class[1] == 'left' || $class[0] == 'last' && $class[1] == 'right');
 $classes = array("ding_nodelist-pn-item");
 $classes[] = (empty($item->image) ? 'no-bgimage' : NULL);
-$classes[] = (isset($item->has_video) ? 'has-video' : NULL);
+$classes[] = (isset($item->video) ? 'has-video' : NULL);
 $classes = implode(" ", $classes);
 ?>
 <div
   class="<?php print $classes; ?>"
-  <?php if (!empty($item->image)): ?>
-    <?php if ($condition): ?>
-      style="background-image: url(<?php print $item->image; ?>);"
-    <?php endif; ?>
+  <?php if (!empty($item->image) && $position): ?>
+    style="background-image: url(<?php print $item->image; ?>);"
   <?php endif; ?>
 >
-  <?php if (isset($item->has_video)): ?>
+  <?php if (isset($item->video)): ?>
     <div class="media-container">
       <div class="media-content"
-           data-url="<?php print $item->has_video; ?>"></div>
-      <div class="close-media"><i class="icon-cross"></i></div>
+           data-url="<?php print $item->video; ?>"></div>
+      <div class="pn-close-media"><i class="icon-cross"></i></div>
     </div>
   <?php endif; ?>
   <?php if (!empty($item->image)): ?>
-    <?php if (!$condition): ?>
+    <?php if (!$position): ?>
       <div class="nb-image" style="background-image:url(<?php print $item->image; ?>);"></div>
     <?php endif; ?>
   <?php endif; ?>
@@ -36,9 +34,9 @@ $classes = implode(" ", $classes);
     <div class="read-more">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
     </div>
-    <?php if (isset($item->has_video)): ?>
-      <div class='media-play'>
-        <div class='play round'><i class='icon-play'></i></div>
+    <?php if (isset($item->video)): ?>
+      <div class='pn-media-play'>
+        <div class='pn-play pn-round'><i class='icon-play'></i></div>
       </div>
     <?php endif; ?>
   </div>

@@ -2,7 +2,7 @@
   "use strict";
 
   var video_play_once = 0;
-  Drupal.behaviors.video_play = { //VIMEO, YOUTUBE AND SOUNCLOUD CUSTOM PLAY-BUTTONS
+  Drupal.behaviors.ding_nodelist_video = { //VIMEO, YOUTUBE AND SOUNCLOUD CUSTOM PLAY-BUTTONS
     attach: function (context) {
       var src, stripsrc, newsrc, mediasrc;
 
@@ -56,7 +56,6 @@
 
       function initPlayer() {
         if (mediasrc === "yt") {
-          //console.log('yt player');
           window.onYouTubePlayerAPIReady = function () {
             // create the global player from the specific iframe (#video)
             player = new YT.Player('video', {
@@ -124,7 +123,7 @@
 
 
       //////////////////FRONT PAGE //////////////
-      $('.media-play', context).on('click', function (event) {
+      $('.pn-media-play', context).on('click', function (event) {
         event.preventDefault();
         var $this = $(this),
           top = $this.parent().parent(),
@@ -137,7 +136,7 @@
           iframe;
 
         top.children('.media-container')
-          .children('.close-media')
+          .children('.pn-close-media')
           .show(); //show the close btn
 
         //Vimeo
@@ -163,7 +162,6 @@
           if (url.indexOf("youtube") !== -1) {
             mediasrc = "yt";
             stripurl = url.replace("http://www.youtube.com/watch?v=", '');
-            //console.log(stripurl);
             mediaurl = "https://www.youtube.com/embed/" + stripurl + "?autoplay=1&autohide=1&enablejsapi=1";
             iframe = '<iframe class="media-youtube-player" width="100%" height="300px" src="' + mediaurl + '" frameborder="0" allowfullscreen="" id="target" autohide="1"></iframe>';
 
@@ -194,10 +192,10 @@
           }
         }
       });
-      //End media-play click
+      //End pn-media-play click
 
       //Close btn
-      $('.close-media', context).on('click', function () {
+      $('.pn-close-media', context).on('click', function () {
         var $this = $(this);
         $this.fadeOut();
         $this.parent().children('.media-content').empty();
