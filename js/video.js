@@ -160,8 +160,12 @@
 
         else {
           if (url.indexOf("youtube") !== -1) {
-            stripurl = url.replace("https://www.youtube.com/watch?v=", '');
-            mediaurl = "https://www.youtube.com/embed/" + stripurl + "?autoplay=1&autohide=1&enablejsapi=1";
+            let video_id = url.split('v=')[1];
+            let ampersandPosition = video_id.indexOf('&');
+            if(ampersandPosition !== -1) {
+              video_id = video_id.substring(0, ampersandPosition);
+            }
+            mediaurl = "https://www.youtube.com/embed/" + video_id + "?autoplay=1&autohide=1&enablejsapi=1";
             iframe = '<iframe class="media-youtube-player" width="100%" height="300px" src="' + mediaurl + '" frameborder="0" allowfullscreen="" id="target" autohide="1"></iframe>';
 
             top.children('.news-info').fadeOut();
