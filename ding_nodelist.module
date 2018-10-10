@@ -1510,9 +1510,11 @@ function _ding_nodelist_get_dams_image_info($node, $image_field) {
       $url = "http://img.youtube.com/vi/$video_id/maxresdefault.jpg";
 
       $file = system_retrieve_file($url, 'public://list_image/' . $node->type, TRUE, FILE_EXISTS_RENAME);
-      file_save($file);
+      if ($file) {
+        file_save($file);
+        $path = $file->uri;
+      }
 
-      $path = $file->uri;
       $title = $image['title'] ? $image['title'] : $image['filename'];
       $alt = $image['alt'] ? $image['alt'] : $title;
     }
