@@ -108,7 +108,7 @@
 .ding_nodelist-promoted_nodes .first-left-block .news-info .pn-media-play i::after,
 .ding_nodelist-promoted_nodes .first-left-block .event-info .pn-media-play i::after,
 .ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i::after {
-  content: "\ea1c";
+  content: "\ea15";
 }
 
 .ding_nodelist-carousel .icon-prev::after, .ding_nodelist-carousel .icon-prev:after, .ding_nodelist-carousel .icon-next::after, .ding_nodelist-carousel .icon-next:after, .ding_nodelist-promoted_nodes .last-right-block .news-info .pn-media-play i::after,
@@ -146,7 +146,7 @@
 .ding_nodelist-promoted_nodes .first-left-block .news-info .pn-media-play i::after,
 .ding_nodelist-promoted_nodes .first-left-block .event-info .pn-media-play i::after,
 .ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i::after {
-  content: "\ea1c";
+  content: "\ea15";
 }
 
 /* Colors variables
@@ -738,12 +738,12 @@
 .ding_nodelist-promoted_nodes .first-left-block .news-info .pn-media-play i:after,
 .ding_nodelist-promoted_nodes .first-left-block .event-info .pn-media-play i:after,
 .ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i:after {
-  font-size: 30px;
+  font-size: 37px;
   top: 0;
   position: relative;
   display: inline-block;
-  margin-top: 3px;
-  margin-left: 5px;
+  margin-top: -1px;
+  margin-left: -1px;
 }
 .ding_nodelist-promoted_nodes .last-right-block .item-event-body,
 .ding_nodelist-promoted_nodes .first-left-block .item-event-body {

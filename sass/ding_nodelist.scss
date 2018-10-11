@@ -615,16 +615,16 @@ $label-bg: url('../images/p.png');
 
         i {
           font-style: normal;
-          @include place-icon(play3,$color-primary);
+          @include place-icon(play,$color-primary);
 
           &:after {
             @extend %icomoon-base;
-            font-size: 30px;
+            font-size: 37px;
             top: 0;
             position: relative;
             display: inline-block;
-            margin-top: 3px;
-            margin-left: 5px;
+            margin-top: -1px;
+            margin-left: -1px;
           }
         }
       }
