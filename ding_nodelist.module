@@ -1552,20 +1552,23 @@ function _ding_nodelist_get_event_time($event_node) {
   $raw_end = new DateTime($event_date[0]['value2'], new DateTimeZone($event_date[0]['timezone_db']));
   $raw_end = $raw_end->getTimestamp();
 
-  $start = format_date($raw_start, 'ding_time_only', '', $event_date[0]['timezone']);
-  $end = format_date($raw_end, 'ding_time_only', '', $event_date[0]['timezone']);
+  $start_date = format_date($raw_start, 'custom', 'd-m-Y', $event_date[0]['timezone']);
+  $end_date = format_date($raw_end, 'custom', 'd-m-Y', $event_date[0]['timezone']);
 
-  if ($raw_start != $raw_end) {
+  $start_time = format_date($raw_start, 'ding_time_only', '', $event_date[0]['timezone']);
+  $end_time = format_date($raw_end, 'ding_time_only', '', $event_date[0]['timezone']);
+
+  if ($start_time != $end_time) {
     $result = t('!start to !end', array(
-      '!start' => $start,
-      '!end' => $end,
+      '!start' => $start_time,
+      '!end' => $end_time,
     ));
   }
-  elseif ($raw_start == $raw_end) {
+  elseif ($start_time == '0:00' &&  $end_time == '0:00' || $start_date != $end_date) {
     $result = t('All day');
   }
   else {
-    $result = $start;
+    $result = $start_time;
   }
 
   return $result;
