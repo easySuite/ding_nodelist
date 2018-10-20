@@ -4,6 +4,7 @@
  * @file
  * Node blocks list widget template.
  */
+
 ?>
 <?php if ($items): ?>
   <?php if (!empty($conf['title'])): ?>
@@ -21,7 +22,7 @@
       ?>
     </div>
     <?php if (!empty($links)): ?>
-      <?php print theme('_more_links', array('links' => $links)); ?>
+      <?php print theme('ding_nodelist_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>
