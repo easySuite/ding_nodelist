@@ -1100,19 +1100,8 @@ function _ding_nodelist_get_dynamic_list_nodes($conf = array()) {
       . ' OR DATE_FORMAT(fed.field_ding_event_date_value2, :format) >= CURRENT_DATE()', array(':format' => '%Y-%m-%d'));
   }
 
-  if ($conf['sort_field']) {
-    if ($conf['sort_field'] == 'event_date') {
-      $query->join('field_data_field_ding_event_date', 'fed', 'fed.entity_id = n.nid');
-      $query->orderBy('fed.field_ding_event_date_value', $conf['sort_order']);
-    }
-    // Force descending order for sticky field.
-    elseif ($conf['sort_field'] == DING_NODELIST_SORT_BY_STICKY) {
-      $query->orderBy('n.' . $conf['sort_field'], DING_NODELIST_SORT_DESCENDING);
-    }
-    else {
-      $query->orderBy('n.' . $conf['sort_field'], $conf['sort_order']);
-    }
-  }
+  // Insert sorting option
+  _ding_nodelist_sort_query($query, $conf);
 
   // Add limit for list nodes.
   if ($conf['limit']) {
@@ -1143,6 +1132,36 @@ function _ding_nodelist_get_custom_list_nodes(&$conf = array()) {
   }, $nodes);
 
   return $nodes;
+}
+
+/**
+ * Alter query object in order to insert a sorting option
+ *
+ * @param object $query
+ *   Select query object.
+ * @param array $conf
+ *   Set of configs for the pane.
+ */
+function _ding_nodelist_sort_query(&$query, $conf) {
+  if (empty($conf['sort_field'])) {
+    if (count($conf['content_types']) == 1 && !empty($conf['content_types']['ding_event'])) {
+      $query->join('field_data_field_ding_event_date', 'fed', 'fed.entity_id = n.nid');
+      $query->orderBy('fed.field_ding_event_date_value', 'DESC');
+    }
+  }
+  else {
+    if ($conf['sort_field'] == 'event_date') {
+      $query->join('field_data_field_ding_event_date', 'fed', 'fed.entity_id = n.nid');
+      $query->orderBy('fed.field_ding_event_date_value', $conf['sort_order']);
+    }
+    elseif ($conf['sort_field'] == 'sticky') {
+      // Force descending order for sticky field.
+      $query->orderBy('n.' . $conf['sort_field'], 'DESC');
+    }
+    else {
+      $query->orderBy('n.' . $conf['sort_field'], $conf['sort_order']);
+    }
+  }
 }
 
 /**
