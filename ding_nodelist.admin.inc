@@ -21,18 +21,17 @@ function ding_nodelist_settings_form() {
     '#default_value' => variable_get('ding_nodelist_node_types', array()),
     '#description' => t('Choose content types avaialable for display'),
   );
-
   // Options as defined by panels/plugins/cache/simple.inc
   $options = drupal_map_assoc(
     array(
       0, 15, 30, 60, 120, 180, 240, 300, 600, 900, 1200, 1800, 3600,
       7200, 14400, 28800, 43200, 86400, 172800, 259200, 345600, 604800),
     'format_interval');
-  $options[0] = '<' . t('none') . '>';
 
   $form['ding_nodelist_cache_default_time'] = array(
     '#type' => 'select',
     '#options' => $options,
+    '#empty' => '<' . t('none') . '>',
     '#title' => t('Default cache life time'),
     '#default_value' => variable_get('ding_nodelist_cache_default_time', DING_NODELIST_CACHE_LIFETIME),
     '#description' => t('Lists will be cached by default for this period of time (seconds)'),
@@ -71,7 +70,7 @@ function ding_nodelist_templates_form($form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Templates'),
     '#tree' => TRUE,
-    '#theme' => '_ding_nodelist_templates_table',
+    '#theme' => 'ding_nodelist_templates_table',
   );
 
   $templates = _ding_nodelist_get_templates();
@@ -144,7 +143,7 @@ function ding_nodelist_trim_content($form, &$form_state) {
     '#collapsible' => FALSE,
     '#title' => t('Text truncation in widgets'),
     '#description' => t('Define amount of chars to be shown in each widget type'),
-    '#theme' => '_ding_nodelist_trim_text_table',
+    '#theme' => 'ding_nodelist_trim_text_table',
     '#tree' => TRUE,
   );
   $widgets = _ding_nodelist_widgets_content_trim();

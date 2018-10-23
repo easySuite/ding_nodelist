@@ -16,28 +16,24 @@ function ding_nodelist_schema() {
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-        'default' => '',
       ),
       'title' => array(
         'description' => 'Template title set by users.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
-        'default' => '',
       ),
       'content_type' => array(
         'description' => 'Machine name of content type to which belong template.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-        'default' => '',
       ),
       'widget' => array(
         'description' => 'Widget type this template is bind to.',
         'type' => 'varchar',
         'length' => 64,
         'not null' => TRUE,
-        'default' => '',
       ),
       'status' => array(
         'description' => 'Boolean indicating whether the template is enabled by default.',
@@ -60,13 +56,6 @@ function ding_nodelist_schema() {
  * Implements hook_install().
  */
 function ding_nodelist_install() {
-  // Set available node types.
-  $node_types = array(
-    'ding_event' => 'ding_event',
-    'ding_news' => 'ding_news',
-  );
-  variable_set('ding_nodelist_node_types', $node_types);
-
   // Create template/wid get settings.
   $mappings = array(
     'ding_nodelist.ding_event.carousel' => array(
@@ -391,12 +380,17 @@ function ding_nodelist_update_7006() {
 /**
  * Helper function for replacing keys of array elements.
  *
- * @param $array
- * @param $key1
+ * @param array $array
+ *   Array to be processed.
+ * @param string $key1
+ *    Array key to be replaced.
  * @param $key2
+ *    Array key to replace with.
+ *
  * @return array
+ *   Processed array.
  */
-function ding_nodelist_replace_key($array, $key1, $key2) {
+function ding_nodelist_replace_key($array = array(), $key1 = '', $key2 = '') {
   $keys = array_keys($array);
   $index = array_search($key1, $keys);
 

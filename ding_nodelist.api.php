@@ -11,6 +11,6 @@
  * @param array $query
  *   Query formed by nodelist.
  */
-function hook_ding_nodelist_get_dynamic_list_query_alter(&$query) {
+function hook_ding_nodelist_get_dynamic_list_query_alter(&$query = array()) {
   // Make changes to current query.
 }
