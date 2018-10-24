@@ -20,16 +20,14 @@
     <div class="ding_nodelist-items">
       <?php
       $groups = array();
-      foreach ($items as $node) {
-        $ed = date('d-m-Y', _ding_nodelist_get_event_date($node));
-        if (!isset($groups[$ed])) {
-          $groups[$ed] = array($node);
+      foreach ($items as $key => $node) {
+        if (!isset($groups[$key])) {
+          $groups[$key] = array($node);
         }
         else {
-          $groups[$ed][] = $node;
+          $groups[$key][] = $node;
         }
       }
-
       foreach ($groups as $group) {
         $group[0]->has_header = TRUE;
         foreach ($group as $k => $v) {
