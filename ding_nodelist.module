@@ -1682,6 +1682,10 @@ function ding_nodelist_preprocess(&$variables, $hook) {
     $items = !empty($variables['items']) ? $variables['items'] : array();
     if (!empty($items)) {
       foreach ((array) $items as $key => $item) {
+        $author = l($item->name, 'user/' . $item->uid);
+        $author = t('by !author', array('!author' => $author));
+        $items[$key]->author = $author;
+
         $output = '';
         $lead = field_get_items("node", $item, "field_{$item->type}_lead");
         $teaser = field_get_items("node", $item, "field_{$item->type}_body");
@@ -1692,6 +1696,13 @@ function ding_nodelist_preprocess(&$variables, $hook) {
           $output = strip_tags($teaser[0]['value']);
         }
         $items[$key]->teaser_lead = $output;
+
+        $lead = field_view_field('node', $item, "field_{$item->type}_lead", [
+          'label' => 'hidden',
+          'type' => 'text_trimmed',
+          'settings' => ['trim_length' => 120],
+        ]);
+        $items[$key]->lead = $lead;
 
         $image_field = 'field_' . $item->type . '_list_image';
         $image = _ding_nodelist_get_dams_image_info($item, $image_field);
@@ -1712,7 +1723,7 @@ function ding_nodelist_preprocess(&$variables, $hook) {
         ));
         $items[$key]->library = $library;
 
-        $category = field_view_field('node', $item, 'field_ding_event_category', array(
+        $category = field_view_field('node', $item, 'field_' . $item->type . '_category', array(
           'label' => 'hidden',
           'type' => 'taxonomy_term_reference_plain'
         ));
