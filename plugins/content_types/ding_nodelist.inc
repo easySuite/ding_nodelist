@@ -115,28 +115,24 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   // Init JS for widgets.
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
 
-  $image_style = _ding_nodelist_init_image_style($conf['widget_type']);
-  $content = '';
-  if (!empty($image_style)) {
-    // Ensure that slick library is loaded properly.
-    if ($conf['widget_type'] == 'carousel' && libraries_detect('slick')) {
-      libraries_load('slick');
-    }
-    $theme_func = 'ding_nodelist_widget_' . $conf['widget_type'];
-
-    $content = theme($theme_func, array(
-      'items' => $nodes,
-      'links' => $conf['more_links'],
-      'conf' => array(
-        'title' => $title,
-        'classes' => implode(' ', $classes),
-        'image_style' => $image_style,
-        'sorting' => $conf['sort_field'],
-        'image_field' => !empty($conf['image_field']) ? $conf['image_field'] : '',
-      ),
-    ));
+   // Ensure that slick library is loaded properly.
+  if ($conf['widget_type'] == 'carousel' && libraries_detect('slick')) {
+    libraries_load('slick');
   }
-  $block->content = $content;
+  $theme_func = 'ding_nodelist_widget_' . $conf['widget_type'];
+
+  $block->content = theme($theme_func, array(
+    'items' => $nodes,
+    'links' => $conf['more_links'],
+    'conf' => array(
+      'title' => $title,
+      'classes' => implode(' ', $classes),
+      'image_style' => _ding_nodelist_init_image_style($conf['widget_type']),
+      'sorting' => $conf['sort_field'],
+      'image_field' => !empty($conf['image_field']) ? $conf['image_field'] : '',
+      'unique_id' => $conf['unique_id'],
+    ),
+  ));
 
   return $block;
 }
