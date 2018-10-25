@@ -1540,45 +1540,6 @@ function _ding_nodelist_get_event_date($date) {
 }
 
 /**
- * Return formatted time for events.
- *
- * @param object $event_node
- *   Event node object.
- *
- * @return string
- */
-function _ding_nodelist_get_event_time($event_node) {
-  $event_date = field_get_items('node', $event_node, 'field_ding_event_date');
-
-  $raw_start = new DateTime($event_date[0]['value'], new DateTimeZone($event_date[0]['timezone_db']));
-  $raw_start = $raw_start->getTimestamp();
-
-  $raw_end = new DateTime($event_date[0]['value2'], new DateTimeZone($event_date[0]['timezone_db']));
-  $raw_end = $raw_end->getTimestamp();
-
-  $start_date = format_date($raw_start, 'custom', 'd-m-Y', $event_date[0]['timezone']);
-  $end_date = format_date($raw_end, 'custom', 'd-m-Y', $event_date[0]['timezone']);
-
-  $start_time = format_date($raw_start, 'ding_time_only', '', $event_date[0]['timezone']);
-  $end_time = format_date($raw_end, 'ding_time_only', '', $event_date[0]['timezone']);
-
-  if ($start_time != $end_time) {
-    $result = t('!start to !end', array(
-      '!start' => $start_time,
-      '!end' => $end_time,
-    ));
-  }
-  elseif ($start_time == '0:00' &&  $end_time == '0:00' || $start_date != $end_date) {
-    $result = t('All day');
-  }
-  else {
-    $result = $start_time;
-  }
-
-  return $result;
-}
-
-/**
  * Return formatted time for events of the same day.
  *
  * @param array $event

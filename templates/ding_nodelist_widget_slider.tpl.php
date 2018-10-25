@@ -3,13 +3,6 @@
 /**
  * @file
  * Slider list widget template.
- *
- * Variables are:
- * $items - node items (objects)
- * $conf - list configuration with:
- *  - classes - widget-specific CSS classes
- *  - title - list title
- * $links - list of links (array)
  */
 ?>
 <?php if ($items): ?>
@@ -30,8 +23,8 @@
           ?>
         </ul>
         <div class="next-prev">
-            <a class="prev" href="#"><span>prev</span></a>
-            <a class="next" href="#"><span>next</span></a>
+            <a class="prev" data-pane-id="<?php print $conf['unique_id']; ?>" href="#"><span>prev</span></a>
+            <a class="next" data-pane-id="<?php print $conf['unique_id']; ?>" href="#"><span>next</span></a>
         </div>
     </div>
 <?php endif; ?>
