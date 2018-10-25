@@ -869,12 +869,18 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-// Nodes blocks
 //==========================================================================
 .ding_nodelist-node_blocks {
   margin-right: -10px;
   width: inherit;
   overflow: initial;
+
+  .date {
+    display: none;
+    @include media($mobile) {
+      display: block;
+    }
+  }
 
   .ding_nodelist-items {
     .nb-item {
@@ -941,6 +947,12 @@ $label-bg: url('../images/p.png');
 
       .info-top {
         color: $charcoal-opacity-dark;
+        display: none;
+
+        @include media($mobile) {
+          display: block;
+        }
+
         > div {
           float: left;
           width: 100%;
@@ -964,9 +976,20 @@ $label-bg: url('../images/p.png');
         .field-item {
           color: $color-standard-text;
         }
+
+        @include media($mobile) {
+          min-height: 100%;
+          transition: initial;
+        }
       }
 
       .info-bottom {
+        display: none;
+
+        @include media($mobile) {
+          display: block;
+        }
+
         a {
           position: static;
         }
@@ -1051,6 +1074,19 @@ $label-bg: url('../images/p.png');
       }
 
       &:hover {
+        @include media($mobile) {
+          display: block;
+        }
+
+        .info-top,
+        .info-bottom,
+        .date {
+          display: block;
+          @include transition(
+            opacity $speed $hover-delay $ease
+          )
+        }
+
         .field-name-field-ding-news-lead {
           position: relative;
           padding-bottom: 10px;
@@ -1083,21 +1119,26 @@ $label-bg: url('../images/p.png');
 
         .button {
           @include transition(
-              opacity $speed $hover-delay $ease,
-              background-color $speed $ease,
-              color $speed $ease
+            opacity $speed $hover-delay $ease,
+            background-color $speed $ease,
+            color $speed $ease
           );
           opacity: 1;
         }
         .title-and-lead {
           @include transition(
-              min-height $speed $hover-delay $ease
+            min-height $speed $hover-delay $ease
           );
           min-height: 118px;
+
+          @include media($mobile) {
+            min-height: 100%;
+            transition: initial;
+          }
         }
         .field-name-field-ding-event-lead {
           @include transition(
-              opacity $speed $hover-delay $ease
+            opacity $speed $hover-delay $ease
           );
           opacity: 1;
         }
