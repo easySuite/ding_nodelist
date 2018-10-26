@@ -7,7 +7,7 @@
 ?>
 <li class="item">
   <div class="category">
-    <?php print drupal_render($item->category);?>
+    <?php print drupal_render($item->category_link);?>
   </div>
   <h3 class="node-title">
       <?php print l($item->title, 'node/' . $item->nid); ?>

@@ -31,9 +31,9 @@
         </div>
         <div class="event-details">
           <span class="event-library">
-            <?php print drupal_render($item->library); ?>
+            <?php print drupal_render($item->library_link); ?>
           </span>
-          <span class="event-fee"><?php print '&mdash; ' . $item->price; ?></span>
+          <span class="event-fee"><?php print $item->price; ?></span>
         </div>
       </div>
       <div class="teaser"><p><?php print $item->teaser_lead; ?></p></div>
