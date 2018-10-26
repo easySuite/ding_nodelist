@@ -14,7 +14,7 @@
   <div class="item-details news">
     <h2 class="item-title"><?php print l($item->title, 'node/' . $item->nid); ?></h2>
     <div class="item-byline">
-      <div class="label"><?php print drupal_render($item->category); ?></div>
+      <div class="label"><?php print drupal_render($item->category_link); ?></div>
       <div class="author"><?php print $item->author; ?></div>
     </div>
     <div class="item-body">

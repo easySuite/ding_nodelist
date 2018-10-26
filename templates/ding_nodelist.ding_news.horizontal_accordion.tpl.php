@@ -8,7 +8,7 @@
 <li class="item news">
   <div class="item_content">
     <div class="expand"><?php print l($item->title, 'node/' . $item->nid);?></div>
-    <div class="label"><?php print drupal_render($item->category); ?></div>
+    <div class="label"><?php print drupal_render($item->category_link); ?></div>
     <?php if (!empty($item->image)): ?>
       <div class="image"><?php print print $item->image_link; ?></div>
     <?php endif; ?>
@@ -18,7 +18,7 @@
           <?php print l($item->title, 'node/' . $item->nid);?>
         </h3>
         <div class="category">
-          <?php print drupal_render($item->category); ?>
+          <?php print drupal_render($item->category_link); ?>
         </div>
         <div class="teaser"><p><?php print $item->teaser_lead; ?></p></div>
       </div>

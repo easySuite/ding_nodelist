@@ -47,9 +47,9 @@
   <?php endif ?>
   <div class="item-details">
     <h2 class="item-title"><?php print l($item->title, 'node/' . $item->nid); ?></h2>
-    <span class="item-library"><?php print drupal_render($item->library); ?></span>
+    <span class="item-library"><?php print drupal_render($item->library_link); ?></span>
     <div class="date-time"><?php print $item->hours; ?></div>
-    <span class="item-price"><?php print '&mdash; ' . $item->price; ?></span>
+    <span class="item-price"><?php print $item->price; ?></span>
     <div class="item-body">
       <span><?php print $item->teaser_lead; ?></span>
     </div>
