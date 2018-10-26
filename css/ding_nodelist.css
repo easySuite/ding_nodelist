@@ -1044,6 +1044,14 @@
   width: inherit;
   overflow: initial;
 }
+.ding_nodelist-node_blocks .date {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .date {
+    display: block;
+  }
+}
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item {
   float: left;
   width: 31%;
@@ -1104,6 +1112,12 @@
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-top {
   color: rgba(38, 38, 38, 0.54);
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-top {
+    display: block;
+  }
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-top > div {
   float: left;
@@ -1126,6 +1140,20 @@
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .field-item {
   color: #474747;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead {
+    min-height: 100%;
+    transition: initial;
+  }
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-bottom {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-bottom {
+    display: block;
+  }
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-bottom a {
   position: static;
@@ -1204,6 +1232,19 @@
     display: none;
   }
 }
+@media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover {
+    display: block;
+  }
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .info-top,
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .info-bottom,
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .date {
+  display: block;
+  -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .field-name-field-ding-news-lead {
   position: relative;
   padding-bottom: 10px;
@@ -1242,6 +1283,12 @@
   -moz-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   min-height: 118px;
+}
+@media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .title-and-lead {
+    min-height: 100%;
+    transition: initial;
+  }
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .field-name-field-ding-event-lead {
   -webkit-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);

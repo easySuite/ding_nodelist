@@ -1549,15 +1549,15 @@ function _ding_nodelist_get_event_date($date) {
  *   Formatted event time period.
  */
 function _ding_nodelist_format_event_time($date) {
-  $start = strtotime($date[0]['value']);
-  $end = strtotime($date[0]['value2']);
+  $start = strtotime($date[0]['value'] . ' ' . $date[0]['timezone_db']);
+  $end = strtotime($date[0]['value2'] . ' ' . $date[0]['timezone_db']);
 
   $start_string = format_date($start, 'custom', 'H:i', $date[0]['timezone']);
 
   if ($end - $start > 86400) {
     $result = $start_string;
   }
-  elseif ($start_string == '0:00') {
+  elseif ($start_string == '00:00') {
     $result = t('All day');
   }
   else {
