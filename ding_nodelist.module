@@ -1723,11 +1723,25 @@ function ding_nodelist_preprocess(&$variables, $hook) {
         ));
         $items[$key]->library = $library;
 
+        $library_link = field_view_field('node', $item, 'og_group_ref', array(
+          'label' => 'hidden',
+          'type' => 'entityreference_label',
+          'settings' => array('link' => TRUE)
+        ));
+        $items[$key]->library_link = $library_link;
+
         $category = field_view_field('node', $item, 'field_' . $item->type . '_category', array(
           'label' => 'hidden',
           'type' => 'taxonomy_term_reference_plain'
         ));
+
         $items[$key]->category = $category;
+
+        $category_link = field_view_field('node', $item, 'field_' . $item->type . '_category', array(
+          'label' => 'hidden',
+          'type' => 'taxonomy_term_reference_link'
+        ));
+        $items[$key]->category_link = $category_link;
 
         $date = field_get_items('node', $item, 'field_ding_event_date');
         if ($date) {
