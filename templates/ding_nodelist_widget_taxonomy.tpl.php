@@ -21,11 +21,11 @@
       <?php
       $groups = array();
       foreach ($items as $key => $node) {
-        if (!isset($groups[$key])) {
-          $groups[$key] = array($node);
+        if (!isset($groups[$node->date])) {
+          $groups[$node->date] = array($node);
         }
         else {
-          $groups[$key][] = $node;
+          $groups[$node->date][] = $node;
         }
       }
       foreach ($groups as $group) {
