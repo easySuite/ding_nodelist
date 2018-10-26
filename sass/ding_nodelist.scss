@@ -1247,39 +1247,43 @@ $label-bg: url('../images/p.png');
 
   // Icon
   .expand {
-    border-radius: 50px;
     position: absolute;
-    bottom: 95px;
+    bottom: -170px;
     left: 10px;
     z-index: 10;
     display: block;
-    background-color: $color-text-link;
-    color: $white;
     cursor: pointer;
+    @include place-icon(arrow-right-small,$white);
 
     &:after {
       display: inline-block;
       width: 30px;
       height: 30px;
-      line-height: 2;
-      color: $white;
-      content: '\e903';
+      font-size: 16px;
+      line-height: 1.7;
+      background: $color-primary;
+      border-radius: 20px;
       text-align: center;
-      font-family: 'icomoon';
+      @extend %icomoon-base;
     }
 
     a {
-      display: none;
+     display: none;
     }
   }
 
   .slide-open {
-    .expand {
-      right: 10px;
-      left: auto;
+    .expand  {
+      bottom: -170px;
+      float: right;
+      display: block;
+      margin-right: 16%;
+      @include place-icon(plus,$white);
 
       &:after {
-        content: '\e909';
+        @extend %icomoon-base;
+        font-size: 16px;
+        line-height: 1.7;
       }
     }
 
@@ -1565,50 +1569,33 @@ $label-bg: url('../images/p.png');
 
   // Next ... prev buttons
   .next-prev {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    width: 25px;
+     position: absolute;
+     right: 10px;
+    // bottom: 0;
+     width: 25px;
 
     span {
       display: none;
     }
 
-    a {
-      border-radius: 50px;
-      position: absolute;
-      display: block;
-      width: 24px;
-      height: 24px;
-      background-color: $color-text-link;
-      color: $white;
-
-      &:after {
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        color: $white;
-        content: '\e905';
-        text-align: center;
-        font-family: 'icomoon';
-      }
-    }
-
     .next {
-      bottom: 10px;
+      bottom: 25px;
+      @include place-icon(arrow-right-small,$color-primary);
 
       &:after {
-        content: '\e903';
+        @extend %icomoon-base;
+        font-size: 20px;
         transform: rotate(90deg);
       }
     }
 
     .prev {
-      top: 10px;
+      top: -210px;
+      @include place-icon(arrow-right-small,$color-primary);
 
       &:after {
-        content: '\e903';
+        @extend %icomoon-base;
+        font-size: 20px;
         transform: rotate(-90deg);
       }
     }
@@ -1716,11 +1703,20 @@ $label-bg: url('../images/p.png');
       margin-top: -10px;
       font-size: 20px;
 
-      &:after {
-        color: $color-primary;
-        content: '\e903';
-        text-align: center;
-        font-family: 'icomoon';
+      a {
+        @include place-icon(arrow-right-small,$color-primary);
+        display: inline-block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -10px;
+
+        &:after {
+          font-size: 20px;
+          color: $color-primary;
+          text-align: center;
+          @extend %icomoon-base;
+        }
       }
     }
   }

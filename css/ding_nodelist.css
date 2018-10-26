@@ -83,7 +83,7 @@
 .ding_nodelist-promoted_nodes .last-right-block .page-info .pn-media-play i:after,
 .ding_nodelist-promoted_nodes .first-left-block .news-info .pn-media-play i:after,
 .ding_nodelist-promoted_nodes .first-left-block .event-info .pn-media-play i:after,
-.ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i:after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i::after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i:after {
+.ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i:after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i::after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i:after, .ding_nodelist-horizontal_accordion .expand::after, .ding_nodelist-horizontal_accordion .expand:after, .ding_nodelist-horizontal_accordion .slide-open .expand::after, .ding_nodelist-horizontal_accordion .slide-open .expand:after, .ding_nodelist-slider .next-prev .next::after, .ding_nodelist-slider .next-prev .next:after, .ding_nodelist-slider .next-prev .prev::after, .ding_nodelist-slider .next-prev .prev:after, .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a::after, .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a:after {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -98,8 +98,12 @@
   content: "\e907";
 }
 
-.ding_nodelist-carousel .icon-prev::after, .ding_nodelist-carousel .icon-next::after {
+.ding_nodelist-carousel .icon-prev::after, .ding_nodelist-carousel .icon-next::after, .ding_nodelist-horizontal_accordion .expand::after, .ding_nodelist-slider .next-prev .next::after, .ding_nodelist-slider .next-prev .prev::after, .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a::after {
   content: "\e903";
+}
+
+.ding_nodelist-horizontal_accordion .slide-open .expand::after {
+  content: "\e909";
 }
 
 .ding_nodelist-promoted_nodes .last-right-block .news-info .pn-media-play i::after,
@@ -121,7 +125,7 @@
 .ding_nodelist-promoted_nodes .last-right-block .page-info .pn-media-play i:after,
 .ding_nodelist-promoted_nodes .first-left-block .news-info .pn-media-play i:after,
 .ding_nodelist-promoted_nodes .first-left-block .event-info .pn-media-play i:after,
-.ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i:after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i::after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i:after {
+.ding_nodelist-promoted_nodes .first-left-block .page-info .pn-media-play i:after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i::after, .ding_nodelist-promoted_nodes .has-video .media-container .pn-close-media i:after, .ding_nodelist-horizontal_accordion .expand::after, .ding_nodelist-horizontal_accordion .expand:after, .ding_nodelist-horizontal_accordion .slide-open .expand::after, .ding_nodelist-horizontal_accordion .slide-open .expand:after, .ding_nodelist-slider .next-prev .next::after, .ding_nodelist-slider .next-prev .next:after, .ding_nodelist-slider .next-prev .prev::after, .ding_nodelist-slider .next-prev .prev:after, .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a::after, .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a:after {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -136,8 +140,12 @@
   content: "\e907";
 }
 
-.ding_nodelist-carousel .icon-prev::after, .ding_nodelist-carousel .icon-next::after {
+.ding_nodelist-carousel .icon-prev::after, .ding_nodelist-carousel .icon-next::after, .ding_nodelist-horizontal_accordion .expand::after, .ding_nodelist-slider .next-prev .next::after, .ding_nodelist-slider .next-prev .prev::after, .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a::after {
   content: "\e903";
+}
+
+.ding_nodelist-horizontal_accordion .slide-open .expand::after {
+  content: "\e909";
 }
 
 .ding_nodelist-promoted_nodes .last-right-block .news-info .pn-media-play i::after,
@@ -1403,35 +1411,53 @@
   overflow: hidden;
 }
 .ding_nodelist-horizontal_accordion .expand {
-  border-radius: 50px;
   position: absolute;
-  bottom: 95px;
+  bottom: -170px;
   left: 10px;
   z-index: 10;
   display: block;
-  background-color: #4d898f;
-  color: #fff;
   cursor: pointer;
+  position: relative;
+}
+.ding_nodelist-horizontal_accordion .expand::after {
+  font-size: 54px;
+  line-height: 1;
+  color: #fff;
+  display: block;
+  position: absolute;
+  top: 0;
 }
 .ding_nodelist-horizontal_accordion .expand:after {
   display: inline-block;
   width: 30px;
   height: 30px;
-  line-height: 2;
-  color: #fff;
-  content: '\e903';
+  font-size: 16px;
+  line-height: 1.7;
+  background: #4d898e;
+  border-radius: 20px;
   text-align: center;
-  font-family: 'icomoon';
 }
 .ding_nodelist-horizontal_accordion .expand a {
   display: none;
 }
 .ding_nodelist-horizontal_accordion .slide-open .expand {
-  right: 10px;
-  left: auto;
+  bottom: -170px;
+  float: right;
+  display: block;
+  margin-right: 16%;
+  position: relative;
+}
+.ding_nodelist-horizontal_accordion .slide-open .expand::after {
+  font-size: 54px;
+  line-height: 1;
+  color: #fff;
+  display: block;
+  position: absolute;
+  top: 0;
 }
 .ding_nodelist-horizontal_accordion .slide-open .expand:after {
-  content: '\e909';
+  font-size: 16px;
+  line-height: 1.7;
 }
 .ding_nodelist-horizontal_accordion .slide-open:hover .data {
   padding-top: 60px;
@@ -1673,44 +1699,42 @@
 }
 .ding_nodelist-slider .next-prev {
   position: absolute;
-  top: 0;
   right: 10px;
-  bottom: 0;
   width: 25px;
 }
 .ding_nodelist-slider .next-prev span {
   display: none;
 }
-.ding_nodelist-slider .next-prev a {
-  border-radius: 50px;
-  position: absolute;
-  display: block;
-  width: 24px;
-  height: 24px;
-  background-color: #4d898f;
-  color: #fff;
-}
-.ding_nodelist-slider .next-prev a:after {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  color: #fff;
-  content: '\e905';
-  text-align: center;
-  font-family: 'icomoon';
-}
 .ding_nodelist-slider .next-prev .next {
-  bottom: 10px;
+  bottom: 25px;
+  position: relative;
+}
+.ding_nodelist-slider .next-prev .next::after {
+  font-size: 54px;
+  line-height: 1;
+  color: #4d898e;
+  display: block;
+  position: absolute;
+  top: 0;
 }
 .ding_nodelist-slider .next-prev .next:after {
-  content: '\e903';
+  font-size: 20px;
   transform: rotate(90deg);
 }
 .ding_nodelist-slider .next-prev .prev {
-  top: 10px;
+  top: -210px;
+  position: relative;
+}
+.ding_nodelist-slider .next-prev .prev::after {
+  font-size: 54px;
+  line-height: 1;
+  color: #4d898e;
+  display: block;
+  position: absolute;
+  top: 0;
 }
 .ding_nodelist-slider .next-prev .prev:after {
-  content: '\e903';
+  font-size: 20px;
   transform: rotate(-90deg);
 }
 
@@ -1801,11 +1825,26 @@
   margin-top: -10px;
   font-size: 20px;
 }
-.ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link:after {
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a {
+  position: relative;
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  margin-top: -10px;
+}
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a::after {
+  font-size: 54px;
+  line-height: 1;
   color: #4d898e;
-  content: '\e903';
+  display: block;
+  position: absolute;
+  top: 0;
+}
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link a:after {
+  font-size: 20px;
+  color: #4d898e;
   text-align: center;
-  font-family: 'icomoon';
 }
 .ding_nodelist-taxonomy .item {
   background-color: #e5e5e5;
@@ -1908,9 +1947,9 @@
   }
 }
 
-table t.minimal-title {
+table td.minimal-title {
   width: 100%;
 }
-table t.minimal-title td.minimal-date {
+table td.minimal-title td.minimal-date {
   width: 20%;
 }
