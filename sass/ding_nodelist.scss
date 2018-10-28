@@ -876,13 +876,20 @@ $label-bg: url('../images/p.png');
   overflow: initial;
 
   .date {
-    display: none;
     @include media($mobile) {
       display: block;
     }
   }
 
   .ding_nodelist-items {
+    .node-ding-event ~ .node-ding-news {
+      &.has-image {
+        .news-text {
+          height: 380px;
+        }
+      }
+    }
+
     .nb-item {
       float: left;
       width: 31%;
@@ -947,7 +954,6 @@ $label-bg: url('../images/p.png');
 
       .info-top {
         color: $charcoal-opacity-dark;
-        display: none;
 
         @include media($mobile) {
           display: block;
@@ -965,10 +971,11 @@ $label-bg: url('../images/p.png');
       .title-and-lead {
         float: left;
         @include transition(
-            min-height $speed $ease
+           min-height $speed $ease
         );
         min-height: 61px;
         max-height: 85px;
+
         .title {
           min-height: 24px;
           margin-bottom: 10px;
@@ -984,8 +991,6 @@ $label-bg: url('../images/p.png');
       }
 
       .info-bottom {
-        display: none;
-
         @include media($mobile) {
           display: block;
         }
