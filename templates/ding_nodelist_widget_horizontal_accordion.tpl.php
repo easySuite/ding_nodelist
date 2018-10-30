@@ -29,6 +29,6 @@
     </ul>
   </div>
   <?php if (!empty($links)): ?>
-     <div class="nl-link"> <?php print theme('_more_links', array('links' => $links)); ?> </div>
-    <?php endif; ?>
+    <?php print theme('ding_nodelist_more_links', array('links' => $links)); ?>
+  <?php endif; ?>
 <?php endif; ?>
