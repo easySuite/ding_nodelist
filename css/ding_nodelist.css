@@ -287,6 +287,12 @@
 .ding_nodelist-carousel .item .article-info .item-price {
   color: #4d898f;
 }
+.ding_nodelist-carousel .item .article-info .library,
+.ding_nodelist-carousel .item .article-info .field-type-entityreference,
+.ding_nodelist-carousel .item .article-info .library .field-items,
+.ding_nodelist-carousel .item .article-info .library .field-item {
+  display: inline-block;
+}
 .ding_nodelist-carousel .item .item-date {
   color: #fff;
 }
@@ -395,6 +401,11 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   width: 100%;
   height: 100%;
 }
@@ -1857,12 +1868,11 @@
   clear: both;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-library,
-.ding_nodelist-taxonomy .event-list-leaf ~ .item .item-date,
+.ding_nodelist-taxonomy .event-list-leaf ~ .item .date-time,
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .item-price {
   color: rgba(0, 0, 0, 0.7);
   display: inline-block;
   margin-right: 5px;
-  float: left;
 }
 .ding_nodelist-taxonomy .event-list-leaf ~ .item .event-arrow-link {
   display: inline-block;

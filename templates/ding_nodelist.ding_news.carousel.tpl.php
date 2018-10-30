@@ -10,7 +10,7 @@
     <?php print $item->image_link; ?>
   </div>
   <div class="article-info">
-    <div class="label-wrapper"><?php print drupal_render($item->category); ?></div>
+    <div class="label-wrapper"><?php print drupal_render($item->category_link); ?></div>
     <div class="node">
       <h3 class="node-title">
         <?php print l($item->title, 'node/' . $item->nid); ?>
