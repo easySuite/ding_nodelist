@@ -32,7 +32,7 @@
       ?> 
     </div>
     <?php if (!empty($links)): ?>
-      <?php print theme('_more_links', array('links' => $links)); ?>
+      <?php print theme('ding_nodelist_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>
