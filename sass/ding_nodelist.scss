@@ -175,6 +175,13 @@ $label-bg: url('../images/p.png');
       .item-price {
         color: $color-text-link;
       }
+
+      .library,
+      .field-type-entityreference,
+      .library .field-items,
+      .library .field-item {
+        display: inline-block;
+      }
     }
 
     .item-date {
@@ -290,6 +297,11 @@ $label-bg: url('../images/p.png');
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     width: 100%;
     height: 100%;
 
@@ -1728,12 +1740,11 @@ $label-bg: url('../images/p.png');
     }
 
     .item-library,
-    .item-date,
+    .date-time,
     .item-price {
       color: rgba(0, 0, 0, 0.7);
       display: inline-block;
       margin-right: 5px;
-      float: left;
     }
 
     .event-arrow-link {
