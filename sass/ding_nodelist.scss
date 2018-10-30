@@ -875,6 +875,68 @@ $label-bg: url('../images/p.png');
   width: inherit;
   overflow: initial;
 
+ .ding_nodelist-items article:hover {
+    .background {
+      z-index: 5;
+    }
+
+   &.nb-item .page-text,
+   &.nb-item .news-text,
+   &.nb-item .event-text {
+      z-index: 10;
+    }
+
+    .event-list-image,
+    .page-list-image,
+    .ding-news-list-image {
+      z-index: 10;
+    }
+
+    .page-text .title-and-lead {
+      padding-bottom: 170px;
+    }
+  }
+
+  .node-ding-page.node-teaser {
+    .no-touch &:hover .field-name-field-ding-page-lead {
+      opacity: 1;
+    }
+
+    .page-text {
+      background-image: none;
+
+      .field-name-field-ding-page-lead {
+        @include transition(opacity $speed $ease);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 25px 15px;
+        color: $white;
+        opacity: 0;
+        overflow: hidden;
+      }
+
+      .title-and-lead h3 {
+        color: $color-primary;
+        font-size: 18px;
+        min-height: 24px;
+        margin: 10px 0 5px;
+      }
+    }
+
+    a,
+    a::before  {
+      background-color: transparent;
+    }
+
+    a:hover {
+      &:before  {
+        background-color: transparent;
+      }
+    }
+  }
+
   .date {
     @include media($mobile) {
       display: block;
@@ -888,6 +950,18 @@ $label-bg: url('../images/p.png');
           height: 380px;
         }
       }
+    }
+
+    .node-ding-event ~ .node-ding-page {
+      &.has-image {
+        .page-text {
+          height: 380px;
+        }
+      }
+    }
+
+    .page-list-image {
+      top: 0;
     }
 
     .nb-item {
@@ -933,6 +1007,7 @@ $label-bg: url('../images/p.png');
         }
       }
 
+      .page-text,
       .news-text {
         position: relative;
         z-index: 1;
@@ -942,6 +1017,8 @@ $label-bg: url('../images/p.png');
         .inner {
           padding: 0 $box-padding 10px $box-padding;
         }
+
+        .page-text,
         .news-text {
           padding-top: 215px;
 
@@ -968,11 +1045,13 @@ $label-bg: url('../images/p.png');
         }
       }
 
+      .page-text .title-and-lead,
       .title-and-lead {
         float: left;
         @include transition(
-           min-height $speed $ease
+          min-height $speed $ease
         );
+
         min-height: 61px;
         max-height: 85px;
 
@@ -1017,6 +1096,7 @@ $label-bg: url('../images/p.png');
         }
       }
 
+     .page-text .field-name-field-ding-page-lead,
       .field-name-field-ding-news-lead {
         padding: 0;
         color: $color-text;
@@ -1055,6 +1135,7 @@ $label-bg: url('../images/p.png');
           display: none;
         }
 
+        &.page-list-image,
         &.ding-news-list-image {
           width: 100%;
           height: 200px;
@@ -1092,6 +1173,7 @@ $label-bg: url('../images/p.png');
           )
         }
 
+        .field-name-field-ding-page-lead,
         .field-name-field-ding-news-lead {
           position: relative;
           padding-bottom: 10px;

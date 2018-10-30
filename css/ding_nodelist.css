@@ -1036,6 +1036,52 @@
   width: inherit;
   overflow: initial;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items article:hover .background {
+  z-index: 5;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items article:hover.nb-item .page-text, .ding_nodelist-node_blocks .ding_nodelist-items article:hover.nb-item .news-text, .ding_nodelist-node_blocks .ding_nodelist-items article:hover.nb-item .event-text {
+  z-index: 10;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items article:hover .event-list-image,
+.ding_nodelist-node_blocks .ding_nodelist-items article:hover .page-list-image,
+.ding_nodelist-node_blocks .ding_nodelist-items article:hover .ding-news-list-image {
+  z-index: 10;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items article:hover .page-text .title-and-lead {
+  padding-bottom: 170px;
+}
+.no-touch .ding_nodelist-node_blocks .node-ding-page.node-teaser:hover .field-name-field-ding-page-lead {
+  opacity: 1;
+}
+.ding_nodelist-node_blocks .node-ding-page.node-teaser .page-text {
+  background-image: none;
+}
+.ding_nodelist-node_blocks .node-ding-page.node-teaser .page-text .field-name-field-ding-page-lead {
+  -webkit-transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 15px;
+  color: #fff;
+  opacity: 0;
+  overflow: hidden;
+}
+.ding_nodelist-node_blocks .node-ding-page.node-teaser .page-text .title-and-lead h3 {
+  color: #4d898e;
+  font-size: 18px;
+  min-height: 24px;
+  margin: 10px 0 5px;
+}
+.ding_nodelist-node_blocks .node-ding-page.node-teaser a,
+.ding_nodelist-node_blocks .node-ding-page.node-teaser a::before {
+  background-color: transparent;
+}
+.ding_nodelist-node_blocks .node-ding-page.node-teaser a:hover:before {
+  background-color: transparent;
+}
 @media screen and (max-width: 600px) {
   .ding_nodelist-node_blocks .date {
     display: block;
@@ -1043,6 +1089,12 @@
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .node-ding-event ~ .node-ding-news.has-image .news-text {
   height: 380px;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .node-ding-event ~ .node-ding-page.has-image .page-text {
+  height: 380px;
+}
+.ding_nodelist-node_blocks .ding_nodelist-items .page-list-image {
+  top: 0;
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item {
   float: left;
@@ -1087,6 +1139,7 @@
     display: none;
   }
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .news-text {
   position: relative;
   z-index: 1;
@@ -1094,10 +1147,12 @@
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.has-image .inner {
   padding: 0 15px 10px 15px;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item.has-image .page-text,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.has-image .news-text {
   padding-top: 215px;
 }
 @media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.has-image .page-text,
   .ding_nodelist-node_blocks .ding_nodelist-items .nb-item.has-image .news-text {
     padding-top: 15px;
   }
@@ -1117,6 +1172,7 @@
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-top a {
   position: static;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text .title-and-lead,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead {
   float: left;
   -webkit-transition: min-height 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -1125,14 +1181,17 @@
   min-height: 61px;
   max-height: 85px;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text .title-and-lead .title,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .title {
   min-height: 24px;
   margin-bottom: 10px;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text .title-and-lead .field-item,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead .field-item {
   color: #474747;
 }
 @media screen and (max-width: 600px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text .title-and-lead,
   .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .title-and-lead {
     min-height: 100%;
     transition: initial;
@@ -1159,6 +1218,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text .field-name-field-ding-page-lead,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .field-name-field-ding-news-lead {
   padding: 0;
   color: #262627;
@@ -1196,7 +1256,7 @@
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-image:after {
   display: none;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-image.ding-news-list-image {
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-image.page-list-image, .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .nb-image.ding-news-list-image {
   width: 100%;
   height: 200px;
   overflow: hidden;
@@ -1233,6 +1293,7 @@
   -moz-transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: opacity 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .field-name-field-ding-page-lead,
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:hover .field-name-field-ding-news-lead {
   position: relative;
   padding-bottom: 10px;
