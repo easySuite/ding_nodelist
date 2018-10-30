@@ -1051,7 +1051,6 @@ $label-bg: url('../images/p.png');
         @include transition(
           min-height $speed $ease
         );
-
         min-height: 61px;
         max-height: 85px;
 
@@ -1067,6 +1066,9 @@ $label-bg: url('../images/p.png');
           min-height: 100%;
           transition: initial;
         }
+      }
+      .page-text .title-and-lead {
+        min-height: 81px;
       }
 
       .info-bottom {

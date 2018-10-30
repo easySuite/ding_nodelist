@@ -1197,6 +1197,9 @@
     transition: initial;
   }
 }
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item .page-text .title-and-lead {
+  min-height: 81px;
+}
 @media screen and (max-width: 600px) {
   .ding_nodelist-node_blocks .ding_nodelist-items .nb-item .info-bottom {
     display: block;
