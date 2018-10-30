@@ -885,6 +885,7 @@ $label-bg: url('../images/p.png');
     }
   }
 }
+
 //==========================================================================
 .ding_nodelist-node_blocks {
   margin-right: -10px;
@@ -892,7 +893,6 @@ $label-bg: url('../images/p.png');
   overflow: initial;
 
   .date {
-    display: none;
     @include media($mobile) {
       display: block;
     }
@@ -963,7 +963,6 @@ $label-bg: url('../images/p.png');
 
       .info-top {
         color: $charcoal-opacity-dark;
-        display: none;
 
         @include media($mobile) {
           display: block;
@@ -1000,8 +999,6 @@ $label-bg: url('../images/p.png');
       }
 
       .info-bottom {
-        display: none;
-
         @include media($mobile) {
           display: block;
         }
