@@ -142,6 +142,10 @@ $label-bg: url('../images/p.png');
   height: 391px;
   overflow: inherit;
 
+  .slick-slider .slick-list {
+    padding-bottom: 10px;
+  }
+
   .label-wrapper a,
   .field-name-field-ding-event-category {
     margin-left: 10px;
@@ -1453,6 +1457,13 @@ $label-bg: url('../images/p.png');
     }
   }
 }
+
+.more-links {
+  ul li {
+    list-style: none;
+  }
+}
+
 // Nodelist slider
 //==========================================================================
 .ding_nodelist-slider {

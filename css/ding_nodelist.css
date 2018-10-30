@@ -258,6 +258,9 @@
   height: 391px;
   overflow: inherit;
 }
+.ding_nodelist-carousel .slick-slider .slick-list {
+  padding-bottom: 10px;
+}
 .ding_nodelist-carousel .label-wrapper a,
 .ding_nodelist-carousel .field-name-field-ding-event-category {
   margin-left: 10px;
@@ -1606,6 +1609,10 @@
 }
 .ding_nodelist-horizontal_accordion .library > div {
   float: left;
+}
+
+.more-links ul li {
+  list-style: none;
 }
 
 .ding_nodelist-slider {
