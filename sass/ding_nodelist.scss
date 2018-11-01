@@ -884,9 +884,8 @@ $label-bg: url('../images/p.png');
 
   .ding_nodelist-items {
     .nb-item {
-      float: left;
-      width: 31%;
       margin: 0 2% 2% 0;
+      @include span(4 of 12);
       height: 100%;
       display: block;
       position: relative;
@@ -1025,17 +1024,13 @@ $label-bg: url('../images/p.png');
         right: 0;
       }
 
-      &:nth-child(4) {
-        clear: both;
-      }
-
-      &:nth-child(-n+6) {
-        @include span(3 of 9.3);
+      &:nth-child(3n) {
+        clear: right;
       }
 
       @include media($mobile) {
-        &:nth-child(-n+8) {
-          @include span(3 of 3);
+        &:nth-child(n) {
+          @include span(12 of 12);
           clear: both;
           margin-top: 10px;
         }
