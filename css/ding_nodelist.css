@@ -1045,8 +1045,6 @@
   }
 }
 .ding_nodelist-node_blocks .ding_nodelist-items .nb-item {
-  float: left;
-  width: 31%;
   margin: 0 2% 2% 0;
   height: 100%;
   display: block;
@@ -1174,20 +1172,23 @@
   color: #4d898f;
   right: 0;
 }
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(4) {
-  clear: both;
-}
-.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(-n+6) {
-  width: 30.76923%;
+.ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(n) {
+  width: 31.66667%;
   float: left;
-  margin-right: 2.1978%;
+  margin-right: 1.66667%;
+}
+@media screen and (max-width: 950px) {
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(n) {
+    width: 48.33333%;
+    float: left;
+    margin-right: 1.66667%;
+  }
 }
 @media screen and (max-width: 600px) {
-  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(-n+8) {
-    width: 100%;
+  .ding_nodelist-node_blocks .ding_nodelist-items .nb-item:nth-child(n) {
+    width: 98.33333%;
     float: left;
-    margin-left: 0;
-    margin-right: 0;
+    margin-right: 1.66667%;
     clear: both;
     margin-top: 10px;
   }
