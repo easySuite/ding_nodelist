@@ -32,8 +32,8 @@ $classes = implode(" ", $classes);
     <div class="item-event-body"><?php print $item->teaser_lead; ?></div>
     <div class="item-date"><?php print drupal_render($item->formated_date); ?></div>
     <div>
-      <span class="library"><?php print drupal_render($item->library); ?></span>
-      <span class="item-price"><?php print '&mdash; ' . $item->price; ?></span>
+      <span class="library"><?php print drupal_render($item->library_link); ?></span>
+      <span class="item-price"><?php print $item->price; ?></span>
     </div>
     <div class="read-more">
       <?php print l(t('Read more'), 'node/' . $item->nid); ?>
