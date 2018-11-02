@@ -8,7 +8,7 @@
 ?>
 
 <article
-    class="node node-ding-news node-promoted node-teaser nb-item <?php print (!empty($item->image)) ? 'has-image' : ''; ?>">
+    class="node node-ding-news node-promoted node-teaser nb-item has-image">
   <a href="<?php print '/node/' . $item->nid; ?>">
     <div class="inner">
       <div class="background">

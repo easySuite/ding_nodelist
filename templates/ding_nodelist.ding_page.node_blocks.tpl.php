@@ -6,7 +6,7 @@
  */
 ?>
 
-<article class="node node-ding-event node-promoted node-teaser nb-item <?php print (!empty($item->image)) ? 'has-image' : ''; ?>">
+<article class="node node-ding-event node-promoted node-teaser nb-item has-image">
   <div class="inner">
     <div class="background">
       <div class="button"><?php print l(t('Read more'), 'node/' . $item->nid); ?></div>
