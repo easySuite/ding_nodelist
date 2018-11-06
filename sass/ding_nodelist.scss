@@ -207,7 +207,7 @@ $label-bg: url('../images/p.png');
 
   .icon-next {
     right: 10px;
-    @include place-icon(arrow-right-small,$color-primary);
+    @include place-icon(arrow-right-small, $color-primary);
 
     &:after {
       text-align: center;
@@ -944,29 +944,7 @@ $label-bg: url('../images/p.png');
   }
 
   .ding_nodelist-items {
-    .node-ding-event ~ .node-ding-news {
-      &.has-image {
-        .news-text {
-          height: 380px;
-        }
-      }
-    }
-
-    .node-ding-event ~ .node-ding-page {
-      &.has-image {
-        .page-text {
-          height: 380px;
-        }
-      }
-    }
-
-    .page-list-image {
-      top: 0;
-    }
-
     .nb-item {
-      float: left;
-      width: 31%;
       margin: 0 2% 2% 0;
       height: 100%;
       display: block;
@@ -1018,8 +996,7 @@ $label-bg: url('../images/p.png');
           padding: 0 $box-padding 10px $box-padding;
         }
 
-        .page-text,
-        .news-text {
+        .text {
           padding-top: 215px;
 
           // Mobile
@@ -1112,17 +1089,14 @@ $label-bg: url('../images/p.png');
         right: 0;
       }
 
-      &:nth-child(4) {
-        clear: both;
-      }
+      &:nth-child(n) {
+        @include span(4 of 12.2);
 
-      &:nth-child(-n+6) {
-        @include span(3 of 9.3);
-      }
-
-      @include media($mobile) {
-        &:nth-child(-n+8) {
-          @include span(3 of 3);
+        @include media($tablet) {
+          @include span(6 of 12.2);
+        }
+        @include media($mobile) {
+          @include span(12 of 12.2);
           clear: both;
           margin-top: 10px;
         }
