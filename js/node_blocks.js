@@ -24,7 +24,7 @@
 
   // Set height for nodes teasers.
   $(window).bind('resize.node_teaser', function () {
-    let teaser_height = 0;
+    var teaser_height = 0;
 
     $('.ding_nodelist-items').find('article').each(function () {
       teaser_height = $(this).find('.inner').outerHeight();
@@ -44,7 +44,7 @@
 
   Drupal.behaviors.ding_nodelist_nodeblocks_hover = {
     attach: function (context) {
-      let title_and_lead_height,
+      var title_and_lead_height,
           hovered,
           $article = $('.ding_nodelist-items', context).find('article');
 
@@ -72,19 +72,19 @@
   Drupal.behaviors.ding_nodelist_nodeblocks_build = {
     attach:function (context, settings) {
       // Adjust height for mixed CTs blocks with/without image.
-      let panes = settings.ding_nodelist;
-      for (let pane in panes) {
+      var panes = settings.ding_nodelist;
+      for (var pane in panes) {
         if (panes.hasOwnProperty(pane)) {
-          let $articles = $('.ding_nodelist-node_blocks.' + pane, context).find('article');
+          var $articles = $('.ding_nodelist-node_blocks.' + pane, context).find('article');
           if ($articles.length > 0) {
-            let id = 0,
+            var id = 0,
                 row = $articles.siblings('[data-row="' + id + '"]');
             do {
               row = $articles.siblings('[data-row="' + id + '"]');
 
-              let height = $(row).first().outerHeight();
+              var height = $(row).first().outerHeight();
               $.each($(row), function (index, article) {
-                let row_height = $(article).outerHeight();
+                var row_height = $(article).outerHeight();
                 if (height < row_height) {
                   height = row_height;
                 }
@@ -92,7 +92,7 @@
 
               $.each($(row), function (index, article) {
                 if ($(article).outerHeight() < height) {
-                  let padding = $(article).find('.text').css('padding-top');
+                  var padding = $(article).find('.text').css('padding-top');
                   $(article).find('.text').css('padding-top', parseInt(padding) + height - $(article).outerHeight());
                   $(article).height(height);
                 }
