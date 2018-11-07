@@ -218,7 +218,7 @@ $label-bg: url('../images/p.png');
 
   .icon-next {
     right: 10px;
-    @include place-icon(arrow-right-small,$color-primary);
+    @include place-icon(arrow-right-small, $color-primary);
 
     &:after {
       text-align: center;
@@ -891,8 +891,69 @@ $label-bg: url('../images/p.png');
   width: inherit;
   overflow: initial;
 
+ .ding_nodelist-items article:hover {
+    .background {
+      z-index: 5;
+    }
+
+   &.nb-item .page-text,
+   &.nb-item .news-text,
+   &.nb-item .event-text {
+      z-index: 10;
+    }
+
+    .event-list-image,
+    .page-list-image,
+    .ding-news-list-image {
+      z-index: 10;
+    }
+
+    .page-text .title-and-lead {
+      padding-bottom: 170px;
+    }
+  }
+
+  .node-ding-page.node-teaser {
+    .no-touch &:hover .field-name-field-ding-page-lead {
+      opacity: 1;
+    }
+
+    .page-text {
+      background-image: none;
+
+      .field-name-field-ding-page-lead {
+        @include transition(opacity $speed $ease);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 25px 15px;
+        color: $white;
+        opacity: 0;
+        overflow: hidden;
+      }
+
+      .title-and-lead h3 {
+        color: $color-primary;
+        font-size: 18px;
+        min-height: 24px;
+        margin: 10px 0 5px;
+      }
+    }
+
+    a,
+    a::before  {
+      background-color: transparent;
+    }
+
+    a:hover {
+      &:before  {
+        background-color: transparent;
+      }
+    }
+  }
+
   .date {
-    display: none;
     @include media($mobile) {
       display: block;
     }
@@ -900,8 +961,6 @@ $label-bg: url('../images/p.png');
 
   .ding_nodelist-items {
     .nb-item {
-      float: left;
-      width: 31%;
       margin: 0 2% 2% 0;
       height: 100%;
       display: block;
@@ -942,6 +1001,7 @@ $label-bg: url('../images/p.png');
         }
       }
 
+      .page-text,
       .news-text {
         position: relative;
         z-index: 1;
@@ -951,7 +1011,8 @@ $label-bg: url('../images/p.png');
         .inner {
           padding: 0 $box-padding 10px $box-padding;
         }
-        .news-text {
+
+        .text {
           padding-top: 215px;
 
           // Mobile
@@ -963,7 +1024,6 @@ $label-bg: url('../images/p.png');
 
       .info-top {
         color: $charcoal-opacity-dark;
-        display: none;
 
         @include media($mobile) {
           display: block;
@@ -978,13 +1038,15 @@ $label-bg: url('../images/p.png');
         }
       }
 
+      .page-text .title-and-lead,
       .title-and-lead {
         float: left;
         @include transition(
-            min-height $speed $ease
+          min-height $speed $ease
         );
         min-height: 61px;
         max-height: 85px;
+
         .title {
           min-height: 24px;
           margin-bottom: 10px;
@@ -998,10 +1060,11 @@ $label-bg: url('../images/p.png');
           transition: initial;
         }
       }
+      .page-text .title-and-lead {
+        min-height: 81px;
+      }
 
       .info-bottom {
-        display: none;
-
         @include media($mobile) {
           display: block;
         }
@@ -1028,6 +1091,7 @@ $label-bg: url('../images/p.png');
         }
       }
 
+     .page-text .field-name-field-ding-page-lead,
       .field-name-field-ding-news-lead {
         padding: 0;
         color: $color-text;
@@ -1041,17 +1105,14 @@ $label-bg: url('../images/p.png');
         right: 0;
       }
 
-      &:nth-child(4) {
-        clear: both;
-      }
+      &:nth-child(n) {
+        @include span(4 of 12.2);
 
-      &:nth-child(-n+6) {
-        @include span(3 of 9.3);
-      }
-
-      @include media($mobile) {
-        &:nth-child(-n+8) {
-          @include span(3 of 3);
+        @include media($tablet) {
+          @include span(6 of 12.2);
+        }
+        @include media($mobile) {
+          @include span(12 of 12.2);
           clear: both;
           margin-top: 10px;
         }
@@ -1066,6 +1127,7 @@ $label-bg: url('../images/p.png');
           display: none;
         }
 
+        &.page-list-image,
         &.ding-news-list-image {
           width: 100%;
           height: 200px;
@@ -1103,6 +1165,7 @@ $label-bg: url('../images/p.png');
           )
         }
 
+        .field-name-field-ding-page-lead,
         .field-name-field-ding-news-lead {
           position: relative;
           padding-bottom: 10px;
