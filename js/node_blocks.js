@@ -1,27 +1,6 @@
 (function($){
   'use strict';
 
-  // Set height for page teasers.
-  $(window).bind('resize.ding_page_teaser', function () {
-    var ding_page_teaser_height = 0;
-
-    $('.node-ding-event.node-teaser').each(function () {
-      ding_page_teaser_height = $(this).find('.inner').outerHeight();
-      $(this).height(ding_page_teaser_height);
-    });
-  });
-
-  // Call resize function when images are loaded.
-  Drupal.behaviors.ding_page_teaser_loaded = {
-    attach: function(context, settings) {
-      if ($.isFunction($.fn.imagesLoaded)) {
-        $('.view-ding-page .view-elements').imagesLoaded( function() {
-          $(window).triggerHandler('resize.ding_page_teaser');
-        });
-      }
-    }
-  };
-
   // Set height for nodes teasers.
   $(window).bind('resize.node_teaser', function () {
     var teaser_height = 0;
@@ -92,8 +71,7 @@
 
               $.each($(row), function (index, article) {
                 if ($(article).outerHeight() < height) {
-                  var padding = $(article).find('.text').css('padding-top');
-                  $(article).find('.text').css('padding-top', parseInt(padding) + height - $(article).outerHeight());
+                  $(article).find('.text').css('padding-bottom', height - $(article).outerHeight());
                   $(article).height(height);
                 }
               });
