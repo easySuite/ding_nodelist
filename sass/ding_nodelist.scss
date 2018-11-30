@@ -924,10 +924,12 @@ $label-bg: url('../images/p.png');
 
       @include media($notebook) {
         min-height: auto;
+        background: transparent;
       }
 
       @include media($tablet) {
         min-height: auto;
+        background: transparent;
       }
 
       @include media($mobile) {
