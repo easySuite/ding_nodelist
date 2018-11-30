@@ -27,6 +27,8 @@
     </div>
     <?php if (!empty($item->image)): ?>
       <div class="page-list-image nb-image" style="background-image:url(<?php print $item->image; ?>);"></div>
-    <?php endif; ?>
+    <?php
+    endif;
+    ?>
   </a>
 </article>

@@ -33,6 +33,8 @@
     </div>
     <?php if (!empty($item->image)): ?>
       <div class="ding-news-list-image nb-image" style="background-image:url(<?php print $item->image; ?>);"></div>
-    <?php endif; ?>
+    <?php
+    endif;
+    ?>
   </a>
 </article>
