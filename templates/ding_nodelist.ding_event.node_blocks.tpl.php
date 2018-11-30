@@ -7,7 +7,7 @@
 ?>
 
 <article data-row="<?php print $row; ?>" data-column="<?php print $column; ?>"
-         class="node node-ding-event node-promoted node-teaser nb-item <?php print $item->image ? 'has-image' : ''; ?>">
+         class="node node-ding-event node-promoted nb-item <?php print $item->image ? 'has-image' : ''; ?>">
   <a href="<?php print '/node/' . $item->nid; ?>">
     <?php if (!empty($item->image)): ?>
       <div class="event-list-image nb-image"
@@ -25,7 +25,7 @@
         <div class="title-and-lead">
           <h3 class="title"><?php print $item->title; ?></h3>
           <div
-                  class="field field-name-field-ding-event-lead field-type-text-long field-label-hidden">
+                  class="field field-name-field-ding-event-lead field-type-text-long field-label-hidden element-hidden">
             <div class="field-items">
               <div class="field-item">
                 <?php print $item->teaser_lead; ?>
