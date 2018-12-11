@@ -12,9 +12,6 @@
 
 ?>
 <?php if ($items): ?>
-  <?php if (!empty($conf['title'])): ?>
-    <h2 class="pane-title"><?php print $conf['title']; ?></h2>
-  <?php endif; ?>
   <div class="<?php print $conf['classes'] ?>">
     <div class="ding_nodelist-items">
       <?php
@@ -27,8 +24,8 @@
       ?>
     </div>
     <div class="next-prev">
-      <a class="prev" href="#"><span><?php print t('prev');?></span></a>
-      <a class="next" href="#"><span><?php print t('next');?></span></a>
+      <a class="prev" href="#"><span><?php print t('prev'); ?></span></a>
+      <a class="next" href="#"><span><?php print t('next'); ?></span></a>
     </div>
     <div class="pagination"></div>
     <?php if (!empty($links)): ?>

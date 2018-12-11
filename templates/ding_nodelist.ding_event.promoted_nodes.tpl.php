@@ -10,6 +10,7 @@ $classes = array("ding_nodelist-pn-item", "nb-image");
 $classes[] = (empty($item->image) ? 'no-bgimage' : NULL);
 $classes[] = (isset($item->video) ? 'has-video' : NULL);
 $classes = implode(" ", $classes);
+
 ?>
 <div
   class="<?php print $classes; ?>"

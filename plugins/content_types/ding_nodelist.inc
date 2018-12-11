@@ -4,6 +4,7 @@
  * @file
  * Ctools plugin definition file.
  */
+
 define('DING_NODELIST_LIST_TYPE_DYNAMIC', 'custom-dynamic');
 define('DING_NODELIST_LIST_TYPE_ALL', 'all');
 define('DING_NODELIST_SORT_BY_CREATION_DATE', 'created');
@@ -115,7 +116,7 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
   // Init JS for widgets.
   _ding_nodelist_add_js($conf['widget_type'], $conf['autoscroll_delay'], $conf['unique_id']);
 
-   // Ensure that slick library is loaded properly.
+  // Ensure that slick library is loaded properly.
   if ($conf['widget_type'] == 'carousel' && libraries_detect('slick')) {
     libraries_load('slick');
   }
@@ -142,7 +143,7 @@ function ding_nodelist_content_type_render($subtype, $conf, $args, $context) {
  */
 function ding_nodelist_content_type_admin_title($subtype, $conf, $context = NULL) {
   if (!empty($conf['override_title_text'])) {
-    $output = t('Nodelist') . ': ' . filter_xss_admin($conf['override_title_text']);
+    $output = t('Nodelist: @override_title_text', array('@override_title_text' => filter_xss_admin($conf['override_title_text'])));
   }
   else {
     $output = t('Nodelist (untitled)');
@@ -225,10 +226,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
       unset($form_state['input']['autoscroll_delay']);
       $form_state['values']['autoscroll_delay'] = '';
 
-      // Reset nodelist title.
-      unset($form_state['input']['override_title_text']);
-      $form_state['values']['override_title_text'] = '';
-
       _ding_nodelist_content_type_form_save($form_state, TRUE);
     }
   }
@@ -299,10 +296,6 @@ function ding_nodelist_content_type_edit_form($form, &$form_state) {
   if (isset($form_state['restore'])) {
     $form = array_merge($form_state['original_form'], $form);
   }
-
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   // Forcing form know which validation handler to use.
   $form['#validate'][] = 'ding_nodelist_content_type_edit_form_validate';
@@ -549,24 +542,6 @@ function _ding_nodelist_plugin_widget_section(&$form, $node_type, $conf, $defaul
       '#default_value' => !empty($conf['autoscroll_delay']) ? $conf['autoscroll_delay'] : $generic_autoscroll_delay,
       '#description' => t('Time in milliseconds an item will be shown before switching to the next one'),
       '#size' => 4,
-    );
-  }
-
-  // Make title appear only on some widgets.
-  $widgets_with_title = array(
-    DING_NODELIST_WIDGET_CAROUSEL,
-    DING_NODELIST_WIDGET_ROLLTAB,
-    DING_NODELIST_WIDGET_PROMOTED_NODES,
-    DING_NODELIST_WIDGET_NODE_BLOCKS,
-  );
-  if (in_array($widget_type, $widgets_with_title)) {
-    $form['ding_nodelist_wrapper']['widget_dependent']['override_title_text'] = array(
-      '#type' => 'textfield',
-      '#title' => t('List title'),
-      '#description' => t('Enter a title to be shown above the list items. Leave empty to omit the title.') . ' ' .
-      t('You may use %keywords from contexts, as well as %title to contain the original title.'),
-      '#required' => FALSE,
-      '#default_value' => isset($conf['override_title_text']) ? $conf['override_title_text'] : '',
     );
   }
 }
