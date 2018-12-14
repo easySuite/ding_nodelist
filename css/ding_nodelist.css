@@ -1058,6 +1058,11 @@
   width: 100%;
   overflow: visible;
 }
+.ding_nodelist-node_blocks .element-hidden {
+  opacity: 0;
+  display: block;
+  height: 0;
+}
 .ding_nodelist-node_blocks .nb-item {
   margin: 0 2% 2% 0;
   height: 100%;
@@ -1311,7 +1316,7 @@
   -webkit-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: min-height 300ms 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  min-height: 118px;
+  min-height: 100px;
 }
 @media screen and (max-width: 600px) {
   .ding_nodelist-node_blocks .nb-item:hover .title-and-lead {
