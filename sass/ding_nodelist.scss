@@ -876,6 +876,12 @@ $label-bg: url('../images/p.png');
   width: 100%;
   overflow: visible;
 
+  .element-hidden {
+    opacity: 0;
+    display: block;
+    height: 0;
+  }
+
   .nb-item {
     margin: 0 2% 2% 0;
     height: 100%;
@@ -1090,7 +1096,7 @@ $label-bg: url('../images/p.png');
       .date {
         display: block;
         @include transition(
-                        opacity $speed $hover-delay $ease
+          opacity $speed $hover-delay $ease
         )
       }
 
@@ -1099,14 +1105,14 @@ $label-bg: url('../images/p.png');
         position: relative;
         padding-bottom: 10px;
         @include transition(
-                        opacity $speed $hover-delay $ease
+          opacity $speed $hover-delay $ease
         )
       }
       .background {
         @include transition(
-                        width $speed $hover-delay $ease,
-                        background-color $speed $ease,
-                        box-shadow $speed $ease
+          width $speed $hover-delay $ease,
+          background-color $speed $ease,
+          box-shadow $speed $ease
         );
         width: 115%;
         background-color: $white;
@@ -1127,17 +1133,17 @@ $label-bg: url('../images/p.png');
 
       .button {
         @include transition(
-                        opacity $speed $hover-delay $ease,
-                        background-color $speed $ease,
-                        color $speed $ease
+          opacity $speed $hover-delay $ease,
+          background-color $speed $ease,
+          color $speed $ease
         );
         opacity: 1;
       }
       .title-and-lead {
         @include transition(
-                        min-height $speed $hover-delay $ease
+          min-height $speed $hover-delay $ease
         );
-        min-height: 118px;
+        min-height: 100px;
 
         @include media($mobile) {
           min-height: 100%;
@@ -1146,7 +1152,7 @@ $label-bg: url('../images/p.png');
       }
       .field-name-field-ding-event-lead {
         @include transition(
-                        opacity $speed $hover-delay $ease
+          opacity $speed $hover-delay $ease
         );
         opacity: 1;
       }
