@@ -1177,16 +1177,12 @@ $label-bg: url('../images/p.png');
 
         @include media($mobile) {
           display: none;
-         }
+        }
       }
     }
 
     &.is-hovered {
       z-index: 2;
-
-      // @include media($mobile) {
-      //  display: none;
-      // }
     }
   }
   .more-links {
