@@ -7,11 +7,6 @@
 ?>
 <?php if ($items): ?>
     <div class="<?php print $conf['classes'] ?>">
-        <div class="legend">
-          <?php if (!empty($conf['title'])): ?>
-              <h2 class="pane-title"><?php print $conf['title']; ?></h2>
-          <?php endif; ?>
-        </div>
       <?php if (!empty($links)): ?>
         <?php print theme('ding_nodelist_more_links', array('links' => $links)); ?>
       <?php endif; ?>
