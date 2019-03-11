@@ -1,6 +1,7 @@
 name = Ding Nodelist
 description = Module for creating lists.
 core = 7.x
+version = 7.x-4.6.1
 package = Ding!
 dependencies[] = ctools
 dependencies[] = features
