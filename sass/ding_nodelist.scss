@@ -1,4 +1,5 @@
-@import "../../../themes/ddbasic/sass/base/icomoon.scss";
+@import "../../../themes/ddbasic/sass/_base.scss";
+@import "../../../themes/ddbasic/sass/configuration/_extend.scss";
 @import "susy";
 /* Colors variables
    ========================================================================== */
@@ -20,15 +21,6 @@ $label-bg: url('../images/p.png');
 
 .ding_nodelist {
   overflow: hidden;
-
-  h3 a {
-    font-family: FaktPro-SemiBold, sans-serif;
-  }
-
-  span,
-  p {
-    font-family: FaktPro-Normal, sans-serif;
-  }
 
   .node > p {
     margin: 10px 0;
@@ -150,6 +142,10 @@ $label-bg: url('../images/p.png');
   height: 391px;
   overflow: inherit;
 
+  .slick-slider .slick-list {
+    padding-bottom: 10px;
+  }
+
   .label-wrapper a,
   .field-name-field-ding-event-category {
     margin-left: 10px;
@@ -183,6 +179,13 @@ $label-bg: url('../images/p.png');
       .item-price {
         color: $color-text-link;
       }
+
+      .library,
+      .field-type-entityreference,
+      .library .field-items,
+      .library .field-item {
+        display: inline-block;
+      }
     }
 
     .item-date {
@@ -202,53 +205,53 @@ $label-bg: url('../images/p.png');
     display: none;
   }
   // Next / Previous buttons
-    .fa-prev {
-      left: 10px;
+  .icon-prev {
+    left: 10px;
+    @include place-icon(arrow-right-small, $color-primary);
 
-      &:after {
-        content: '\e903';
-        transform: rotate(180deg);
-        text-align: center;
-        font-family: 'icomoon';
-      }
+    &:after {
+      transform: rotate(180deg);
+      text-align: center;
+      @extend %icomoon-base;
+    }
+  }
+
+  .icon-next {
+    right: 10px;
+    @include place-icon(arrow-right-small, $color-primary);
+
+    &:after {
+      text-align: center;
+      @extend %icomoon-base;
+    }
+  }
+
+  .icon-next.slick-arrow,
+  .icon-prev.slick-arrow {
+    color: $color-text-link;
+    font-style: normal;
+    position: absolute;
+    text-indent: 0px;
+    top: 30%;
+
+    &:after {
+      display: inline-block;
+      line-height: 1.5;
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
     }
 
-    .fa-next {
-      right: 10px;
-
-      &:after {
-        content: '\e903';
-        text-align: center;
-        font-family: 'icomoon';
-      }
+    &.slick-disabled {
+      color: $grey-medium;
     }
 
-    .fa-next.slick-arrow,
-    .fa-prev.slick-arrow {
-      color: $color-text-link;
-      font-style: normal;
-      position: absolute;
-      text-indent: 0px;
-      top: 30%;
-
+    &:hover {
       &:after {
-        display: inline-block;
-        line-height: 2;
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
-      }
-
-      &.slick-disabled {
         color: $grey-medium;
       }
-
-      &:hover {
-        &:after {
-          color: $grey-medium;
-        }
-      }
     }
+  }
 
   // Pagination
   .slick-dots {
@@ -274,7 +277,7 @@ $label-bg: url('../images/p.png');
         line-height: 2;
       }
 
-       // Active
+      // Active
       &.slick-active a {
         background-color: $color-text-link;
         color: $white;
@@ -298,6 +301,11 @@ $label-bg: url('../images/p.png');
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     width: 100%;
     height: 100%;
 
@@ -344,621 +352,6 @@ $label-bg: url('../images/p.png');
     list-style: none;
     display: inline-block;
     margin-left: 10px;
-  }
-}
-// Horizontal accordion
-//==========================================================================
-
-.ding_nodelist-horizontal_accordion {
-  background: $black;
-  overflow: hidden;
-
-  ul.ding_nodelist-items {
-    margin: 0;
-  }
-
-  // Item
-  .item {
-    position: relative;
-  }
-
-  .item_content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-  }
-
-  // Icon
-  .expand {
-    border-radius: 50px;
-    position: absolute;
-    bottom: 95px;
-    left: 10px;
-    z-index: 10;
-    display: block;
-    background-color: $color-text-link;
-    color: $white;
-    cursor: pointer;
-
-    &:after {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      line-height: 2;
-      color: $white;
-      content: '\e903';
-      text-align: center;
-      font-family: 'icomoon';
-    }
-
-    a {
-      display: none;
-    }
-  }
-
-  .slide-open {
-    .expand {
-      right: 10px;
-      left: auto;
-
-      &:after {
-        content: '\e909';
-      }
-    }
-
-    &:hover {
-      .data {
-        padding-top: 60px;
-        position: absolute;
-        height: 100%;
-
-        &::after {
-          background-color: $black-overlay;
-          padding-top: 60px;
-          position: absolute;
-          height: 100%;
-        }
-
-        .teaser {
-          opacity: 1;
-          height: auto;
-        }
-      }
-    }
-
-    .image img {
-      opacity: 1;
-    }
-  }
-
-  // Image
-  .image {
-
-    a {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      display: block;
-      background-color: $black;
-      height: 280px;
-    }
-
-    img {
-      opacity: .25;
-      min-width: 100%;
-      object-fit: cover;
-    }
-  }
-
-  // Data block
-  .data {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: $white;
-    @include transition(height $speed*3 $ease);
-    background-color: transparent;
-    background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 50%);
-    font-size: 100%;
-    line-height: 24px;
-    position: absolute;
-    height: 85px;
-    padding: 10px;
-
-    a {
-      padding-bottom: 10px;
-    }
-
-    .teaser {
-      opacity: 0;
-      height: 0;
-      font-size: 100%;
-
-      p {
-        margin: 0;
-      }
-    }
-
-    span,
-    .event-fee {
-      margin-right: 5px;
-    }
-
-    a {
-      color: $white;
-      font-size: 100%;
-      padding-bottom: 10px;
-
-      @include media($mobile) {
-        white-space: nowrap;
-        width: 12em;
-        overflow: hidden;
-        text-overflow: clip;
-      }
-    }
-  }
-
-  // Caption
-  .caption {
-    overflow: hidden;
-
-    h3 {
-      max-height: 22px;
-      padding-top: 15px;
-    }
-  }
-
-  // Library info
-  .library {
-    overflow: hidden;
-    max-height: 24px;
-
-    > div {
-      float: left;
-    }
-  }
-}
-// Nodelist slider
-//==========================================================================
-.ding_nodelist-slider {
-  overflow: hidden;
-  position: relative;
-  padding-top: 10px;
-  width: 100%;
-
-  ul {
-    li {
-      list-style: none;
-
-      .library {
-        float: left;
-        clear: left;
-
-        .field-label {
-          display: none;
-        }
-
-        .field-item a {
-          display: inline-block;
-        }
-      }
-
-      .item-price {
-        display: inline-block;
-        clear: left;
-        padding-left: 5px;
-      }
-    }
-  }
-  .more-links {
-    float: none;
-    display: block;
-    min-width: 26%;
-    margin-top: 10px;
-    margin-bottom: 5px;
-
-    li {
-      display: block;
-    }
-
-    @include media($mobile) {
-      display: none;
-    }
-  }
-
-  .item {
-    min-height: auto;
-    @include media($tablet) {
-      max-width: 500px;
-      width: 100%;
-
-      @include media($mobile) {
-        height: auto !important;
-      }
-    }
-  }
-
-  // Title
-  .node {
-    background: none;
-    color: $black;
-    padding: 0;
-    font-family: FaktPro-Normal, sans-serif;
-  }
-
-  .item-body {
-    margin-top: 10px;
-  }
-
-  .more a {
-    color: $black;
-  }
-
-  .label {
-    margin: 0;
-  }
-
-  .category {
-    float: right;
-    margin-top: 4px;
-    padding-right: 70px;
-    position: relative;
-
-    @include media($mobile) {
-      float: none;
-      position: initial;
-    }
-  }
-
-  .legend {
-    float: left;
-    width: 25%;
-    padding-left: 10px;
-
-    @include media($notebook) {
-      margin-bottom: 10px;
-      padding-right: 2em;
-    }
-
-    // Media mobile
-    @include media($tablet) {
-      @include span(4 of 12);
-      text-align: right;
-    }
-
-    span {
-      display: block;
-    }
-  }
-
-  // Carousel
-  .ding_nodelist-items {
-    padding-left: 40px;
-    height: 175px !important;
-
-    // Media medium
-    @include media($tablet) {
-      @include span (3 of 3);
-      padding: 10px;
-    }
-
-    // Media medium
-    @include media($mobile) {
-      width: 100%;
-      padding-left: 10px;
-      padding-right: 40px;
-      padding-top: 0;
-    }
-  }
-
-  // Item
-  .item {
-    margin-bottom: 10px;
-  }
-
-  // Node title
-  h3.node-title {
-    margin-bottom: 5px;
-
-    a {
-      color: $grey-dark;
-    }
-  }
-
-  // Node text
-  .node {
-    margin-top: 0;
-    padding-left: 0;
-    width: 100%;
-  }
-
-  // More link
-  .more {
-    margin-bottom: 5px;
-
-    a {
-      // Media medium
-      @include media($tablet) {
-        display: inline-block;
-        padding: 5px 10px;
-      }
-    }
-  }
-
-  // Next ... prev buttons
-  .next-prev {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    width: 25px;
-
-    span {
-      display: none;
-    }
-
-    a {
-      border-radius: 50px;
-      position: absolute;
-      display: block;
-      width: 24px;
-      height: 24px;
-      background-color: $color-text-link;
-      color: $white;
-
-      &:after {
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        color: $white;
-        content: '\e905';
-        text-align: center;
-        font-family: 'icomoon';
-      }
-    }
-
-    .next {
-      bottom: 10px;
-
-      &:after {
-        content: '\e903';
-        transform: rotate(90deg);
-      }
-    }
-
-    .prev {
-      top: 10px;
-
-      &:after {
-        content: '\e903';
-        transform: rotate(-90deg);
-      }
-    }
-  }
-}
-// Taxonomy nodelist
-//==========================================================================
-
-.col3 .ding_nodelist-taxonomy .item .item-list-image,
-.col4 .ding_nodelist-taxonomy .item .item-list-image {
-  display: none;
-}
-.attachments-3-3 .ding_nodelist-taxonomy .item .item-list-image,
-.tertiary-content .ding_nodelist-taxonomy .item .item-list-image,
-.attachments-4-4 .ding_nodelist-taxonomy .item .item-list-image {
-  display: none;
-}
-.ding_nodelist-taxonomy {
-  .event-list-leaf {
-    padding: 10px;
-    background-color: $grey-medium;
-
-    .event-list-date-wrapper {
-      display: inline-block;
-      font-size: 75%;
-      margin-right: 10px;
-      min-width: 65px;
-      text-align: center;
-      vertical-align: top;
-
-      .event-list-day {
-        line-height: 16.8px;
-        background-color: $color-text-link;
-        color: $white;
-        display: block;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-      }
-
-      .event-list-inner-wrapper {
-        background: $white;
-      }
-
-      .event-list-date {
-        display: block;
-        font-size: 130%;
-        padding-top: 5px;
-        margin-bottom: -10px;
-      }
-
-      .event-list-month {
-        display: inline-block;
-        font-size: 75%;
-        min-width: 65px;
-        text-align: center;
-        vertical-align: top;
-      }
-    }
-
-    .event-list-fulldate {
-      color: rgba(0, 0, 0, 0.7);
-      display: inline-block;
-      font-size: 130%;
-      font-weight: normal;
-      margin-top: 17px;
-    }
-  }
-
-  .event-list-leaf ~ .item {
-    .item-list-image,
-    .item-library .field-label {
-      display: none;
-    }
-
-    .item-details {
-      display: block;
-      padding: 10px;
-      width: calc(100% - 20px);
-      position: relative;
-    }
-
-    .item-title {
-      margin-right: 25px;
-      margin-bottom: 5px;
-    }
-
-    .item-body {
-      display: block;
-      clear: both;
-    }
-
-    .item-library,
-    .item-date,
-    .item-price {
-      color: rgba(0, 0, 0, 0.7);
-      display: inline-block;
-      margin-right: 5px;
-      float: left;
-    }
-
-    .event-arrow-link {
-      display: inline-block;
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      margin-top: -10px;
-      font-size: 20px;
-
-      &:after {
-        color: $color-primary;
-        content: '\e903';
-        text-align: center;
-        font-family: 'icomoon';
-      }
-    }
-  }
-
-  .item {
-    background-color: $grey;
-    margin-bottom: 10px;
-    overflow: hidden;
-    padding: 0;
-    width: 100%;
-    display: table;
-    position: relative;
-
-    @include media($mobile) {
-      display: block;
-    }
-
-    .item-details {
-      overflow: hidden;
-
-      @include media($mobile) {
-        width: auto;
-      }
-    }
-
-    .item-byline {
-      margin-bottom: 5px;
-      color: rgba(38, 38, 38, .54);
-
-      .label {
-        display: inline-block;
-        margin: 0;
-
-        a.label-info {
-          margin-right: 5px;
-          color: $color-text-link;
-        }
-      }
-
-      .date {
-        display: inline-block;
-      }
-
-      .author {
-        display: none;
-      }
-    }
-
-    h2.item-title {
-      margin-bottom: 5px;
-      font-size: 140%;
-
-      @include media($mobile) {
-        padding-left: 10px;
-      }
-      a {
-        font-family: $font-family-bold;
-      }
-    }
-
-    .news-link {
-      margin: 10px;
-      float: right;
-      display: inline-block;
-
-      @include media($mobile) {
-        position: relative;
-      }
-    }
-
-    .item-body {
-      padding-top: 7px;
-
-      @include media($mobile) {
-        padding-right: 0;
-      }
-    }
-
-    .item-details,
-    .item-list-image {
-      @include media($tablet, $mobile) {
-        padding: 10px;
-      }
-    }
-
-    .item-details {
-      width: 100%;
-      padding: 10px;
-      display: table-cell;
-      vertical-align: top;
-      .item-list-image {
-        display: table-cell;
-        vertical-align: top;
-      }
-    }
-
-    .item-list-image {
-      padding: 10px 0 10px 10px;
-
-      img {
-        width: 159px;
-        max-width: 159px;
-        height: auto;
-        min-width: 159px;
-      }
-    }
-  }
-  // Media medium
-  @include media($mobile) {
-    .item .item-list-image {
-      display: none;
-    }
   }
 }
 /* Tabroll tabs
@@ -1141,7 +534,7 @@ $label-bg: url('../images/p.png');
   .first-left-block {
     color: $white;
     height: 300px;
-    @include span(3 of 4.5);
+    @include span(3 of 4.6);
     padding: 0;
     margin-right: 0;
     position: relative;
@@ -1158,7 +551,6 @@ $label-bg: url('../images/p.png');
 
     h3 a {
       color: $white;
-      font-family: FaktPro-SemiBold, sans-serif;
       font-size: 100%;
     }
 
@@ -1223,28 +615,31 @@ $label-bg: url('../images/p.png');
       padding-bottom: 25px;
       padding-left: 10px;
 
-      .media-play {
+      .pn-media-play {
         font-size: 180%;
         position: absolute;
-        right: 10px;
-        bottom: 22px;
+        right: 15px;
+        bottom: 15px;
         background: #fff;
         border-radius: 100px;
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         text-align: center;
         cursor: pointer;
         z-index: 50;
 
         i {
-          color: $color-text-link;
           font-style: normal;
-          line-height: 40px;
-          right: -2px;
-          position: relative;
-          &::before {
-            content: '\ea1c';
-            font-family: 'icomoon';
+          @include place-icon(play, $color-primary);
+
+          &:after {
+            @extend %icomoon-base;
+            font-size: 37px;
+            top: 0;
+            position: relative;
+            display: inline-block;
+            margin-top: -1px;
+            margin-left: -1px;
           }
         }
       }
@@ -1256,7 +651,7 @@ $label-bg: url('../images/p.png');
 
     @include media($tablet) {
       @include span(3 of 4.8);
-        margin-right: 0;
+      margin-right: 0;
     }
 
     @include media($mobile) {
@@ -1308,26 +703,32 @@ $label-bg: url('../images/p.png');
       height: 100%;
       width: 100%;
 
-      .close-media {
+      .pn-close-media {
         position: absolute;
         z-index: 100;
         color: #fff;
-        top: 10px;
-        left: 20px;
+        top: 15px;
+        left: 15px;
         display: none;
-        width: 30px;
-        height: 30px;
+        width: 36px;
+        height: 36px;
         background: #fff;
         border-radius: 100px;
         cursor: pointer;
         text-align: center;
         i {
-          line-height: 30px;
-          color: $color-text-link;
           font-style: normal;
-          &::before {
-            content: '\ea0f';
-            font-family: 'icomoon';
+          @include place-icon(close, $color-primary);
+
+          &:after {
+            font-size: 55px;
+            top: 0;
+            line-height: 1;
+            margin-top: -8px;
+            margin-left: -11px;
+            font-weight: bolder;
+            position: relative;
+            @extend %icomoon-base;
           }
         }
       }
@@ -1346,8 +747,6 @@ $label-bg: url('../images/p.png');
       }
     }
   }
-
-
 
   .last-left-block,
   .first-right-block {
@@ -1467,7 +866,6 @@ $label-bg: url('../images/p.png');
   @include media($mobile) {
     .ding_nodelist-pn-item {
       h3 a {
-        font-family: FaktPro-SemiBold, sans-serif;
         font-size: 100%;
         line-height: 24px;
         color: $white;
@@ -1486,78 +884,128 @@ $label-bg: url('../images/p.png');
     }
   }
 }
-// Nodes blocks
+
+// Node blocks
 //==========================================================================
 .ding_nodelist-node_blocks {
-  margin-right: -10px;
-  width: inherit;
-  overflow: initial;
+  float: left;
+  width: 100%;
+  overflow: visible;
 
-  .ding_nodelist-items {
-    .nb-item {
-      float: left;
-      width: 31%;
-      margin: 0 2% 2% 0;
-      height: 100%;
-      display: block;
-      position: relative;
-      padding: 0 $box-padding 10px $box-padding;
+  .element-hidden {
+    opacity: 0;
+    display: block;
+    height: 0;
+  }
 
+  .nb-item {
+    margin: 0 2% 2% 0;
+    height: 100%;
+    display: block;
+    position: relative;
+    padding: 0 $box-padding 10px $box-padding;
+
+    &.has-image {
       .inner {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        padding: $box-padding $box-padding 10px $box-padding;
+        padding: 0 $box-padding 10px $box-padding;
       }
 
-      .background {
-        @include transition(
-            min-height $speed*3 $ease
-        );
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-color: $grey;
-        .button {
-          @include transition(opacity $speed $ease);
-          position: absolute;
-          right: 15px;
-          bottom: 15px;
-          width: 156px;
-          padding: 20px 15px 14px 15px;
-          opacity: 0;
+      .text {
+        padding-top: 215px;
 
-          // Mobile
-          @include media($mobile) {
-            display: none;
-          }
+        // Mobile
+        @include media($mobile) {
+          padding-top: 15px;
         }
       }
+    }
 
-      .news-text {
+    .nb-image {
+      float: left;
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      &:after {
+        display: none;
+      }
+
+      &.page-list-image,
+      &.ding-news-list-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      @include media($notebook) {
+        min-height: auto;
+      }
+
+      @include media($tablet) {
+        min-height: auto;
+      }
+
+      @include media($mobile) {
+        display: none;
+      }
+    }
+
+    .inner {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: $box-padding $box-padding 10px $box-padding;
+
+      .text {
         position: relative;
-        z-index: 1;
-      }
 
-      &.has-image {
-        .inner {
-          padding: 0 $box-padding 10px $box-padding;
-        }
-        .news-text {
-          padding-top: 215px;
-
-          // Mobile
-          @include media($mobile) {
-            padding-top: 15px;
-          }
+        @include media($mobile) {
+          padding-top: 15px;
         }
       }
+    }
 
+    .background {
+      @include transition(min-height $speed*3 $ease);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $grey;
+
+      .button {
+        @include transition(opacity $speed $ease);
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        width: 156px;
+        padding: 20px 15px 14px 15px;
+        opacity: 0;
+
+        // Mobile
+        @include media($mobile) {
+          display: none;
+        }
+      }
+    }
+
+    .text {
       .info-top {
         color: $charcoal-opacity-dark;
+
+        @include media($mobile) {
+          display: block;
+        }
+
         > div {
           float: left;
           width: 100%;
@@ -1566,193 +1014,181 @@ $label-bg: url('../images/p.png');
           position: static;
         }
       }
-
+      .date {
+        @include font('display-small');
+        clear: left;
+        color: $color-text;
+      }
       .title-and-lead {
         float: left;
-        @include transition(
-            min-height $speed $ease
-        );
+        @include transition(min-height $speed $ease);
         min-height: 61px;
         max-height: 85px;
+
         .title {
           min-height: 24px;
           margin-bottom: 10px;
         }
-        .field-item {
-          color: $color-standard-text;
+        .field-type-text-long {
+          color: $color-text;
+        }
+        @include media($mobile) {
+          min-height: 100%;
+          transition: initial;
         }
       }
-
       .info-bottom {
-        a {
-          position: static;
+        float: left;
+        width: 100%;
+        padding-right: 156px;
+        min-height: 60px;
+        color: $color-text;
+
+        // Mobile
+        @include media($mobile) {
+          width: 100%;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .button {
+      opacity: 0;
+      a {
+        color: $color-text;
+        position: static;
+      }
+    }
+
+    .library {
+      .field-item {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      color: $color-text-link;
+      right: 0;
+    }
+
+    &:nth-child(n) {
+      @include span(4 of 12.2);
+
+      @include media($tablet) {
+        @include span(6 of 12.2);
+      }
+      @include media($mobile) {
+        @include span(12 of 12.2);
+        clear: both;
+        margin-top: 10px;
+      }
+    }
+
+    &:hover {
+      .background {
+        z-index: 5;
+      }
+
+      .text {
+        z-index: 10;
+      }
+
+      .nb-image {
+        z-index: 10;
+      }
+
+      @include media($mobile) {
+        display: block;
+      }
+
+      .info-top,
+      .info-bottom,
+      .date {
+        display: block;
+        @include transition(
+          opacity $speed $hover-delay $ease
+        )
+      }
+
+      .field-name-field-ding-page-lead,
+      .field-name-field-ding-news-lead {
+        position: relative;
+        padding-bottom: 10px;
+        @include transition(
+          opacity $speed $hover-delay $ease
+        );
+        @include media($mobile) {
+          display: none;
+        }
+      }
+      .background {
+        @include transition(
+          width $speed $hover-delay $ease,
+          background-color $speed $ease,
+          box-shadow $speed $ease
+        );
+        width: 115%;
+        background-color: $white;
+        box-shadow: $box-shadow;
+
+        // Tablet
+        @include media($tablet) {
+          width: 110%;
+        }
+
+        // Mobile
+        @include media($mobile) {
+          width: 100%;
+          background-color: $grey;
+          box-shadow: none;
         }
       }
 
       .button {
-        opacity: 0;
-        a {
-          color: $color-text;
-          position: static;
+        @include transition(
+          opacity $speed $hover-delay $ease,
+          background-color $speed $ease,
+          color $speed $ease
+        );
+        opacity: 1;
+      }
+      .title-and-lead {
+        @include transition(
+          min-height $speed $hover-delay $ease
+        );
+        min-height: 100px;
+
+        @include media($mobile) {
+          min-height: 100%;
+         transition: initial;
         }
       }
-
-      .library {
-        .field-item {
-          width: 100%;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-
-      .field-name-field-ding-news-lead {
-        padding: 0;
-        color: $color-text;
-      }
-
-      a {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        color: $color-text-link;
-        right: 5px;
-      }
-
-      &:nth-child(4) {
-        clear: both;
-      }
-
-      &:nth-child(1),
-      &:nth-child(2),
-      &:nth-child(3),
-      &:nth-child(4),
-      &:nth-child(5),
-      &:nth-child(6) {
-        @include span(3 of 9.3);
-      }
-
-      @include media($mobile) {
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3),
-        &:nth-child(4),
-        &:nth-child(5),
-        &:nth-child(6),
-        &:nth-child(7),
-        &:nth-child(8) {
-          @include span(3 of 3);
-          clear: both;
-          margin-top: 10px;
-        }
-      }
-
-      .nb-image {
-        position: absolute;
-        z-index: 1;
-        left: 0;
-
-        &:after {
-          display: none;
-        }
-
-        &.ding-news-list-image {
-          width: 100%;
-          height: 200px;
-          overflow: hidden;
-          background-size: cover;
-          background-position: center center;
-        }
-
-        @include media($notebook) {
-          min-height: auto;
-          background: transparent;
-        }
-
-        @include media($tablet) {
-          min-height: auto;
-          background: transparent;
-        }
+      .field-name-field-ding-event-lead {
+        @include transition(
+          opacity $speed $hover-delay $ease
+        );
+        opacity: 1;
 
         @include media($mobile) {
           display: none;
         }
       }
+    }
 
-      &:hover {
-        .field-name-field-ding-news-lead {
-          position: relative;
-          padding-bottom: 10px;
-          @include transition(
-            opacity $speed $hover-delay $ease
-          )
-        }
-        .background {
-          @include transition(
-              width $speed $hover-delay $ease,
-              background-color $speed $ease,
-              box-shadow $speed $ease
-          );
-          width: 115%;
-          background-color: $white;
-          box-shadow: $box-shadow;
-
-          // Tablet
-          @include media($tablet) {
-            width: 110%;
-          }
-
-          // Mobile
-          @include media($mobile) {
-            width: 100%;
-            background-color: $grey;
-            box-shadow: none;
-          }
-        }
-
-        .button {
-          @include transition(
-              opacity $speed $hover-delay $ease,
-              background-color $speed $ease,
-              color $speed $ease
-          );
-          opacity: 1;
-        }
-        .title-and-lead {
-          @include transition(
-              min-height $speed $hover-delay $ease
-          );
-          min-height: 118px;
-        }
-        .field-name-field-ding-event-lead {
-          @include transition(
-              opacity $speed $hover-delay $ease
-          );
-          opacity: 1;
-        }
-      }
-
-      &.is-hovered {
-        z-index: 2;
-      }
+    &.is-hovered {
+      z-index: 2;
     }
   }
-
   .more-links {
     margin-right: 25px;
     float: left;
     clear: left;
-  }
-}
-// Minimal nodelist
-//==========================================================================
-table {
-  tr.minimal-item {
-    width: 100%;
-
-    td.minimal-date {
-      width: 20%;
-    }
   }
 }
 
@@ -1762,10 +1198,13 @@ table {
   .ding_nodelist-items {
     display: inline-block;
     width: 100%;
+
     .nodelist-item {
       position: relative;
       @include span-columns(3.95 of 12);
-      margin: 0 10px 10px 10px;
+      margin: 0 5px 10px 5px;
+      padding: 0 10px 10px 0;
+
       :last-child {
         margin-right: -10px;
       }
@@ -1789,9 +1228,8 @@ table {
       .field-name-field-ding-event-lead,
       .field-name-field-ding-page-lead {
         @include transition(
-          opacity $speed $ease
+           opacity $speed $ease
         );
-
         width: 100%;
         opacity: 0;
         height: 0;
@@ -1819,7 +1257,7 @@ table {
             opacity $speed $hover-delay $ease
           );
           opacity: 1;
-          color: #ffffff;
+          color: #fff;
           position: absolute;
           top: 0;
           left: 0;
@@ -1856,6 +1294,636 @@ table {
         @include aspect-ratio-background-image(16, 9);
         background-size: cover;
       }
+    }
+  }
+}
+
+// Horizontal accordion
+//==========================================================================
+
+.ding_nodelist-horizontal_accordion {
+  background: $black;
+  overflow: hidden;
+
+  ul.ding_nodelist-items {
+    margin: 0;
+  }
+
+  // Item
+  .item {
+    position: relative;
+  }
+
+  .item_content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  // Icon
+  .expand {
+    position: absolute;
+    bottom: -170px;
+    left: 10px;
+    z-index: 10;
+    display: block;
+    cursor: pointer;
+    @include place-icon(arrow-right-small,$white);
+
+    &:after {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 1.7;
+      background: $color-primary;
+      border-radius: 20px;
+      text-align: center;
+      @extend %icomoon-base;
+    }
+
+    a {
+     display: none;
+    }
+  }
+
+  .slide-open {
+    .expand  {
+      bottom: -170px;
+      float: right;
+      display: block;
+      margin-right: 16%;
+      @include place-icon(plus,$white);
+
+      &:after {
+        @extend %icomoon-base;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+    }
+
+    &:hover {
+      .data {
+        padding-top: 60px;
+        position: absolute;
+        height: 100%;
+
+        &::after {
+          background-color: $black-overlay;
+          padding-top: 60px;
+          position: absolute;
+          height: 100%;
+        }
+
+        .teaser {
+          opacity: 1;
+          height: auto;
+        }
+      }
+    }
+
+    .image img {
+      opacity: 1;
+    }
+  }
+
+  // Image
+  .image {
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      display: block;
+      background-color: $black;
+      height: 280px;
+    }
+
+    img {
+      opacity: .25;
+      min-width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Data block
+  .data {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: $white;
+    @include transition(height $speed*3 $ease);
+    background-color: transparent;
+    background-image: -webkit-linear-gradient(transparent 0%, $grey-transparent-bg 50%);
+    font-size: 100%;
+    line-height: 24px;
+    position: absolute;
+    height: 85px;
+    padding: 10px;
+
+    a {
+      padding-bottom: 10px;
+    }
+
+    .teaser {
+      opacity: 0;
+      height: 0;
+      font-size: 100%;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    span,
+    .event-fee {
+      margin-right: 5px;
+    }
+
+    a {
+      color: $white;
+      font-size: 100%;
+      padding-bottom: 10px;
+
+      @include media($mobile) {
+        white-space: nowrap;
+        width: 12em;
+        overflow: hidden;
+        text-overflow: clip;
+      }
+    }
+  }
+
+  // Caption
+  .caption {
+    overflow: hidden;
+
+    h3 {
+      max-height: 22px;
+      padding-top: 15px;
+    }
+  }
+
+  // Library info
+  .library {
+    overflow: hidden;
+    max-height: 24px;
+
+    > div {
+      float: left;
+    }
+  }
+}
+
+.more-links {
+  ul li {
+    list-style: none;
+  }
+}
+
+// Nodelist slider
+//==========================================================================
+.ding_nodelist-slider {
+  overflow: hidden;
+  position: relative;
+  padding-top: 10px;
+  width: 100%;
+
+  ul {
+    li {
+      list-style: none;
+
+      .library {
+        float: left;
+        clear: left;
+
+        .field-label {
+          display: none;
+        }
+
+        .field-item a {
+          display: inline-block;
+        }
+      }
+
+      .item-price {
+        display: inline-block;
+        clear: left;
+        padding-left: 5px;
+      }
+    }
+  }
+  .more-links {
+    float: none;
+    display: block;
+    min-width: 26%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+    li {
+      display: block;
+    }
+
+    @include media($mobile) {
+      display: none;
+    }
+  }
+
+  .item {
+    min-height: auto;
+    @include media($tablet) {
+      max-width: 500px;
+      width: 100%;
+
+      @include media($mobile) {
+        height: auto !important;
+      }
+    }
+  }
+
+  // Title
+  .node {
+    background: none;
+    color: $black;
+    padding: 0;
+    font-family: FaktPro-Normal, sans-serif;
+  }
+
+  .item-body {
+    margin-top: 10px;
+  }
+
+  .more a {
+    color: $black;
+  }
+
+  .label {
+    margin: 0;
+  }
+
+  .category {
+    float: right;
+    margin-top: 4px;
+    padding-right: 70px;
+    position: relative;
+
+    @include media($mobile) {
+      float: none;
+      position: initial;
+    }
+  }
+
+  .legend {
+    float: left;
+    width: 25%;
+    padding-left: 10px;
+
+    @include media($notebook) {
+      margin-bottom: 10px;
+      padding-right: 2em;
+    }
+
+    // Media mobile
+    @include media($tablet) {
+      @include span(4 of 12);
+      text-align: right;
+    }
+
+    span {
+      display: block;
+    }
+  }
+
+  // Carousel
+  .ding_nodelist-items {
+    padding-left: 40px;
+    height: 175px !important;
+
+    // Media medium
+    @include media($tablet) {
+      @include span (3 of 3);
+      padding: 10px;
+    }
+
+    // Media medium
+    @include media($mobile) {
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 40px;
+      padding-top: 0;
+    }
+  }
+
+  // Item
+  .item {
+    margin-bottom: 10px;
+  }
+
+  // Node title
+  h3.node-title {
+    margin-bottom: 5px;
+
+    a {
+      color: $grey-dark;
+    }
+  }
+
+  // Node text
+  .node {
+    margin-top: 0;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  // More link
+  .more {
+    margin-bottom: 5px;
+
+    a {
+      // Media medium
+      @include media($tablet) {
+        display: inline-block;
+        padding: 5px 10px;
+      }
+    }
+  }
+
+  // Next ... prev buttons
+  .next-prev {
+     position: absolute;
+     right: 10px;
+    // bottom: 0;
+     width: 25px;
+
+    span {
+      display: none;
+    }
+
+    .next {
+      bottom: 25px;
+      @include place-icon(arrow-right-small,$color-primary);
+
+      &:after {
+        @extend %icomoon-base;
+        font-size: 20px;
+        transform: rotate(90deg);
+      }
+    }
+
+    .prev {
+      top: -210px;
+      @include place-icon(arrow-right-small,$color-primary);
+
+      &:after {
+        @extend %icomoon-base;
+        font-size: 20px;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+// Taxonomy nodelist
+//==========================================================================
+
+.col3 .ding_nodelist-taxonomy .item .item-list-image,
+.col4 .ding_nodelist-taxonomy .item .item-list-image {
+  display: none;
+}
+.attachments-3-3 .ding_nodelist-taxonomy .item .item-list-image,
+.tertiary-content .ding_nodelist-taxonomy .item .item-list-image,
+.attachments-4-4 .ding_nodelist-taxonomy .item .item-list-image {
+  display: none;
+}
+.ding_nodelist-taxonomy {
+  .event-list-leaf {
+    padding: 10px;
+    background-color: $grey-medium;
+
+    .event-list-date-wrapper {
+      display: inline-block;
+      font-size: 75%;
+      margin-right: 10px;
+      min-width: 65px;
+      text-align: center;
+      vertical-align: top;
+
+      .event-list-day {
+        line-height: 16.8px;
+        background-color: $color-text-link;
+        color: $white;
+        display: block;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      }
+
+      .event-list-inner-wrapper {
+        background: $white;
+      }
+
+      .event-list-date {
+        display: block;
+        font-size: 130%;
+        padding-top: 5px;
+        margin-bottom: -10px;
+      }
+
+      .event-list-month {
+        display: inline-block;
+        font-size: 75%;
+        min-width: 65px;
+        text-align: center;
+        vertical-align: top;
+      }
+    }
+
+    .event-list-fulldate {
+      color: rgba(0, 0, 0, 0.7);
+      display: inline-block;
+      font-size: 130%;
+      font-weight: normal;
+      margin-top: 17px;
+    }
+  }
+
+  .event-list-leaf ~ .item {
+    .item-list-image,
+    .item-library .field-label {
+      display: none;
+    }
+
+    .item-details {
+      display: block;
+      padding: 10px;
+      width: calc(100% - 20px);
+      position: relative;
+    }
+
+    .item-title {
+      margin-right: 25px;
+      margin-bottom: 5px;
+    }
+
+    .item-body {
+      display: block;
+      clear: both;
+    }
+
+    .item-library,
+    .date-time,
+    .item-price {
+      color: rgba(0, 0, 0, 0.7);
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .event-arrow-link {
+      display: inline-block;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      margin-top: -10px;
+      font-size: 20px;
+
+      a {
+        @include place-icon(arrow-right-small,$color-primary);
+        display: inline-block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -10px;
+
+        &:after {
+          font-size: 20px;
+          color: $color-primary;
+          text-align: center;
+          @extend %icomoon-base;
+        }
+      }
+    }
+  }
+
+  .item {
+    background-color: $grey;
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    display: table;
+    position: relative;
+
+    @include media($mobile) {
+      display: block;
+    }
+
+    .item-details {
+      overflow: hidden;
+
+      @include media($mobile) {
+        width: auto;
+      }
+    }
+
+    .item-byline {
+      margin-bottom: 5px;
+      color: rgba(38, 38, 38, .54);
+
+      .label {
+        display: inline-block;
+        margin: 0;
+
+        a.label-info {
+          margin-right: 5px;
+          color: $color-text-link;
+        }
+      }
+
+      .date {
+        display: inline-block;
+      }
+
+      .author {
+        display: none;
+      }
+    }
+
+    h2.item-title {
+      margin-bottom: 5px;
+      font-size: 140%;
+
+      @include media($mobile) {
+        padding-left: 10px;
+      }
+      a {
+        font-family: $font-family-bold;
+      }
+    }
+
+    .news-link {
+      margin: 10px;
+      float: right;
+      display: inline-block;
+
+      @include media($mobile) {
+        position: relative;
+      }
+    }
+
+    .item-body {
+      padding-top: 7px;
+
+      @include media($mobile) {
+        padding-right: 0;
+      }
+    }
+
+    .item-details,
+    .item-list-image {
+      @include media($tablet, $mobile) {
+        padding: 10px;
+      }
+    }
+
+    .item-details {
+      width: 100%;
+      padding: 10px;
+      display: table-cell;
+      vertical-align: top;
+      .item-list-image {
+        display: table-cell;
+        vertical-align: top;
+      }
+    }
+
+    .item-list-image {
+      padding: 10px 0 10px 10px;
+
+      img {
+        width: 159px;
+        max-width: 159px;
+        height: auto;
+        min-width: 159px;
+      }
+    }
+  }
+  // Media medium
+  @include media($mobile) {
+    .item .item-list-image {
+      display: none;
+    }
+  }
+}
+
+// Minimal nodelist
+//==========================================================================
+table {
+  td.minimal-title {
+    width: 100%;
+
+    td.minimal-date {
+      width: 20%;
     }
   }
 }

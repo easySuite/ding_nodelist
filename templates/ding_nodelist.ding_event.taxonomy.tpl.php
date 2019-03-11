@@ -17,60 +17,39 @@
  * $author
  *   Node author name.
  */
-$title = $item->title;
-$category = field_view_field('node', $item, 'field_ding_event_category', 'default');
-$price = field_view_field('node', $item, 'field_ding_event_price', 'default');
-$image_field = 'field_' . $item->type . '_list_image';
-$image = _ding_nodelist_get_dams_image_info($item, $image_field);
-$event_date = _ding_nodelist_get_event_date($item);
-$event_time = _ding_nodelist_get_event_time($item);
-$library = field_view_field('node', $item, 'og_group_ref', 'default');
-$back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
 ?>
 
 <?php if (isset($item->has_header)): ?>
   <div class="event-list-leaf">
     <div class="event-list-date-wrapper">
       <span class="event-list-day">
-        <?php print format_date($event_date, 'custom', 'D'); ?>
+        <?php print format_date($item->timestamp, 'custom', 'D', $item->timezone); ?>
       </span>
       <div class="event-list-inner-wrapper">
         <span class="event-list-date">
-          <?php print format_date($event_date, 'day_only'); ?>
+          <?php print format_date($item->timestamp, 'custom', 'd', $item->timezone); ?>
         </span>
         <span class="event-list-month">
-          <?php print format_date($event_date, 'short_month_only'); ?>
+          <?php print format_date($item->timestamp, 'custom', 'M', $item->timezone); ?>
         </span>
       </div>
     </div>
   <span class="event-list-fulldate">
-    <?php print format_date($event_date, 'ding_long_date_only'); ?>
+    <?php print format_date($item->timestamp, 'custom', 'l j. F Y', $item->timezone); ?>
   </span>
   </div>
 <?php endif; ?>
 <div class="item">
-  <?php if (!empty($image)): ?>
+  <?php if ($item->image): ?>
     <div class="item-list-image">
-      <?php print $back_image; ?>
+      <?php print $item->image_link; ?>
     </div>
   <?php endif ?>
   <div class="item-details">
-    <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <span class="item-library"><?php print $library[0]['#markup']; ?></span>
-    <div class="item-date"><?php print $event_time; ?></div>
-    <div class="item-price">
-      <?php
-      $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-      if (is_array($fee_field)) {
-        // @todo: Move logic from templates.
-        $fee = current($fee_field);
-        print $fee['value'] . ' ' . $currency;
-      }
-      else {
-        print t('Free');
-      }
-      ?>
-    </div>
+    <h2 class="item-title"><?php print l($item->title, 'node/' . $item->nid); ?></h2>
+    <span class="item-library"><?php print drupal_render($item->library_link); ?></span>
+    <div class="date-time"><?php print $item->hours; ?></div>
+    <span class="item-price"><?php print $item->price; ?></span>
     <div class="item-body">
       <span><?php print $item->teaser_lead; ?></span>
     </div>

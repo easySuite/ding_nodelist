@@ -14,11 +14,9 @@
  *  - title - list title
  * $links - list of links (array)
  */
+
 ?>
 <?php if ($items): ?>
-  <?php if (!empty($conf['title'])): ?>
-    <h2 class="pane-title"><?php print $conf['title']; ?></h2>
-  <?php endif; ?>
   <div class="<?php print $conf['classes'] ?>">
     <div class="ding_nodelist-items">
       <div class="ding_nodelist-rolltab-wrapper">
@@ -38,9 +36,11 @@
 
           <?php foreach ($items as $id => $row): ?>
             <div id="fragment-<?php print $id; ?>" class="ui-tabs-panel
-                <?php if ($id >= "1") {
-                    print " ui-tabs-hide";
-                } ?>
+            <?php
+            if ($id >= "1") {
+              print " ui-tabs-hide";
+            };
+            ?>
             ">
               <?php print theme($row->item_template, array(
                 'item' => $row,
@@ -58,11 +58,10 @@
             </option>
           <?php endforeach; ?>
         </select>
-
       </div>
     </div>
     <?php if (!empty($links)): ?>
-      <?php print theme('_more_links', array('links' => $links)); ?>
+      <?php print theme('ding_nodelist_more_links', array('links' => $links)); ?>
     <?php endif; ?>
   </div>
 <?php endif; ?>

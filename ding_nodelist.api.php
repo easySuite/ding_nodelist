@@ -8,7 +8,7 @@
 /**
  * Alter Ding Nodelist Dynamic list query.
  *
- * @param array $query
+ * @param object $query
  *   Query formed by nodelist.
  */
 function hook_ding_nodelist_get_dynamic_list_query_alter(&$query) {
