@@ -17,6 +17,7 @@
         prevArrow: '<i class="fa fa-prev"></i>',
         autoplay: true,
         autoplaySpeed: 2000,
+        speed: delay,
         responsive: true,
         dots: true,
         infinite: true,
