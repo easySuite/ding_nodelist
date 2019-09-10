@@ -11,7 +11,7 @@ $price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 ?>
 <li class="item">
-  
+
   <h3 class="node-title">
       <?php print l($item->title, 'node/' . $item->nid); ?>
   </h3>
@@ -29,10 +29,12 @@ $library = field_view_field('node', $item, 'og_group_ref', 'default');
           $fee_field = field_get_items('node', $item, 'field_ding_event_price');
           if (is_array($fee_field)) {
             $fee = current($fee_field);
-            print '&mdash; ' . $fee['value'] . ' ' . $currency;
-          }
-          else {
-            print '&mdash; ' . t('Free');
+            if ($fee['value'] !== '0') {
+              print '&mdash; ' . $fee['value'] . ' ' . $currency;
+            }
+            elseif ($fee['value'] === '0') {
+              print '&mdash; ' . t('Free');
+            }
           }
         ?>
       </span>

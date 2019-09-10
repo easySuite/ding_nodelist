@@ -54,10 +54,12 @@ if (!empty($image['path'])) {
             $fee_field = field_get_items('node', $item, 'field_ding_event_price');
             if (is_array($fee_field)) {
               $fee = current($fee_field);
-              print $fee['value'] . ' ' . $currency;
-            }
-            else {
-              print t('Free');
+              if ($fee['value'] !== '0') {
+                print '&mdash; ' . $fee['value'] . ' ' . $currency;
+              }
+              elseif ($fee['value'] === '0') {
+                print '&mdash; ' . t('Free');
+              }
             }
             ?>
           </div>
