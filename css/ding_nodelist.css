@@ -1808,3 +1808,30 @@ table tr.minimal-item td.minimal-date {
     background-size: cover;
   }
 }
+
+.ding_nodelist-advanced_carousel .slider-nav-wrapper {
+  max-width: 1280px;
+  margin-left: 80px;
+  font-size: 12px;
+  height: 130px;
+  padding: 25px;
+  border-radius: 3px 0 0 3px;
+}
+.ding_nodelist-advanced_carousel .slider-nav-wrapper .slider-nav {
+  max-width: 900px;
+  float: left;
+}
+.ding_nodelist-advanced_carousel .slider-nav-wrapper .slider-nav .ac-item-image img {
+  display: block;
+  width: 100%;
+}
+.ding_nodelist-advanced_carousel .slider-nav-wrapper .slider-nav .slick-slide {
+  width: 300px !important;
+}
+.ding_nodelist-advanced_carousel .slider-nav-wrapper .slider-nav .slick-slide > .ac-nav-item-image {
+  float: left;
+  margin-right: 20px;
+}
+.ding_nodelist-advanced_carousel .carousel-controls {
+  display: flex;
+}

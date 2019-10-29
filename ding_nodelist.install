@@ -169,6 +169,10 @@ function ding_nodelist_install() {
       'widget' => 'grid_images',
       'content_type' => 'ding_page',
     ),
+    'ding_nodelist.ding_event.advanced_carousel' => array(
+      'widget' => 'advanced_carousel',
+      'content_type' => 'ding_event',
+    ),
   );
 
   foreach ($mappings as $filename => $mapping) {
@@ -424,6 +428,29 @@ function ding_nodelist_update_7007() {
     'ding_nodelist.ding_page.grid_images' => array(
       'widget' => 'grid_images',
       'content_type' => 'ding_page',
+    ),
+  );
+
+  foreach ($mappings as $filename => $mapping) {
+    db_update('ding_nodelist_templates')
+      ->fields(array(
+        'content_type' => $mapping['content_type'],
+        'widget' => $mapping['widget'],
+        'status' => 0,
+      ))
+      ->condition('filename', $filename)
+      ->execute();
+  }
+}
+
+/**
+ * Adding 'Advanced carousel' display type.
+ */
+function ding_nodelist_update_7008() {
+  $mappings = array(
+    'ding_nodelist.ding_event.advanced_carousel' => array(
+      'widget' => 'advanced_carousel',
+      'content_type' => 'ding_event',
     ),
   );
 
