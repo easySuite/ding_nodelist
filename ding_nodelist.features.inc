@@ -135,5 +135,35 @@ function ding_nodelist_image_default_styles() {
     ),
   );
 
+  // Exported image style: nl__culture_carousel.
+  $styles['nl__culture_carousel'] = array(
+    'label' => 'NL: Culture carousel',
+    'effects' => array(
+      4 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1360,
+          'height' => 527,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: nl__culture_carousel_thumb.
+  $styles['nl__culture_carousel_thumb'] = array(
+    'label' => 'NL: Culture carousel thumb',
+    'effects' => array(
+      5 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 80,
+          'height' => 80,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }

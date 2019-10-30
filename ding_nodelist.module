@@ -17,6 +17,7 @@ define('DING_NODELIST_WIDGET_PROMOTED_NODES', 'promoted_nodes');
 define('DING_NODELIST_WIDGET_NODE_BLOCKS', 'node_blocks');
 define('DING_NODELIST_WIDGET_MINIMAL_DISPLAY', 'minimal_display');
 define('DING_NODELIST_WIDGET_GRID_IMAGES', 'grid_images');
+define('DING_NODELIST_WIDGET_ADVANCED_CAROUSEL', 'advanced_carousel');
 
 define('DING_NODELIST_COL_FULL', 'full');
 define('DING_NODELIST_COL_HALF', 'half');
@@ -706,6 +707,16 @@ function ding_nodelist_theme() {
         'conf' => NULL,
       ),
     ),
+    '_ding_nodelist_widget_advanced_carousel' => array(
+      'path' => $path,
+      'template' => 'ding_nodelist_widget_advanced_carousel',
+      'variables' => array(
+        'items' => NULL,
+        'template' => NULL,
+        'links' => NULL,
+        'conf' => NULL,
+      ),
+    ),
   );
 
   // Automatically register core templates.
@@ -982,9 +993,13 @@ function _ding_nodelist_add_js($widget, $autoscroll_delay = NULL, $unique_id = N
       drupal_add_js($mod_path . '/js/rolltab.js', 'file');
       break;
 
-      case DING_NODELIST_WIDGET_NODE_BLOCKS:
+    case DING_NODELIST_WIDGET_NODE_BLOCKS:
       drupal_add_library('system', 'ui.tabs');
       drupal_add_js(array('ding_nodelist' => array($unique_id => $autoscroll_delay)), 'setting');
+      break;
+
+    case DING_NODELIST_WIDGET_ADVANCED_CAROUSEL:
+      drupal_add_js($mod_path . '/js/advanced_carousel.js', 'file');
       break;
   }
 }
@@ -1010,6 +1025,7 @@ function _ding_nodelist_init_image_style($widget) {
     case DING_NODELIST_WIDGET_GRID_IMAGES:
     case DING_NODELIST_WIDGET_TAXONOMY_LIKE:
     case DING_NODELIST_WIDGET_NODE_BLOCKS:
+    case DING_NODELIST_WIDGET_ADVANCED_CAROUSEL:
       return 'ding_panorama_list_large';
 
     case DING_NODELIST_WIDGET_ROLLTAB:
@@ -1448,6 +1464,7 @@ function _ding_nodelist_get_widget_human_name($machine_name) {
     DING_NODELIST_WIDGET_NODE_BLOCKS => t('Nodes in blocks'),
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY => t('Minimal display'),
     DING_NODELIST_WIDGET_GRID_IMAGES => t('Grid Images'),
+    DING_NODELIST_WIDGET_ADVANCED_CAROUSEL => t('Advanced Carousel'),
   );
   return $widgets[$machine_name];
 }
@@ -1475,6 +1492,7 @@ function _ding_nodelist_get_widget_types($content_types = '') {
     DING_NODELIST_WIDGET_NODE_BLOCKS => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_NODE_BLOCKS),
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_MINIMAL_DISPLAY),
     DING_NODELIST_WIDGET_GRID_IMAGES => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_GRID_IMAGES),
+    DING_NODELIST_WIDGET_ADVANCED_CAROUSEL => _ding_nodelist_get_widget_human_name(DING_NODELIST_WIDGET_ADVANCED_CAROUSEL),
   );
 
   // Fetch only widgets that have templates configured.
@@ -1786,6 +1804,7 @@ function _ding_nodelist_widgets_with_titles() {
     DING_NODELIST_WIDGET_NODE_BLOCKS,
     DING_NODELIST_WIDGET_MINIMAL_DISPLAY,
     DING_NODELIST_WIDGET_GRID_IMAGES,
+    DING_NODELIST_WIDGET_ADVANCED_CAROUSEL,
   );
 }
 
@@ -1805,6 +1824,7 @@ function _ding_nodelist_widgets_content_trim() {
     DING_NODELIST_WIDGET_PROMOTED_NODES,
     DING_NODELIST_WIDGET_NODE_BLOCKS,
     DING_NODELIST_WIDGET_GRID_IMAGES,
+    DING_NODELIST_WIDGET_ADVANCED_CAROUSEL,
   );
 }
 
