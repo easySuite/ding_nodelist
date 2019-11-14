@@ -33,18 +33,29 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
       <?php print $back_image; ?>
     </div>
   <?php endif ?>
-  <div class="item-details">
-    <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
-    <div class="label"><?php print drupal_render($category); ?></div>
-    <span class="event-list-fulldate">
+  <div class="label"><?php print drupal_render($category); ?></div>
+  <span class="event-list-fulldate">
       <?php print format_date($event_date, 'ding_long_date_only'); ?>
     </span>
-    <span class="item-library"> by <?php print $library[0]['#markup']; ?></span>
+  <div class="item-details">
+    <h2 class="item-title"><?php print l($title, 'node/' . $item->nid); ?></h2>
     <div class="item-body">
       <span><?php print $item->teaser_lead; ?></span>
     </div>
-    <div class="more">
-      <?php print l(t('Read more'), 'node/' . $item->nid); ?>
-    </div>
+    <span class="item-library"><?php print $library[0]['#markup']; ?></span>
+    <span class="item-price">
+      <?php
+        $fee_field = field_get_items('node', $item, 'field_ding_event_price');
+        if (is_array($fee_field)) {
+          $fee = current($fee_field);
+          if ($fee['value'] !== '0') {
+            print '&mdash; ' . $fee['value'] . ' ' . $currency;
+          }
+          elseif ($fee['value'] === '0') {
+            print '&mdash; ' . t('Free');
+          }
+        }
+      ?>
+    </span>
   </div>
 </div>
