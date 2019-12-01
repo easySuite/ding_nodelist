@@ -27,11 +27,16 @@ $slide_image = l(
 
 <div class="ac-item">
   <?php print $slide_image; ?>
-  <?php print render($category); ?>
-  <?php print date('l d F Y', $event_date); ?>
-  <h2><?php print $item->title; ?></h2>
-  <?php print $item->field_ding_event_lead['und'][0]['value']; ?>
-  <?php print $library[0]['#markup']; ?>
-  <?php print date('H:i', $event_date); ?>
-  <?php print render($price); ?>
+  <div class="ac-info">
+    <?php print render($category); ?>
+    <div class="item-date"><?php print date('l d F Y', $event_date); ?></div>
+    <h2 class="item-title"><?php print $item->title; ?></h2>
+    <div class="item-details"><?php print $item->field_ding_event_lead['und'][0]['value']; ?></div>
+    <div class="item-info">
+      <div class="library-name"><?php print $library[0]['#markup']; ?></div>
+      <div class="date-time"><?php print date('H:i', $event_date); ?></div>
+      <?php print render($price); ?>
+    </div>
+  </div>
 </div>
+
