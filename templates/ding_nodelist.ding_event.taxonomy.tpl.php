@@ -19,7 +19,6 @@
  */
 $title = $item->title;
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
-$price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
@@ -43,19 +42,6 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
       <span><?php print $item->teaser_lead; ?></span>
     </div>
     <span class="item-library"><?php print $library[0]['#markup']; ?></span>
-    <span class="item-price">
-      <?php
-        $fee_field = field_get_items('node', $item, 'field_ding_event_price');
-        if (is_array($fee_field)) {
-          $fee = current($fee_field);
-          if ($fee['value'] !== '0') {
-            print '&mdash; ' . $fee['value'] . ' ' . $currency;
-          }
-          elseif ($fee['value'] === '0') {
-            print '&mdash; ' . t('Free');
-          }
-        }
-      ?>
-    </span>
+    <span class="item-price"><?php print $item->price; ?></span>
   </div>
 </div>
