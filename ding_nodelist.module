@@ -1894,6 +1894,18 @@ function ding_nodelist_preprocess(&$variables, $hook) {
 
         $items[$key]->teaser_lead = $output;
 
+        $image_field = "field_{$item->type}_list_image";
+        $image = _ding_nodelist_get_dams_image_info($item, $image_field);
+        $img_url = FALSE;
+        if (!empty($image['path'])) {
+          $img_url = image_style_url($variables['conf']['image_style'], $image['path']);
+        }
+        $items[$key]->image = $img_url;
+        $items[$key]->image_link = l($image ? theme('image_style', array_merge($image, array('style_name' => $variables['conf']['image_style']))) : '',
+          'node/' . $item->nid,
+          array('html' => TRUE)
+        );
+
         $fee_field = field_get_items('node', $item, 'field_ding_event_price');
         $items[$key]->price = t('Free');
         if (is_array($fee_field)) {
