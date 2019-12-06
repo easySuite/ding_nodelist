@@ -22,7 +22,7 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
 $image_field = 'field_' . $item->type . '_list_image';
 $image = _ding_nodelist_get_dams_image_info($item, $image_field);
 $event_date = _ding_nodelist_get_event_date($item);
-$event_time = _ding_nodelist_get_event_time($item);
+$event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $back_image = l($image ? theme('image_style', array_merge($image, array('style_name' => $conf['image_style']))) : '', 'node/' . $item->nid, array('html' => TRUE));
 ?>
@@ -42,6 +42,7 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
       <span><?php print $item->teaser_lead; ?></span>
     </div>
     <span class="item-library"><?php print $library[0]['#markup']; ?></span>
+    <div class="date-time"><?php print $item->event_time; ?></div>
     <span class="item-price"><?php print $item->price; ?></span>
     <span class="price"><?php print $item->price; ?></span>
   </div>
