@@ -43,5 +43,6 @@ $back_image = l($image ? theme('image_style', array_merge($image, array('style_n
     </div>
     <span class="item-library"><?php print $library[0]['#markup']; ?></span>
     <span class="item-price"><?php print $item->price; ?></span>
+    <span class="price"><?php print $item->price; ?></span>
   </div>
 </div>
