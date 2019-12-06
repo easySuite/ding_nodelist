@@ -35,7 +35,7 @@ $slide_image = l(
     <div class="item-info">
       <div class="library-name"><?php print $library[0]['#markup']; ?></div>
       <div class="date-time"><?php print date('H:i', $event_date); ?></div>
-      <?php print render($price); ?>
+      <span class="item-price"><?php print $item->price; ?></span>
     </div>
   </div>
 </div>
