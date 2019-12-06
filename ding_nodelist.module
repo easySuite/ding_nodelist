@@ -1912,6 +1912,8 @@ function ding_nodelist_preprocess(&$variables, $hook) {
           $fee = current($fee_field);
           $items[$key]->price = $fee['value'] . ' ' . variable_get('ding_event_currency_type', 'Kr');
         }
+        $event_time = _ding_nodelist_group_events($item);
+        $items[$key]->event_time = implode('<span class="separator"></span>', $event_time);
       }
 
       $variables['items'] = $items;
@@ -1955,4 +1957,46 @@ function _ding_nodelist_process_css_colors() {
   $style = _color_rewrite_stylesheet($theme, $info, $paths, $palette, $style);
   // Save new css data into file.
   file_unmanaged_save_data($style, 'public://nodelist_colored_css/ding_nodelist.css', FILE_EXISTS_REPLACE);
+}
+
+/**
+ * Group event
+ *
+ * @return array
+ */
+function _ding_nodelist_group_events($node) {
+  // Search same event times.
+  $event_time = [];
+
+  $query = db_select('node', 'n');
+  $query->fields('n', ['nid']);
+  $query->join('field_data_field_ding_event_date', 'fed', 'n.nid=fed.entity_id');
+
+  $date = field_get_items('node', $node, 'field_ding_event_date');
+  $date_object = new DateTime($date[0]['value'], new DateTimeZone($date[0]['timezone_db']));
+  $query->where(
+    "DATE_FORMAT(fed.field_ding_event_date_value, '%Y-%m-%d') = :date",
+    array(
+      ':date' => $date_object->format('Y-m-d')
+    )
+  );
+  $title = html_entity_decode($node->title);
+  $query->condition('n.title', $title);
+  $results = $query->execute()->fetchCol();
+
+  foreach ($results as $nid) {
+    // Add event time to variables. A render array is created based on the
+    // date format "time_only".
+    $separate_event_time = field_view_field('node', node_load($nid), 'field_ding_event_date', array(
+      'label' => 'hidden',
+      'type' => 'date_default',
+      'settings' => array(
+        'format_type' => 'ding_time_only',
+        'fromto' => 'both',
+      ),
+    ));
+    $event_time[] = $separate_event_time[0]['#markup'];
+  }
+
+  return $event_time;
 }
