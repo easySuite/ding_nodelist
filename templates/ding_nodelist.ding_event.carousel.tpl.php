@@ -7,7 +7,6 @@
 
 $event_date = _ding_nodelist_get_event_date($item);
 $event_date_formatted = _ding_nodelist_formated_ding_event_date($item);
-$price = field_view_field('node', $item, 'field_ding_event_price', 'default');
 $library = field_view_field('node', $item, 'og_group_ref', 'default');
 $category = field_view_field('node', $item, 'field_ding_event_category', 'default');
 ?>
@@ -25,6 +24,7 @@ $category = field_view_field('node', $item, 'field_ding_event_category', 'defaul
       </p>
       <div class="event-info">
         <span class="library"><?php print $library[0]['#markup']; ?></span>
+        <div class="date-time"><?php print date('H:i', $event_date); ?></div>
         <span class="item-price"><?php print $item->price; ?></span>
       </div>
     </div>
