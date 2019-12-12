@@ -8,8 +8,23 @@
         slidesToScroll: 1,
         arrows: false,
         fade: true,
-        asNavFor: '.slider-nav'
+        asNavFor: '.slider-nav',
+        dots: true,
+        customPaging: function (slick, index) {
+          return '<a>' + (index + 1) + '</a>';
+        },
+        responsive: [
+          {
+            breakpoint: 989,
+            settings: {
+              autoplay: true,
+              autoplaySpeed: 2000,
+              infinite: false
+            }
+          }
+        ]
       });
+
       $('.slider-nav', context).slick({
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -36,7 +51,6 @@
       $('.carousel-controls__prev', context).click(function () {
         $('.ding_nodelist-advanced-carousel', context).slick('slickPrev');
       });
-
     }
   }
 })(jQuery, Drupal);
