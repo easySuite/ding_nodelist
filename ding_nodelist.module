@@ -1912,8 +1912,11 @@ function ding_nodelist_preprocess(&$variables, $hook) {
           $fee = current($fee_field);
           $items[$key]->price = $fee['value'] . ' ' . variable_get('ding_event_currency_type', 'Kr');
         }
-        $event_time = _ding_nodelist_group_events($item);
-        $items[$key]->event_time = implode('<span class="separator"></span>', $event_time);
+
+        if ($item->type === 'ding_event') {
+          $event_time = _ding_nodelist_group_events($item);
+          $items[$key]->event_time = implode('<span class="separator"></span>', $event_time);
+        }
       }
 
       $variables['items'] = $items;
